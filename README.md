@@ -1,66 +1,58 @@
-# lavadero-app
+# Lavadero App 1.0
 
-Aplicación móvil Expo managed + TypeScript strict. **Etapa 1:** estructura Atomic Design,
-pantalla inicial, temas base y prueba de conexión al backend público. Sin login ni CRUD todavía.
-Se puede instalar sin tener el repositorio de la API.
+Aplicación Expo/React Native con TypeScript estricto y Expo Router. Tiene flujos reales
+para Cliente, Empleado y Administrador, temas claro/oscuro/sistema y diseño adaptable.
+Consume exclusivamente una API HTTPS pública; es independiente del repositorio backend.
 
-## Versiones
+Repositorio privado: https://github.com/nehuenparrondo/lavadero-app.
+Proyecto EAS: https://expo.dev/accounts/elpepoestangod/projects/lavadero-app.
 
-Expo SDK **58**, React **19.3**, React Native **0.88**, desde la plantilla oficial estable
-verificada el 29/10/2026. Las versiones exactas quedan fijadas en `package-lock.json`.
-Requisitos: Node 24 LTS (mínimo 22.13), npm, dispositivo Android o emulador/development build.
+## Ejecutar
 
-## Instalación
+Node 24 LTS, Expo SDK 58, React 19.3 y React Native 0.88. Las versiones exactas están
+fijadas en `package-lock.json`. Instalar paquetes nativos con `npx expo install`.
 
 ```powershell
 npm ci
 Copy-Item .env.example .env
-```
-
-Completar `EXPO_PUBLIC_API_URL` con el **origen HTTPS público de Render**, sin `/api/v1`.
-Si aún no existe, dejarla vacía: la pantalla informa que la conexión está pendiente.
-Nunca se usa `localhost` como alternativa y no se simula una conexión exitosa.
-
-```powershell
+# EXPO_PUBLIC_API_URL=https://lavadero-api-48m4.onrender.com
 npm run check
-npx expo install --check
 npm start
 ```
 
-La plantilla usa SDK 58. Verificar compatibilidad exacta de Expo Go antes de escanear;
-OAuth requiere development build. [Instalación y EAS](docs/installation.md).
+La URL es solo el origen, sin `/api/v1`. Nunca poner secretos OAuth o credenciales
+MySQL en variables EXPO_PUBLIC. En móvil, localhost identifica al teléfono.
 
-## Scripts
+## Funciones
 
-| Script                               | Uso                                              |
-| ------------------------------------ | ------------------------------------------------ |
-| `start`, `android`, `ios`            | Servidor Expo y apertura en dispositivo/emulador |
-| `typecheck`, `lint`, `test`, `check` | Verificación del proyecto independiente          |
-| `format`, `format:check`             | Formato de código y documentos                   |
-| `export:android`                     | Compila el bundle Android; **no genera un APK**  |
+- Cliente: cuenta, perfil, vehículos, tarifas, cotización, reserva, historial,
+  cancelación según anticipación y comprobante del trabajo finalizado.
+- Empleado: agenda e historial propios, detalle del vehículo/cliente, observaciones,
+  inicio/finalización y cobro cuando un administrador lo habilita.
+- Administrador: usuarios/roles, catálogo/tarifas/tipos, agenda/asignación, horarios,
+  capacidad, políticas y reportes por día/semana/mes.
+- Formularios React Hook Form + Zod, listas paginadas, búsqueda, estados de carga,
+  errores, vacíos, actualización y confirmaciones de acciones.
 
-## Estructura
+## Compilar y distribuir
 
-```text
-src/
-  api/client.ts, api/services/
-  components/atoms/, molecules/, organisms/
-  context/, hooks/, navigation/
-  screens/auth/, client/, employee/, admin/
-  theme/, types/, constants/, utils/
-docs/
-App.tsx, index.ts, app.config.ts, eas.json
+```powershell
+npm run export:android
+npx eas-cli@latest build --platform android --profile preview
 ```
 
-Los módulos futuros tienen README explicativos, no pantallas simuladas.
-No se importa código de `lavadero-api`. El contrato REST versionado define la integración.
+La exportación verifica el bundle; el segundo comando genera el APK firmado en EAS.
+El perfil preview usa distribución interna y NO necesita el servidor Metro para funcionar.
+Para desarrollar OAuth usar un development build o el APK: Expo Go no representa
+correctamente el scheme propio. El backend conserva los secretos del proveedor.
 
-## Documentación
+`npm run export:web` genera `web-dist`; en Render Static Site se añade rewrite
+`/*` → `/index.html`. El origen HTTPS web debe incluirse en CORS del backend.
 
-[Plan](docs/plan.md) · [Arquitectura](docs/architecture.md) · [Navegación](docs/navigation.md) ·
-[Componentes](docs/components.md) · [Estado](docs/state.md) · [Instalación](docs/installation.md) ·
-[Verificación](docs/verification.md) · [Manual](docs/user-manual.md) · [Entrega](docs/delivery.md).
+[Instalación](docs/installation.md), [arquitectura](docs/architecture.md),
+[componentes](docs/components.md), [navegación](docs/navigation.md),
+[estado](docs/state.md), [manual por rol](docs/user-manual.md),
+[verificación](docs/verification.md), [entrega](docs/delivery.md).
 
-La identidad `com.lavadero.app` es inicial; confirmar unicidad antes del primer APK publicado.
-
-La revisión de dependencias y sus avisos heredados está en [dependencies.md](docs/dependencies.md).
+En Android el refresh se guarda con SecureStore. En la vista web se usa sessionStorage
+de la pestaña; cerrar la pestaña elimina esa persistencia. El access token queda en memoria.

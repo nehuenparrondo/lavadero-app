@@ -1,17 +1,14 @@
-# Estado
+# Estado y comunicaciones
 
-## Implementado
+AuthContext: usuario y access token en memoria; refresh en SecureStore Android/iOS,
+sessionStorage para web. Logout borra la sesión local y solicita revocación al backend.
+ThemeContext: system/light/dark en AsyncStorage; sigue al sistema cuando corresponde.
 
-ThemeContext mantiene modo system/light/dark en memoria y resuelve la paleta con useColorScheme.
-useTheme es la única interfaz de consumo. La pantalla sigue al sistema por defecto.
-useApiHealth administra conexión y reintento local, aborta la solicitud al desmontar y evita
-actualizar estado después del aborto. Solo healthService envía HTTP mediante el cliente Axios.
+useRemoteData: recurso con carga/error/refresh y cancelación lógica de resultados viejos.
+usePagedList: filtros, página y total. useOptions recorre páginas de opciones sin truncarlas.
+useAction evita doble envío y expone error de la operación. useEntityManager separa
+errores de listado de errores al guardar. La búsqueda se demora 300 ms.
 
-## Etapas siguientes
-
-AuthContext contendrá usuario, sesión y rol. Refresh token en expo-secure-store, access token
-en memoria; nunca AsyncStorage para secretos. Restablecer sesión con carga y verificación de API.
-Interceptor Axios con una promesa de refresh compartida, cola para 401 concurrentes y un único reintento.
-Ante refresh revocado se limpia sesión. Logout revoca familia en backend y borra almacenamiento local.
-La preferencia de tema se persistirá en etapa 9 mediante almacenamiento no sensible.
-Los datos de negocio se encapsulan en hooks por recurso; no se duplica información derivable globalmente.
+La app no conserva una copia mutable del catálogo como autoridad de precio. La reserva
+muestra cotización del servidor y maneja 409 limpiando el horario elegido. Los cobros
+reutilizan su clave de idempotencia al reintentar un envío incierto.

@@ -1,12 +1,12 @@
-# Verificación de etapa 1 — 29/10/2026
+# Verificación de versión 1.0
 
-- `npm run check`: TypeScript strict, ESLint y prueba de URL pública aprobados.
-- `npm run format:check`: formato verificado.
-- `npx expo install --check`: dependencias compatibles con SDK 58.
-- `npx expo-doctor`: **20/20 verificaciones aprobadas**.
-- `npm run export:android`: bundle Android compilado correctamente.
-- Auditoría de dependencias: **8 avisos heredados**; análisis en [dependencies.md](dependencies.md).
+TypeScript estricto y ESLint sin advertencias aprobados. Prueba del origen HTTPS
+aprobada. Exportación Android realizada para verificar resolución de módulos y bundle.
+El APK firmado se genera por separado en EAS; consultar `delivery.md` para su estado.
 
-La exportación es un bundle de código, no un APK firmado. No se ha ejecutado en un dispositivo
-Android/iOS ni probado conexión a un backend público todavía. Las capturas y el manual por rol
-se completarán sobre la app funcional. No se simulan roles ni datos de reservas en esta etapa.
+La revisión visual usa la misma interfaz renderizada en web con ancho móvil y paisaje.
+Esas capturas no acreditan ejecución en un teléfono físico. No se dispone de un equipo
+Android conectado en esta sesión. Ver manual por rol para flujos y capturas verificadas.
+
+Las advertencias heredadas de herramientas Expo se describen en `dependencies.md`;
+no se aplican actualizaciones forzadas que rompan la compatibilidad del SDK.

@@ -1,41 +1,65 @@
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable, ActivityIndicator, StyleSheet } from 'react-native';
 import { Text } from './Text';
 import { useTheme } from '../../hooks/useTheme';
-import { tokens } from '../../theme/tokens';
-
-/** Propiedades de una acción primaria accesible. */
+/** Props de una acción accesible. */
 export interface ButtonProps {
   label: string;
   onPress: () => void;
   disabled?: boolean;
+  loading?: boolean;
+  variant?: 'primary' | 'secondary' | 'danger' | 'quiet';
 }
-/** Botón accesible con feedback táctil.
- * @param props Texto, acción y estado deshabilitado.
- * @returns Acción primaria con estilo del tema.
- */
-export function Button({ label, onPress, disabled = false }: ButtonProps) {
+/** Acción con estado de carga y superficie del tema. */
+export function Button({
+  label,
+  onPress,
+  disabled = false,
+  loading = false,
+  variant = 'primary',
+}: ButtonProps) {
   const { colors } = useTheme();
+  const background =
+    variant === 'primary'
+      ? colors.primary
+      : variant === 'danger'
+        ? colors.danger
+        : variant === 'quiet'
+          ? 'transparent'
+          : colors.soft;
+  const foreground =
+    variant === 'primary'
+      ? colors.onPrimary
+      : variant === 'danger'
+        ? colors.background
+        : colors.primary;
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityState={{ disabled }}
+      accessibilityState={{ disabled: disabled || loading, busy: loading }}
+      disabled={disabled || loading}
       onPress={onPress}
-      disabled={disabled}
       style={({ pressed }) => [
         styles.button,
-        { backgroundColor: colors.primary, opacity: disabled || pressed ? 0.6 : 1 },
+        { backgroundColor: background, opacity: disabled || pressed ? 0.6 : 1 },
       ]}
     >
-      <Text style={{ color: colors.onPrimary, fontWeight: '700' }}>{label}</Text>
+      {loading ? (
+        <ActivityIndicator color={foreground} />
+      ) : (
+        <Text style={{ color: foreground, fontWeight: '700', textAlign: 'center' }}>
+          {label}
+        </Text>
+      )}
     </Pressable>
   );
 }
 const styles = StyleSheet.create({
   button: {
     minHeight: 48,
+    paddingHorizontal: 18,
+    paddingVertical: 13,
+    borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: tokens.radius.sm,
-    padding: tokens.spacing.md,
   },
 });
