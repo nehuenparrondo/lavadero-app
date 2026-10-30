@@ -84,6 +84,7 @@ export interface Appointment {
     priceCents?: number;
     durationMinutes: number;
   }[];
+  serviceSummary?: string;
   notes?: { id: string; body: string; authorName: string; createdAt: string }[];
 }
 /** Cotización y opciones calculadas en backend. */
