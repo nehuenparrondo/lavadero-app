@@ -1,21 +1,32 @@
 # Catálogo Atomic Design
 
-## Implementado en etapa 1
-
-| Componente       | Capa     | Props                     | Uso                                              |
-| ---------------- | -------- | ------------------------- | ------------------------------------------------ |
-| Text             | atom     | TextProps React Native    | Texto con paleta semántica y escala              |
-| Button           | atom     | label, onPress, disabled? | Acción accesible de 48 dp mínimos                |
-| ConnectionStatus | molecule | state, onRetry            | Estado real unconfigured/checking/online/offline |
-| OpeningHoursCard | molecule | state, onRetry            | Horario del negocio y conectividad               |
-| WelcomePanel     | organism | state, onRetry            | Bienvenida y horario confirmado                  |
+| Pieza                                      | Capa      | Props/uso principal                                       |
+| ------------------------------------------ | --------- | --------------------------------------------------------- |
+| Text                                       | Átomo     | TextProps; tipografía/paleta semántica                    |
+| Button                                     | Átomo     | label, onPress, variant, loading, disabled                |
+| Input                                      | Átomo     | label, error y TextInputProps; entrada accesible          |
+| Avatar / Badge                             | Átomo     | Identidad abreviada / etiqueta de estado                  |
+| Card / SectionHeader                       | Molécula  | children / title, subtitle, action                        |
+| FormField                                  | Molécula  | field, value, onChange, error; texto/fecha/opciones       |
+| ChoiceGroup                                | Molécula  | options, value, onChange, multiple                        |
+| Notice / LoadingState / EmptyState         | Molécula  | Mensaje, reintento y estado de recurso                    |
+| StatusBadge                                | Molécula  | Traduce estado del contrato a etiqueta visual             |
+| ServiceCard                                | Molécula  | Servicio, tipo, tarifa y acciones administrativas         |
+| Pagination                                 | Molécula  | page, total, limit, onChange                              |
+| Screen                                     | Organismo | children, onRefresh, refreshing; ancho adaptable y scroll |
+| ModalPanel                                 | Organismo | visible, title, onClose, children; diálogo reutilizable   |
+| EntityForm                                 | Organismo | fields, schema, initialValues, onSubmit; RHF/Zod          |
+| AppointmentCard                            | Organismo | Turno y onPress; horario/vehículo/estado                  |
+| AppointmentFilters                         | Organismo | Fecha, estado y actualización del listado                 |
+| AppointmentActions / AppointmentDialogs    | Organismo | Acciones/diálogos según rol y permiso                     |
+| ScheduleSelector                           | Organismo | Cotización y horarios devueltos por backend               |
+| VehicleEditor / ServiceEditors / UserTable | Organismo | Gestión de entidades                                      |
+| VehicleTypeManager / ReportSummary         | Organismo | Tipos y resumen administrativo                            |
 
 ```tsx
-<Button label="Volver a intentar" onPress={retry} disabled={state === 'checking'} />
-<ConnectionStatus state={state} onRetry={retry} />
+<Button label="Guardar" loading={busy} onPress={save} />
+<Notice error={error} onRetry={refresh} />
 ```
 
-Cada componente público tiene TSDoc, tema centralizado y una responsabilidad. Pantallas conectan hooks.
-Pendientes según necesidad: Input, Icon, Badge, Spinner, Avatar; FormField, ListItem, StatusBadge,
-SearchBar, ServiceCard; AppointmentCard, VehicleForm, AppointmentList, UserTable, ScheduleSelector.
-No se exportan componentes vacíos para aparentar funcionalidad.
+Los componentes reciben datos/callbacks; los hooks ejecutan acciones y los servicios
+realizan HTTP. Los README de carpetas y TSDoc describen las responsabilidades locales.

@@ -42,7 +42,7 @@ export function AppointmentsScreen({
       )}
       {m.summary && (
         <Text>
-          Hoy: {m.summary.completed} finalizados · {m.summary.pending} pendientes
+          Jornada: {m.summary.completed} finalizados · {m.summary.pending} pendientes
         </Text>
       )}
       <AppointmentFilters manager={m} />

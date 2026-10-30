@@ -7,7 +7,7 @@ import { Text } from '../components/atoms/Text';
 import { Button } from '../components/atoms/Button';
 import { useTheme } from '../hooks/useTheme';
 const items = [
-  ['dashboard', 'Dashboard'],
+  ['dashboard', 'Tablero'],
   ['appointments', 'Turnos'],
   ['users', 'Usuarios'],
   ['services', 'Servicios y precios'],

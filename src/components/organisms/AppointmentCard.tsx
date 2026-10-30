@@ -32,6 +32,10 @@ export function AppointmentCard({
           {appointment.plate} · {appointment.brand} {appointment.model}
         </Text>
         <Text style={{ color: colors.muted }}>
+          {appointment.color}
+          {appointment.serviceSummary ? ` · ${appointment.serviceSummary}` : ''}
+        </Text>
+        <Text style={{ color: colors.muted }}>
           {appointment.clientName}
           {appointment.employeeName ? ` · ${appointment.employeeName}` : ''}
         </Text>

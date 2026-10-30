@@ -1,13 +1,13 @@
 # Rutas y permisos
 
-| Grupo | Pantallas |
-|---|---|
-| Público | sign-in, sign-up, oauth, loading |
-| Cliente | inicio, turnos, vehículos, servicios, perfil |
-| Empleado | agenda, historial, perfil |
-| Admin | tablero, turnos, usuarios, servicios, vehículos, reportes, configuración, perfil |
-| Compartido autenticado | appointment/[id] |
-| Cliente/Admin | booking |
+| Grupo                  | Pantallas                                                                        |
+| ---------------------- | -------------------------------------------------------------------------------- |
+| Público                | sign-in, sign-up, oauth, loading                                                 |
+| Cliente                | inicio, turnos, vehículos, servicios, perfil                                     |
+| Empleado               | agenda, historial, perfil                                                        |
+| Admin                  | tablero, turnos, usuarios, servicios, vehículos, reportes, configuración, perfil |
+| Compartido autenticado | appointment/[id]                                                                 |
+| Cliente/Admin          | booking                                                                          |
 
 La raíz dirige al grupo del rol actual. RootNavigation usa Stack.Protected y destinos
 explícitos para sesión ausente/restaurándose. Las pestañas del empleado no incluyen

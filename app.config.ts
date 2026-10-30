@@ -14,7 +14,7 @@ export default function createExpoConfig({ config }: ConfigContext): ExpoConfig 
     userInterfaceStyle: 'automatic',
     icon: './assets/icon.png',
     owner: 'elpepoestangod',
-    android: { package: 'com.nehuenparrondo.lavadero' },
+    android: { package: 'com.nehuenparrondo.lavadero', versionCode: 2 },
     ios: { bundleIdentifier: 'com.nehuenparrondo.lavadero', supportsTablet: true },
     web: { bundler: 'metro', output: 'single', favicon: './assets/icon.png' },
     plugins: [

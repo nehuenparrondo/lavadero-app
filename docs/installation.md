@@ -1,41 +1,58 @@
-# Instalación y APK — App
+# Instalación, desarrollo y distribución
 
-## Etapa 1
+## Desde cero
 
-1. Instalar Node 24 LTS y Git. Abrir solo el repositorio lavadero-app.
-2. `npm ci`, copiar `.env.example` a `.env` y configurar origen HTTPS Render cuando exista.
-3. `npm run check`, `npx expo install --check` y `npm run export:android`.
-4. `npm start`; abrir en development build o emulador. En Windows no se compila iOS localmente.
-5. Ver pantalla inicial, girar el dispositivo y cambiar el tema del sistema. Sin URL se informa
-   conexión pendiente. Con backend público, probar conexión y reintento ante red desconectada.
+Instalar Node 24 LTS y Git; clonar solamente lavadero-app y ejecutar `npm ci`.
+Copiar `.env.example` a `.env` y definir:
 
-## Development build y APK — etapas 6–10
-
-```powershell
-npx eas-cli@latest login
-npx eas-cli@latest init
+```dotenv
+EXPO_PUBLIC_API_URL=https://lavadero-api-48m4.onrender.com
+EXPO_PUBLIC_EAS_PROJECT_ID=a36a1817-4c5e-46a4-9f75-52aadfa5bd1d
 ```
 
-Guardar ID asignado como EXPO_PUBLIC_EAS_PROJECT_ID y configurar EXPO_PUBLIC_API_URL en EAS
-para los entornos development, preview y production (comando `eas env:create` o panel).
-Es una URL pública que queda en el bundle, no un lugar para secretos. Leer `eas env:create --help`
-al ejecutar para confirmar parámetros vigentes. No commitear una URL ficticia como producción.
+`npm run check`, `npx expo install --check` y `npm run export:android` verifican el
+proyecto. `npm start` abre Metro para desarrollo. El APK preview funciona sin Metro.
+Si cambia una variable pública, reiniciar Metro o volver a compilar para incorporarla.
+
+## EAS
+
+Proyecto ya vinculado a `elpepoestangod/lavadero-app`; no ejecutar init para crear otro.
+Iniciar sesión con `npx eas-cli@latest login`. Configurar EXPO_PUBLIC_API_URL en los
+entornos development/preview/production desde el panel EAS o `eas env:set --help`.
+Solo preview y production están configurados en la entrega. Las credenciales SQL,
+JWT y OAuth nunca se incluyen en la app.
 
 ```powershell
 npx eas-cli@latest build --platform android --profile development
 npx eas-cli@latest build --platform android --profile preview
 ```
 
-`eas.json` define APK en preview/production. EAS solicita proyecto y firma: conservar control
-del keystore en la cuenta propia. Verificar costo/cuota de Build antes de iniciarlo.
-El APK final se prueba instalado, con backend HTTPS y todos los roles, antes de distribuirlo
-por enlace EAS o GitHub Releases. El bundle `expo export` **no es un APK firmado**.
+`eas.json` usa APK para preview/production. EAS administra el keystore de Android en la
+cuenta del propietario. Conservarlo para que futuras versiones actualicen la aplicación.
+No guardar keystore/contraseñas en Git. Package: `com.nehuenparrondo.lavadero`.
 
-Autenticación social no se prueba con Expo Go: usar development build o APK con scheme lavadero.
-Si se cambia scheme/package, reconstruir. Google, Discord y GitHub usan callbacks registrados
-por entorno, con secretos y canje del código solo en la API independiente.
+Descargar el APK desde el enlace de entrega, abrirlo en Android y autorizar la instalación
+desde esa fuente si Android lo solicita. Para una próxima versión usar el mismo package,
+misma firma y aumentar versionCode. EAS informa cuota/cola; verificar el plan antes de
+iniciar otra compilación. La entrega no configura EAS Update ni Google Play.
 
-EAS Update es opcional y se configura al final; no está activado en esta etapa.
-[Build APK](https://docs.expo.dev/build-reference/apk/) ·
-[Variables EAS](https://docs.expo.dev/eas/environment-variables/) ·
-[OAuth](https://docs.expo.dev/guides/authentication/).
+## OAuth y web
+
+Usar APK o development build con scheme `lavadero`, callback `lavadero://oauth`.
+Expo Go utiliza otra identidad y no es una prueba válida del retorno nativo.
+Los callbacks de proveedores terminan en el backend HTTPS; el backend redirige un
+código efímero a la app. No copiar client secrets a EXPO_PUBLIC.
+
+Versión web: https://lavadero-app-2558.onrender.com. Se construye en Render Static Site
+con `npm ci --include=dev && npm run export:web`, publica `web-dist`, y tiene rewrite
+`/*` a `/index.html`. Su origen exacto está permitido en CORS. Los refresh web duran
+solo la pestaña, en sessionStorage. Para probar desarrollo web contra otra API hay que
+permitir ese origen explícitamente en el entorno correspondiente.
+
+## Problemas comunes
+
+- Primera solicitud lenta: abrir /ready y esperar que Render Free despierte.
+- 401: sesión vencida/revocada; volver a ingresar. Cambiar rol/contraseña revoca sesiones.
+- 409 al reservar: el horario se ocupó; volver a consultar y elegir otro.
+- URL inválida: usar origen HTTPS, sin /api/v1 ni credenciales. localhost no es público.
+- OAuth deshabilitado: faltan credenciales reales en Render; consultar guía OAuth del API.

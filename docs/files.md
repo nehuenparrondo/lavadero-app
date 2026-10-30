@@ -1,77 +1,126 @@
-# Archivos de lavadero-app
+# Índice de archivos fuente
 
-Rutas relativas a la raíz independiente del proyecto. Código completo en estos archivos.
+Cada pieza mantiene su TSDoc. Este índice ayuda a ubicar responsabilidades.
 
-- [.claude/settings.json](../.claude/settings.json)
-- [.env.example](../.env.example)
-- [.gitattributes](../.gitattributes)
-- [.github/workflows/ci.yml](../.github/workflows/ci.yml)
-- [.gitignore](../.gitignore)
-- [.prettierignore](../.prettierignore)
-- [.prettierrc.json](../.prettierrc.json)
-- [AGENTS.md](../AGENTS.md)
-- [app.config.ts](../app.config.ts)
-- [App.tsx](../App.tsx)
-- [assets/android-icon-background.png](../assets/android-icon-background.png)
-- [assets/android-icon-foreground.png](../assets/android-icon-foreground.png)
-- [assets/android-icon-monochrome.png](../assets/android-icon-monochrome.png)
-- [assets/favicon.png](../assets/favicon.png)
-- [assets/icon.png](../assets/icon.png)
-- [assets/splash-icon.png](../assets/splash-icon.png)
-- [CHANGELOG.md](../CHANGELOG.md)
-- [CONTRIBUTING.md](../CONTRIBUTING.md)
-- [docs/architecture.md](../docs/architecture.md)
-- [docs/components.md](../docs/components.md)
-- [docs/delivery.md](../docs/delivery.md)
-- [docs/dependencies.md](../docs/dependencies.md)
-- [docs/files.md](../docs/files.md)
-- [docs/installation.md](../docs/installation.md)
-- [docs/navigation.md](../docs/navigation.md)
-- [docs/plan.md](../docs/plan.md)
-- [docs/state.md](../docs/state.md)
-- [docs/user-manual.md](../docs/user-manual.md)
-- [docs/verification.md](../docs/verification.md)
-- [eas.json](../eas.json)
-- [eslint.config.ts](../eslint.config.ts)
-- [index.ts](../index.ts)
-- [LICENSE](../LICENSE)
-- [package-lock.json](../package-lock.json)
-- [package.json](../package.json)
-- [README.md](../README.md)
-- [src/api/client.ts](../src/api/client.ts)
-- [src/api/README.md](../src/api/README.md)
-- [src/api/services/healthService.ts](../src/api/services/healthService.ts)
-- [src/api/services/README.md](../src/api/services/README.md)
-- [src/components/atoms/Button.tsx](../src/components/atoms/Button.tsx)
-- [src/components/atoms/README.md](../src/components/atoms/README.md)
-- [src/components/atoms/Text.tsx](../src/components/atoms/Text.tsx)
-- [src/components/molecules/ConnectionStatus.tsx](../src/components/molecules/ConnectionStatus.tsx)
-- [src/components/molecules/OpeningHoursCard.tsx](../src/components/molecules/OpeningHoursCard.tsx)
-- [src/components/molecules/README.md](../src/components/molecules/README.md)
-- [src/components/organisms/README.md](../src/components/organisms/README.md)
-- [src/components/organisms/WelcomePanel.tsx](../src/components/organisms/WelcomePanel.tsx)
-- [src/components/README.md](../src/components/README.md)
-- [src/constants/README.md](../src/constants/README.md)
-- [src/context/README.md](../src/context/README.md)
-- [src/context/ThemeContext.tsx](../src/context/ThemeContext.tsx)
-- [src/hooks/README.md](../src/hooks/README.md)
-- [src/hooks/useApiHealth.ts](../src/hooks/useApiHealth.ts)
-- [src/hooks/useTheme.ts](../src/hooks/useTheme.ts)
-- [src/navigation/README.md](../src/navigation/README.md)
-- [src/screens/admin/README.md](../src/screens/admin/README.md)
-- [src/screens/auth/README.md](../src/screens/auth/README.md)
-- [src/screens/bootstrap.styles.ts](../src/screens/bootstrap.styles.ts)
-- [src/screens/BootstrapScreen.tsx](../src/screens/BootstrapScreen.tsx)
-- [src/screens/client/README.md](../src/screens/client/README.md)
-- [src/screens/employee/README.md](../src/screens/employee/README.md)
-- [src/screens/README.md](../src/screens/README.md)
-- [src/theme/palettes.ts](../src/theme/palettes.ts)
-- [src/theme/README.md](../src/theme/README.md)
-- [src/theme/tokens.ts](../src/theme/tokens.ts)
-- [src/types/health.ts](../src/types/health.ts)
-- [src/types/README.md](../src/types/README.md)
-- [src/utils/parseApiUrl.ts](../src/utils/parseApiUrl.ts)
-- [src/utils/README.md](../src/utils/README.md)
-- [tests/parseApiUrl.test.ts](../tests/parseApiUrl.test.ts)
-- [tests/README.md](../tests/README.md)
-- [tsconfig.json](../tsconfig.json)
+- [src/api/client.ts](../src/api/client.ts): infraestructura o utilidades.
+- [src/api/services/authService.ts](../src/api/services/authService.ts): casos de uso.
+- [src/api/services/healthService.ts](../src/api/services/healthService.ts): casos de uso.
+- [src/api/services/resourceService.ts](../src/api/services/resourceService.ts): casos de uso.
+- [src/api/services/userService.ts](../src/api/services/userService.ts): casos de uso.
+- [src/api/sessionStorage.ts](../src/api/sessionStorage.ts): infraestructura o utilidades.
+- [src/api/sessionStore.ts](../src/api/sessionStore.ts): infraestructura o utilidades.
+- [src/api/transport.ts](../src/api/transport.ts): infraestructura o utilidades.
+- [src/app/(admin)/_layout.tsx](<../src/app/(admin)/_layout.tsx>): infraestructura o utilidades.
+- [src/app/(admin)/appointments.tsx](<../src/app/(admin)/appointments.tsx>): infraestructura o utilidades.
+- [src/app/(admin)/dashboard.tsx](<../src/app/(admin)/dashboard.tsx>): infraestructura o utilidades.
+- [src/app/(admin)/profile.tsx](<../src/app/(admin)/profile.tsx>): infraestructura o utilidades.
+- [src/app/(admin)/reports.tsx](<../src/app/(admin)/reports.tsx>): infraestructura o utilidades.
+- [src/app/(admin)/services.tsx](<../src/app/(admin)/services.tsx>): casos de uso.
+- [src/app/(admin)/settings.tsx](<../src/app/(admin)/settings.tsx>): infraestructura o utilidades.
+- [src/app/(admin)/users.tsx](<../src/app/(admin)/users.tsx>): infraestructura o utilidades.
+- [src/app/(admin)/vehicles.tsx](<../src/app/(admin)/vehicles.tsx>): infraestructura o utilidades.
+- [src/app/(client)/_layout.tsx](<../src/app/(client)/_layout.tsx>): infraestructura o utilidades.
+- [src/app/(client)/appointments.tsx](<../src/app/(client)/appointments.tsx>): infraestructura o utilidades.
+- [src/app/(client)/home.tsx](<../src/app/(client)/home.tsx>): infraestructura o utilidades.
+- [src/app/(client)/profile.tsx](<../src/app/(client)/profile.tsx>): infraestructura o utilidades.
+- [src/app/(client)/services.tsx](<../src/app/(client)/services.tsx>): casos de uso.
+- [src/app/(client)/vehicles.tsx](<../src/app/(client)/vehicles.tsx>): infraestructura o utilidades.
+- [src/app/(employee)/_layout.tsx](<../src/app/(employee)/_layout.tsx>): infraestructura o utilidades.
+- [src/app/(employee)/agenda.tsx](<../src/app/(employee)/agenda.tsx>): infraestructura o utilidades.
+- [src/app/(employee)/history.tsx](<../src/app/(employee)/history.tsx>): infraestructura o utilidades.
+- [src/app/(employee)/profile.tsx](<../src/app/(employee)/profile.tsx>): infraestructura o utilidades.
+- [src/app/_layout.tsx](../src/app/_layout.tsx): infraestructura o utilidades.
+- [src/app/appointment/[id].tsx](../src/app/appointment/[id].tsx): infraestructura o utilidades.
+- [src/app/booking.tsx](../src/app/booking.tsx): infraestructura o utilidades.
+- [src/app/index.tsx](../src/app/index.tsx): infraestructura o utilidades.
+- [src/app/loading.tsx](../src/app/loading.tsx): infraestructura o utilidades.
+- [src/app/oauth.tsx](../src/app/oauth.tsx): infraestructura o utilidades.
+- [src/app/sign-in.tsx](../src/app/sign-in.tsx): infraestructura o utilidades.
+- [src/app/sign-up.tsx](../src/app/sign-up.tsx): infraestructura o utilidades.
+- [src/components/atoms/Avatar.tsx](../src/components/atoms/Avatar.tsx): interfaz reutilizable.
+- [src/components/atoms/Badge.tsx](../src/components/atoms/Badge.tsx): interfaz reutilizable.
+- [src/components/atoms/Button.tsx](../src/components/atoms/Button.tsx): interfaz reutilizable.
+- [src/components/atoms/Input.tsx](../src/components/atoms/Input.tsx): interfaz reutilizable.
+- [src/components/atoms/Text.tsx](../src/components/atoms/Text.tsx): interfaz reutilizable.
+- [src/components/molecules/Card.tsx](../src/components/molecules/Card.tsx): interfaz reutilizable.
+- [src/components/molecules/ChoiceGroup.tsx](../src/components/molecules/ChoiceGroup.tsx): interfaz reutilizable.
+- [src/components/molecules/ConnectionStatus.tsx](../src/components/molecules/ConnectionStatus.tsx): interfaz reutilizable.
+- [src/components/molecules/EmptyState.tsx](../src/components/molecules/EmptyState.tsx): interfaz reutilizable.
+- [src/components/molecules/FormField.tsx](../src/components/molecules/FormField.tsx): interfaz reutilizable.
+- [src/components/molecules/LoadingState.tsx](../src/components/molecules/LoadingState.tsx): interfaz reutilizable.
+- [src/components/molecules/Notice.tsx](../src/components/molecules/Notice.tsx): interfaz reutilizable.
+- [src/components/molecules/OpeningHoursCard.tsx](../src/components/molecules/OpeningHoursCard.tsx): interfaz reutilizable.
+- [src/components/molecules/Pagination.tsx](../src/components/molecules/Pagination.tsx): interfaz reutilizable.
+- [src/components/molecules/SectionHeader.tsx](../src/components/molecules/SectionHeader.tsx): interfaz reutilizable.
+- [src/components/molecules/ServiceCard.tsx](../src/components/molecules/ServiceCard.tsx): interfaz reutilizable.
+- [src/components/molecules/SocialLoginButton.tsx](../src/components/molecules/SocialLoginButton.tsx): interfaz reutilizable.
+- [src/components/molecules/StatusBadge.tsx](../src/components/molecules/StatusBadge.tsx): interfaz reutilizable.
+- [src/components/organisms/AppointmentActions.tsx](../src/components/organisms/AppointmentActions.tsx): interfaz reutilizable.
+- [src/components/organisms/AppointmentCard.tsx](../src/components/organisms/AppointmentCard.tsx): interfaz reutilizable.
+- [src/components/organisms/AppointmentDialogs.tsx](../src/components/organisms/AppointmentDialogs.tsx): interfaz reutilizable.
+- [src/components/organisms/AppointmentFilters.tsx](../src/components/organisms/AppointmentFilters.tsx): interfaz reutilizable.
+- [src/components/organisms/CollectionState.tsx](../src/components/organisms/CollectionState.tsx): interfaz reutilizable.
+- [src/components/organisms/EntityForm.tsx](../src/components/organisms/EntityForm.tsx): interfaz reutilizable.
+- [src/components/organisms/ModalPanel.tsx](../src/components/organisms/ModalPanel.tsx): interfaz reutilizable.
+- [src/components/organisms/ReportSummary.tsx](../src/components/organisms/ReportSummary.tsx): interfaz reutilizable.
+- [src/components/organisms/ScheduleSelector.tsx](../src/components/organisms/ScheduleSelector.tsx): interfaz reutilizable.
+- [src/components/organisms/Screen.tsx](../src/components/organisms/Screen.tsx): interfaz reutilizable.
+- [src/components/organisms/ServiceEditors.tsx](../src/components/organisms/ServiceEditors.tsx): interfaz reutilizable.
+- [src/components/organisms/SocialLogins.tsx](../src/components/organisms/SocialLogins.tsx): interfaz reutilizable.
+- [src/components/organisms/UserTable.tsx](../src/components/organisms/UserTable.tsx): interfaz reutilizable.
+- [src/components/organisms/VehicleEditor.tsx](../src/components/organisms/VehicleEditor.tsx): interfaz reutilizable.
+- [src/components/organisms/VehicleTypeManager.tsx](../src/components/organisms/VehicleTypeManager.tsx): interfaz reutilizable.
+- [src/components/organisms/WelcomePanel.tsx](../src/components/organisms/WelcomePanel.tsx): interfaz reutilizable.
+- [src/constants/authFields.ts](../src/constants/authFields.ts): infraestructura o utilidades.
+- [src/context/AuthContext.tsx](../src/context/AuthContext.tsx): estado global.
+- [src/context/ThemeContext.tsx](../src/context/ThemeContext.tsx): estado global.
+- [src/hooks/useAction.ts](../src/hooks/useAction.ts): estado y coordinación.
+- [src/hooks/useApiHealth.ts](../src/hooks/useApiHealth.ts): estado y coordinación.
+- [src/hooks/useAppointmentDetail.ts](../src/hooks/useAppointmentDetail.ts): estado y coordinación.
+- [src/hooks/useAppointments.ts](../src/hooks/useAppointments.ts): estado y coordinación.
+- [src/hooks/useAuth.ts](../src/hooks/useAuth.ts): estado y coordinación.
+- [src/hooks/useBooking.ts](../src/hooks/useBooking.ts): estado y coordinación.
+- [src/hooks/useCatalog.ts](../src/hooks/useCatalog.ts): estado y coordinación.
+- [src/hooks/useDebouncedValue.ts](../src/hooks/useDebouncedValue.ts): estado y coordinación.
+- [src/hooks/useEntityManager.ts](../src/hooks/useEntityManager.ts): estado y coordinación.
+- [src/hooks/useOptions.ts](../src/hooks/useOptions.ts): estado y coordinación.
+- [src/hooks/usePagedList.ts](../src/hooks/usePagedList.ts): estado y coordinación.
+- [src/hooks/useProfile.ts](../src/hooks/useProfile.ts): estado y coordinación.
+- [src/hooks/useRemoteData.ts](../src/hooks/useRemoteData.ts): estado y coordinación.
+- [src/hooks/useReports.ts](../src/hooks/useReports.ts): estado y coordinación.
+- [src/hooks/useSettings.ts](../src/hooks/useSettings.ts): estado y coordinación.
+- [src/hooks/useSignIn.ts](../src/hooks/useSignIn.ts): estado y coordinación.
+- [src/hooks/useSocialLogin.ts](../src/hooks/useSocialLogin.ts): estado y coordinación.
+- [src/hooks/useTheme.ts](../src/hooks/useTheme.ts): estado y coordinación.
+- [src/hooks/useUsers.ts](../src/hooks/useUsers.ts): estado y coordinación.
+- [src/hooks/useVehicles.ts](../src/hooks/useVehicles.ts): estado y coordinación.
+- [src/hooks/useVehicleTypes.ts](../src/hooks/useVehicleTypes.ts): estado y coordinación.
+- [src/navigation/AdminHeader.tsx](../src/navigation/AdminHeader.tsx): navegación por rol.
+- [src/navigation/RoleTabs.tsx](../src/navigation/RoleTabs.tsx): navegación por rol.
+- [src/navigation/RootNavigation.tsx](../src/navigation/RootNavigation.tsx): navegación por rol.
+- [src/screens/admin/DashboardScreen.tsx](../src/screens/admin/DashboardScreen.tsx): pantalla.
+- [src/screens/admin/ReportsScreen.tsx](../src/screens/admin/ReportsScreen.tsx): pantalla.
+- [src/screens/admin/SettingsScreen.tsx](../src/screens/admin/SettingsScreen.tsx): pantalla.
+- [src/screens/admin/UsersScreen.tsx](../src/screens/admin/UsersScreen.tsx): pantalla.
+- [src/screens/auth/SignInScreen.tsx](../src/screens/auth/SignInScreen.tsx): pantalla.
+- [src/screens/auth/SignUpScreen.tsx](../src/screens/auth/SignUpScreen.tsx): pantalla.
+- [src/screens/bootstrap.styles.ts](../src/screens/bootstrap.styles.ts): pantalla.
+- [src/screens/BootstrapScreen.tsx](../src/screens/BootstrapScreen.tsx): pantalla.
+- [src/screens/client/AppointmentDetailScreen.tsx](../src/screens/client/AppointmentDetailScreen.tsx): pantalla.
+- [src/screens/client/AppointmentsScreen.tsx](../src/screens/client/AppointmentsScreen.tsx): pantalla.
+- [src/screens/client/BookingScreen.tsx](../src/screens/client/BookingScreen.tsx): pantalla.
+- [src/screens/client/HomeScreen.tsx](../src/screens/client/HomeScreen.tsx): pantalla.
+- [src/screens/client/ProfileScreen.tsx](../src/screens/client/ProfileScreen.tsx): pantalla.
+- [src/screens/client/ServicesScreen.tsx](../src/screens/client/ServicesScreen.tsx): pantalla.
+- [src/screens/client/VehiclesScreen.tsx](../src/screens/client/VehiclesScreen.tsx): pantalla.
+- [src/theme/palettes.ts](../src/theme/palettes.ts): infraestructura o utilidades.
+- [src/theme/tokens.ts](../src/theme/tokens.ts): infraestructura o utilidades.
+- [src/types/entities.ts](../src/types/entities.ts): contrato tipado.
+- [src/types/form.ts](../src/types/form.ts): contrato tipado.
+- [src/types/health.ts](../src/types/health.ts): contrato tipado.
+- [src/utils/buildFormSchema.ts](../src/utils/buildFormSchema.ts): infraestructura o utilidades.
+- [src/utils/errorMessage.ts](../src/utils/errorMessage.ts): infraestructura o utilidades.
+- [src/utils/format.ts](../src/utils/format.ts): infraestructura o utilidades.
+- [src/utils/parseApiUrl.ts](../src/utils/parseApiUrl.ts): infraestructura o utilidades.
+- [src/utils/pesosToCents.ts](../src/utils/pesosToCents.ts): infraestructura o utilidades.
+- [tests/parseApiUrl.test.ts](../tests/parseApiUrl.test.ts): verificación.
