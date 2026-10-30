@@ -1,9 +1,139 @@
-# Manual de usuario — estado de etapa 1
+# Manual de usuario — Lavadero
 
-Al abrir, se ve la bienvenida, el horario 09:30–16:30 y el estado de conexión.
-Con servidor sin configurar se informa la situación; si falla la red se ofrece reintentar.
-El diseño respeta el tema del sistema y permite orientación vertical y horizontal.
+La misma app muestra una experiencia distinta según el rol asignado por el servidor.
+Las capturas provienen de la versión web conectada a la API publicada. Se revisaron
+anchos de teléfono y paisaje; no son capturas de un teléfono físico.
 
-El manual final por Cliente, Empleado y Administrador y sus capturas reales se completarán
-en la etapa 10, sobre las pantallas implementadas. Actualmente no existe login ni reservas
-operativas; no se presentan imágenes de prototipos como si fueran funciones verificadas.
+## Acceso e instalación
+
+Abrí https://lavadero-app-2558.onrender.com o instalá el APK Android de la entrega.
+En Android abrí el archivo descargado y seguí la autorización de instalación que
+muestre el dispositivo. El APK funciona sin la computadora ni Metro.
+Las credenciales iniciales están en el archivo privado de acceso, separado del código.
+
+Para una cuenta nueva elegí **Creá tu cuenta**, completá nombre, apellido, email,
+teléfono opcional y contraseña. La cuenta se crea como Cliente. Un Administrador
+puede promoverla después; no existe elección pública de rol.
+Google, Discord y GitHub abren el navegador del sistema. Revisá el consentimiento,
+autorizá y volvé a la app. No uses Expo Go para evaluar ese retorno.
+
+![Ingreso y tema oscuro](images/login-mobile-dark.png)
+
+## Cliente
+
+### Vehículos y servicios
+
+Entrá a **Vehículos → Agregar vehículo**. Completá patente única, marca, modelo,
+color y tipo. Podés corregir datos desde Editar. Para eliminar, confirmá la baja;
+si el vehículo tiene un turno activo, antes debés cancelarlo o finalizarlo.
+El borrado conserva el historial. La patente sigue reservada por trazabilidad.
+
+![Vehículos del cliente](images/cliente-vehiculos.png)
+
+En **Servicios** elegí el tipo de vehículo y consultá descripción, duración y precio.
+Los ejemplos duran 30, 35 o 40 minutos; contratar varios suma sus duraciones.
+Los precios iniciales son ejemplos académicos y el Administrador puede cambiarlos.
+
+### Reserva y cancelación
+
+En Inicio elegí **Reservar mi lavado**. Seleccioná vehículo, uno o más servicios,
+fecha y horario. La app muestra el total en pesos argentinos y la duración estimada
+antes de confirmar. Atención inicial: lunes a sábado 09:30–16:30, un auto a la vez.
+La grilla propone inicios cada 5 minutos; no implica que cada lavado dure 5 minutos.
+
+![Cotización y horarios](images/cliente-reserva.png)
+
+El turno queda Pendiente hasta que un Administrador asigne empleado y lo confirme.
+En **Mis turnos** consultá Próximos/Pasados y abrí una tarjeta para ver su detalle.
+La cancelación propia está disponible en Pendiente/Confirmado con más de 120 minutos
+de anticipación, salvo que el Administrador cambie esa política.
+Si un horario acaba de ocuparse, elegí otro: no se crea una reserva duplicada.
+
+### Comprobante
+
+Al finalizar el trabajo aparece **Ver comprobante**. Muestra servicios contratados,
+precio histórico y cobros registrados. Es comprobante del servicio, no factura fiscal.
+También podés consultar las observaciones del trabajo y el saldo.
+
+![Comprobante de lavado](images/cliente-comprobante.png)
+
+## Empleado
+
+**Mi agenda** abre la fecha actual; cambiá el filtro para otra jornada.
+Solo aparecen turnos asignados a tu cuenta, con vehículo, color, servicios y horario.
+El resumen de jornada distingue finalizados y pendientes. **Historial** muestra trabajos
+cerrados. No se ofrecen usuarios, configuración ni reportes de ingresos del negocio.
+
+![Agenda asignada](images/empleado-agenda.png)
+
+Abrí el detalle. Agregá observaciones de la revisión previa y pulsá **Comenzar lavado**
+cuando esté Confirmado. Después elegí **Finalizar lavado**. No se puede saltar desde
+Confirmado a Finalizado ni cambiar trabajos de otro empleado.
+
+![Trabajo y observaciones](images/empleado-trabajo.png)
+
+Si un Administrador habilitó tus cobros, aparece **Registrar cobro** durante el trabajo
+o al finalizar. Indicá importe en pesos, efectivo/transferencia y referencia opcional.
+La app impide superar el saldo y el servidor evita duplicados al reintentar un envío.
+Esto registra un pago realizado fuera de la app: no envía ni transfiere dinero.
+
+La pantalla se adapta al girar el dispositivo:
+
+![Vista horizontal](images/empleado-paisaje.png)
+
+## Administrador
+
+Abrí el menú **☰** para ir a Tablero, Turnos, Usuarios, Servicios y precios,
+Reportes, Configuración y Perfil. Desde el tablero también administrás vehículos.
+
+### Usuarios y catálogo
+
+En **Usuarios** buscá por nombre/email o filtrá por rol. Podés crear, editar,
+activar/desactivar, asignar rol y habilitar cobros a empleados. La eliminación es lógica.
+Cambiar datos administrativos, rol o contraseña puede cerrar sesiones del usuario.
+No podés eliminarte, desactivarte ni quitarte el rol; siempre queda un admin activo.
+
+![Administración de usuarios](images/admin-usuarios.png)
+
+En **Servicios y precios** creá o editá nombre, descripción, duración y disponibilidad.
+Usá Precios para definir la tarifa de cada tipo de vehículo. No cambian reservas ya
+contratadas. Los tipos se gestionan desde Configuración.
+
+### Turnos, pagos y reportes
+
+En **Turnos** filtrá fecha, estado, cliente y empleado. Podés crear una reserva para
+un cliente que llama por teléfono. En el detalle elegí empleado y **Asignar y confirmar**;
+las siguientes reasignaciones conservan el estado. La agenda rechaza solapamientos.
+Podés corregir estados, rechazar/cancelar y registrar observaciones o pagos.
+
+![Asignación de empleado](images/admin-asignacion.png)
+
+En **Reportes** elegí día, semana o mes y fecha de referencia. Consultá lavados,
+ingresos, servicios pedidos y rendimiento. Los ingresos se cuentan por fecha real de
+registro del pago; los trabajos por su fecha de atención, por eso pueden diferir.
+
+### Configuración y perfil
+
+La configuración guarda días abiertos, apertura/cierre, capacidad, anticipación para
+cancelar y separación de horarios ofrecidos. Los cambios rigen para nuevas reservas;
+las existentes conservan su fecha y valores contratados.
+
+![Configuración del negocio](images/admin-configuracion.png)
+
+Cada rol dispone de Perfil para nombre, apellido, teléfono y foto mediante enlace HTTPS.
+Las cuentas con contraseña local pueden cambiarla indicando la actual. Apariencia permite
+Sistema, Claro u Oscuro y guarda la elección. Cerrar sesión revoca la sesión del dispositivo.
+
+![Perfil y tema claro](images/perfil-claro.png)
+
+## Demostración y problemas frecuentes
+
+La base incluye Cliente Demo y Empleado Demo, un Toyota Etios DE123MO y un turno/pago
+identificados como demostración. El cobro de referencia **DEMO - SIN MOVIMIENTO DE DINERO**
+es ficticio. Esos registros permiten evaluar los flujos; no son operaciones del negocio.
+
+- Render Free puede tardar al despertar. Esperá la primera carga y usá Reintentar.
+- Sin horarios: revisá fecha, día abierto y duración; varios servicios pueden exceder la jornada.
+- Sesión vencida: volvé a ingresar. Cambios de rol/contraseña revocan permisos anteriores.
+- Permiso insuficiente o recurso ajeno: ingresá con la cuenta/rol correspondiente.
+- Un proveedor social puede tardar en aplicar su configuración; el estado exacto figura en entrega.

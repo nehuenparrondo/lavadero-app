@@ -24,3 +24,15 @@ En pantallas grandes el contenido tiene ancho máximo; la orientación no se blo
 
 No hay modo de datos falsos ni fallback a localhost. Falta de conexión y proveedores
 OAuth no configurados se muestran de forma explícita.
+
+## Mapa del sistema
+
+```mermaid
+flowchart LR
+  App[App Expo Android / Web] <-->|HTTPS REST v1 + JWT| API[Express en Render]
+  API <-->|SQL parametrizado + TLS| DB[(MySQL Aiven)]
+  App -->|AuthSession + PKCE| Browser[Navegador del sistema]
+  Browser <-->|Consentimiento| Providers[Google / Discord / GitHub]
+  Providers -->|Callback HTTPS| API
+  API -->|Grant efímero + state| App
+```
