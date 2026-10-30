@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { randomUUID } from 'expo-crypto';
 import { makeRedirectUri, useAuthRequest, ResponseType } from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
 import { apiUrl } from '../api/transport';
@@ -11,12 +12,14 @@ export function useSocialLogin(provider: 'google' | 'discord' | 'github') {
   const auth = useAuth();
   const action = useAction();
   const [opening, setOpening] = useState(false);
+  const [oauthState] = useState(() => randomUUID());
   const [request, response, prompt] = useAuthRequest(
     {
       clientId: 'lavadero-mobile',
       responseType: ResponseType.Code,
       redirectUri: makeRedirectUri({ scheme: 'lavadero', path: 'oauth' }),
       usePKCE: true,
+      state: oauthState,
     },
     { authorizationEndpoint: `${apiUrl}/api/v1/auth/oauth/${provider}/authorize` },
   );
