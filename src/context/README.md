@@ -4,10 +4,10 @@ Proveedores compartidos de sesión y tema. No duplicar los tokens en estados de 
 
 ## Archivos y responsabilidades
 
-| Archivo | Responsabilidad |
-| --- | --- |
-| [AuthContext.tsx](AuthContext.tsx) | Contexto de sesión compartido por las experiencias de los tres roles. |
-| [ThemeContext.tsx](ThemeContext.tsx) | Preferencia manual o seguimiento del sistema. |
+| Archivo                              | Responsabilidad                                                       |
+| ------------------------------------ | --------------------------------------------------------------------- |
+| [AuthContext.tsx](AuthContext.tsx)   | Contexto de sesión compartido por las experiencias de los tres roles. |
+| [ThemeContext.tsx](ThemeContext.tsx) | Preferencia manual o seguimiento del sistema.                         |
 
 ## Mantenimiento
 

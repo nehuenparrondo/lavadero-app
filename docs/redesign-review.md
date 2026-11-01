@@ -15,7 +15,7 @@ sus reglas de autorización, reservas y cobros.
 - Herramientas docs:source y docs:components para regenerar mapas y catálogo.
 
 No se cambió la lógica ejecutable de producción del backend: se comparó el
-JavaScript emitido contra la versión anterior y resultó idéntico.
+JavaScript emitido sin comentarios contra la versión anterior y resultó idéntico.
 
 ## Las tres experiencias
 
@@ -44,7 +44,7 @@ La interfaz no inventa ingresos o tendencias para llenar estados vacíos.
 
 ![Administrador en escritorio](images/diseno-admin-escritorio.png)
 
-[Vista móvil](images/diseno-admin-movil.png) · [Menú móvil](images/diseno-admin-menu-movil.png)
+[Vista móvil](images/diseno-admin-movil.png) · [Menú móvil](images/diseno-admin-menu-movil.png) · [Orientación horizontal](images/diseno-admin-paisaje.png)
 
 ## Verificación de esta actualización
 
@@ -54,6 +54,7 @@ La interfaz no inventa ingresos o tendencias para llenar estados vacíos.
 - Expo 58.0.22 y sus parches compatibles: expo-doctor 20/20.
 - Ingreso local real de Cliente/Empleado/Administrador en la web publicada.
 - Revisión a 1280 × 720 y 390 × 844, sin desbordamiento horizontal.
+- Administración también comprobada a 844 × 390 en orientación horizontal.
 - Tema claro/oscuro, acceso a vehículos y formulario de reserva.
 - Historial del empleado con su único trabajo asignado; no muestra el turno cancelado sin asignación.
 - Menú administrativo, filtros por rol y reportes con datos del servidor.

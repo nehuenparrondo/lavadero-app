@@ -1,4 +1,4 @@
-# Entrega Lavadero 1.0
+# Entrega Lavadero 1.1
 
 Revisión: 1 de noviembre de 2026.
 
@@ -10,14 +10,14 @@ Revisión: 1 de noviembre de 2026.
 | OpenAPI            | https://lavadero-api-48m4.onrender.com/api/openapi.json                                                    |
 | Backend (privado)  | https://github.com/nehuenparrondo/lavadero-api                                                             |
 | Frontend (privado) | https://github.com/nehuenparrondo/lavadero-app                                                             |
-| APK firmado EAS    | https://expo.dev/accounts/elpepoestangod/projects/lavadero-app/builds/3ed6a3d2-1e00-435f-a303-5dadd68a2536 |
-| Descarga APK       | https://expo.dev/artifacts/eas/gTOJZXJ6d8BnZpEPknBsvwhPgiBTMEOP0WgWHTRUClA.apk                             |
+| APK firmado EAS    | https://expo.dev/accounts/elpepoestangod/projects/lavadero-app/builds/fcd95062-972b-4c4c-bce1-d2df501319e3 |
+| Descarga APK       | https://expo.dev/artifacts/eas/_eooczbue6l2m6uWeHG33wVcz3KTx518o95AlJJFuOI.apk                             |
 
-El archivo lavadero-1.0.0.apk de la entrega es una copia descargada del artefacto EAS.
-Android versionCode: **4**, package: `com.nehuenparrondo.lavadero`.
-Fuente del APK: commit `759cfecb568207b666722c97d588e1d7a4e0a958` del frontend.
-SHA-256: `7c6fe5323403867c2b090a34469058d4a44aea25384fe99d86d482e0ac5044ec`.
-EAS informa vencimiento del artefacto: 2026-11-15T18:34:15.050Z. Conservar la copia local para distribución posterior.
+El archivo lavadero-1.1.0.apk de la entrega es una copia descargada del artefacto EAS.
+Android versionCode: **6**, package: `com.nehuenparrondo.lavadero`.
+Fuente del APK: commit `cf6acb56b8d71bee5ba17d378d913b60042ec900` del frontend.
+SHA-256: `374d8d6835f4681ac485707d0653a9055a5ef168169f41ebd91c933a07d71b62`.
+EAS informa vencimiento del artefacto: 2026-11-15T23:07:34.138Z. Conservar la copia local para distribución posterior.
 
 ## Estado externo verificado
 
@@ -63,3 +63,10 @@ y cuerpos de funciones/callbacks de hasta 30. El catálogo documenta 85 componen
 El propietario dispone de iPhone y Expo Go. Puede usar la web publicada desde Safari;
 el APK es Android y su ejecución instalada sigue sin verificarse. Expo Go no permite
 validar el retorno OAuth con scheme propio. Ver PROBAR-EN-IPHONE.md o docs/iphone-expo-go.md.
+
+## Rediseño 1.1
+
+Guías de código/invariantes, mapa de módulos y catálogo de 117 componentes actualizados.
+Portadas Cliente/Empleado/Admin verificadas en web a 1280 × 720 y 390 × 844.
+Se repitieron 18 pruebas en esta revisión; las 17 MySQL citadas antes son de la entrega anterior.
+Ver REDISENO-Y-DOCUMENTACION.md en la entrega y docs/redesign-review.md en frontend.
