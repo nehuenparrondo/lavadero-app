@@ -16,10 +16,15 @@ Tipo del parámetro:
 { name: string; url?: string | null }
 ```
 
+| Prop | Obligatoria | Tipo             |
+| ---- | ----------- | ---------------- |
+| name | Sí          | `string`         |
+| url  | No          | `string \| null` |
+
 Uso:
 
 ```tsx
-<Avatar />
+<Avatar name={name} />
 ```
 
 ### Badge
@@ -37,10 +42,15 @@ Tipo del parámetro:
 }
 ```
 
+| Prop  | Obligatoria | Tipo                                              |
+| ----- | ----------- | ------------------------------------------------- |
+| label | Sí          | `string`                                          |
+| tone  | No          | `'primary' \| 'success' \| 'danger' \| 'warning'` |
+
 Uso:
 
 ```tsx
-<Badge />
+<Badge label="Guardar" />
 ```
 
 ### Button
@@ -55,10 +65,18 @@ Tipo del parámetro:
 ButtonProps;
 ```
 
+| Prop     | Obligatoria | Tipo                                              |
+| -------- | ----------- | ------------------------------------------------- |
+| label    | Sí          | `string`                                          |
+| onPress  | Sí          | `() => void`                                      |
+| disabled | No          | `boolean`                                         |
+| loading  | No          | `boolean`                                         |
+| variant  | No          | `'primary' \| 'secondary' \| 'danger' \| 'quiet'` |
+
 Uso:
 
 ```tsx
-<Button />
+<Button label="Guardar" onPress={handleAction} />
 ```
 
 ### Icon
@@ -77,10 +95,16 @@ Tipo del parámetro:
 }
 ```
 
+| Prop   | Obligatoria | Tipo                 |
+| ------ | ----------- | -------------------- |
+| symbol | Sí          | `string`             |
+| color  | No          | `TextStyle['color']` |
+| size   | No          | `number`             |
+
 Uso:
 
 ```tsx
-<Icon />
+<Icon symbol={symbol} />
 ```
 
 ### Input
@@ -112,6 +136,11 @@ Tipo del parámetro:
 ```ts
 { color?: string; label?: string }
 ```
+
+| Prop  | Obligatoria | Tipo     |
+| ----- | ----------- | -------- |
+| color | No          | `string` |
+| label | No          | `string` |
 
 Uso:
 
@@ -155,10 +184,16 @@ Tipo del parámetro:
 }
 ```
 
+| Prop     | Obligatoria | Tipo                      |
+| -------- | ----------- | ------------------------- |
+| quote    | Sí          | `Availability`            |
+| value    | Sí          | `string`                  |
+| onChange | Sí          | `(value: string) => void` |
+
 Uso:
 
 ```tsx
-<AvailableSlots />
+<AvailableSlots quote={quote} value={value} onChange={handleAction} />
 ```
 
 ### Card
@@ -195,10 +230,16 @@ Tipo del parámetro:
 }
 ```
 
+| Prop     | Obligatoria | Tipo         |
+| -------- | ----------- | ------------ |
+| option   | Sí          | `Choice`     |
+| selected | Sí          | `boolean`    |
+| onPress  | Sí          | `() => void` |
+
 Uso:
 
 ```tsx
-<ChoiceButton />
+<ChoiceButton option={option} selected={selected} onPress={handleAction} />
 ```
 
 ### ChoiceGroup
@@ -218,10 +259,17 @@ Tipo del parámetro:
 }
 ```
 
+| Prop     | Obligatoria | Tipo                      |
+| -------- | ----------- | ------------------------- |
+| options  | Sí          | `Choice[]`                |
+| value    | Sí          | `string`                  |
+| onChange | Sí          | `(value: string) => void` |
+| multiple | No          | `boolean`                 |
+
 Uso:
 
 ```tsx
-<ChoiceGroup />
+<ChoiceGroup options={options} value={value} onChange={handleAction} />
 ```
 
 ### ConnectionStatus
@@ -239,10 +287,15 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo          |
+| ------- | ----------- | ------------- |
+| state   | Sí          | `HealthState` |
+| onRetry | Sí          | `() => void`  |
+
 Uso:
 
 ```tsx
-<ConnectionStatus />
+<ConnectionStatus state={state} onRetry={handleAction} />
 ```
 
 ### ContractServiceLines
@@ -260,10 +313,15 @@ Tipo del parámetro:
 }
 ```
 
+| Prop         | Obligatoria | Tipo                                   |
+| ------------ | ----------- | -------------------------------------- |
+| items        | Sí          | `NonNullable<Appointment['services']>` |
+| showDuration | No          | `boolean`                              |
+
 Uso:
 
 ```tsx
-<ContractServiceLines />
+<ContractServiceLines items={items} />
 ```
 
 ### ControlledField
@@ -281,10 +339,15 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo                              |
+| ------- | ----------- | --------------------------------- |
+| field   | Sí          | `FormFieldDefinition`             |
+| control | Sí          | `Control<Record<string, string>>` |
+
 Uso:
 
 ```tsx
-<ControlledField />
+<ControlledField field={field} control={control} />
 ```
 
 ### EmptyState
@@ -299,10 +362,15 @@ Tipo del parámetro:
 { title: string; detail?: string }
 ```
 
+| Prop   | Obligatoria | Tipo     |
+| ------ | ----------- | -------- |
+| title  | Sí          | `string` |
+| detail | No          | `string` |
+
 Uso:
 
 ```tsx
-<EmptyState />
+<EmptyState title="Guardar" />
 ```
 
 ### FieldInput
@@ -322,10 +390,17 @@ Tipo del parámetro:
 }
 ```
 
+| Prop     | Obligatoria | Tipo                        |
+| -------- | ----------- | --------------------------- |
+| field    | Sí          | `FormFieldDefinition`       |
+| value    | Sí          | `string`                    |
+| onChange | Sí          | `(value: string) => void`   |
+| onBlur   | No          | `(() => void) \| undefined` |
+
 Uso:
 
 ```tsx
-<FieldInput />
+<FieldInput field={field} value={value} onChange={handleAction} />
 ```
 
 ### FormField
@@ -346,10 +421,18 @@ Tipo del parámetro:
 }
 ```
 
+| Prop     | Obligatoria | Tipo                      |
+| -------- | ----------- | ------------------------- |
+| field    | Sí          | `FormFieldDefinition`     |
+| value    | Sí          | `string`                  |
+| onChange | Sí          | `(value: string) => void` |
+| onBlur   | No          | `() => void`              |
+| error    | No          | `string \| undefined`     |
+
 Uso:
 
 ```tsx
-<FormField />
+<FormField field={field} value={value} onChange={handleAction} />
 ```
 
 ### LoadingState
@@ -363,6 +446,10 @@ Tipo del parámetro:
 ```ts
 { label?: string }
 ```
+
+| Prop  | Obligatoria | Tipo     |
+| ----- | ----------- | -------- |
+| label | No          | `string` |
 
 Uso:
 
@@ -386,6 +473,12 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo                  |
+| ------- | ----------- | --------------------- |
+| error   | No          | `string \| undefined` |
+| message | No          | `string \| undefined` |
+| onRetry | No          | `() => void`          |
+
 Uso:
 
 ```tsx
@@ -407,10 +500,15 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo          |
+| ------- | ----------- | ------------- |
+| state   | Sí          | `HealthState` |
+| onRetry | Sí          | `() => void`  |
+
 Uso:
 
 ```tsx
-<OpeningHoursCard />
+<OpeningHoursCard state={state} onRetry={handleAction} />
 ```
 
 ### Pagination
@@ -430,10 +528,17 @@ Tipo del parámetro:
 }
 ```
 
+| Prop     | Obligatoria | Tipo                     |
+| -------- | ----------- | ------------------------ |
+| page     | Sí          | `number`                 |
+| total    | Sí          | `number`                 |
+| limit    | Sí          | `number`                 |
+| onChange | Sí          | `(page: number) => void` |
+
 Uso:
 
 ```tsx
-<Pagination />
+<Pagination page={page} total={total} limit={limit} onChange={handleAction} />
 ```
 
 ### QuotedTotal
@@ -450,10 +555,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop  | Obligatoria | Tipo           |
+| ----- | ----------- | -------------- |
+| quote | Sí          | `Availability` |
+
 Uso:
 
 ```tsx
-<QuotedTotal />
+<QuotedTotal quote={quote} />
 ```
 
 ### SearchBar
@@ -472,10 +581,16 @@ Tipo del parámetro:
 }
 ```
 
+| Prop     | Obligatoria | Tipo                      |
+| -------- | ----------- | ------------------------- |
+| label    | Sí          | `string`                  |
+| value    | Sí          | `string`                  |
+| onChange | Sí          | `(value: string) => void` |
+
 Uso:
 
 ```tsx
-<SearchBar />
+<SearchBar label="Guardar" value={value} onChange={handleAction} />
 ```
 
 ### SectionHeader
@@ -490,10 +605,15 @@ Tipo del parámetro:
 { title: string; subtitle?: string }
 ```
 
+| Prop     | Obligatoria | Tipo     |
+| -------- | ----------- | -------- |
+| title    | Sí          | `string` |
+| subtitle | No          | `string` |
+
 Uso:
 
 ```tsx
-<SectionHeader />
+<SectionHeader title="Guardar" />
 ```
 
 ### ServiceCard
@@ -514,10 +634,18 @@ Tipo del parámetro:
 }
 ```
 
+| Prop     | Obligatoria | Tipo         |
+| -------- | ----------- | ------------ |
+| service  | Sí          | `Service`    |
+| typeId   | Sí          | `string`     |
+| onEdit   | No          | `() => void` |
+| onPrice  | No          | `() => void` |
+| onDelete | No          | `() => void` |
+
 Uso:
 
 ```tsx
-<ServiceCard />
+<ServiceCard service={service} typeId={typeId} />
 ```
 
 ### StatusBadge
@@ -534,10 +662,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop   | Obligatoria | Tipo                |
+| ------ | ----------- | ------------------- |
+| status | Sí          | `AppointmentStatus` |
+
 Uso:
 
 ```tsx
-<StatusBadge />
+<StatusBadge status={status} />
 ```
 
 ### VehicleTypeItem
@@ -556,10 +688,16 @@ Tipo del parámetro:
 }
 ```
 
+| Prop         | Obligatoria | Tipo          |
+| ------------ | ----------- | ------------- |
+| type         | Sí          | `VehicleType` |
+| onEdit       | Sí          | `() => void`  |
+| onDeactivate | Sí          | `() => void`  |
+
 Uso:
 
 ```tsx
-<VehicleTypeItem />
+<VehicleTypeItem type={type} onEdit={handleAction} onDeactivate={handleAction} />
 ```
 
 ## organisms
@@ -576,10 +714,15 @@ Tipo del parámetro:
 { open: boolean; onClose: () => void }
 ```
 
+| Prop    | Obligatoria | Tipo         |
+| ------- | ----------- | ------------ |
+| open    | Sí          | `boolean`    |
+| onClose | Sí          | `() => void` |
+
 Uso:
 
 ```tsx
-<AdminMenu />
+<AdminMenu open={open} onClose={handleAction} />
 ```
 
 ### AppointmentActions
@@ -596,10 +739,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo                                      |
+| ------- | ----------- | ----------------------------------------- |
+| manager | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+
 Uso:
 
 ```tsx
-<AppointmentActions />
+<AppointmentActions manager={manager} />
 ```
 
 ### AppointmentAssignment
@@ -616,10 +763,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                      |
+| ---- | ----------- | ----------------------------------------- |
+| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+
 Uso:
 
 ```tsx
-<AppointmentAssignment />
+<AppointmentAssignment m={manager} />
 ```
 
 ### AppointmentCancellationDialog
@@ -636,10 +787,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                      |
+| ---- | ----------- | ----------------------------------------- |
+| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+
 Uso:
 
 ```tsx
-<AppointmentCancellationDialog />
+<AppointmentCancellationDialog m={manager} />
 ```
 
 ### AppointmentCard
@@ -657,10 +812,15 @@ Tipo del parámetro:
 }
 ```
 
+| Prop        | Obligatoria | Tipo          |
+| ----------- | ----------- | ------------- |
+| appointment | Sí          | `Appointment` |
+| onPress     | Sí          | `() => void`  |
+
 Uso:
 
 ```tsx
-<AppointmentCard />
+<AppointmentCard appointment={appointment} onPress={handleAction} />
 ```
 
 ### AppointmentClientFilter
@@ -677,10 +837,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                 |
+| ---- | ----------- | ------------------------------------ |
+| m    | Sí          | `ReturnType<typeof useAppointments>` |
+
 Uso:
 
 ```tsx
-<AppointmentClientFilter />
+<AppointmentClientFilter m={manager} />
 ```
 
 ### AppointmentDialogs
@@ -697,10 +861,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo                                      |
+| ------- | ----------- | ----------------------------------------- |
+| manager | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+
 Uso:
 
 ```tsx
-<AppointmentDialogs />
+<AppointmentDialogs manager={manager} />
 ```
 
 ### AppointmentEmployeeFilter
@@ -717,10 +885,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                 |
+| ---- | ----------- | ------------------------------------ |
+| m    | Sí          | `ReturnType<typeof useAppointments>` |
+
 Uso:
 
 ```tsx
-<AppointmentEmployeeFilter />
+<AppointmentEmployeeFilter m={manager} />
 ```
 
 ### AppointmentFilters
@@ -737,10 +909,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo                                 |
+| ------- | ----------- | ------------------------------------ |
+| manager | Sí          | `ReturnType<typeof useAppointments>` |
+
 Uso:
 
 ```tsx
-<AppointmentFilters />
+<AppointmentFilters manager={manager} />
 ```
 
 ### AppointmentInformation
@@ -757,10 +933,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                      |
+| ---- | ----------- | ----------------------------------------- |
+| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+
 Uso:
 
 ```tsx
-<AppointmentInformation />
+<AppointmentInformation m={manager} />
 ```
 
 ### AppointmentList
@@ -777,10 +957,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                 |
+| ---- | ----------- | ------------------------------------ |
+| m    | Sí          | `ReturnType<typeof useAppointments>` |
+
 Uso:
 
 ```tsx
-<AppointmentList />
+<AppointmentList m={manager} />
 ```
 
 ### AppointmentNotes
@@ -797,10 +981,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                      |
+| ---- | ----------- | ----------------------------------------- |
+| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+
 Uso:
 
 ```tsx
-<AppointmentNotes />
+<AppointmentNotes m={manager} />
 ```
 
 ### AppointmentPaymentAction
@@ -817,10 +1005,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                      |
+| ---- | ----------- | ----------------------------------------- |
+| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+
 Uso:
 
 ```tsx
-<AppointmentPaymentAction />
+<AppointmentPaymentAction m={manager} />
 ```
 
 ### AppointmentPaymentDialog
@@ -837,10 +1029,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                      |
+| ---- | ----------- | ----------------------------------------- |
+| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+
 Uso:
 
 ```tsx
-<AppointmentPaymentDialog />
+<AppointmentPaymentDialog m={manager} />
 ```
 
 ### AppointmentPayments
@@ -857,10 +1053,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                      |
+| ---- | ----------- | ----------------------------------------- |
+| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+
 Uso:
 
 ```tsx
-<AppointmentPayments />
+<AppointmentPayments m={manager} />
 ```
 
 ### AppointmentReceiptDialog
@@ -877,10 +1077,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                      |
+| ---- | ----------- | ----------------------------------------- |
+| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+
 Uso:
 
 ```tsx
-<AppointmentReceiptDialog />
+<AppointmentReceiptDialog m={manager} />
 ```
 
 ### AppointmentStatusEditor
@@ -897,10 +1101,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                      |
+| ---- | ----------- | ----------------------------------------- |
+| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+
 Uso:
 
 ```tsx
-<AppointmentStatusEditor />
+<AppointmentStatusEditor m={manager} />
 ```
 
 ### AppointmentStatusFilter
@@ -917,10 +1125,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                 |
+| ---- | ----------- | ------------------------------------ |
+| m    | Sí          | `ReturnType<typeof useAppointments>` |
+
 Uso:
 
 ```tsx
-<AppointmentStatusFilter />
+<AppointmentStatusFilter m={manager} />
 ```
 
 ### BookingClientField
@@ -937,10 +1149,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                            |
+| ---- | ----------- | ------------------------------- |
+| b    | Sí          | `ReturnType<typeof useBooking>` |
+
 Uso:
 
 ```tsx
-<BookingClientField />
+<BookingClientField b={b} />
 ```
 
 ### BookingInvitation
@@ -971,10 +1187,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                            |
+| ---- | ----------- | ------------------------------- |
+| b    | Sí          | `ReturnType<typeof useBooking>` |
+
 Uso:
 
 ```tsx
-<BookingServicesField />
+<BookingServicesField b={b} />
 ```
 
 ### BookingVehicleField
@@ -991,10 +1211,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                            |
+| ---- | ----------- | ------------------------------- |
+| b    | Sí          | `ReturnType<typeof useBooking>` |
+
 Uso:
 
 ```tsx
-<BookingVehicleField />
+<BookingVehicleField b={b} />
 ```
 
 ### CollectionState
@@ -1015,10 +1239,24 @@ PropsWithChildren<{
 }>;
 ```
 
+| Prop       | Obligatoria | Tipo         |
+| ---------- | ----------- | ------------ |
+| loading    | Sí          | `boolean`    |
+| error      | Sí          | `string`     |
+| empty      | Sí          | `boolean`    |
+| emptyTitle | Sí          | `string`     |
+| onRetry    | Sí          | `() => void` |
+
 Uso:
 
 ```tsx
-<CollectionState />
+<CollectionState
+  loading={loading}
+  error={error}
+  empty={empty}
+  emptyTitle={emptyTitle}
+  onRetry={handleAction}
+/>
 ```
 
 ### DashboardIndicators
@@ -1036,10 +1274,15 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo                                         |
+| ------- | ----------- | -------------------------------------------- |
+| report  | Sí          | `ReturnType<typeof useDashboard>['report']`  |
+| pending | Sí          | `ReturnType<typeof useDashboard>['pending']` |
+
 Uso:
 
 ```tsx
-<DashboardIndicators />
+<DashboardIndicators report={report} pending={pending} />
 ```
 
 ### EmployeePerformance
@@ -1056,10 +1299,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop   | Obligatoria | Tipo     |
+| ------ | ----------- | -------- |
+| report | Sí          | `Report` |
+
 Uso:
 
 ```tsx
-<EmployeePerformance />
+<EmployeePerformance report={report} />
 ```
 
 ### EmployeeWorkAction
@@ -1076,10 +1323,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                      |
+| ---- | ----------- | ----------------------------------------- |
+| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+
 Uso:
 
 ```tsx
-<EmployeeWorkAction />
+<EmployeeWorkAction m={manager} />
 ```
 
 ### EntityForm
@@ -1100,10 +1351,18 @@ Tipo del parámetro:
 }
 ```
 
+| Prop          | Obligatoria | Tipo                                                |
+| ------------- | ----------- | --------------------------------------------------- |
+| fields        | Sí          | `FormFieldDefinition[]`                             |
+| initialValues | No          | `Record<string, string>`                            |
+| onSubmit      | Sí          | `(values: Record<string, string>) => Promise<void>` |
+| busy          | No          | `boolean`                                           |
+| submitLabel   | No          | `string`                                            |
+
 Uso:
 
 ```tsx
-<EntityForm />
+<EntityForm fields={fields} onSubmit={handleAction} />
 ```
 
 ### ModalPanel
@@ -1118,10 +1377,16 @@ Tipo del parámetro:
 PropsWithChildren<{ visible: boolean; title: string; onClose: () => void }>;
 ```
 
+| Prop    | Obligatoria | Tipo         |
+| ------- | ----------- | ------------ |
+| visible | Sí          | `boolean`    |
+| title   | Sí          | `string`     |
+| onClose | Sí          | `() => void` |
+
 Uso:
 
 ```tsx
-<ModalPanel />
+<ModalPanel visible={true} title="Guardar" onClose={handleAction} />
 ```
 
 ### OAuthLinkForm
@@ -1140,10 +1405,16 @@ Tipo del parámetro:
 }
 ```
 
+| Prop     | Obligatoria | Tipo                                           |
+| -------- | ----------- | ---------------------------------------------- |
+| onSubmit | Sí          | `(v: Record<string, string>) => Promise<void>` |
+| busy     | Sí          | `boolean`                                      |
+| error    | Sí          | `string`                                       |
+
 Uso:
 
 ```tsx
-<OAuthLinkForm />
+<OAuthLinkForm onSubmit={handleAction} busy={busy} error={error} />
 ```
 
 ### PendingAppointments
@@ -1161,10 +1432,15 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo            |
+| ------- | ----------- | --------------- |
+| items   | Sí          | `Appointment[]` |
+| loading | Sí          | `boolean`       |
+
 Uso:
 
 ```tsx
-<PendingAppointments />
+<PendingAppointments items={items} loading={loading} />
 ```
 
 ### PopularServices
@@ -1181,10 +1457,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop   | Obligatoria | Tipo     |
+| ------ | ----------- | -------- |
+| report | Sí          | `Report` |
+
 Uso:
 
 ```tsx
-<PopularServices />
+<PopularServices report={report} />
 ```
 
 ### ProfileIdentity
@@ -1201,10 +1481,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                            |
+| ---- | ----------- | ------------------------------- |
+| p    | Sí          | `ReturnType<typeof useProfile>` |
+
 Uso:
 
 ```tsx
-<ProfileIdentity />
+<ProfileIdentity p={p} />
 ```
 
 ### ProfilePasswordForm
@@ -1221,10 +1505,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                            |
+| ---- | ----------- | ------------------------------- |
+| p    | Sí          | `ReturnType<typeof useProfile>` |
+
 Uso:
 
 ```tsx
-<ProfilePasswordForm />
+<ProfilePasswordForm p={p} />
 ```
 
 ### ReportSummary
@@ -1241,10 +1529,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop   | Obligatoria | Tipo     |
+| ------ | ----------- | -------- |
+| report | Sí          | `Report` |
+
 Uso:
 
 ```tsx
-<ReportSummary />
+<ReportSummary report={report} />
 ```
 
 ### RevenueByDay
@@ -1261,10 +1553,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop   | Obligatoria | Tipo     |
+| ------ | ----------- | -------- |
+| report | Sí          | `Report` |
+
 Uso:
 
 ```tsx
-<RevenueByDay />
+<RevenueByDay report={report} />
 ```
 
 ### ScheduleSelector
@@ -1281,10 +1577,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo                            |
+| ------- | ----------- | ------------------------------- |
+| booking | Sí          | `ReturnType<typeof useBooking>` |
+
 Uso:
 
 ```tsx
-<ScheduleSelector />
+<ScheduleSelector booking={booking} />
 ```
 
 ### Screen
@@ -1302,6 +1602,12 @@ Tipo del parámetro:
   onRefresh?: () => void;
 }
 ```
+
+| Prop       | Obligatoria | Tipo                            |
+| ---------- | ----------- | ------------------------------- |
+| children   | Sí          | `PropsWithChildren['children']` |
+| refreshing | No          | `boolean`                       |
+| onRefresh  | No          | `() => void`                    |
 
 Uso:
 
@@ -1325,10 +1631,16 @@ Tipo del parámetro:
 }
 ```
 
+| Prop   | Obligatoria | Tipo                            |
+| ------ | ----------- | ------------------------------- |
+| c      | Sí          | `ReturnType<typeof useCatalog>` |
+| admin  | Sí          | `boolean`                       |
+| typeId | Sí          | `string`                        |
+
 Uso:
 
 ```tsx
-<ServiceCollection />
+<ServiceCollection c={c} admin={admin} typeId={typeId} />
 ```
 
 ### ServiceDeleteDialog
@@ -1345,10 +1657,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                            |
+| ---- | ----------- | ------------------------------- |
+| c    | Sí          | `ReturnType<typeof useCatalog>` |
+
 Uso:
 
 ```tsx
-<ServiceDeleteDialog />
+<ServiceDeleteDialog c={c} />
 ```
 
 ### ServiceEditDialog
@@ -1365,10 +1681,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                            |
+| ---- | ----------- | ------------------------------- |
+| c    | Sí          | `ReturnType<typeof useCatalog>` |
+
 Uso:
 
 ```tsx
-<ServiceEditDialog />
+<ServiceEditDialog c={c} />
 ```
 
 ### ServiceEditors
@@ -1385,10 +1705,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo                            |
+| ------- | ----------- | ------------------------------- |
+| catalog | Sí          | `ReturnType<typeof useCatalog>` |
+
 Uso:
 
 ```tsx
-<ServiceEditors />
+<ServiceEditors catalog={manager} />
 ```
 
 ### ServicePriceDialog
@@ -1405,10 +1729,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                            |
+| ---- | ----------- | ------------------------------- |
+| c    | Sí          | `ReturnType<typeof useCatalog>` |
+
 Uso:
 
 ```tsx
-<ServicePriceDialog />
+<ServicePriceDialog c={c} />
 ```
 
 ### SignInForm
@@ -1425,10 +1753,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop  | Obligatoria | Tipo                           |
+| ----- | ----------- | ------------------------------ |
+| login | Sí          | `ReturnType<typeof useSignIn>` |
+
 Uso:
 
 ```tsx
-<SignInForm />
+<SignInForm login={login} />
 ```
 
 ### SocialLoginButton
@@ -1443,10 +1775,14 @@ Tipo del parámetro:
 { provider: keyof typeof labels }
 ```
 
+| Prop     | Obligatoria | Tipo                  |
+| -------- | ----------- | --------------------- |
+| provider | Sí          | `keyof typeof labels` |
+
 Uso:
 
 ```tsx
-<SocialLoginButton />
+<SocialLoginButton provider={provider} />
 ```
 
 ### SocialLogins
@@ -1477,10 +1813,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop  | Obligatoria | Tipo                          |
+| ----- | ----------- | ----------------------------- |
+| theme | Sí          | `ReturnType<typeof useTheme>` |
+
 Uso:
 
 ```tsx
-<ThemeSelector />
+<ThemeSelector theme={theme} />
 ```
 
 ### UserCollection
@@ -1497,10 +1837,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                          |
+| ---- | ----------- | ----------------------------- |
+| m    | Sí          | `ReturnType<typeof useUsers>` |
+
 Uso:
 
 ```tsx
-<UserCollection />
+<UserCollection m={manager} />
 ```
 
 ### UserDeleteDialog
@@ -1517,10 +1861,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                          |
+| ---- | ----------- | ----------------------------- |
+| m    | Sí          | `ReturnType<typeof useUsers>` |
+
 Uso:
 
 ```tsx
-<UserDeleteDialog />
+<UserDeleteDialog m={manager} />
 ```
 
 ### UserEditDialog
@@ -1537,10 +1885,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                          |
+| ---- | ----------- | ----------------------------- |
+| m    | Sí          | `ReturnType<typeof useUsers>` |
+
 Uso:
 
 ```tsx
-<UserEditDialog />
+<UserEditDialog m={manager} />
 ```
 
 ### UserRoleFilter
@@ -1557,10 +1909,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                          |
+| ---- | ----------- | ----------------------------- |
+| m    | Sí          | `ReturnType<typeof useUsers>` |
+
 Uso:
 
 ```tsx
-<UserRoleFilter />
+<UserRoleFilter m={manager} />
 ```
 
 ### UserTable
@@ -1579,10 +1935,16 @@ Tipo del parámetro:
 }
 ```
 
+| Prop     | Obligatoria | Tipo                   |
+| -------- | ----------- | ---------------------- |
+| users    | Sí          | `User[]`               |
+| onEdit   | Sí          | `(user: User) => void` |
+| onDelete | Sí          | `(user: User) => void` |
+
 Uso:
 
 ```tsx
-<UserTable />
+<UserTable users={users} onEdit={handleAction} onDelete={handleAction} />
 ```
 
 ### VehicleCollection
@@ -1599,10 +1961,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                             |
+| ---- | ----------- | -------------------------------- |
+| m    | Sí          | `ReturnType<typeof useVehicles>` |
+
 Uso:
 
 ```tsx
-<VehicleCollection />
+<VehicleCollection m={manager} />
 ```
 
 ### VehicleDeleteDialog
@@ -1619,10 +1985,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo                             |
+| ------- | ----------- | -------------------------------- |
+| manager | Sí          | `ReturnType<typeof useVehicles>` |
+
 Uso:
 
 ```tsx
-<VehicleDeleteDialog />
+<VehicleDeleteDialog manager={manager} />
 ```
 
 ### VehicleEditDialog
@@ -1639,10 +2009,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo                             |
+| ------- | ----------- | -------------------------------- |
+| manager | Sí          | `ReturnType<typeof useVehicles>` |
+
 Uso:
 
 ```tsx
-<VehicleEditDialog />
+<VehicleEditDialog manager={manager} />
 ```
 
 ### VehicleEditor
@@ -1659,10 +2033,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop    | Obligatoria | Tipo                             |
+| ------- | ----------- | -------------------------------- |
+| manager | Sí          | `ReturnType<typeof useVehicles>` |
+
 Uso:
 
 ```tsx
-<VehicleEditor />
+<VehicleEditor manager={manager} />
 ```
 
 ### VehicleTypeDialog
@@ -1679,10 +2057,14 @@ Tipo del parámetro:
 }
 ```
 
+| Prop | Obligatoria | Tipo                                 |
+| ---- | ----------- | ------------------------------------ |
+| m    | Sí          | `ReturnType<typeof useVehicleTypes>` |
+
 Uso:
 
 ```tsx
-<VehicleTypeDialog />
+<VehicleTypeDialog m={manager} />
 ```
 
 ### VehicleTypeManager
@@ -1711,8 +2093,13 @@ Tipo del parámetro:
 { state: HealthState; onRetry: () => void }
 ```
 
+| Prop    | Obligatoria | Tipo          |
+| ------- | ----------- | ------------- |
+| state   | Sí          | `HealthState` |
+| onRetry | Sí          | `() => void`  |
+
 Uso:
 
 ```tsx
-<WelcomePanel />
+<WelcomePanel state={state} onRetry={handleAction} />
 ```
