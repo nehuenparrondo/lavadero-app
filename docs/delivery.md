@@ -10,14 +10,14 @@ Revisión: 1 de noviembre de 2026.
 | OpenAPI            | https://lavadero-api-48m4.onrender.com/api/openapi.json                                                    |
 | Backend (privado)  | https://github.com/nehuenparrondo/lavadero-api                                                             |
 | Frontend (privado) | https://github.com/nehuenparrondo/lavadero-app                                                             |
-| APK firmado EAS    | https://expo.dev/accounts/elpepoestangod/projects/lavadero-app/builds/849c9e3b-8871-49cf-9a83-698832129048 |
-| Descarga APK       | https://expo.dev/artifacts/eas/ak6YoM-0rbism39lslC497VPrxvoM5uiiSKA0cNiOpw.apk                             |
+| APK firmado EAS    | https://expo.dev/accounts/elpepoestangod/projects/lavadero-app/builds/3ed6a3d2-1e00-435f-a303-5dadd68a2536 |
+| Descarga APK       | https://expo.dev/artifacts/eas/gTOJZXJ6d8BnZpEPknBsvwhPgiBTMEOP0WgWHTRUClA.apk                             |
 
 El archivo lavadero-1.0.0.apk de la entrega es una copia descargada del artefacto EAS.
-Android versionCode: **3**, package: `com.nehuenparrondo.lavadero`.
-Fuente del APK: commit `e7de4dbb201425e5da6cad7edb15e54160affa85` del frontend.
-SHA-256: `4729fcdac24eda6f3f7fef3857a7e91b27381e2c16d5ea78f7d376b2352f45e9`.
-EAS informa vencimiento del artefacto: 2026-11-13T02:54:39.208Z. Conservar la copia local para distribución posterior.
+Android versionCode: **4**, package: `com.nehuenparrondo.lavadero`.
+Fuente del APK: commit `759cfecb568207b666722c97d588e1d7a4e0a958` del frontend.
+SHA-256: `7c6fe5323403867c2b090a34469058d4a44aea25384fe99d86d482e0ac5044ec`.
+EAS informa vencimiento del artefacto: 2026-11-15T18:34:15.050Z. Conservar la copia local para distribución posterior.
 
 ## Estado externo verificado
 
@@ -31,7 +31,7 @@ EAS informa vencimiento del artefacto: 2026-11-13T02:54:39.208Z. Conservar la co
 
 ## Verificación y límites
 
-33 pruebas automatizadas aprobadas: 14 unitarias/HTTP backend, 16 de aceptación con MySQL real y 3 frontend. Tipos estrictos, lint y exportaciones Android/web aprobados. OpenAPI 3.1 validado.
+35 pruebas automatizadas aprobadas: 15 unitarias/HTTP backend, 17 de aceptación con MySQL real y 3 frontend. Tipos estrictos, lint y exportaciones Android/web aprobados. OpenAPI 3.1 validado.
 Revisión web real: ingreso por rol, vehículo, reserva, asignación/confirmación, observación, inicio/finalización, cobro ficticio y comprobante. Capturas con anchos de teléfono/paisaje.
 No se ejecutó el APK en un teléfono físico ni emulador durante esta sesión. Se verificaron compilación EAS, estructura del APK y presencia de bloque de firma v2; esto no sustituye una prueba instalada.
 Los secretos OAuth, SQL y JWT no están en Git, en el bundle móvil ni en los ZIP públicos. El acceso inicial se entrega en un archivo privado separado.
@@ -48,4 +48,18 @@ EAS Update, Google Play y video no forman parte de esta entrega; eran opcionales
 
 ## Revisión posterior de la consigna
 
-Ver [requirements-review.md](requirements-review.md). El APK anterior se reemplaza por el build de esta revisión al finalizar su compilación; el archivo ENTREGA.md y apk-info.json identifican el build entregado.
+Ver [requirements-review.md](requirements-review.md). El APK entregado es el build 4 de esta revisión, compilado desde el commit de fuente indicado arriba. El archivo apk-info.json permite verificar su identidad.
+
+## Revisión de requisitos y iPhone
+
+La consigna completa se revisó contra el código y sus pruebas. Ver CUMPLIMIENTO-REQUISITOS.md
+en la entrega o docs/requirements-review.md en cada repositorio. Ambos conservan una copia
+de la consigna y su SHA-256 para identificar qué documento se evaluó.
+
+La fuente tiene auditoría automática: 111 archivos backend y 218 frontend, sin ciclos,
+sin HTTP en pantallas/componentes, con TSDoc público, archivos TS de hasta 149 líneas
+y cuerpos de funciones/callbacks de hasta 30. El catálogo documenta 85 componentes.
+
+El propietario dispone de iPhone y Expo Go. Puede usar la web publicada desde Safari;
+el APK es Android y su ejecución instalada sigue sin verificarse. Expo Go no permite
+validar el retorno OAuth con scheme propio. Ver PROBAR-EN-IPHONE.md o docs/iphone-expo-go.md.
