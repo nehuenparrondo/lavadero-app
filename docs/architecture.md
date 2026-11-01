@@ -36,3 +36,7 @@ flowchart LR
   Providers -->|Callback HTTPS| API
   API -->|Grant efímero + state| App
 ```
+
+### Retorno social por plataforma
+
+El APK usa AuthSession con state UUID explícito (el default del SDK es más corto que el contrato backend). Web usa AuthRequest para crear PKCE y redirección en la misma pestaña. El verifier/state temporal expira a los diez minutos y el callback lo valida antes del canje. Los archivos .web seleccionan esa experiencia sin copiar secretos al cliente.

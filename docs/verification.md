@@ -1,12 +1,13 @@
 # Verificación de versión 1.0
 
-TypeScript estricto y ESLint sin advertencias aprobados. Prueba del origen HTTPS
-aprobada. Exportación Android realizada para verificar resolución de módulos y bundle.
-El APK firmado se genera por separado en EAS; consultar `delivery.md` para su estado.
+TypeScript estricto, ESLint sin advertencias y tres pruebas frontend aprobados.
+Las pruebas verifican el origen HTTPS y el retorno OAuth: state de la misma pestaña,
+PKCE, entradas malformadas y límite exacto de vencimiento de diez minutos.
+Exportaciones Android/web aprobadas y APK firmado por EAS. Ver delivery.md para build,
+source commit, hash y estado real de cada proveedor.
 
-La revisión visual usa la misma interfaz renderizada en web con ancho móvil y paisaje.
-Esas capturas no acreditan ejecución en un teléfono físico. No se dispone de un equipo
-Android conectado en esta sesión. Ver manual por rol para flujos y capturas verificadas.
-
-Las advertencias heredadas de herramientas Expo se describen en `dependencies.md`;
-no se aplican actualizaciones forzadas que rompan la compatibilidad del SDK.
+La revisión funcional web cubrió los tres roles, reservas, asignación, atención, notas,
+cobro ficticio y comprobante. Las capturas prueban anchos de teléfono y orientación
+horizontal en web; no acreditan ejecución del APK en un teléfono físico.
+No hubo dispositivo Android conectado ni emulador disponible en esta sesión.
+Las advertencias heredadas de herramientas Expo están en dependencies.md.

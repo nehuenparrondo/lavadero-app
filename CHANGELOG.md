@@ -1,5 +1,11 @@
 # Changelog
 
+## Revisión final de producción — 01/11/2026
+
+- OAuth con state UUID explícito, retorno web en la misma pestaña y pruebas de vencimiento/CSRF.
+- Aviso público de uso de datos, manual con capturas y enlaces reales de entrega.
+- Agenda con servicios/color y resumen de la jornada seleccionada.
+
 ## 1.0.0 — 2026-10-29
 
 ### Agregado
