@@ -9,8 +9,8 @@ export const statusLabels: Record<AppointmentStatus, string> = {
   cancelled: 'Cancelado',
 };
 /** Estado de turno con color y texto, sin depender solamente del color.
- * @param props - Propiedades tipadas: status. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: status.
+ * @returns Vista de StatusBadge con el contrato de propiedades declarado.
  */
 export function StatusBadge({ status }: { status: AppointmentStatus }) {
   return (

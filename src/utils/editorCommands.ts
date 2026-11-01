@@ -10,8 +10,8 @@ interface EditorOptions<T extends { id: string }> {
   action: ReturnType<typeof useAction>;
 }
 /** Construye el guardado; solo cierra el formulario cuando el servidor lo confirma.
- * @param o - Valor tipado de o utilizado por esta operación.
- * @returns `(values: Record<string, string>) => Promise<void>`, según el contrato de la operación.
+ * @param o - Opciones de composición del recurso.
+ * @returns `(values: Record<string, string>) => Promise<void>`.
  */
 export function createSaveCommand<T extends { id: string }>(o: EditorOptions<T>) {
   return async (values: Record<string, string>) => {
@@ -32,8 +32,8 @@ export function createSaveCommand<T extends { id: string }>(o: EditorOptions<T>)
   };
 }
 /** Construye la baja confirmada y refresca la colección sin ocultar errores del servidor.
- * @param o - Valor tipado de o utilizado por esta operación.
- * @returns `() => Promise<void>`, según el contrato de la operación.
+ * @param o - Opciones de composición del recurso.
+ * @returns `() => Promise<void>`.
  */
 export function createDeleteCommand<T extends { id: string }>(o: EditorOptions<T>) {
   return async () => {

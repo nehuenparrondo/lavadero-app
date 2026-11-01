@@ -2,9 +2,9 @@ import { useUsers } from '../../hooks/useUsers';
 import { Notice } from '../molecules/Notice';
 import { EntityForm } from './EntityForm';
 import { ModalPanel } from './ModalPanel';
-/** Presenta user edit dialog con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: m. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Comparte campos de creación y edición de cuentas administradas.
+ * @param props - Propiedades tipadas: m.
+ * @returns Vista de UserEditDialog con el contrato de propiedades declarado.
  */
 export function UserEditDialog({ m }: { m: ReturnType<typeof useUsers> }) {
   return (

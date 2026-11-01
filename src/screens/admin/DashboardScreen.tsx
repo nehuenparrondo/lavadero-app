@@ -1,33 +1,30 @@
-import { useRouter } from 'expo-router';
-import { Button } from '../../components/atoms/Button';
 import { Notice } from '../../components/molecules/Notice';
-import { SectionHeader } from '../../components/molecules/SectionHeader';
+import { OverviewColumns } from '../../components/molecules/OverviewColumns';
+import { AdminQuickActions } from '../../components/organisms/AdminQuickActions';
+import { DashboardHeading } from '../../components/organisms/DashboardHeading';
 import { DashboardIndicators } from '../../components/organisms/DashboardIndicators';
-import { PendingAppointments } from '../../components/organisms/PendingAppointments';
+import { DashboardPending } from '../../components/organisms/DashboardPending';
 import { Screen } from '../../components/organisms/Screen';
+import { WeeklyActivity } from '../../components/organisms/WeeklyActivity';
 import { useDashboard } from '../../hooks/useDashboard';
-/** Panel del administrador con pendientes reales y resumen del día.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Compone el tablero sin consultas, navegación ni cálculos contables dentro del JSX.
+ * @returns Resumen diario, solicitudes globales y actividad de la semana actual.
  */
 export function DashboardScreen() {
-  const { user, report, pending, refresh } = useDashboard();
-  const router = useRouter();
+  const d = useDashboard();
   return (
-    <Screen refreshing={report.loading || pending.loading} onRefresh={refresh}>
-      <SectionHeader
-        title={`Buen día, ${user?.firstName ?? ''}`}
-        subtitle="Así está el lavadero hoy."
+    <Screen
+      refreshing={d.report.loading || d.pending.loading || d.week.loading}
+      onRefresh={d.refresh}
+    >
+      <DashboardHeading />
+      <DashboardIndicators report={d.report} pending={d.pending} />
+      <AdminQuickActions />
+      <Notice error={d.report.error || d.pending.error} onRetry={d.refresh} />
+      <OverviewColumns
+        primary={<DashboardPending resource={d.pending} />}
+        secondary={<WeeklyActivity resource={d.week} />}
       />
-      <DashboardIndicators report={report} pending={pending} />
-      <Button label="+ Reservar para un cliente" onPress={() => router.push('/booking')} />
-      <Button
-        label="Administrar vehículos"
-        variant="secondary"
-        onPress={() => router.push('/(admin)/vehicles')}
-      />
-      <Notice error={report.error || pending.error} />
-      <SectionHeader title="Solicitudes pendientes" />
-      <PendingAppointments items={pending.data?.items ?? []} loading={pending.loading} />
     </Screen>
   );
 }

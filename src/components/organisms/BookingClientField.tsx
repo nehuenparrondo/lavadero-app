@@ -1,8 +1,8 @@
 import { useBooking } from '../../hooks/useBooking';
 import { FormField } from '../molecules/FormField';
-/** Presenta booking client field con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: b. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Selecciona titular para una reserva asistida por administración.
+ * @param props - Propiedades tipadas: b.
+ * @returns Vista de BookingClientField con el contrato de propiedades declarado.
  */
 export function BookingClientField({ b }: { b: ReturnType<typeof useBooking> }) {
   return (

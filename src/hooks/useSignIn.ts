@@ -3,7 +3,7 @@ import { login, register } from '../api/services/authService';
 import { useAction } from './useAction';
 import { useAuth } from './useAuth';
 /** Conecta formulario con registro/login y guarda refresh de forma segura.
- * @param signUp - Valor tipado de signUp utilizado por esta operación.
+ * @param signUp - Distingue el contrato de registro del de acceso.
  * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
  */
 export function useSignIn(signUp = false) {

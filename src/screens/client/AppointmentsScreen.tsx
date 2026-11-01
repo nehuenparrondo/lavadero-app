@@ -9,8 +9,8 @@ import { Screen } from '../../components/organisms/Screen';
 import { useAppointments } from '../../hooks/useAppointments';
 import { appointmentListTitle } from '../../utils/appointmentListTitle';
 /** Lista de turnos con filtros, estados y navegación a detalles.
- * @param props - Propiedades tipadas: mode, history. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: mode, history.
+ * @returns Vista de AppointmentsScreen con el contrato de propiedades declarado.
  */
 export function AppointmentsScreen({
   mode = 'client',

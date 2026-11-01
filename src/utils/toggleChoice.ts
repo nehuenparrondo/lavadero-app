@@ -1,8 +1,8 @@
 /** Agrega/quita una selección; la representación CSV coincide con filtros del contrato REST.
- * @param value - Valor tipado de value utilizado por esta operación.
- * @param next - Valor tipado de next utilizado por esta operación.
- * @param multiple - Valor tipado de multiple utilizado por esta operación.
- * @returns `string`, según el contrato de la operación.
+ * @param value - Entrada del formato declarado que se valida o transforma.
+ * @param next - Continúa la cadena de Express después de superar las comprobaciones.
+ * @param multiple - Permite seleccionar varias opciones en lugar de una.
+ * @returns `string`.
  */
 export function toggleChoice(value: string, next: string, multiple: boolean) {
   if (!multiple) return next;

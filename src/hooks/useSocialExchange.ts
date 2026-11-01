@@ -4,7 +4,7 @@ import { exchangeSocial } from '../api/services/authService';
 import { useAction } from './useAction';
 import { useAuth } from './useAuth';
 /** Canje compartido por web/APK; la contraseña se conserva solo mientras se envía.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Canje, confirmación local, cancelación y estado de vinculación requerida.
  */
 export function useSocialExchange() {
   const auth = useAuth();

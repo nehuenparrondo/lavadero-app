@@ -2,7 +2,7 @@ import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 const key = 'lavadero.refresh';
 /** Lee refresh del dispositivo. Web de demostración usa solo sessionStorage de la pestaña.
- * @returns `Promise<string | null>`, según el contrato de la operación.
+ * @returns `Promise<string | null>`.
  */
 export async function readRefresh() {
   return Platform.OS === 'web'
@@ -13,7 +13,7 @@ export async function readRefresh() {
 }
 /** Persiste solo refresh; access token y perfil se mantienen en memoria.
  * @param token - Token recibido; se valida o transforma antes de utilizarlo.
- * @returns `Promise<void>`, según el contrato de la operación.
+ * @returns `Promise<void>`.
  */
 export async function storeRefresh(token: string) {
   if (Platform.OS === 'web') {
@@ -23,7 +23,7 @@ export async function storeRefresh(token: string) {
   await SecureStore.setItemAsync(key, token);
 }
 /** Elimina sesión persistida del dispositivo.
- * @returns `Promise<void>`, según el contrato de la operación.
+ * @returns `Promise<void>`.
  */
 export async function deleteRefresh() {
   if (Platform.OS === 'web') {

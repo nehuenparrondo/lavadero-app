@@ -1,9 +1,9 @@
 import type { Report } from '../../types/entities';
 import { Text } from '../atoms/Text';
 import { Card } from '../molecules/Card';
-/** Presenta popular services con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: report. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Presenta frecuencias reales de servicios en el período consultado.
+ * @param props - Propiedades tipadas: report.
+ * @returns Vista de PopularServices con el contrato de propiedades declarado.
  */
 export function PopularServices({ report }: { report: Report }) {
   return (

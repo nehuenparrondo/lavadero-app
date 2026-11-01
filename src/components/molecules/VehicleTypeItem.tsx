@@ -3,8 +3,8 @@ import type { VehicleType } from '../../types/entities';
 import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
 /** Categoría y acciones del catálogo; una baja lógica conserva el nombre visible en el historial.
- * @param props - Propiedades tipadas: type, onEdit, onDeactivate. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: type, onEdit, onDeactivate.
+ * @returns Vista de VehicleTypeItem con el contrato de propiedades declarado.
  */
 export function VehicleTypeItem({
   type,

@@ -5,7 +5,7 @@ import { Screen } from '../components/organisms/Screen';
 import { useAuth } from '../hooks/useAuth';
 WebBrowser.maybeCompleteAuthSession();
 /** Destino nativo de AuthSession; el popup devuelve el código al hook iniciador.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de OAuthReturn con el contrato de propiedades declarado.
  */
 export default function OAuthReturn() {
   const { user } = useAuth();

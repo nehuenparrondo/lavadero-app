@@ -6,9 +6,9 @@ import { Card } from '../molecules/Card';
 import { Notice } from '../molecules/Notice';
 import { SectionHeader } from '../molecules/SectionHeader';
 import { EntityForm } from './EntityForm';
-/** Presenta sign in form con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: login. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Valida email y contraseña y delega el acceso en useSignIn.
+ * @param props - Propiedades tipadas: login.
+ * @returns Vista de SignInForm con el contrato de propiedades declarado.
  */
 export function SignInForm({ login }: { login: ReturnType<typeof useSignIn> }) {
   const { colors } = useTheme();

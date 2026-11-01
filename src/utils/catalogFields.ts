@@ -1,8 +1,8 @@
 import type { VehicleType } from '../types/entities';
 import type { FormFieldDefinition } from '../types/form';
 /** Opciones de tarifa para los tipos registrados; la API valida su vigencia.
- * @param types - Valor tipado de types utilizado por esta operación.
- * @returns `FormFieldDefinition[]`, según el contrato de la operación.
+ * @param types - Categorías de vehículo que determinan las tarifas disponibles.
+ * @returns `FormFieldDefinition[]`.
  */
 export function priceFields(types: VehicleType[]): FormFieldDefinition[] {
   return [

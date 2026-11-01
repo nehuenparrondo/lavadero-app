@@ -8,7 +8,7 @@ export const publicTransport = axios.create({
   ...(apiUrl ? { baseURL: apiUrl } : {}),
 });
 /** Exige configuración antes de enviar cualquier petición.
- * @returns `void`, según el contrato de la operación.
+ * @returns `void`.
  * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
  */
 export function requireApi() {

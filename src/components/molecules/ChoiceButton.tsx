@@ -3,8 +3,8 @@ import { useTheme } from '../../hooks/useTheme';
 import type { Choice } from '../../types/form';
 import { Text } from '../atoms/Text';
 /** Opción táctil con estado seleccionado accesible y contraste del tema.
- * @param props - Propiedades tipadas: option, selected, onPress. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: option, selected, onPress.
+ * @returns Vista de ChoiceButton con el contrato de propiedades declarado.
  */
 export function ChoiceButton({
   option,

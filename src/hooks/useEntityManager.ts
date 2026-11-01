@@ -3,10 +3,10 @@ import { usePagedList } from './usePagedList';
 import { useResourceEditor } from './useResourceEditor';
 /** Une una colección paginada con el editor reutilizable; preserva error de lectura separado.
  * @param path - Ruta relativa del recurso dentro de la API versionada.
- * @param transform - Valor tipado de transform utilizado por esta operación.
+ * @param transform - Convierte valores del formulario al body de la API.
  * @param query - Filtros y paginación enviados como parámetros de consulta.
- * @param saveOperation - Valor tipado de saveOperation utilizado por esta operación.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @param saveOperation - Guardado especializado que sustituye al estándar cuando el contrato lo requiere.
+ * @returns Lista paginada, editor y fetchError separado del error de escritura.
  */
 export function useEntityManager<T extends { id: string }>(
   path: string,

@@ -10,7 +10,7 @@ import { UserEditDialog } from '../../components/organisms/UserEditDialog';
 import { UserRoleFilter } from '../../components/organisms/UserRoleFilter';
 import { useUsers } from '../../hooks/useUsers';
 /** ABML de usuarios con filtros y cambios de rol reservados al administrador.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de UsersScreen con el contrato de propiedades declarado.
  */
 export function UsersScreen() {
   const m = useUsers();

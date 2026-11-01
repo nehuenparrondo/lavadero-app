@@ -6,7 +6,7 @@ import { Screen } from '../../components/organisms/Screen';
 import { registerFields } from '../../constants/authFields';
 import { useSignIn } from '../../hooks/useSignIn';
 /** Registro de clientes con validación por campo.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de SignUpScreen con el contrato de propiedades declarado.
  */
 export function SignUpScreen() {
   const register = useSignIn(true);

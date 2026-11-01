@@ -3,7 +3,7 @@ import { AuthProvider } from '../context/AuthContext';
 import { ThemeProvider } from '../context/ThemeContext';
 import { RootNavigation } from '../navigation/RootNavigation';
 /** Raíz Expo Router: proveedores separados de rutas y pantallas.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de RootLayout con el contrato de propiedades declarado.
  */
 export default function RootLayout() {
   return (

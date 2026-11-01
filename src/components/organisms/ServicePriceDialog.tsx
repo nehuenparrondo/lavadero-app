@@ -3,9 +3,9 @@ import { priceFields } from '../../utils/catalogFields';
 import { Notice } from '../molecules/Notice';
 import { EntityForm } from './EntityForm';
 import { ModalPanel } from './ModalPanel';
-/** Presenta service price dialog con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: c. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Edita una tarifa para la pareja servicio/tipo de vehículo.
+ * @param props - Propiedades tipadas: c.
+ * @returns Vista de ServicePriceDialog con el contrato de propiedades declarado.
  */
 export function ServicePriceDialog({ c }: { c: ReturnType<typeof useCatalog> }) {
   return (

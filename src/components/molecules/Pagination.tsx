@@ -2,8 +2,8 @@ import { View } from 'react-native';
 import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
 /** Navegación de listas grandes sin perder búsqueda y filtros.
- * @param props - Propiedades tipadas: page, total, limit, onChange. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: page, total, limit, onChange.
+ * @returns Vista de Pagination con el contrato de propiedades declarado.
  */
 export function Pagination({
   page,

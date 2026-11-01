@@ -1,6 +1,6 @@
 /** Valida un origen público HTTPS, sin credenciales, rutas ni direcciones locales.
- * @param value - Valor tipado de value utilizado por esta operación.
- * @returns `string | null`, según el contrato de la operación.
+ * @param value - Entrada del formato declarado que se valida o transforma.
+ * @returns `string | null`.
  */
 export function parseApiUrl(value: string | undefined): string | null {
   if (!value?.trim()) return null;

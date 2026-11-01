@@ -1,6 +1,6 @@
 {
   "name": "lavadero-app",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "expo-router/entry",
   "dependencies": {
     "@hookform/resolvers": "^6.0.2",
@@ -23,6 +23,7 @@
     "react-native": "0.88.1",
     "react-native-safe-area-context": "~5.10.1",
     "react-native-screens": "~4.30.0",
+    "react-native-svg": "15.16.0",
     "react-native-web": "^0.21.4",
     "zod": "^4.6.7"
   },
@@ -50,7 +51,9 @@
     "export:android": "expo export --platform android --output-dir dist",
     "web": "expo start --web",
     "export:web": "expo export --platform web --output-dir web-dist",
-    "audit:source": "tsx scripts/auditSource.ts"
+    "audit:source": "tsx scripts/auditSource.ts",
+    "docs:source": "node scripts/document-source.mjs",
+    "docs:components": "node scripts/document-components.mjs"
   },
   "private": true,
   "engines": {

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
 
 /** Retorna tema y selector. @throws Error fuera de ThemeProvider.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Modo elegido, paleta resuelta y operación para persistir la preferencia.
  * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
  */
 export function useTheme() {

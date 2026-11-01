@@ -3,9 +3,9 @@ import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
 import { Notice } from '../molecules/Notice';
 import { ModalPanel } from './ModalPanel';
-/** Presenta vehicle delete dialog con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: manager. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Confirma la baja lógica; el servidor rechaza trabajos pendientes.
+ * @param props - Propiedades tipadas: manager.
+ * @returns Vista de VehicleDeleteDialog con el contrato de propiedades declarado.
  */
 export function VehicleDeleteDialog({ manager }: { manager: ReturnType<typeof useVehicles> }) {
   return (

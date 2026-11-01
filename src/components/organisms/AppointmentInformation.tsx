@@ -4,9 +4,9 @@ import { Text } from '../atoms/Text';
 import { Card } from '../molecules/Card';
 import { ContractServiceLines } from '../molecules/ContractServiceLines';
 import { StatusBadge } from '../molecules/StatusBadge';
-/** Presenta appointment information con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: m. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Presenta el contrato del lavado sin modificar la reserva.
+ * @param props - Propiedades tipadas: m.
+ * @returns Vista de AppointmentInformation con el contrato de propiedades declarado.
  */
 export function AppointmentInformation({ m }: { m: ReturnType<typeof useAppointmentDetail> }) {
   const a = m.detail.data;

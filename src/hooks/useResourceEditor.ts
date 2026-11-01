@@ -3,10 +3,10 @@ import { useAction } from './useAction';
 import { useEditorState } from './useEditorState';
 /** Compone selección, confirmaciones y persistencia para editores sin duplicar el ABML.
  * @param path - Ruta relativa del recurso dentro de la API versionada.
- * @param transform - Valor tipado de transform utilizado por esta operación.
+ * @param transform - Convierte valores del formulario al body de la API.
  * @param refresh - Vuelve a consultar recursos después de una operación confirmada.
- * @param saveOperation - Valor tipado de saveOperation utilizado por esta operación.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @param saveOperation - Guardado especializado que sustituye al estándar cuando el contrato lo requiere.
+ * @returns Selección del editor, diálogos y comandos de guardado/baja.
  */
 export function useResourceEditor<T extends { id: string }>(
   path: string,

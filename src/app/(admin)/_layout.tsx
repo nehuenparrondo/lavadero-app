@@ -1,8 +1,7 @@
 import { Stack } from 'expo-router';
-import { AdminHeader } from '../../navigation/AdminHeader';
-/** Navegación administrativa con menú de siete destinos y guardas en raíz.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Mantiene rutas administrativas separadas; Screen aporta el marco visual adaptable.
+ * @returns Stack sin cabeceras duplicadas; las guardas permanecen en RootNavigation.
  */
 export default function AdminLayout() {
-  return <Stack screenOptions={{ header: () => <AdminHeader /> }} />;
+  return <Stack screenOptions={{ headerShown: false }} />;
 }

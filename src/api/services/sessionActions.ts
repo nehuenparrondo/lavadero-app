@@ -3,16 +3,16 @@ import { deleteRefresh, storeRefresh } from '../sessionStorage';
 import { getSession, setSession } from '../sessionStore';
 import * as auth from './authService';
 import { readResource } from './resourceService';
-/** Ejecuta la operación tipada de este módulo.
- * @param next - Valor tipado de next utilizado por esta operación.
- * @returns `Promise<void>`, según el contrato de la operación.
+/** Persiste el refresh antes de publicar la sesión para sus consumidores.
+ * @param next - Sesión propia emitida por el backend al acceder o registrarse.
+ * @returns `Promise<void>`.
  */
 export const accept = async (next: Session) => {
   await storeRefresh(next.refreshToken);
   setSession(next);
 };
-/** Ejecuta la operación tipada de este módulo.
- * @returns `Promise<void>`, según el contrato de la operación.
+/** Elimina primero el acceso local y después intenta revocar su familia en el backend.
+ * @returns `Promise<void>`.
  */
 export const signOut = async () => {
   const token = getSession()?.refreshToken;
@@ -25,8 +25,8 @@ export const signOut = async () => {
       /* La sesión local ya se eliminó; backend aplica vencimiento. */
     }
 };
-/** Ejecuta la operación tipada de este módulo.
- * @returns `Promise<void>`, según el contrato de la operación.
+/** Recarga el perfil propio después de editar, sin reemplazar las credenciales de sesión.
+ * @returns `Promise<void>`.
  */
 export const reloadUser = async () => {
   const current = getSession();

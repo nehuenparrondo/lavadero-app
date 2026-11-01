@@ -2,9 +2,9 @@ import { useProfile } from '../../hooks/useProfile';
 import { Text } from '../atoms/Text';
 import { Card } from '../molecules/Card';
 import { EntityForm } from './EntityForm';
-/** Presenta profile password form con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: p. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Confirma la contraseña actual y solicita la nueva al servidor.
+ * @param props - Propiedades tipadas: p.
+ * @returns Vista de ProfilePasswordForm con el contrato de propiedades declarado.
  */
 export function ProfilePasswordForm({ p }: { p: ReturnType<typeof useProfile> }) {
   return (

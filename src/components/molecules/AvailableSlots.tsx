@@ -3,8 +3,8 @@ import { slotTime } from '../../utils/format';
 import { Text } from '../atoms/Text';
 import { ChoiceGroup } from './ChoiceGroup';
 /** Horarios ya validados por el servidor y estado vacío cuando la fecha está completa.
- * @param props - Propiedades tipadas: quote, value, onChange. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: quote, value, onChange.
+ * @returns Vista de AvailableSlots con el contrato de propiedades declarado.
  */
 export function AvailableSlots({
   quote,

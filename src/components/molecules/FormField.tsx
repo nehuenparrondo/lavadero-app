@@ -5,8 +5,8 @@ import { Text } from '../atoms/Text';
 import { ChoiceGroup } from './ChoiceGroup';
 import { FieldInput } from './FieldInput';
 /** Label, entrada y error, con selectors legibles para campos enumerados.
- * @param props - Propiedades tipadas: field, value, onChange, onBlur, error. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: field, value, onChange, onBlur, error.
+ * @returns Vista de FormField con el contrato de propiedades declarado.
  */
 export function FormField({
   field,

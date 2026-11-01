@@ -3,7 +3,7 @@ import { makeCatalogCode } from './makeCatalogCode';
 /** Serializa campos de servicio; el código permanece estable durante una edición.
  * @param values - Valores del formulario o parámetros que se serializan para la operación.
  * @param current - Identidad o entidad actual usada para conservar sus invariantes.
- * @returns `{ code: string; name: string | undefined; description: string | undefined; durationMinutes: number; isActive: boolean; }`, según el contrato de la operación.
+ * @returns `{ code: string; name: string | undefined; description: string | undefined; durationMinutes: number; isActive: boolean; }`.
  */
 export function servicePayload(values: Record<string, string>, current: Service | null) {
   return {
@@ -16,7 +16,7 @@ export function servicePayload(values: Record<string, string>, current: Service 
 }
 /** Valores de edición sin convertir null en texto visible.
  * @param current - Identidad o entidad actual usada para conservar sus invariantes.
- * @returns `{ name: string; description: string; durationMinutes: string; isActive: string; } | { isActive: string; name?: never; description?: never; durationMinutes?: never; }`, según el contrato de la operación.
+ * @returns `{ name: string; description: string; durationMinutes: string; isActive: string; } | { isActive: string; name?: never; description?: never; durationMinutes?: never; }`.
  */
 export function serviceInitialValues(current: Service | null) {
   return current

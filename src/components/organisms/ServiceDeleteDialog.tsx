@@ -3,9 +3,9 @@ import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
 import { Notice } from '../molecules/Notice';
 import { ModalPanel } from './ModalPanel';
-/** Presenta service delete dialog con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: c. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Confirma la baja lógica del servicio preservando contratos anteriores.
+ * @param props - Propiedades tipadas: c.
+ * @returns Vista de ServiceDeleteDialog con el contrato de propiedades declarado.
  */
 export function ServiceDeleteDialog({ c }: { c: ReturnType<typeof useCatalog> }) {
   return (

@@ -4,9 +4,9 @@ import { Text } from '../atoms/Text';
 import { ContractServiceLines } from '../molecules/ContractServiceLines';
 import { Notice } from '../molecules/Notice';
 import { ModalPanel } from './ModalPanel';
-/** Presenta appointment receipt dialog con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: m. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Presenta el comprobante histórico; no constituye factura fiscal.
+ * @param props - Propiedades tipadas: m.
+ * @returns Vista de AppointmentReceiptDialog con el contrato de propiedades declarado.
  */
 export function AppointmentReceiptDialog({
   m,

@@ -3,9 +3,9 @@ import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../atoms/Text';
 import { Card } from '../molecules/Card';
 import { ChoiceGroup } from '../molecules/ChoiceGroup';
-/** Presenta theme selector con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: theme. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Edita la preferencia local de apariencia sin cambiar datos del negocio.
+ * @param props - Propiedades tipadas: theme.
+ * @returns Vista de ThemeSelector con el contrato de propiedades declarado.
  */
 export function ThemeSelector({ theme }: { theme: ReturnType<typeof useTheme> }) {
   return (

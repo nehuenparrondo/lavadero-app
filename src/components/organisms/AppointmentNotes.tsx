@@ -2,9 +2,9 @@ import { useAppointmentDetail } from '../../hooks/useAppointmentDetail';
 import { Text } from '../atoms/Text';
 import { Card } from '../molecules/Card';
 import { EntityForm } from './EntityForm';
-/** Presenta appointment notes con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: m. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Lista observaciones de trabajo y conecta la carga de una nueva nota.
+ * @param props - Propiedades tipadas: m.
+ * @returns Vista de AppointmentNotes con el contrato de propiedades declarado.
  */
 export function AppointmentNotes({ m }: { m: ReturnType<typeof useAppointmentDetail> }) {
   const a = m.detail.data;

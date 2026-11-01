@@ -1,4 +1,4 @@
-/** Paleta semántica para temas claro y oscuro. */
+/** Colores semánticos: ninguna pantalla necesita conocer los valores de marca. */
 export interface Palette {
   background: string;
   surface: string;
@@ -11,33 +11,48 @@ export interface Palette {
   danger: string;
   warning: string;
   soft: string;
+  subtle: string;
+  navy: string;
+  onNavy: string;
+  navMuted: string;
+  accent: string;
 }
-/** Colores centrales: los componentes no definen colores de marca propios. */
+/** Azul editorial, superficies neutras y navegación oscura en ambos modos. */
 export const palettes: Record<'light' | 'dark', Palette> = {
   light: {
-    background: '#F3F5FA',
+    background: '#F4F6F8',
     surface: '#FFFFFF',
-    text: '#14243C',
-    muted: '#596A82',
-    primary: '#2359DF',
+    text: '#172B3F',
+    muted: '#607185',
+    primary: '#285BE7',
     onPrimary: '#FFFFFF',
-    border: '#DEE5F0',
-    success: '#11734B',
-    danger: '#B32843',
-    warning: '#946200',
-    soft: '#E9EFFF',
+    border: '#E2E8EE',
+    success: '#157552',
+    danger: '#B5364F',
+    warning: '#8A5C10',
+    soft: '#EDF2FF',
+    subtle: '#F8FAFC',
+    navy: '#12283F',
+    onNavy: '#FFFFFF',
+    navMuted: '#AEBFD0',
+    accent: '#E1EDAB',
   },
   dark: {
-    background: '#0B1220',
-    surface: '#142138',
-    text: '#F0F5FF',
-    muted: '#ADBCD3',
-    primary: '#A3BEFF',
-    onPrimary: '#0D2250',
-    border: '#2A3C58',
-    success: '#79DDB2',
-    danger: '#FFA6B5',
-    warning: '#EFCB77',
-    soft: '#203452',
+    background: '#0C1623',
+    surface: '#162536',
+    text: '#F1F5FA',
+    muted: '#ADBCD0',
+    primary: '#A8C1FF',
+    onPrimary: '#142B55',
+    border: '#2A3C50',
+    success: '#7ADDB2',
+    danger: '#FFADBC',
+    warning: '#F3CE83',
+    soft: '#223853',
+    subtle: '#1B2D41',
+    navy: '#0F2236',
+    onNavy: '#FFFFFF',
+    navMuted: '#AEBFD0',
+    accent: '#E1EDAB',
   },
 };

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 /** Accede a sesión verificada. @throws Error si falta AuthProvider.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Contexto vigente de usuario, restauración y acciones de sesión.
  * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
  */
 export function useAuth() {

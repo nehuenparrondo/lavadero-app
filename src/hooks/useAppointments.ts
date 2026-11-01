@@ -1,13 +1,11 @@
-import type { Appointment, User } from '../types/entities';
-import { today } from '../utils/format';
+import type { Appointment } from '../types/entities';
+import { useAgendaResources } from './useAgendaResources';
 import { useAppointmentFiltersState } from './useAppointmentFiltersState';
-import { useOptions } from './useOptions';
 import { usePagedList } from './usePagedList';
-import { useRemoteData } from './useRemoteData';
-/** Agenda filtrada según experiencia, sin ampliar los permisos aplicados por backend.
- * @param mode - Valor tipado de mode utilizado por esta operación.
- * @param initialHistory - Valor tipado de initialHistory utilizado por esta operación.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+/** Coordina filtros, página y resumen; el servidor aplica propiedad y asignaciones.
+ * @param mode Experiencia que determina los filtros visibles, sin conceder permisos.
+ * @param initialHistory Abre trabajos anteriores en lugar de próximos turnos.
+ * @returns Lista paginada, filtros y resumen personal; refresh recarga ambos recursos.
  */
 export function useAppointments(
   mode: 'client' | 'employee' | 'admin',
@@ -22,19 +20,17 @@ export function useAppointments(
     clientId: clientId || undefined,
     employeeId: employeeId || undefined,
   });
-  const summary = useRemoteData<{ completed: number; pending: number }>(
-    '/reports/me',
-    { date: date || today() },
-    mode === 'employee' && !history,
-  );
-  const clients = useOptions<User>('/users', { role: 'client' }, mode === 'admin');
-  const employees = useOptions<User>('/users', { role: 'employee' }, mode === 'admin');
+  const { summary, clients, employees } = useAgendaResources(mode, history, date);
   return {
     ...list,
     mode,
     ...filters,
+    refresh: async () => {
+      await Promise.all([list.refresh(), summary.refresh()]);
+    },
     clients: clients.items,
     employees: employees.items,
-    summary: summary.data,
+    summary: summary.error || summary.loading ? null : summary.data,
+    summaryError: summary.error,
   };
 }

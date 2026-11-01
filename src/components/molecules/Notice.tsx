@@ -3,8 +3,8 @@ import { useTheme } from '../../hooks/useTheme';
 import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
 /** Mensaje de error/éxito anunciado a lectores de pantalla.
- * @param props - Propiedades tipadas: error, message, onRetry. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: error, message, onRetry.
+ * @returns Vista de Notice con el contrato de propiedades declarado.
  */
 export function Notice({
   error,

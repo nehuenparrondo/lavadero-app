@@ -1,6 +1,6 @@
 /** Presenta centavos como pesos argentinos sin alterar el valor persistido.
- * @param cents - Valor tipado de cents utilizado por esta operación.
- * @returns `string`, según el contrato de la operación.
+ * @param cents - Importe entero en centavos ARS.
+ * @returns `string`.
  */
 export function money(cents: number | undefined) {
   return new Intl.NumberFormat('es-AR', {
@@ -10,8 +10,8 @@ export function money(cents: number | undefined) {
   }).format((cents ?? 0) / 100);
 }
 /** Fecha legible en la zona horaria operativa confirmada.
- * @param value - Valor tipado de value utilizado por esta operación.
- * @returns `string`, según el contrato de la operación.
+ * @param value - Entrada del formato declarado que se valida o transforma.
+ * @returns `string`.
  */
 export function appointmentDate(value: string) {
   return new Intl.DateTimeFormat('es-AR', {
@@ -24,7 +24,7 @@ export function appointmentDate(value: string) {
   }).format(new Date(value));
 }
 /** Día ISO local de Argentina para filtros de jornada.
- * @returns `string`, según el contrato de la operación.
+ * @returns `string`.
  */
 export function today() {
   const parts = new Intl.DateTimeFormat('en-CA', {
@@ -36,8 +36,8 @@ export function today() {
   return `${parts.find((p) => p.type === 'year')!.value}-${parts.find((p) => p.type === 'month')!.value}-${parts.find((p) => p.type === 'day')!.value}`;
 }
 /** Hora local de una opción UTC, enviada por el servidor.
- * @param value - Valor tipado de value utilizado por esta operación.
- * @returns `string`, según el contrato de la operación.
+ * @param value - Entrada del formato declarado que se valida o transforma.
+ * @returns `string`.
  */
 export function slotTime(value: string) {
   return new Intl.DateTimeFormat('es-AR', {

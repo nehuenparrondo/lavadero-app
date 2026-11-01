@@ -2,10 +2,10 @@ import type { Availability, Service, User, Vehicle } from '../types/entities';
 import type { useBookingSelection } from './useBookingSelection';
 import { useOptions } from './useOptions';
 import { useRemoteData } from './useRemoteData';
-/** Consulta opciones autorizadas y cotiza únicamente una selección válida.
- * @param s - Respuesta HTTP usada para emitir la redirección del flujo.
- * @param admin - Valor tipado de admin utilizado por esta operación.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+/** Carga opciones autorizadas y cotiza una selección con forma válida.
+ * @param s Selección local de titular, vehículo, servicios, fecha y horario.
+ * @param admin Permite consultar clientes para reserva asistida; no concede permisos.
+ * @returns Opciones filtradas por titular/tarifa, disponibilidad y error de carga.
  */
 export function useBookingResources(
   s: ReturnType<typeof useBookingSelection>,

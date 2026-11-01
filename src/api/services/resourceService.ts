@@ -5,16 +5,16 @@ export type Query = Record<string, string | number | undefined>;
 /** Lee una ruta versionada del contrato público.
  * @param path - Ruta relativa del recurso dentro de la API versionada.
  * @param query - Filtros y paginación enviados como parámetros de consulta.
- * @returns `Promise<T>`, según el contrato de la operación.
+ * @returns `Promise<T>`.
  */
 export async function readResource<T>(path: string, query: Query = {}) {
   return (await apiClient.get<{ data: T }>('/api/v1' + path, { params: query })).data.data;
 }
 /** Escribe una ruta versionada; componentes delegan a hooks que consumen este servicio.
- * @param method - Valor tipado de method utilizado por esta operación.
+ * @param method - Verbo HTTP permitido para la escritura.
  * @param path - Ruta relativa del recurso dentro de la API versionada.
- * @param body - Valor tipado de body utilizado por esta operación.
- * @returns `Promise<T>`, según el contrato de la operación.
+ * @param body - Carga validada de la operación de escritura.
+ * @returns `Promise<T>`.
  */
 export async function writeResource<T>(
   method: 'post' | 'put' | 'patch' | 'delete',
@@ -27,7 +27,7 @@ export async function writeResource<T>(
 /** Carga opciones de formularios paginadas sin truncar a los primeros cien registros.
  * @param path - Ruta relativa del recurso dentro de la API versionada.
  * @param query - Filtros y paginación enviados como parámetros de consulta.
- * @returns `Promise<T[]>`, según el contrato de la operación.
+ * @returns `Promise<T[]>`.
  */
 export async function readOptions<T>(path: string, query: Query = {}) {
   const all: T[] = [];

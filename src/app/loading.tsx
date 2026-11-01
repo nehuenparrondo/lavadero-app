@@ -3,7 +3,7 @@ import { LoadingState } from '../components/molecules/LoadingState';
 import { useAuth } from '../hooks/useAuth';
 
 /** Mantiene el navegador montado mientras se restaura y verifica la sesión.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de LoadingRoute con el contrato de propiedades declarado.
  */
 export default function LoadingRoute() {
   const { restoring, user } = useAuth();

@@ -3,11 +3,11 @@ import { writeResource } from '../api/services/resourceService';
 import type { Appointment } from '../types/entities';
 import { useAction } from './useAction';
 import type { useBookingSelection } from './useBookingSelection';
-/** Envía la cotización elegida; el servidor recalcula precios y bloquea disponibilidad.
- * @param s - Respuesta HTTP usada para emitir la redirección del flujo.
- * @param admin - Valor tipado de admin utilizado por esta operación.
- * @param refresh - Vuelve a consultar recursos después de una operación confirmada.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+/** Envía la intención de reserva sin confiar en el precio de la interfaz.
+ * @param s Selección actual con inicio ofrecido por disponibilidad.
+ * @param admin Incluye clientId solo para reserva asistida.
+ * @param refresh Recotiza si el servidor rechaza, por ejemplo por un horario ocupado.
+ * @returns Estado de acción y submit; navega solo después de confirmar.
  */
 export function useBookingSubmit(
   s: ReturnType<typeof useBookingSelection>,

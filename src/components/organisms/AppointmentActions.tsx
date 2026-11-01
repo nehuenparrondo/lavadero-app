@@ -6,8 +6,8 @@ import { AppointmentPaymentAction } from './AppointmentPaymentAction';
 import { AppointmentStatusEditor } from './AppointmentStatusEditor';
 import { EmployeeWorkAction } from './EmployeeWorkAction';
 /** Acciones del rol visible; el servidor vuelve a validarlas con propiedad/asignación.
- * @param props - Propiedades tipadas: manager. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: manager.
+ * @returns Vista de AppointmentActions con el contrato de propiedades declarado.
  */
 export function AppointmentActions({
   manager: m,

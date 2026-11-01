@@ -1,9 +1,10 @@
 import { useCatalog } from '../../hooks/useCatalog';
 import { ServiceCard } from '../molecules/ServiceCard';
 import { CollectionState } from './CollectionState';
-/** Presenta service collection con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: c, admin, typeId. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+import { ResponsiveGrid } from '../molecules/ResponsiveGrid';
+/** Cuadrícula de catálogo con acciones administrativas cuando están habilitadas.
+ * @param props - Propiedades tipadas: c, admin, typeId.
+ * @returns Vista de ServiceCollection con el contrato de propiedades declarado.
  */
 export function ServiceCollection({
   c,
@@ -22,20 +23,22 @@ export function ServiceCollection({
       emptyTitle="Todavía no hay servicios disponibles"
       onRetry={c.list.refresh}
     >
-      {c.list.data?.map((s) => (
-        <ServiceCard
-          key={s.id}
-          service={s}
-          typeId={typeId}
-          {...(admin
-            ? {
-                onEdit: () => c.edit(s),
-                onPrice: () => c.setPricing(s),
-                onDelete: () => c.setDeleting(s),
-              }
-            : {})}
-        />
-      ))}
+      <ResponsiveGrid>
+        {c.list.data?.map((s) => (
+          <ServiceCard
+            key={s.id}
+            service={s}
+            typeId={typeId}
+            {...(admin
+              ? {
+                  onEdit: () => c.edit(s),
+                  onPrice: () => c.setPricing(s),
+                  onDelete: () => c.setDeleting(s),
+                }
+              : {})}
+          />
+        ))}
+      </ResponsiveGrid>
     </CollectionState>
   );
 }

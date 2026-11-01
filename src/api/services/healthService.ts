@@ -2,8 +2,8 @@ import type { HealthResponse } from '../../types/health';
 import { apiClient, apiUrl } from '../client';
 
 /** Comprueba conectividad. @throws Error ante configuración ausente, red o respuesta inválida.
- * @param signal - Valor tipado de signal utilizado por esta operación.
- * @returns `Promise<HealthResponse>`, según el contrato de la operación.
+ * @param signal - Señal de cancelación transmitida al transporte HTTP.
+ * @returns `Promise<HealthResponse>`.
  * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
  */
 export async function getApiHealth(signal?: AbortSignal): Promise<HealthResponse> {

@@ -22,6 +22,7 @@ async function renew() {
   const current = getSession();
   if (!current) throw new Error('Tu sesión venció.');
   const next = await refreshSession(current.refreshToken);
+  // Una respuesta tardía no puede restaurar una sesión que el usuario ya cerró.
   if (getSession()?.refreshToken !== current.refreshToken)
     throw new Error('La sesión cambió durante la solicitud.');
   await storeRefresh(next.refreshToken);

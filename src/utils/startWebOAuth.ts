@@ -5,7 +5,7 @@ import { pendingOAuthKey } from './pendingOAuth';
 
 /** Prepara PKCE y navega en la misma pestaña, sin secretos de proveedor ni popups.
  * @param provider - Proveedor permitido: Google, Discord o GitHub.
- * @returns `Promise<void>`, según el contrato de la operación.
+ * @returns `Promise<void>`.
  * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
  */
 export async function startWebOAuth(provider: 'google' | 'discord' | 'github') {

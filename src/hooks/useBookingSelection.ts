@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { today } from '../utils/format';
 /** Selección de reserva; cambiar titular, vehículo, servicios o fecha invalida el horario previo.
  * @param clientId - Titular de la reserva o del vehículo, sujeto a ownership.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Selección y setters que invalidan el horario cuando cambia cualquier dependencia.
  */
 export function useBookingSelection(clientId: string) {
   const [selection, setSelection] = useState({

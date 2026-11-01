@@ -4,6 +4,34 @@ Cada componente tiene una responsabilidad y recibe datos/callbacks tipados. Los 
 
 ## atoms
 
+### AppIcon
+
+Ícono vectorial decorativo; la acción contenedora debe aportar su nombre accesible.
+
+[Fuente](../src/components/atoms/AppIcon.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  name: IconName;
+  size?: number;
+  color?: string;
+}
+```
+
+| Prop  | Obligatoria | Tipo       |
+| ----- | ----------- | ---------- |
+| name  | Sí          | `IconName` |
+| size  | No          | `number`   |
+| color | No          | `string`   |
+
+Uso:
+
+```tsx
+<AppIcon name={name} />
+```
+
 ### Avatar
 
 Foto opcional o iniciales del perfil, sin datos de otros clientes.
@@ -55,7 +83,7 @@ Uso:
 
 ### Button
 
-Acción con estado de carga y superficie del tema.
+Acción de 48 puntos con texto, ícono opcional y estado ocupado accesible.
 
 [Fuente](../src/components/atoms/Button.tsx)
 
@@ -72,11 +100,42 @@ ButtonProps;
 | disabled | No          | `boolean`                                         |
 | loading  | No          | `boolean`                                         |
 | variant  | No          | `'primary' \| 'secondary' \| 'danger' \| 'quiet'` |
+| icon     | No          | `IconName`                                        |
 
 Uso:
 
 ```tsx
 <Button label="Guardar" onPress={handleAction} />
+```
+
+### ButtonContent
+
+Contenido visual del botón, independiente de Pressable y de su política de interacción.
+
+[Fuente](../src/components/atoms/ButtonContent.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  label: string;
+  color: string;
+  icon?: IconName | undefined;
+  loading: boolean;
+}
+```
+
+| Prop    | Obligatoria | Tipo                    |
+| ------- | ----------- | ----------------------- |
+| label   | Sí          | `string`                |
+| color   | Sí          | `string`                |
+| icon    | No          | `IconName \| undefined` |
+| loading | Sí          | `boolean`               |
+
+Uso:
+
+```tsx
+<ButtonContent label="Guardar" color={color} loading={loading} />
 ```
 
 ### Icon
@@ -168,6 +227,54 @@ Uso:
 
 ## molecules
 
+### AppointmentCardFooter
+
+La ausencia de importe significa falta de permiso, nunca un total cero.
+
+[Fuente](../src/components/molecules/AppointmentCardFooter.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  appointment: Appointment;
+}
+```
+
+| Prop        | Obligatoria | Tipo          |
+| ----------- | ----------- | ------------- |
+| appointment | Sí          | `Appointment` |
+
+Uso:
+
+```tsx
+<AppointmentCardFooter appointment={appointment} />
+```
+
+### AppointmentVehicle
+
+Datos operativos presentes en la proyección de todos los roles.
+
+[Fuente](../src/components/molecules/AppointmentVehicle.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  appointment: Appointment;
+}
+```
+
+| Prop        | Obligatoria | Tipo          |
+| ----------- | ----------- | ------------- |
+| appointment | Sí          | `Appointment` |
+
+Uso:
+
+```tsx
+<AppointmentVehicle appointment={appointment} />
+```
+
 ### AvailableSlots
 
 Horarios ya validados por el servidor y estado vacío cuando la fecha está completa.
@@ -196,22 +303,62 @@ Uso:
 <AvailableSlots quote={quote} value={value} onChange={handleAction} />
 ```
 
+### BrandLockup
+
+Firma de marca compacta para acceso, menú y cabecera.
+
+[Fuente](../src/components/molecules/BrandLockup.tsx)
+
+Tipo del parámetro:
+
+```ts
+{ inverse?: boolean }
+```
+
+| Prop    | Obligatoria | Tipo      |
+| ------- | ----------- | --------- |
+| inverse | No          | `boolean` |
+
+Uso:
+
+```tsx
+<BrandLockup />
+```
+
 ### Card
 
-Superficie reutilizable de lectura y formularios.
+Superficie neutra para agrupar información; el estilo permite componer grids sin duplicarla.
 
 [Fuente](../src/components/molecules/Card.tsx)
 
 Tipo del parámetro:
 
 ```ts
-PropsWithChildren;
+PropsWithChildren<{ style?: StyleProp<ViewStyle> }>;
 ```
+
+| Prop  | Obligatoria | Tipo                   |
+| ----- | ----------- | ---------------------- |
+| style | No          | `StyleProp<ViewStyle>` |
 
 Uso:
 
 ```tsx
 <Card />
+```
+
+### CareGuide
+
+Ayuda basada en funciones existentes, sin prometer servicios ni tiempos fijos.
+
+[Fuente](../src/components/molecules/CareGuide.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<CareGuide />
 ```
 
 ### ChoiceButton
@@ -352,7 +499,7 @@ Uso:
 
 ### EmptyState
 
-Lista vacía con una explicación específica del recurso.
+Explica una colección vacía sin confundirla con carga o error de red.
 
 [Fuente](../src/components/molecules/EmptyState.tsx)
 
@@ -457,6 +604,36 @@ Uso:
 <LoadingState />
 ```
 
+### MetricTile
+
+Indicador de solo lectura; recibe valores reales o un guion mientras no hay respuesta.
+
+[Fuente](../src/components/molecules/MetricTile.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  label: string;
+  value: string;
+  detail: string;
+  icon: IconName;
+}
+```
+
+| Prop   | Obligatoria | Tipo       |
+| ------ | ----------- | ---------- |
+| label  | Sí          | `string`   |
+| value  | Sí          | `string`   |
+| detail | Sí          | `string`   |
+| icon   | Sí          | `IconName` |
+
+Uso:
+
+```tsx
+<MetricTile label="Guardar" value={value} detail={detail} icon={icon} />
+```
+
 ### Notice
 
 Mensaje de error/éxito anunciado a lectores de pantalla.
@@ -511,6 +688,62 @@ Uso:
 <OpeningHoursCard state={state} onRetry={handleAction} />
 ```
 
+### OverviewColumns
+
+Composición 2:1 apilada cuando no hay espacio suficiente para dos columnas.
+
+[Fuente](../src/components/molecules/OverviewColumns.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  primary: ReactNode;
+  secondary: ReactNode;
+}
+```
+
+| Prop      | Obligatoria | Tipo        |
+| --------- | ----------- | ----------- |
+| primary   | Sí          | `ReactNode` |
+| secondary | Sí          | `ReactNode` |
+
+Uso:
+
+```tsx
+<OverviewColumns primary={primary} secondary={secondary} />
+```
+
+### PageHeading
+
+Portada con contexto y una acción principal, adaptable al ancho y a la escala de texto.
+
+[Fuente](../src/components/molecules/PageHeading.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  eyebrow: string;
+  title: string;
+  detail: string;
+  action?: ReactNode;
+}
+```
+
+| Prop    | Obligatoria | Tipo        |
+| ------- | ----------- | ----------- |
+| eyebrow | Sí          | `string`    |
+| title   | Sí          | `string`    |
+| detail  | Sí          | `string`    |
+| action  | No          | `ReactNode` |
+
+Uso:
+
+```tsx
+<PageHeading eyebrow={eyebrow} title="Guardar" detail={detail} />
+```
+
 ### Pagination
 
 Navegación de listas grandes sin perder búsqueda y filtros.
@@ -541,6 +774,36 @@ Uso:
 <Pagination page={page} total={total} limit={limit} onChange={handleAction} />
 ```
 
+### QuickAction
+
+Acceso a un recorrido existente; toda la tarjeta mantiene un único objetivo táctil.
+
+[Fuente](../src/components/molecules/QuickAction.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  title: string;
+  detail: string;
+  icon: IconName;
+  onPress: () => void;
+}
+```
+
+| Prop    | Obligatoria | Tipo         |
+| ------- | ----------- | ------------ |
+| title   | Sí          | `string`     |
+| detail  | Sí          | `string`     |
+| icon    | Sí          | `IconName`   |
+| onPress | Sí          | `() => void` |
+
+Uso:
+
+```tsx
+<QuickAction title="Guardar" detail={detail} icon={icon} onPress={handleAction} />
+```
+
 ### QuotedTotal
 
 Total y duración estimados exactamente como los devuelve la cotización del servidor.
@@ -563,6 +826,52 @@ Uso:
 
 ```tsx
 <QuotedTotal quote={quote} />
+```
+
+### ResponsiveGrid
+
+Cuadrícula de dos columnas que conserva las claves y el orden de los elementos.
+
+[Fuente](../src/components/molecules/ResponsiveGrid.tsx)
+
+Tipo del parámetro:
+
+```ts
+PropsWithChildren;
+```
+
+Uso:
+
+```tsx
+<ResponsiveGrid />
+```
+
+### RevenueBar
+
+Barra con cifra explícita para no depender de color o longitud.
+
+[Fuente](../src/components/molecules/RevenueBar.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  date: string;
+  cents: number;
+  max: number;
+}
+```
+
+| Prop  | Obligatoria | Tipo     |
+| ----- | ----------- | -------- |
+| date  | Sí          | `string` |
+| cents | Sí          | `number` |
+| max   | Sí          | `number` |
+
+Uso:
+
+```tsx
+<RevenueBar date={date} cents={cents} max={max} />
 ```
 
 ### SearchBar
@@ -595,7 +904,7 @@ Uso:
 
 ### SectionHeader
 
-Título y descripción de una sección con jerarquía tipográfica.
+Jerarquía de sección, separada de la portada principal de cada experiencia.
 
 [Fuente](../src/components/molecules/SectionHeader.tsx)
 
@@ -646,6 +955,32 @@ Uso:
 
 ```tsx
 <ServiceCard service={service} typeId={typeId} />
+```
+
+### SidebarLink
+
+Destino lateral con selección persistente y respuesta de hover/teclado del Pressable.
+
+[Fuente](../src/components/molecules/SidebarLink.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  item: NavigationItem;
+  active: boolean;
+}
+```
+
+| Prop   | Obligatoria | Tipo             |
+| ------ | ----------- | ---------------- |
+| item   | Sí          | `NavigationItem` |
+| active | Sí          | `boolean`        |
+
+Uso:
+
+```tsx
+<SidebarLink item={item} active={active} />
 ```
 
 ### StatusBadge
@@ -700,11 +1035,61 @@ Uso:
 <VehicleTypeItem type={type} onEdit={handleAction} onDeactivate={handleAction} />
 ```
 
+### WashIllustration
+
+Ilustración vectorial decorativa del servicio; no representa un vehículo del cliente.
+
+[Fuente](../src/components/molecules/WashIllustration.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<WashIllustration />
+```
+
+### WorkdayGuide
+
+Ayuda operacional; las acciones reales siguen en el detalle del turno.
+
+[Fuente](../src/components/molecules/WorkdayGuide.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<WorkdayGuide />
+```
+
+### WorkspaceUser
+
+Identidad de la sesión actual; no consulta ni copia información de otros usuarios.
+
+[Fuente](../src/components/molecules/WorkspaceUser.tsx)
+
+Tipo del parámetro:
+
+```ts
+{ inverse?: boolean }
+```
+
+| Prop    | Obligatoria | Tipo      |
+| ------- | ----------- | --------- |
+| inverse | No          | `boolean` |
+
+Uso:
+
+```tsx
+<WorkspaceUser />
+```
+
 ## organisms
 
 ### AdminMenu
 
-Menú de administración; cierra el diálogo antes de cambiar de sección.
+Menú administrativo móvil basado en el mismo catálogo que la barra lateral.
 
 [Fuente](../src/components/organisms/AdminMenu.tsx)
 
@@ -723,6 +1108,20 @@ Uso:
 
 ```tsx
 <AdminMenu open={open} onClose={handleAction} />
+```
+
+### AdminQuickActions
+
+Accesos operativos que complementan la navegación administrativa.
+
+[Fuente](../src/components/organisms/AdminQuickActions.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<AdminQuickActions />
 ```
 
 ### AppointmentActions
@@ -751,7 +1150,7 @@ Uso:
 
 ### AppointmentAssignment
 
-Presenta appointment assignment con datos y acciones recibidos de su hook.
+Asigna un empleado activo sin mezclar esa acción con confirmar el turno.
 
 [Fuente](../src/components/organisms/AppointmentAssignment.tsx)
 
@@ -775,7 +1174,7 @@ Uso:
 
 ### AppointmentCancellationDialog
 
-Presenta appointment cancellation dialog con datos y acciones recibidos de su hook.
+Solicita motivo y confirma la cancelación mediante el comando del turno.
 
 [Fuente](../src/components/organisms/AppointmentCancellationDialog.tsx)
 
@@ -799,7 +1198,7 @@ Uso:
 
 ### AppointmentCard
 
-Resumen operativo de reserva; la API controla qué importes/datos recibe cada rol.
+Resumen compartido por los tres roles; no amplía los datos recibidos de la API.
 
 [Fuente](../src/components/organisms/AppointmentCard.tsx)
 
@@ -825,7 +1224,7 @@ Uso:
 
 ### AppointmentClientFilter
 
-Presenta appointment client filter con datos y acciones recibidos de su hook.
+Selector administrativo de titular; no se ofrece a otros roles.
 
 [Fuente](../src/components/organisms/AppointmentClientFilter.tsx)
 
@@ -873,7 +1272,7 @@ Uso:
 
 ### AppointmentEmployeeFilter
 
-Presenta appointment employee filter con datos y acciones recibidos de su hook.
+Selector administrativo de empleado para restringir la consulta de turnos.
 
 [Fuente](../src/components/organisms/AppointmentEmployeeFilter.tsx)
 
@@ -921,7 +1320,7 @@ Uso:
 
 ### AppointmentInformation
 
-Presenta appointment information con datos y acciones recibidos de su hook.
+Presenta el contrato del lavado sin modificar la reserva.
 
 [Fuente](../src/components/organisms/AppointmentInformation.tsx)
 
@@ -945,7 +1344,7 @@ Uso:
 
 ### AppointmentList
 
-Presenta appointment list con datos y acciones recibidos de su hook.
+Compone la página actual y distingue carga, error y ausencia de turnos.
 
 [Fuente](../src/components/organisms/AppointmentList.tsx)
 
@@ -969,7 +1368,7 @@ Uso:
 
 ### AppointmentNotes
 
-Presenta appointment notes con datos y acciones recibidos de su hook.
+Lista observaciones de trabajo y conecta la carga de una nueva nota.
 
 [Fuente](../src/components/organisms/AppointmentNotes.tsx)
 
@@ -991,9 +1390,33 @@ Uso:
 <AppointmentNotes m={manager} />
 ```
 
+### AppointmentPagination
+
+Adapta la paginación del recurso sin repetirla entre experiencias.
+
+[Fuente](../src/components/organisms/AppointmentPagination.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  manager: ReturnType<typeof useAppointments>;
+}
+```
+
+| Prop    | Obligatoria | Tipo                                 |
+| ------- | ----------- | ------------------------------------ |
+| manager | Sí          | `ReturnType<typeof useAppointments>` |
+
+Uso:
+
+```tsx
+<AppointmentPagination manager={manager} />
+```
+
 ### AppointmentPaymentAction
 
-Presenta appointment payment action con datos y acciones recibidos de su hook.
+Ofrece registrar cobro solo con las capacidades vigentes.
 
 [Fuente](../src/components/organisms/AppointmentPaymentAction.tsx)
 
@@ -1017,7 +1440,7 @@ Uso:
 
 ### AppointmentPaymentDialog
 
-Presenta appointment payment dialog con datos y acciones recibidos de su hook.
+Recoge importe, medio y referencia para registrar un cobro idempotente.
 
 [Fuente](../src/components/organisms/AppointmentPaymentDialog.tsx)
 
@@ -1041,7 +1464,7 @@ Uso:
 
 ### AppointmentPayments
 
-Presenta appointment payments con datos y acciones recibidos de su hook.
+Muestra cobros registrados y saldo de la proyección autorizada.
 
 [Fuente](../src/components/organisms/AppointmentPayments.tsx)
 
@@ -1065,7 +1488,7 @@ Uso:
 
 ### AppointmentReceiptDialog
 
-Presenta appointment receipt dialog con datos y acciones recibidos de su hook.
+Presenta el comprobante histórico; no constituye factura fiscal.
 
 [Fuente](../src/components/organisms/AppointmentReceiptDialog.tsx)
 
@@ -1089,7 +1512,7 @@ Uso:
 
 ### AppointmentStatusEditor
 
-Presenta appointment status editor con datos y acciones recibidos de su hook.
+Expone las transiciones administrativas que el servidor vuelve a validar.
 
 [Fuente](../src/components/organisms/AppointmentStatusEditor.tsx)
 
@@ -1113,7 +1536,7 @@ Uso:
 
 ### AppointmentStatusFilter
 
-Presenta appointment status filter con datos y acciones recibidos de su hook.
+Filtra la consulta por estado sin cambiar ningún turno.
 
 [Fuente](../src/components/organisms/AppointmentStatusFilter.tsx)
 
@@ -1137,7 +1560,7 @@ Uso:
 
 ### BookingClientField
 
-Presenta booking client field con datos y acciones recibidos de su hook.
+Selecciona titular para una reserva asistida por administración.
 
 [Fuente](../src/components/organisms/BookingClientField.tsx)
 
@@ -1161,7 +1584,7 @@ Uso:
 
 ### BookingInvitation
 
-Presenta booking invitation con datos y acciones recibidos de su hook.
+Composición de la acción principal del cliente, sin información comercial fija.
 
 [Fuente](../src/components/organisms/BookingInvitation.tsx)
 
@@ -1173,9 +1596,23 @@ Uso:
 <BookingInvitation />
 ```
 
+### BookingInvitationCopy
+
+Contenido editorial de la portada de reserva, independiente de navegación e ilustración.
+
+[Fuente](../src/components/organisms/BookingInvitationCopy.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<BookingInvitationCopy />
+```
+
 ### BookingServicesField
 
-Presenta booking services field con datos y acciones recibidos de su hook.
+Ofrece servicios activos con tarifa para el vehículo elegido.
 
 [Fuente](../src/components/organisms/BookingServicesField.tsx)
 
@@ -1199,7 +1636,7 @@ Uso:
 
 ### BookingVehicleField
 
-Presenta booking vehicle field con datos y acciones recibidos de su hook.
+Selecciona un vehículo del titular y orienta cuando aún no tiene ninguno.
 
 [Fuente](../src/components/organisms/BookingVehicleField.tsx)
 
@@ -1219,6 +1656,44 @@ Uso:
 
 ```tsx
 <BookingVehicleField b={b} />
+```
+
+### ClientQuickActions
+
+Tareas de preparación antes de reservar; no duplica consultas del catálogo.
+
+[Fuente](../src/components/organisms/ClientQuickActions.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<ClientQuickActions />
+```
+
+### ClientVisitList
+
+Visitas autorizadas, con carga/error separados del estado vacío.
+
+[Fuente](../src/components/organisms/ClientVisitList.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  home: ReturnType<typeof useHome>;
+}
+```
+
+| Prop | Obligatoria | Tipo                         |
+| ---- | ----------- | ---------------------------- |
+| home | Sí          | `ReturnType<typeof useHome>` |
+
+Uso:
+
+```tsx
+<ClientVisitList home={home} />
 ```
 
 ### CollectionState
@@ -1259,9 +1734,23 @@ Uso:
 />
 ```
 
+### DashboardHeading
+
+Presentación del tablero y su acción prioritaria de reserva asistida.
+
+[Fuente](../src/components/organisms/DashboardHeading.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<DashboardHeading />
+```
+
 ### DashboardIndicators
 
-Presenta dashboard indicators con datos y acciones recibidos de su hook.
+Métricas diarias y pendientes globales; un recurso no disponible muestra un guion.
 
 [Fuente](../src/components/organisms/DashboardIndicators.tsx)
 
@@ -1285,9 +1774,81 @@ Uso:
 <DashboardIndicators report={report} pending={pending} />
 ```
 
+### DashboardPending
+
+Solicitudes pendientes del negocio; un fallo de consulta no se anuncia como lista vacía.
+
+[Fuente](../src/components/organisms/DashboardPending.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  resource: ReturnType < typeof useDashboard > ['pending'];
+}
+```
+
+| Prop     | Obligatoria | Tipo                                         |
+| -------- | ----------- | -------------------------------------------- |
+| resource | Sí          | `ReturnType<typeof useDashboard>['pending']` |
+
+Uso:
+
+```tsx
+<DashboardPending resource={resource} />
+```
+
+### EmployeeAppointmentResults
+
+Filtros y resultados compartidos por agenda e historial del equipo.
+
+[Fuente](../src/components/organisms/EmployeeAppointmentResults.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  manager: ReturnType<typeof useAppointments>;
+}
+```
+
+| Prop    | Obligatoria | Tipo                                 |
+| ------- | ----------- | ------------------------------------ |
+| manager | Sí          | `ReturnType<typeof useAppointments>` |
+
+Uso:
+
+```tsx
+<EmployeeAppointmentResults manager={manager} />
+```
+
+### EmployeeDaySummary
+
+Resumen de la fecha consultada, limitado por la API al empleado actual.
+
+[Fuente](../src/components/organisms/EmployeeDaySummary.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  summary: ReturnType < typeof useAppointments > ['summary'];
+}
+```
+
+| Prop    | Obligatoria | Tipo                                            |
+| ------- | ----------- | ----------------------------------------------- |
+| summary | Sí          | `ReturnType<typeof useAppointments>['summary']` |
+
+Uso:
+
+```tsx
+<EmployeeDaySummary summary={summary} />
+```
+
 ### EmployeePerformance
 
-Presenta employee performance con datos y acciones recibidos de su hook.
+Presenta trabajos completados por empleado en el período.
 
 [Fuente](../src/components/organisms/EmployeePerformance.tsx)
 
@@ -1311,7 +1872,7 @@ Uso:
 
 ### EmployeeWorkAction
 
-Presenta employee work action con datos y acciones recibidos de su hook.
+Ofrece iniciar o finalizar el lavado según el estado del turno.
 
 [Fuente](../src/components/organisms/EmployeeWorkAction.tsx)
 
@@ -1445,7 +2006,7 @@ Uso:
 
 ### PopularServices
 
-Presenta popular services con datos y acciones recibidos de su hook.
+Presenta frecuencias reales de servicios en el período consultado.
 
 [Fuente](../src/components/organisms/PopularServices.tsx)
 
@@ -1469,7 +2030,7 @@ Uso:
 
 ### ProfileIdentity
 
-Presenta profile identity con datos y acciones recibidos de su hook.
+Identifica la sesión propia con nombre, email y avatar opcional.
 
 [Fuente](../src/components/organisms/ProfileIdentity.tsx)
 
@@ -1493,7 +2054,7 @@ Uso:
 
 ### ProfilePasswordForm
 
-Presenta profile password form con datos y acciones recibidos de su hook.
+Confirma la contraseña actual y solicita la nueva al servidor.
 
 [Fuente](../src/components/organisms/ProfilePasswordForm.tsx)
 
@@ -1517,7 +2078,7 @@ Uso:
 
 ### ReportSummary
 
-Indicadores y barras de ingresos diarios a partir de datos reales.
+Compone indicadores, ingresos, servicios y rendimiento desde un único reporte.
 
 [Fuente](../src/components/organisms/ReportSummary.tsx)
 
@@ -1541,7 +2102,7 @@ Uso:
 
 ### RevenueByDay
 
-Presenta revenue by day con datos y acciones recibidos de su hook.
+Visualiza ingresos reales por día con las mismas barras accesibles del tablero.
 
 [Fuente](../src/components/organisms/RevenueByDay.tsx)
 
@@ -1589,7 +2150,7 @@ Uso:
 
 ### Screen
 
-Layout móvil desplazable, ancho legible en tablet y pull-to-refresh opcional.
+Superficie de pantalla con una única región desplazable y actualización opcional.
 
 [Fuente](../src/components/organisms/Screen.tsx)
 
@@ -1617,7 +2178,7 @@ Uso:
 
 ### ServiceCollection
 
-Presenta service collection con datos y acciones recibidos de su hook.
+Cuadrícula de catálogo con acciones administrativas cuando están habilitadas.
 
 [Fuente](../src/components/organisms/ServiceCollection.tsx)
 
@@ -1645,7 +2206,7 @@ Uso:
 
 ### ServiceDeleteDialog
 
-Presenta service delete dialog con datos y acciones recibidos de su hook.
+Confirma la baja lógica del servicio preservando contratos anteriores.
 
 [Fuente](../src/components/organisms/ServiceDeleteDialog.tsx)
 
@@ -1669,7 +2230,7 @@ Uso:
 
 ### ServiceEditDialog
 
-Presenta service edit dialog con datos y acciones recibidos de su hook.
+Edita descripción y duración del servicio, separadas de sus precios.
 
 [Fuente](../src/components/organisms/ServiceEditDialog.tsx)
 
@@ -1717,7 +2278,7 @@ Uso:
 
 ### ServicePriceDialog
 
-Presenta service price dialog con datos y acciones recibidos de su hook.
+Edita una tarifa para la pareja servicio/tipo de vehículo.
 
 [Fuente](../src/components/organisms/ServicePriceDialog.tsx)
 
@@ -1739,9 +2300,23 @@ Uso:
 <ServicePriceDialog c={c} />
 ```
 
+### SidebarNavigation
+
+Selección de destinos basada en rol y ruta, sin estado de navegación duplicado.
+
+[Fuente](../src/components/organisms/SidebarNavigation.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<SidebarNavigation />
+```
+
 ### SignInForm
 
-Presenta sign in form con datos y acciones recibidos de su hook.
+Valida email y contraseña y delega el acceso en useSignIn.
 
 [Fuente](../src/components/organisms/SignInForm.tsx)
 
@@ -1761,6 +2336,20 @@ Uso:
 
 ```tsx
 <SignInForm login={login} />
+```
+
+### SignInPresentation
+
+Presentación de acceso que comparte la identidad del resto de la aplicación.
+
+[Fuente](../src/components/organisms/SignInPresentation.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<SignInPresentation />
 ```
 
 ### SocialLoginButton
@@ -1801,7 +2390,7 @@ Uso:
 
 ### ThemeSelector
 
-Presenta theme selector con datos y acciones recibidos de su hook.
+Edita la preferencia local de apariencia sin cambiar datos del negocio.
 
 [Fuente](../src/components/organisms/ThemeSelector.tsx)
 
@@ -1825,7 +2414,7 @@ Uso:
 
 ### UserCollection
 
-Presenta user collection con datos y acciones recibidos de su hook.
+Presenta la página autorizada de usuarios y los estados de consulta.
 
 [Fuente](../src/components/organisms/UserCollection.tsx)
 
@@ -1849,7 +2438,7 @@ Uso:
 
 ### UserDeleteDialog
 
-Presenta user delete dialog con datos y acciones recibidos de su hook.
+Confirma la baja lógica de una cuenta conservando su historial.
 
 [Fuente](../src/components/organisms/UserDeleteDialog.tsx)
 
@@ -1873,7 +2462,7 @@ Uso:
 
 ### UserEditDialog
 
-Presenta user edit dialog con datos y acciones recibidos de su hook.
+Comparte campos de creación y edición de cuentas administradas.
 
 [Fuente](../src/components/organisms/UserEditDialog.tsx)
 
@@ -1897,7 +2486,7 @@ Uso:
 
 ### UserRoleFilter
 
-Presenta user role filter con datos y acciones recibidos de su hook.
+Filtra cuentas por rol sin modificar sus permisos.
 
 [Fuente](../src/components/organisms/UserRoleFilter.tsx)
 
@@ -1949,7 +2538,7 @@ Uso:
 
 ### VehicleCollection
 
-Presenta vehicle collection con datos y acciones recibidos de su hook.
+Cuadrícula de vehículos autorizados con edición y baja confirmada.
 
 [Fuente](../src/components/organisms/VehicleCollection.tsx)
 
@@ -1973,7 +2562,7 @@ Uso:
 
 ### VehicleDeleteDialog
 
-Presenta vehicle delete dialog con datos y acciones recibidos de su hook.
+Confirma la baja lógica; el servidor rechaza trabajos pendientes.
 
 [Fuente](../src/components/organisms/VehicleDeleteDialog.tsx)
 
@@ -1997,7 +2586,7 @@ Uso:
 
 ### VehicleEditDialog
 
-Presenta vehicle edit dialog con datos y acciones recibidos de su hook.
+Formulario del vehículo con titular controlado por rol y servidor.
 
 [Fuente](../src/components/organisms/VehicleEditDialog.tsx)
 
@@ -2045,7 +2634,7 @@ Uso:
 
 ### VehicleTypeDialog
 
-Presenta vehicle type dialog con datos y acciones recibidos de su hook.
+Formulario administrativo de categorías utilizadas por las tarifas.
 
 [Fuente](../src/components/organisms/VehicleTypeDialog.tsx)
 
@@ -2081,6 +2670,30 @@ Uso:
 <VehicleTypeManager />
 ```
 
+### WeeklyActivity
+
+Serie semanal real; no rellena actividad ni fabrica tendencias para decorar el tablero.
+
+[Fuente](../src/components/organisms/WeeklyActivity.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  resource: ReturnType < typeof useDashboard > ['week'];
+}
+```
+
+| Prop     | Obligatoria | Tipo                                      |
+| -------- | ----------- | ----------------------------------------- |
+| resource | Sí          | `ReturnType<typeof useDashboard>['week']` |
+
+Uso:
+
+```tsx
+<WeeklyActivity resource={resource} />
+```
+
 ### WelcomePanel
 
 Presentación inicial del producto.
@@ -2102,4 +2715,84 @@ Uso:
 
 ```tsx
 <WelcomePanel state={state} onRetry={handleAction} />
+```
+
+### WorkspaceFrame
+
+Estructura común independiente del contenido y de las consultas de cada pantalla.
+
+[Fuente](../src/components/organisms/WorkspaceFrame.tsx)
+
+Tipo del parámetro:
+
+```ts
+PropsWithChildren;
+```
+
+Uso:
+
+```tsx
+<WorkspaceFrame />
+```
+
+### WorkspaceHeader
+
+Cabecera visual común; su área interactiva conserva su propio estado de menú.
+
+[Fuente](../src/components/organisms/WorkspaceHeader.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  wide: boolean;
+}
+```
+
+| Prop | Obligatoria | Tipo      |
+| ---- | ----------- | --------- |
+| wide | Sí          | `boolean` |
+
+Uso:
+
+```tsx
+<WorkspaceHeader wide={wide} />
+```
+
+### WorkspaceHeaderActions
+
+Área de interacción de cabecera, separada del posicionamiento visual.
+
+[Fuente](../src/components/organisms/WorkspaceHeaderActions.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  wide: boolean;
+}
+```
+
+| Prop | Obligatoria | Tipo      |
+| ---- | ----------- | --------- |
+| wide | Sí          | `boolean` |
+
+Uso:
+
+```tsx
+<WorkspaceHeaderActions wide={wide} />
+```
+
+### WorkspaceSidebar
+
+Estructura lateral independiente del catálogo de destinos y de su selección.
+
+[Fuente](../src/components/organisms/WorkspaceSidebar.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<WorkspaceSidebar />
 ```

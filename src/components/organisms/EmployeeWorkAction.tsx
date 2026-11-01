@@ -1,8 +1,8 @@
 import type { useAppointmentDetail } from '../../hooks/useAppointmentDetail';
 import { Button } from '../atoms/Button';
-/** Presenta employee work action con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: m. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Ofrece iniciar o finalizar el lavado según el estado del turno.
+ * @param props - Propiedades tipadas: m.
+ * @returns Vista de EmployeeWorkAction con el contrato de propiedades declarado.
  */
 export function EmployeeWorkAction({ m }: { m: ReturnType<typeof useAppointmentDetail> }) {
   const appointment = m.detail.data;

@@ -1,8 +1,8 @@
 import type { FormFieldDefinition } from '../../types/form';
 import { Input } from '../atoms/Input';
 /** Ajusta teclado y privacidad según el tipo semántico del campo.
- * @param props - Propiedades tipadas: field, value, onChange, onBlur. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: field, value, onChange, onBlur.
+ * @returns Vista de FieldInput con el contrato de propiedades declarado.
  */
 export function FieldInput({
   field,

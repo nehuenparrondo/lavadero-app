@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import type { FormFieldDefinition } from '../types/form';
 /** Genera validación por campo sobre valores de texto del formulario móvil.
- * @param fields - Valor tipado de fields utilizado por esta operación.
- * @returns `z.ZodObject<{ [x: string]: z.ZodString; }, z.core.$strip>`, según el contrato de la operación.
+ * @param fields - Definiciones de campos con etiquetas, tipos y restricciones.
+ * @returns `z.ZodObject<{ [x: string]: z.ZodString; }, z.core.$strip>`.
  */
 export function buildFormSchema(fields: FormFieldDefinition[]) {
   const shape: Record<string, z.ZodString> = {};

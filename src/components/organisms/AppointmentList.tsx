@@ -2,9 +2,9 @@ import { useRouter } from 'expo-router';
 import { useAppointments } from '../../hooks/useAppointments';
 import { AppointmentCard } from './AppointmentCard';
 import { CollectionState } from './CollectionState';
-/** Presenta appointment list con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: m. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Compone la página actual y distingue carga, error y ausencia de turnos.
+ * @param props - Propiedades tipadas: m.
+ * @returns Vista de AppointmentList con el contrato de propiedades declarado.
  */
 export function AppointmentList({ m }: { m: ReturnType<typeof useAppointments> }) {
   const router = useRouter();

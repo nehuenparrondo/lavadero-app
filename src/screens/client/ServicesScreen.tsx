@@ -7,8 +7,8 @@ import { ServiceCollection } from '../../components/organisms/ServiceCollection'
 import { ServiceEditors } from '../../components/organisms/ServiceEditors';
 import { useCatalog } from '../../hooks/useCatalog';
 /** Catálogo del cliente y ABML administrativo reutilizando componentes.
- * @param props - Propiedades tipadas: admin. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: admin.
+ * @returns Vista de ServicesScreen con el contrato de propiedades declarado.
  */
 export function ServicesScreen({ admin = false }: { admin?: boolean }) {
   const c = useCatalog();

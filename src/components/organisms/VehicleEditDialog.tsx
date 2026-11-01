@@ -2,9 +2,9 @@ import type { useVehicles } from '../../hooks/useVehicles';
 import { Notice } from '../molecules/Notice';
 import { EntityForm } from './EntityForm';
 import { ModalPanel } from './ModalPanel';
-/** Presenta vehicle edit dialog con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: manager. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Formulario del vehículo con titular controlado por rol y servidor.
+ * @param props - Propiedades tipadas: manager.
+ * @returns Vista de VehicleEditDialog con el contrato de propiedades declarado.
  */
 export function VehicleEditDialog({ manager }: { manager: ReturnType<typeof useVehicles> }) {
   return (

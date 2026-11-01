@@ -3,13 +3,15 @@ import { useSocialProviders } from '../../hooks/useSocialProviders';
 import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
 import { Notice } from '../molecules/Notice';
+import { LoadingState } from '../molecules/LoadingState';
 import { SocialLoginButton } from './SocialLoginButton';
 /** Muestra proveedores y deshabilita los que el negocio todavía no configuró.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de SocialLogins con el contrato de propiedades declarado.
  */
 export function SocialLogins() {
   const p = useSocialProviders();
   const providers = p.providers;
+  if (p.busy && !providers.length) return <LoadingState />;
   return (
     <View style={{ gap: 10 }}>
       <Text style={{ textAlign: 'center', fontSize: 13 }}>O continuá con tu cuenta</Text>

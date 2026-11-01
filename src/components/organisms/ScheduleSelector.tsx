@@ -5,8 +5,8 @@ import { LoadingState } from '../molecules/LoadingState';
 import { Notice } from '../molecules/Notice';
 import { QuotedTotal } from '../molecules/QuotedTotal';
 /** Horarios y total provienen del backend; no calcula precios en el cliente.
- * @param props - Propiedades tipadas: booking. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: booking.
+ * @returns Vista de ScheduleSelector con el contrato de propiedades declarado.
  */
 export function ScheduleSelector({ booking: b }: { booking: ReturnType<typeof useBooking> }) {
   if (!b.vehicleId || !b.serviceIds) return null;

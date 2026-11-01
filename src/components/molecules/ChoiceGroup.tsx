@@ -4,8 +4,8 @@ import { toggleChoice } from '../../utils/toggleChoice';
 import { ChoiceButton } from './ChoiceButton';
 export type { Choice } from '../../types/form';
 /** Selector simple o múltiple; delega apariencia y transformación en piezas independientes.
- * @param props - Propiedades tipadas: options, value, onChange, multiple. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: options, value, onChange, multiple.
+ * @returns Vista de ChoiceGroup con el contrato de propiedades declarado.
  */
 export function ChoiceGroup({
   options,

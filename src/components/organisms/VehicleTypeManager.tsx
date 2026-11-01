@@ -6,7 +6,7 @@ import { Notice } from '../molecules/Notice';
 import { VehicleTypeItem } from '../molecules/VehicleTypeItem';
 import { VehicleTypeDialog } from './VehicleTypeDialog';
 /** Categorías registradas y formularios administrativos sin exponer SQL ni identificadores técnicos.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de VehicleTypeManager con el contrato de propiedades declarado.
  */
 export function VehicleTypeManager() {
   const m = useVehicleTypes();

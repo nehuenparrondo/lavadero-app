@@ -1,8 +1,8 @@
 import type { useAppointments } from '../../hooks/useAppointments';
 import { FormField } from '../molecules/FormField';
-/** Presenta appointment client filter con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: m. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Selector administrativo de titular; no se ofrece a otros roles.
+ * @param props - Propiedades tipadas: m.
+ * @returns Vista de AppointmentClientFilter con el contrato de propiedades declarado.
  */
 export function AppointmentClientFilter({ m }: { m: ReturnType<typeof useAppointments> }) {
   return (

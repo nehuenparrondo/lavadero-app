@@ -1,10 +1,10 @@
 import type { RouteAccess } from '../constants/rootRoutes';
 import type { User } from '../types/entities';
 /** Resuelve guardas con el rol verificado; durante restauración solo deja rutas públicas.
- * @param access - Valor tipado de access utilizado por esta operación.
+ * @param access - Regla de acceso declarada para la ruta.
  * @param user - Perfil vigente; nunca incluye una contraseña legible.
- * @param restoring - Valor tipado de restoring utilizado por esta operación.
- * @returns `boolean`, según el contrato de la operación.
+ * @param restoring - Indica que la sesión todavía se recupera y evita redirecciones prematuras.
+ * @returns `boolean`.
  */
 export function hasRouteAccess(access: RouteAccess, user: User | null, restoring: boolean) {
   if (access === 'public') return true;

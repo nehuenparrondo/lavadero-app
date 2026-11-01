@@ -1,8 +1,8 @@
 import { useUsers } from '../../hooks/useUsers';
 import { ChoiceGroup } from '../molecules/ChoiceGroup';
-/** Presenta user role filter con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: m. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Filtra cuentas por rol sin modificar sus permisos.
+ * @param props - Propiedades tipadas: m.
+ * @returns Vista de UserRoleFilter con el contrato de propiedades declarado.
  */
 export function UserRoleFilter({ m }: { m: ReturnType<typeof useUsers> }) {
   return (

@@ -2,7 +2,7 @@ import type { Session, User } from '../../types/entities';
 import { publicTransport, requireApi } from '../transport';
 /** Registro siempre Cliente; rol no forma parte de este contrato.
  * @param input - Entrada validada por el esquema del caso de uso.
- * @returns `Promise<Session>`, según el contrato de la operación.
+ * @returns `Promise<Session>`.
  */
 export async function register(input: Record<string, string>) {
   requireApi();
@@ -11,7 +11,7 @@ export async function register(input: Record<string, string>) {
 }
 /** Inicio de sesión email/contraseña.
  * @param input - Entrada validada por el esquema del caso de uso.
- * @returns `Promise<Session>`, según el contrato de la operación.
+ * @returns `Promise<Session>`.
  */
 export async function login(input: { email: string; password: string }) {
   requireApi();
@@ -20,7 +20,7 @@ export async function login(input: { email: string; password: string }) {
 }
 /** Renueva sesión mediante refresh opaco.
  * @param refreshToken - Credencial opaca del dispositivo, revocable por el servidor.
- * @returns `Promise<Session>`, según el contrato de la operación.
+ * @returns `Promise<Session>`.
  */
 export async function refreshSession(refreshToken: string) {
   requireApi();
@@ -30,7 +30,7 @@ export async function refreshSession(refreshToken: string) {
 }
 /** Revoca la familia del dispositivo en backend.
  * @param refreshToken - Credencial opaca del dispositivo, revocable por el servidor.
- * @returns `Promise<void>`, según el contrato de la operación.
+ * @returns `Promise<void>`.
  */
 export async function logout(refreshToken: string) {
   requireApi();
@@ -38,9 +38,9 @@ export async function logout(refreshToken: string) {
 }
 /** Canje OAuth PKCE: el frontend nunca tiene client secrets de proveedores.
  * @param code - Código efímero recibido del flujo de autorización.
- * @param codeVerifier - Valor tipado de codeVerifier utilizado por esta operación.
+ * @param codeVerifier - Secreto PKCE original de la app que inició el acceso.
  * @param password - Contraseña de la cuenta, usada solo para comprobar su propiedad.
- * @returns `Promise<Session>`, según el contrato de la operación.
+ * @returns `Promise<Session>`.
  */
 export async function exchangeSocial(code: string, codeVerifier: string, password?: string) {
   requireApi();
@@ -53,7 +53,7 @@ export async function exchangeSocial(code: string, codeVerifier: string, passwor
   ).data.data;
 }
 /** Estado de habilitación de accesos sociales.
- * @returns `Promise<{ provider: string; enabled: boolean; }[]>`, según el contrato de la operación.
+ * @returns `Promise<{ provider: string; enabled: boolean; }[]>`.
  */
 export async function getProviders() {
   requireApi();

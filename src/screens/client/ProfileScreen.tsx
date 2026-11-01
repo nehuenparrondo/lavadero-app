@@ -10,7 +10,7 @@ import { ThemeSelector } from '../../components/organisms/ThemeSelector';
 import { useProfile } from '../../hooks/useProfile';
 import { useTheme } from '../../hooks/useTheme';
 /** Perfil, preferencia de tema persistente, contraseña local y cierre de sesión.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de ProfileScreen con el contrato de propiedades declarado.
  */
 export function ProfileScreen() {
   const p = useProfile();

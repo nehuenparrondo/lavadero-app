@@ -6,8 +6,8 @@ import { Text } from '../atoms/Text';
 import { Card } from '../molecules/Card';
 const labels = { admin: 'Administrador', employee: 'Empleado', client: 'Cliente' };
 /** Usuarios como filas adaptables a tarjetas en teléfono.
- * @param props - Propiedades tipadas: users, onEdit, onDelete. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: users, onEdit, onDelete.
+ * @returns Vista de UserTable con el contrato de propiedades declarado.
  */
 export function UserTable({
   users,

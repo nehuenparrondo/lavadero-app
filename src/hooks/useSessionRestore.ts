@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { restoreSession } from '../api/services/restoreSession';
 /** Publica la fase de arranque y cancela lógicamente respuestas tardías.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns true durante la restauración y false al finalizar, exista sesión o no.
  */
 export function useSessionRestore() {
   const [restoring, setRestoring] = useState(true);

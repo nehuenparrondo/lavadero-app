@@ -8,7 +8,7 @@ import { VehicleCollection } from '../../components/organisms/VehicleCollection'
 import { VehicleEditor } from '../../components/organisms/VehicleEditor';
 import { useVehicles } from '../../hooks/useVehicles';
 /** Vehículos propios o administración de titulares, con ABML y búsqueda.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de VehiclesScreen con el contrato de propiedades declarado.
  */
 export function VehiclesScreen() {
   const m = useVehicles();

@@ -1,7 +1,7 @@
 /** Código técnico estable para el catálogo; solo se genera durante el alta.
- * @param name - Valor tipado de name utilizado por esta operación.
- * @param maxLength - Valor tipado de maxLength utilizado por esta operación.
- * @returns `string`, según el contrato de la operación.
+ * @param name - Nombre del campo o etiqueta según el contrato declarado.
+ * @param maxLength - Longitud máxima permitida para el texto del campo.
+ * @returns `string`.
  */
 export function makeCatalogCode(name: string, maxLength = 24) {
   const slug = name

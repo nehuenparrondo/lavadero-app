@@ -6,7 +6,7 @@ import { useTheme } from '../hooks/useTheme';
 import { stackOptions } from '../utils/navigationOptions';
 import { hasRouteAccess } from '../utils/routeAccess';
 /** Mantiene el stack montado mientras restaura sesión y aplica guardas por ruta.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de RootNavigation con el contrato de propiedades declarado.
  */
 export function RootNavigation() {
   const { user, restoring } = useAuth();

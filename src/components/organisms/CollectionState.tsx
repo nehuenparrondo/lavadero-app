@@ -3,8 +3,8 @@ import { EmptyState } from '../molecules/EmptyState';
 import { LoadingState } from '../molecules/LoadingState';
 import { Notice } from '../molecules/Notice';
 /** Estados consistentes de lista: carga inicial, error recuperable y vacío.
- * @param props - Propiedades tipadas: loading, error, empty, emptyTitle, onRetry, children. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: loading, error, empty, emptyTitle, onRetry, children.
+ * @returns Vista de CollectionState con el contrato de propiedades declarado.
  */
 export function CollectionState({
   loading,

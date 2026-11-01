@@ -1,14 +1,14 @@
 import { RoleTabs } from '../../navigation/RoleTabs';
 /** Agenda, historial y perfil del empleado.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de EmployeeLayout con el contrato de propiedades declarado.
  */
 export default function EmployeeLayout() {
   return (
     <RoleTabs
       items={[
-        { name: 'agenda', label: 'Mi agenda', icon: '▦' },
-        { name: 'history', label: 'Historial', icon: '≡' },
-        { name: 'profile', label: 'Perfil', icon: '◉' },
+        { name: 'agenda', label: 'Mi agenda', icon: 'calendar' },
+        { name: 'history', label: 'Historial', icon: 'history' },
+        { name: 'profile', label: 'Perfil', icon: 'user' },
       ]}
     />
   );

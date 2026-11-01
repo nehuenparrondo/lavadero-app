@@ -1,18 +1,31 @@
 import { useRouter } from 'expo-router';
+import { View } from 'react-native';
+import { useTheme } from '../../hooks/useTheme';
+import { useWorkspaceLayout } from '../../hooks/useWorkspaceLayout';
+import { overviewStyles as s } from '../../theme/overview.styles';
 import { Button } from '../atoms/Button';
-import { Text } from '../atoms/Text';
-import { Card } from '../molecules/Card';
-
-/** Presenta booking invitation con datos y acciones recibidos de su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+import { WashIllustration } from '../molecules/WashIllustration';
+import { BookingInvitationCopy } from './BookingInvitationCopy';
+/** Composición de la acción principal del cliente, sin información comercial fija.
+ * @returns Acceso al flujo real de reserva e ilustración cuando hay ancho suficiente.
  */
 export function BookingInvitation() {
   const router = useRouter();
+  const { colors } = useTheme();
+  const { columns } = useWorkspaceLayout();
   return (
-    <Card>
-      <Text style={{ fontSize: 26, fontWeight: '800' }}>Tu próximo lavado empieza acá.</Text>
-      <Text>Elegí tu vehículo, los servicios y el horario que te quede cómodo.</Text>
-      <Button label="Reservar mi lavado" onPress={() => router.push('/booking')} />
-    </Card>
+    <View style={[s.hero, { backgroundColor: colors.navy }]}>
+      <View style={s.heroCopy}>
+        <BookingInvitationCopy />
+        <View style={{ alignSelf: 'flex-start' }}>
+          <Button
+            label="Reservar mi lavado"
+            icon="arrow"
+            onPress={() => router.push('/booking')}
+          />
+        </View>
+      </View>
+      {columns && <WashIllustration />}
+    </View>
   );
 }

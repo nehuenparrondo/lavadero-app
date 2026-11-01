@@ -3,9 +3,9 @@ import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
 import { Card } from '../molecules/Card';
 import { ChoiceGroup } from '../molecules/ChoiceGroup';
-/** Presenta appointment assignment con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: m. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Asigna un empleado activo sin mezclar esa acción con confirmar el turno.
+ * @param props - Propiedades tipadas: m.
+ * @returns Vista de AppointmentAssignment con el contrato de propiedades declarado.
  */
 export function AppointmentAssignment({ m }: { m: ReturnType<typeof useAppointmentDetail> }) {
   const appointment = m.detail.data;

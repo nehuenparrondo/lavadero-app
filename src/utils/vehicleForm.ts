@@ -7,10 +7,10 @@ const identityFields: FormFieldDefinition[] = [
   { name: 'color', label: 'Color', maxLength: 50 },
 ];
 /** Construye el formulario sin ofrecer selección de titulares a un cliente.
- * @param types - Valor tipado de types utilizado por esta operación.
- * @param clients - Valor tipado de clients utilizado por esta operación.
- * @param admin - Valor tipado de admin utilizado por esta operación.
- * @returns `FormFieldDefinition[]`, según el contrato de la operación.
+ * @param types - Categorías de vehículo que determinan las tarifas disponibles.
+ * @param clients - Clientes autorizados que pueden elegirse como titulares.
+ * @param admin - Habilita controles de gestión; el servidor conserva la autorización real.
+ * @returns `FormFieldDefinition[]`.
  */
 export function vehicleFields(
   types: VehicleType[],
@@ -33,7 +33,7 @@ export function vehicleFields(
 }
 /** Valores de edición del vehículo; el backend impide cambiar su titular histórico.
  * @param current - Identidad o entidad actual usada para conservar sus invariantes.
- * @returns `Record<string, string>`, según el contrato de la operación.
+ * @returns `Record<string, string>`.
  */
 export function vehicleInitialValues(current: Vehicle | null): Record<string, string> {
   if (!current) return {};
@@ -42,7 +42,7 @@ export function vehicleInitialValues(current: Vehicle | null): Record<string, st
 }
 /** Serializa únicamente atributos permitidos de un vehículo.
  * @param v - Datos tipados del elemento o formulario que se transforma.
- * @returns `{ ownerId?: string; plate: string | undefined; brand: string | undefined; model: string | undefined; color: string | undefined; vehicleTypeId: string | undefined; }`, según el contrato de la operación.
+ * @returns `{ ownerId?: string; plate: string | undefined; brand: string | undefined; model: string | undefined; color: string | undefined; vehicleTypeId: string | undefined; }`.
  */
 export function vehiclePayload(v: Record<string, string>) {
   return {

@@ -1,19 +1,20 @@
 import { Pressable, StyleSheet } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
+import type { IconName } from '../../types/icon';
 import { buttonColors } from '../../utils/buttonColors';
-import { Spinner } from './Spinner';
-import { Text } from './Text';
-/** Props de una acción accesible. */
+import { ButtonContent } from './ButtonContent';
+/** Contrato de una acción. El callback no se ejecuta mientras carga o está deshabilitada. */
 export interface ButtonProps {
   label: string;
   onPress: () => void;
   disabled?: boolean;
   loading?: boolean;
   variant?: 'primary' | 'secondary' | 'danger' | 'quiet';
+  icon?: IconName;
 }
-/** Acción con estado de carga y superficie del tema.
- * @param props - Propiedades tipadas: label, onPress, disabled, loading, variant. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Acción de 48 puntos con texto, ícono opcional y estado ocupado accesible.
+ * @param props Etiqueta visible, callback, variante semántica y estado de interacción.
+ * @returns Pressable con contraste del tema; sustituye su contenido por un spinner al cargar.
  */
 export function Button({
   label,
@@ -21,27 +22,23 @@ export function Button({
   disabled = false,
   loading = false,
   variant = 'primary',
+  icon,
 }: ButtonProps) {
   const { colors } = useTheme();
   const { background, foreground } = buttonColors(variant, colors);
   return (
     <Pressable
       accessibilityRole="button"
+      accessibilityLabel={label}
       accessibilityState={{ disabled: disabled || loading, busy: loading }}
       disabled={disabled || loading}
       onPress={onPress}
       style={({ pressed }) => [
         styles.button,
-        { backgroundColor: background, opacity: disabled || pressed ? 0.6 : 1 },
+        { backgroundColor: background, opacity: disabled ? 0.45 : pressed ? 0.75 : 1 },
       ]}
     >
-      {loading ? (
-        <Spinner color={foreground} />
-      ) : (
-        <Text style={{ color: foreground, fontWeight: '700', textAlign: 'center' }}>
-          {label}
-        </Text>
-      )}
+      <ButtonContent label={label} color={foreground} icon={icon} loading={loading} />
     </Pressable>
   );
 }
@@ -49,8 +46,10 @@ const styles = StyleSheet.create({
   button: {
     minHeight: 48,
     paddingHorizontal: 18,
-    paddingVertical: 13,
-    borderRadius: 14,
+    paddingVertical: 12,
+    borderRadius: 10,
+    flexDirection: 'row',
+    gap: 9,
     justifyContent: 'center',
     alignItems: 'center',
   },

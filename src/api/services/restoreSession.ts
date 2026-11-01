@@ -3,7 +3,7 @@ import { setSession } from '../sessionStore';
 import * as auth from './authService';
 /** Restaura la sesión segura sin publicar resultados de un proveedor desmontado.
  * @param isActive - Permite descartar el resultado si el consumidor se desmontó.
- * @returns `Promise<void>`, según el contrato de la operación.
+ * @returns `Promise<void>`.
  */
 export async function restoreSession(isActive: () => boolean) {
   try {

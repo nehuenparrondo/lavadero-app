@@ -2,10 +2,10 @@ import type { Appointment } from '../types/entities';
 import type { useAppointmentFlags } from './useAppointmentFlags';
 import type { useAppointmentMutation } from './useAppointmentMutation';
 /** Acciones operativas; el permiso y la transición se vuelven a validar en el backend.
- * @param a - Valor tipado de a utilizado por esta operación.
- * @param flags - Valor tipado de flags utilizado por esta operación.
- * @param mutate - Valor tipado de mutate utilizado por esta operación.
- * @returns `{ assign: () => Promise<void>; cancel: (v: Record<string, string>) => Promise<void>; advance: () => Promise<void>; setAdminStatus: () => Promise<void>; addNote: (v: Record<string, string>) => Promise<void>; }`, según el contrato de la operación.
+ * @param a - Turno autorizado que se consulta o transforma.
+ * @param flags - Capacidades derivadas del rol, asignación y estado del turno.
+ * @param mutate - Comando que conserva mensajes y recarga datos tras confirmar.
+ * @returns `{ assign: () => Promise<void>; cancel: (v: Record<string, string>) => Promise<void>; advance: () => Promise<void>; setAdminStatus: () => Promise<void>; addNote: (v: Record<string, string>) => Promise<void>; }`.
  */
 export function appointmentCommands(
   a: Appointment | null,

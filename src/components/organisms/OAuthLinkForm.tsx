@@ -2,8 +2,8 @@ import { Text } from '../atoms/Text';
 import { Notice } from '../molecules/Notice';
 import { EntityForm } from './EntityForm';
 /** Confirma la contraseña local una sola vez antes de unir ambas formas de ingreso.
- * @param props - Propiedades tipadas: onSubmit, busy, error. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: onSubmit, busy, error.
+ * @returns Vista de OAuthLinkForm con el contrato de propiedades declarado.
  */
 export function OAuthLinkForm({
   onSubmit,

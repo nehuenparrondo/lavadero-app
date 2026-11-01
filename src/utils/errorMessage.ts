@@ -1,7 +1,7 @@
 import axios from 'axios';
 /** Traduce fallas de red y errores REST a mensajes presentables.
- * @param error - Valor tipado de error utilizado por esta operación.
- * @returns `string`, según el contrato de la operación.
+ * @param error - Fallo recibido que se proyecta sin exponer datos internos.
+ * @returns `string`.
  */
 export function errorMessage(error: unknown): string {
   if (axios.isAxiosError(error)) {

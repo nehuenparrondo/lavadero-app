@@ -1,7 +1,7 @@
 import type { Settings } from '../types/entities';
 /** Presenta configuración remota como campos de texto sin alterar zona ni moneda.
- * @param data - Valor tipado de data utilizado por esta operación.
- * @returns `{ days: string; opensAt: string; closesAt: string; capacity: string; cancellation: string; step: string; } | { days?: never; opensAt?: never; closesAt?: never; capacity?: never; cancellation?: never; step?: never; }`, según el contrato de la operación.
+ * @param data - Datos del recurso que se adaptan al contrato de salida.
+ * @returns `{ days: string; opensAt: string; closesAt: string; capacity: string; cancellation: string; step: string; } | { days?: never; opensAt?: never; closesAt?: never; capacity?: never; cancellation?: never; step?: never; }`.
  */
 export function settingsInitialValues(data: Settings | null) {
   return data

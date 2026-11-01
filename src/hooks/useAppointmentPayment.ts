@@ -3,9 +3,9 @@ import { useRef } from 'react';
 import { pesosToCents } from '../utils/pesosToCents';
 import type { useAppointmentMutation } from './useAppointmentMutation';
 /** Mantiene la misma clave al reintentar un pago y la renueva solo tras su confirmación.
- * @param mutate - Valor tipado de mutate utilizado por esta operación.
- * @param close - Valor tipado de close utilizado por esta operación.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @param mutate - Comando que conserva mensajes y recarga datos tras confirmar.
+ * @param close - Cierra el diálogo después de una operación confirmada.
+ * @returns Callback de formulario que convierte pesos a centavos y conserva la clave al reintentar.
  */
 export function useAppointmentPayment(
   mutate: ReturnType<typeof useAppointmentMutation>['mutate'],

@@ -60,3 +60,9 @@ de la pestaña; cerrar la pestaña elimina esa persistencia. El access token que
 ## Revisión de la consigna
 
 [Matriz de requisitos y evidencia](docs/requirements-review.md) · [Prueba desde iPhone/Expo Go](docs/iphone-expo-go.md).
+
+## Lectura y mantenimiento del código
+
+- [Guía de código e invariantes](docs/code-guide.md)
+- [Mapa de todos los módulos](docs/source-map.md)
+- [Sistema visual](docs/design-system.md)

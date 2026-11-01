@@ -7,8 +7,8 @@ import type { User } from '../types/entities';
 import type { FormFieldDefinition } from '../types/form';
 /** Construye opciones autorizadas; la cuenta propia conserva el rol administrador.
  * @param current - Identidad o entidad actual usada para conservar sus invariantes.
- * @param userId - Valor tipado de userId utilizado por esta operación.
- * @returns `FormFieldDefinition[]`, según el contrato de la operación.
+ * @param userId - Identificador interno de cuenta, independiente del subject del proveedor.
+ * @returns `FormFieldDefinition[]`.
  */
 export function userFields(
   current: User | null,
@@ -31,7 +31,7 @@ export function userFields(
 }
 /** Serializa una cuenta a valores de formulario sin exponer credenciales.
  * @param current - Identidad o entidad actual usada para conservar sus invariantes.
- * @returns `Record<string, string>`, según el contrato de la operación.
+ * @returns `Record<string, string>`.
  */
 export function userInitialValues(current: User | null): Record<string, string> {
   return current

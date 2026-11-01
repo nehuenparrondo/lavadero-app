@@ -1,33 +1,24 @@
-import type { Href } from 'expo-router';
 import { useRouter } from 'expo-router';
+import { roleNavigation } from '../../constants/roleNavigation';
 import { Button } from '../atoms/Button';
 import { ModalPanel } from './ModalPanel';
-const items = [
-  ['dashboard', 'Tablero'],
-  ['appointments', 'Turnos'],
-  ['users', 'Usuarios'],
-  ['services', 'Servicios y precios'],
-  ['reports', 'Reportes'],
-  ['settings', 'Configuración'],
-  ['profile', 'Perfil'],
-] as const;
-
-/** Menú de administración; cierra el diálogo antes de cambiar de sección.
- * @param props - Propiedades tipadas: open, onClose. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Menú administrativo móvil basado en el mismo catálogo que la barra lateral.
+ * @param props Estado de apertura y cierre; siempre cierra antes de navegar.
+ * @returns Diálogo con todos los destinos administrativos, incluidos vehículos y perfil.
  */
 export function AdminMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const router = useRouter();
   return (
     <ModalPanel visible={open} title="Administración" onClose={onClose}>
-      {items.map(([path, label]) => (
+      {roleNavigation.admin.map((item) => (
         <Button
-          key={path}
-          label={label}
+          key={item.path}
+          label={item.label}
+          icon={item.icon}
           variant="secondary"
           onPress={() => {
             onClose();
-            router.push(`/(admin)/${path}` as Href);
+            router.push(item.href);
           }}
         />
       ))}

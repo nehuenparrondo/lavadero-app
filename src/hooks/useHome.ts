@@ -2,7 +2,7 @@ import type { Appointment, Page } from '../types/entities';
 import { useAuth } from './useAuth';
 import { useRemoteData } from './useRemoteData';
 /** Próximas tres visitas propias, ordenadas cronológicamente.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Usuario, recurso paginado y las próximas tres visitas ordenadas por inicio.
  */
 export function useHome() {
   const { user } = useAuth();

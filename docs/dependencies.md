@@ -19,3 +19,9 @@ Revisar actualizaciones compatibles de Expo y repetir audit, doctor, tipos y exp
 
 `npx expo-doctor`: **20/20 verificaciones aprobadas**. Esto valida configuración/compatibilidad,
 no sustituye la auditoría de seguridad ni las pruebas en dispositivos.
+
+## Revisión del rediseño — 01/11/2026
+
+La auditoría del lockfile actual informa 22 entradas (2 high, 19 moderate y 1 low), sin critical. Incluye avisos propagados en herramientas Expo/ESLint; los high se reportan en @expo/cli y su Zod transitivo. react-native-svg 15.16.0, incorporado con expo install para el SDK 58, no figura entre las entradas vulnerables de esta auditoría. La Zod directa de formularios es 4.6.7 o compatible, distinta de la Zod transitiva de herramientas.
+
+El contador de octubre anterior es una evidencia histórica, no el estado actual. No se aplicó audit fix --force: el reporte ofrece degradar Expo a 51.0.39 y ESLint a 4.0.0, lo cual rompe las versiones requeridas. Las exportaciones y los controles actuales se registran en verification.md; no equivalen a declarar ausencia de vulnerabilidades en dependencias.

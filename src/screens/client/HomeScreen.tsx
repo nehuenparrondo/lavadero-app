@@ -1,39 +1,26 @@
-import { useRouter } from 'expo-router';
-import { EmptyState } from '../../components/molecules/EmptyState';
-import { Notice } from '../../components/molecules/Notice';
-import { SectionHeader } from '../../components/molecules/SectionHeader';
-import { AppointmentCard } from '../../components/organisms/AppointmentCard';
+import { PageHeading } from '../../components/molecules/PageHeading';
+import { OverviewColumns } from '../../components/molecules/OverviewColumns';
+import { CareGuide } from '../../components/molecules/CareGuide';
 import { BookingInvitation } from '../../components/organisms/BookingInvitation';
+import { ClientQuickActions } from '../../components/organisms/ClientQuickActions';
+import { ClientVisitList } from '../../components/organisms/ClientVisitList';
 import { Screen } from '../../components/organisms/Screen';
 import { useHome } from '../../hooks/useHome';
-/** Inicio del cliente con sus próximas visitas reales y una acción principal.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Composición del cliente. useHome conserva la obtención y selección de visitas.
+ * @returns Inicio personalizado, reserva principal y seguimiento de visitas reales.
  */
 export function HomeScreen() {
-  const { user, list, upcoming } = useHome();
-  const router = useRouter();
+  const home = useHome();
   return (
-    <Screen refreshing={list.loading} onRefresh={list.refresh}>
-      <SectionHeader
-        title={`Hola, ${user?.firstName ?? ''}`}
-        subtitle="Un auto limpio. Un día más simple."
+    <Screen refreshing={home.list.loading} onRefresh={home.list.refresh}>
+      <PageHeading
+        eyebrow="Tu espacio"
+        title={'Hola, ' + (home.user?.firstName ?? '') + '.'}
+        detail="Qué bueno verte. Tu auto está en buenas manos."
       />
       <BookingInvitation />
-      <SectionHeader title="Tus próximas visitas" />
-      <Notice error={list.error} onRetry={list.refresh} />
-      {upcoming.map((a) => (
-        <AppointmentCard
-          key={a.id}
-          appointment={a}
-          onPress={() => router.push(`/appointment/${a.id}`)}
-        />
-      ))}
-      {!list.loading && !list.error && !upcoming.length && (
-        <EmptyState
-          title="Tu próxima visita te espera"
-          detail="Cuando reserves, vas a encontrar el turno acá."
-        />
-      )}
+      <ClientQuickActions />
+      <OverviewColumns primary={<ClientVisitList home={home} />} secondary={<CareGuide />} />
     </Screen>
   );
 }

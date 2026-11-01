@@ -1,7 +1,7 @@
 import type { Palette } from '../theme/palettes';
 /** Apariencia común del stack; las pantallas no redefinen colores de navegación.
- * @param colors - Valor tipado de colors utilizado por esta operación.
- * @returns `{ headerStyle: { backgroundColor: string; }; headerTintColor: string; contentStyle: { backgroundColor: string; }; }`, según el contrato de la operación.
+ * @param colors - Paleta semántica resuelta para el tema actual.
+ * @returns `{ headerStyle: { backgroundColor: string; }; headerTintColor: string; contentStyle: { backgroundColor: string; }; }`.
  */
 export function stackOptions(colors: Palette) {
   return {
@@ -11,7 +11,7 @@ export function stackOptions(colors: Palette) {
   };
 }
 /** Barra inferior con áreas táctiles y etiquetas consistentes para Cliente y Empleado.
- * @param colors - Valor tipado de colors utilizado por esta operación.
+ * @param colors - Paleta semántica resuelta para el tema actual.
  * @returns Objeto con headerStyle, headerTintColor, tabBarActiveTintColor, tabBarInactiveTintColor, tabBarStyle, tabBarLabelStyle.
  */
 export function tabOptions(colors: Palette) {

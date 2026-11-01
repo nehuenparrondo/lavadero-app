@@ -4,8 +4,8 @@ import { useTheme } from '../../hooks/useTheme';
 import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
 /** Panel accesible para formularios y confirmaciones sin ventanas nativas bloqueantes.
- * @param props - Propiedades tipadas: visible, title, onClose, children. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: visible, title, onClose, children.
+ * @returns Vista de ModalPanel con el contrato de propiedades declarado.
  */
 export function ModalPanel({
   visible,

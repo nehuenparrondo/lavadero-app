@@ -6,7 +6,7 @@ import { useTheme } from '../hooks/useTheme';
 import { bootstrapStyles as styles } from './bootstrap.styles';
 
 /** Pantalla de etapa 1: solo composición y conexión de hooks.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de BootstrapScreen con el contrato de propiedades declarado.
  */
 export function BootstrapScreen() {
   const { colors } = useTheme();

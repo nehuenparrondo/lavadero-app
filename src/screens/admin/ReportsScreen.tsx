@@ -6,7 +6,7 @@ import { ReportSummary } from '../../components/organisms/ReportSummary';
 import { Screen } from '../../components/organisms/Screen';
 import { useReports } from '../../hooks/useReports';
 /** Reportes administrativos por día, semana o mes.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de ReportsScreen con el contrato de propiedades declarado.
  */
 export function ReportsScreen() {
   const r = useReports();

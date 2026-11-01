@@ -1,7 +1,7 @@
-import { AppointmentsScreen } from '../../screens/client/AppointmentsScreen';
-/** Agenda del empleado, limitada en servidor a sus asignaciones.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+import { EmployeeAgendaScreen } from '../../screens/employee/EmployeeAgendaScreen';
+/** Ruta del equipo, restringida por la guarda de grupo y el servidor.
+ * @returns Agenda o historial sin duplicar su implementación.
  */
 export default function Agenda() {
-  return <AppointmentsScreen mode="employee" />;
+  return <EmployeeAgendaScreen />;
 }

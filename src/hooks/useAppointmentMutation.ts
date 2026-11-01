@@ -3,7 +3,7 @@ import { useAction } from './useAction';
 /** Mutación de turno y actualización de los recursos afectados después de confirmar.
  * @param id - Identificador del recurso dentro del proyecto actual.
  * @param refresh - Vuelve a consultar recursos después de una operación confirmada.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Estado action y comando mutate que recarga el turno después de confirmar.
  */
 export function useAppointmentMutation(id: string, refresh: () => Promise<void>) {
   const action = useAction();

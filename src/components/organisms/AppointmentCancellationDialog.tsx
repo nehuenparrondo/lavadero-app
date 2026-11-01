@@ -3,9 +3,9 @@ import { Text } from '../atoms/Text';
 import { Notice } from '../molecules/Notice';
 import { EntityForm } from './EntityForm';
 import { ModalPanel } from './ModalPanel';
-/** Presenta appointment cancellation dialog con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: m. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Solicita motivo y confirma la cancelación mediante el comando del turno.
+ * @param props - Propiedades tipadas: m.
+ * @returns Vista de AppointmentCancellationDialog con el contrato de propiedades declarado.
  */
 export function AppointmentCancellationDialog({
   m,

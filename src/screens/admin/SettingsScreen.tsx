@@ -7,7 +7,7 @@ import { Screen } from '../../components/organisms/Screen';
 import { VehicleTypeManager } from '../../components/organisms/VehicleTypeManager';
 import { useSettings } from '../../hooks/useSettings';
 /** Horarios, capacidad, ventana de cancelación y categorías del negocio.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de SettingsScreen con el contrato de propiedades declarado.
  */
 export function SettingsScreen() {
   const m = useSettings();

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { Appointment, AppointmentStatus } from '../types/entities';
 /** Selecciones de administración y apertura de diálogos; se sincronizan con la versión remota.
  * @param appointment - Turno autorizado que conserva datos históricos del contrato.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Capacidades de vista derivadas de usuario y turno; no reemplazan permisos del backend.
  */
 export function useAppointmentFlags(appointment: Appointment | null) {
   const [employeeId, setEmployeeId] = useState('');

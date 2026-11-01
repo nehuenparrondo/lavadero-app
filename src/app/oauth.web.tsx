@@ -6,7 +6,7 @@ import { Screen } from '../components/organisms/Screen';
 import { useWebOAuthReturn } from '../hooks/useWebOAuthReturn';
 
 /** Retorno web en la misma pestaña; el APK usa oauth.tsx y AuthSession nativo.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de WebOAuthReturn con el contrato de propiedades declarado.
  */
 export default function WebOAuthReturn() {
   const login = useWebOAuthReturn();

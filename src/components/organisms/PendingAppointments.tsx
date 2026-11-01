@@ -4,8 +4,8 @@ import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
 import { AppointmentCard } from './AppointmentCard';
 /** Solicitudes pendientes del tablero y acceso a la gestión completa.
- * @param props - Propiedades tipadas: items, loading. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: items, loading.
+ * @returns Vista de PendingAppointments con el contrato de propiedades declarado.
  */
 export function PendingAppointments({
   items,

@@ -1,6 +1,6 @@
 /** Convierte un importe validado en pesos a centavos, sin multiplicación decimal inexacta.
- * @param value - Valor tipado de value utilizado por esta operación.
- * @returns `number`, según el contrato de la operación.
+ * @param value - Entrada del formato declarado que se valida o transforma.
+ * @returns `number`.
  */
 export function pesosToCents(value: string) {
   const [whole, decimal = ''] = value.replace(',', '.').split('.');

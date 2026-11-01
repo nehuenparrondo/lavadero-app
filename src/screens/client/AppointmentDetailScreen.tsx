@@ -11,7 +11,7 @@ import { Screen } from '../../components/organisms/Screen';
 import { useAppointmentDetail } from '../../hooks/useAppointmentDetail';
 import { appointmentDate } from '../../utils/format';
 /** Detalle de reserva con controles del rol, notas y comprobante histórico.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de AppointmentDetailScreen con el contrato de propiedades declarado.
  */
 export function AppointmentDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();

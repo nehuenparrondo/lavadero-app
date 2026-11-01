@@ -1,8 +1,8 @@
 import type { Palette } from '../theme/palettes';
 /** Resuelve contraste y superficie de variantes sin repetir colores en los botones.
- * @param variant - Valor tipado de variant utilizado por esta operación.
- * @param colors - Valor tipado de colors utilizado por esta operación.
- * @returns `{ background: string; foreground: string; }`, según el contrato de la operación.
+ * @param variant - Variante visual semántica que determina contraste y superficie.
+ * @param colors - Paleta semántica resuelta para el tema actual.
+ * @returns `{ background: string; foreground: string; }`.
  */
 export function buttonColors(
   variant: 'primary' | 'secondary' | 'danger' | 'quiet',

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { today } from '../utils/format';
 /** Filtros locales; no sustituyen las restricciones de propiedad aplicadas por la API.
- * @param mode - Valor tipado de mode utilizado por esta operación.
- * @param history - Valor tipado de history utilizado por esta operación.
+ * @param mode - Experiencia o preferencia seleccionada dentro de su unión de tipos.
+ * @param history - Selecciona trabajos anteriores en lugar de próximas visitas.
  * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
  */
 export function useAppointmentFiltersState(

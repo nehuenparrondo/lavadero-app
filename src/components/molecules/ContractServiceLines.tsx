@@ -2,8 +2,8 @@ import type { Appointment } from '../../types/entities';
 import { money } from '../../utils/format';
 import { Text } from '../atoms/Text';
 /** Servicios históricos; solo muestra importes que el servidor incluyó en la proyección del rol.
- * @param props - Propiedades tipadas: items, showDuration. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: items, showDuration.
+ * @returns Vista de ContractServiceLines con el contrato de propiedades declarado.
  */
 export function ContractServiceLines({
   items,

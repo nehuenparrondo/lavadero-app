@@ -15,8 +15,8 @@ interface ThemeValue {
 /** Contexto de tema persistente, sin datos de autenticación. */
 export const ThemeContext = createContext<ThemeValue | undefined>(undefined);
 /** Provee paleta y restaura preferencia desde almacenamiento no sensible.
- * @param props - Propiedades tipadas: children. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: children.
+ * @returns Vista de ThemeProvider con el contrato de propiedades declarado.
  */
 export function ThemeProvider({ children }: PropsWithChildren) {
   const system = useColorScheme();

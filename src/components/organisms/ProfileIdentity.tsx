@@ -3,9 +3,9 @@ import { useProfile } from '../../hooks/useProfile';
 import { Avatar } from '../atoms/Avatar';
 import { Text } from '../atoms/Text';
 import { Card } from '../molecules/Card';
-/** Presenta profile identity con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: p. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Identifica la sesión propia con nombre, email y avatar opcional.
+ * @param props - Propiedades tipadas: p.
+ * @returns Vista de ProfileIdentity con el contrato de propiedades declarado.
  */
 export function ProfileIdentity({ p }: { p: ReturnType<typeof useProfile> }) {
   return (

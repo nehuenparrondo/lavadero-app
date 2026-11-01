@@ -6,8 +6,8 @@ import { ModalPanel } from './ModalPanel';
 import { OAuthLinkForm } from './OAuthLinkForm';
 const labels = { google: 'Google', discord: 'Discord', github: 'GitHub' };
 /** Botón OAuth de un proveedor configurado, con su propia solicitud PKCE.
- * @param props - Propiedades tipadas: provider. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: provider.
+ * @returns Vista de SocialLoginButton con el contrato de propiedades declarado.
  */
 export function SocialLoginButton({ provider }: { provider: keyof typeof labels }) {
   const login = useSocialLogin(provider);

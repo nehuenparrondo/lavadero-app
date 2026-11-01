@@ -3,8 +3,8 @@ import { Controller } from 'react-hook-form';
 import type { FormFieldDefinition } from '../../types/form';
 import { FormField } from './FormField';
 /** Adapta un campo RHF a la molécula de entrada, incluyendo errores y blur.
- * @param props - Propiedades tipadas: field, control. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: field, control.
+ * @returns Vista de ControlledField con el contrato de propiedades declarado.
  */
 export function ControlledField({
   field,

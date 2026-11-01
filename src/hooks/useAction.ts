@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { errorMessage } from '../utils/errorMessage';
 /** Ejecuta una acción y publica carga/error/resultado sin propagar errores a la vista.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns busy, error, message, run y clear; run devuelve undefined si captura un rechazo.
  */
 export function useAction() {
   const [state, setState] = useState({ busy: false, error: '', message: '' });

@@ -2,9 +2,9 @@ import type { AuthRequest, AuthSessionResult } from 'expo-auth-session';
 import { useEffect } from 'react';
 import type { useSocialExchange } from './useSocialExchange';
 /** Completa retornos nativos y muestra también cancelaciones y errores del proveedor.
- * @param request - Valor tipado de request utilizado por esta operación.
+ * @param request - Petición HTTP de Express; su entrada se valida antes de ejecutar el caso de uso.
  * @param response - Respuesta HTTP donde se escribe el contrato uniforme de error.
- * @param action - Valor tipado de action utilizado por esta operación.
+ * @param action - Estado y ejecutor de la acción remota.
  * @returns No devuelve un valor: sincroniza el retorno con el canje y el estado de error compartido.
  * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
  */

@@ -9,7 +9,7 @@ import { ScheduleSelector } from '../../components/organisms/ScheduleSelector';
 import { Screen } from '../../components/organisms/Screen';
 import { useBooking } from '../../hooks/useBooking';
 /** Selección de vehículo, servicios, fecha y horario con total antes de confirmar.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @returns Vista de BookingScreen con el contrato de propiedades declarado.
  */
 export function BookingScreen() {
   const b = useBooking();

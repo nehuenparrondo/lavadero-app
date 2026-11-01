@@ -3,9 +3,9 @@ import type { useAppointmentDetail } from '../../hooks/useAppointmentDetail';
 import { Notice } from '../molecules/Notice';
 import { EntityForm } from './EntityForm';
 import { ModalPanel } from './ModalPanel';
-/** Presenta appointment payment dialog con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: m. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Recoge importe, medio y referencia para registrar un cobro idempotente.
+ * @param props - Propiedades tipadas: m.
+ * @returns Vista de AppointmentPaymentDialog con el contrato de propiedades declarado.
  */
 export function AppointmentPaymentDialog({
   m,

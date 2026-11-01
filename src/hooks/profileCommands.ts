@@ -2,9 +2,9 @@ import { writeResource } from '../api/services/resourceService';
 import type { useAction } from './useAction';
 import type { useAuth } from './useAuth';
 /** Operaciones propias; cambiar contraseña revoca sesiones e inicia nuevamente el acceso.
- * @param auth - Valor tipado de auth utilizado por esta operación.
- * @param action - Valor tipado de action utilizado por esta operación.
- * @returns `{ save: (v: Record<string, string>) => Promise<void>; changePassword: (v: Record<string, string>) => Promise<void>; }`, según el contrato de la operación.
+ * @param auth - Operaciones de la sesión autenticada.
+ * @param action - Estado y ejecutor de la acción remota.
+ * @returns `{ save: (v: Record<string, string>) => Promise<void>; changePassword: (v: Record<string, string>) => Promise<void>; }`.
  */
 export function profileCommands(
   auth: ReturnType<typeof useAuth>,

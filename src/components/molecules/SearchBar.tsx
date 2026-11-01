@@ -1,7 +1,7 @@
 import { Input } from '../atoms/Input';
 /** Búsqueda controlada, con etiqueta accesible y teclado de búsqueda.
- * @param props - Propiedades tipadas: label, value, onChange. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: label, value, onChange.
+ * @returns Vista de SearchBar con el contrato de propiedades declarado.
  */
 export function SearchBar({
   label,

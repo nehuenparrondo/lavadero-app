@@ -1,0 +1,22 @@
+/** Vocabulario visual local. No depende de fuentes, red ni glifos del sistema. */
+export type IconName =
+  | 'home'
+  | 'calendar'
+  | 'car'
+  | 'sparkles'
+  | 'user'
+  | 'users'
+  | 'chart'
+  | 'settings'
+  | 'grid'
+  | 'history'
+  | 'clock'
+  | 'arrow'
+  | 'plus'
+  | 'check'
+  | 'menu'
+  | 'wallet'
+  | 'shield'
+  | 'chevron'
+  | 'drop'
+  | 'close';

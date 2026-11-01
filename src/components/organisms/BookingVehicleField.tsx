@@ -1,8 +1,8 @@
 import { useBooking } from '../../hooks/useBooking';
 import { FormField } from '../molecules/FormField';
-/** Presenta booking vehicle field con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: b. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Selecciona un vehículo del titular y orienta cuando aún no tiene ninguno.
+ * @param props - Propiedades tipadas: b.
+ * @returns Vista de BookingVehicleField con el contrato de propiedades declarado.
  */
 export function BookingVehicleField({ b }: { b: ReturnType<typeof useBooking> }) {
   return (

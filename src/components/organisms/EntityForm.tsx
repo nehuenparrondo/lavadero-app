@@ -7,8 +7,8 @@ import { buildFormSchema } from '../../utils/buildFormSchema';
 import { Button } from '../atoms/Button';
 import { ControlledField } from '../molecules/ControlledField';
 /** Formulario RHF + Zod con errores por campo y callback sin HTTP propio.
- * @param props - Propiedades tipadas: fields, initialValues, onSubmit, busy, submitLabel. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ * @param props - Propiedades tipadas: fields, initialValues, onSubmit, busy, submitLabel.
+ * @returns Vista de EntityForm con el contrato de propiedades declarado.
  */
 export function EntityForm({
   fields,

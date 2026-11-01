@@ -3,9 +3,9 @@ import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
 import { Notice } from '../molecules/Notice';
 import { ModalPanel } from './ModalPanel';
-/** Presenta user delete dialog con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: m. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+/** Confirma la baja lógica de una cuenta conservando su historial.
+ * @param props - Propiedades tipadas: m.
+ * @returns Vista de UserDeleteDialog con el contrato de propiedades declarado.
  */
 export function UserDeleteDialog({ m }: { m: ReturnType<typeof useUsers> }) {
   return (

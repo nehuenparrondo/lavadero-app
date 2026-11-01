@@ -1,10 +1,11 @@
-import { useDashboard } from '../../hooks/useDashboard';
+import { View } from 'react-native';
+import type { useDashboard } from '../../hooks/useDashboard';
+import { overviewStyles as s } from '../../theme/overview.styles';
 import { money } from '../../utils/format';
-import { Text } from '../atoms/Text';
-import { Card } from '../molecules/Card';
-/** Presenta dashboard indicators con datos y acciones recibidos de su hook.
- * @param props - Propiedades tipadas: report, pending. Los callbacks conectan la interacción con su hook.
- * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+import { MetricTile } from '../molecules/MetricTile';
+/** Métricas diarias y pendientes globales; un recurso no disponible muestra un guion.
+ * @param props Resumen diario y página de pendientes, consultados independientemente.
+ * @returns Tres indicadores sin tendencias inventadas ni ceros de reemplazo.
  */
 export function DashboardIndicators({
   report,
@@ -14,11 +15,25 @@ export function DashboardIndicators({
   pending: ReturnType<typeof useDashboard>['pending'];
 }) {
   return (
-    <Card>
-      <Text>Lavados finalizados hoy</Text>
-      <Text style={{ fontSize: 36, fontWeight: '900' }}>{report.data?.totalWashes ?? 0}</Text>
-      <Text>Ingresos: {money(report.data?.revenueCents)}</Text>
-      <Text>Reservas pendientes: {pending.data?.total ?? 0}</Text>
-    </Card>
+    <View style={s.row}>
+      <MetricTile
+        label="Lavados finalizados"
+        value={report.data ? String(report.data.totalWashes) : '—'}
+        detail="En la jornada de hoy"
+        icon="check"
+      />
+      <MetricTile
+        label="Ingresos registrados"
+        value={report.data ? money(report.data.revenueCents) : '—'}
+        detail="Cobros de hoy · pesos argentinos"
+        icon="wallet"
+      />
+      <MetricTile
+        label="Por confirmar"
+        value={pending.data ? String(pending.data.total) : '—'}
+        detail="Solicitudes pendientes de revisión"
+        icon="calendar"
+      />
+    </View>
   );
 }
