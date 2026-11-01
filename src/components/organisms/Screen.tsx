@@ -1,8 +1,11 @@
-import { ScrollView, RefreshControl, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import type { PropsWithChildren } from 'react';
+import { RefreshControl, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../../hooks/useTheme';
-/** Layout móvil desplazable, ancho legible en tablet y pull-to-refresh opcional. */
+/** Layout móvil desplazable, ancho legible en tablet y pull-to-refresh opcional.
+ * @param props - Propiedades tipadas: children, refreshing, onRefresh. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function Screen({
   children,
   refreshing = false,

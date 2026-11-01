@@ -1,7 +1,11 @@
-import { apiClient, apiUrl } from '../client';
 import type { HealthResponse } from '../../types/health';
+import { apiClient, apiUrl } from '../client';
 
-/** Comprueba conectividad. @throws Error ante configuración ausente, red o respuesta inválida. */
+/** Comprueba conectividad. @throws Error ante configuración ausente, red o respuesta inválida.
+ * @param signal - Valor tipado de signal utilizado por esta operación.
+ * @returns `Promise<HealthResponse>`, según el contrato de la operación.
+ * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
+ */
 export async function getApiHealth(signal?: AbortSignal): Promise<HealthResponse> {
   if (!apiUrl) throw new Error('Configurá EXPO_PUBLIC_API_URL con el origen HTTPS de Render.');
   const { data } = await apiClient.get<HealthResponse>('/health', signal ? { signal } : {});

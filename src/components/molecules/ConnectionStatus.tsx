@@ -1,9 +1,9 @@
 import { ActivityIndicator, View } from 'react-native';
-import { Text } from '../atoms/Text';
-import { Button } from '../atoms/Button';
 import { useTheme } from '../../hooks/useTheme';
 import { tokens } from '../../theme/tokens';
 import type { HealthState } from '../../types/health';
+import { Button } from '../atoms/Button';
+import { Text } from '../atoms/Text';
 
 const labels: Record<HealthState, string> = {
   unconfigured: 'La conexión se habilitará al configurar el servidor.',

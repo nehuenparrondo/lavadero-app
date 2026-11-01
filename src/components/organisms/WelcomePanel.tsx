@@ -1,9 +1,9 @@
 import { View } from 'react-native';
-import { Text } from '../atoms/Text';
-import { OpeningHoursCard } from '../molecules/OpeningHoursCard';
 import { useTheme } from '../../hooks/useTheme';
 import { tokens } from '../../theme/tokens';
 import type { HealthState } from '../../types/health';
+import { Text } from '../atoms/Text';
+import { OpeningHoursCard } from '../molecules/OpeningHoursCard';
 
 /** Presentación inicial del producto.
  * @param props Estado de red y callback de reintento.

@@ -1,29 +1,25 @@
 import { useLocalSearchParams } from 'expo-router';
-import { Screen } from '../../components/organisms/Screen';
-import { SectionHeader } from '../../components/molecules/SectionHeader';
-import { Card } from '../../components/molecules/Card';
-import { StatusBadge } from '../../components/molecules/StatusBadge';
-import { Text } from '../../components/atoms/Text';
-import { Notice } from '../../components/molecules/Notice';
 import { LoadingState } from '../../components/molecules/LoadingState';
+import { Notice } from '../../components/molecules/Notice';
+import { SectionHeader } from '../../components/molecules/SectionHeader';
 import { AppointmentActions } from '../../components/organisms/AppointmentActions';
 import { AppointmentDialogs } from '../../components/organisms/AppointmentDialogs';
-import { EntityForm } from '../../components/organisms/EntityForm';
+import { AppointmentInformation } from '../../components/organisms/AppointmentInformation';
+import { AppointmentNotes } from '../../components/organisms/AppointmentNotes';
+import { AppointmentPayments } from '../../components/organisms/AppointmentPayments';
+import { Screen } from '../../components/organisms/Screen';
 import { useAppointmentDetail } from '../../hooks/useAppointmentDetail';
-import { appointmentDate, money } from '../../utils/format';
-/** Detalle de reserva con controles del rol, notas y comprobante histórico. */
+import { appointmentDate } from '../../utils/format';
+/** Detalle de reserva con controles del rol, notas y comprobante histórico.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function AppointmentDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const m = useAppointmentDetail(typeof id === 'string' ? id : '');
   const a = m.detail.data;
   if (!a && m.detail.loading) return <LoadingState />;
   return (
-    <Screen
-      refreshing={m.detail.loading}
-      onRefresh={() => {
-        void m.detail.refresh();
-      }}
-    >
+    <Screen refreshing={m.detail.loading} onRefresh={m.detail.refresh}>
       <Notice error={m.detail.error || m.action.error} message={m.action.message} />
       {a && (
         <>
@@ -31,63 +27,12 @@ export function AppointmentDetailScreen() {
             title={`${a.plate} · ${a.brand} ${a.model}`}
             subtitle={appointmentDate(a.startsAt)}
           />
-          <Card>
-            <StatusBadge status={a.status} />
-            <Text>
-              {a.color} · {a.clientName}
-            </Text>
-            {a.clientPhone && <Text>Contacto: {a.clientPhone}</Text>}
-            <Text>Empleado: {a.employeeName ?? 'Aún no asignado'}</Text>
-            {a.services?.map((s) => (
-              <Text key={s.serviceId}>
-                {s.name} · {s.durationMinutes} min
-                {s.priceCents !== undefined ? ` · ${money(s.priceCents)}` : ''}
-              </Text>
-            ))}
-            {a.totalCents !== undefined && (
-              <>
-                <Text style={{ fontWeight: '800', fontSize: 22 }}>
-                  Total: {money(a.totalCents)}
-                </Text>
-                <Text>
-                  Abonado: {money(a.paidCents)} · Saldo:{' '}
-                  {money(a.totalCents - (a.paidCents ?? 0))}
-                </Text>
-              </>
-            )}
-          </Card>
+          <AppointmentInformation m={m} />
           <AppointmentActions manager={m} />
           {m.user?.role !== 'employee' && Boolean(m.payments.data?.length) && (
-            <Card>
-              <Text style={{ fontWeight: '700' }}>Pagos registrados</Text>
-              {m.payments.data?.map((p) => (
-                <Text key={p.id}>
-                  {money(p.amountCents)} · {p.method === 'cash' ? 'Efectivo' : 'Transferencia'}
-                </Text>
-              ))}
-            </Card>
+            <AppointmentPayments m={m} />
           )}
-          <Card>
-            <Text style={{ fontWeight: '700' }}>Observaciones del trabajo</Text>
-            {a.notes?.length ? (
-              a.notes.map((n) => (
-                <Text key={n.id}>
-                  {n.body} — {n.authorName}
-                </Text>
-              ))
-            ) : (
-              <Text>Sin observaciones registradas.</Text>
-            )}
-            {m.user?.role !== 'client' && (
-              <EntityForm
-                key={a.notes?.length ?? 0}
-                fields={[{ name: 'body', label: 'Nueva observación', maxLength: 2000 }]}
-                onSubmit={m.addNote}
-                busy={m.action.busy}
-                submitLabel="Agregar observación"
-              />
-            )}
-          </Card>
+          <AppointmentNotes m={m} />
           <AppointmentDialogs manager={m} />
         </>
       )}

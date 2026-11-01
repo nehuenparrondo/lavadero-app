@@ -1,11 +1,13 @@
 import { ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { WelcomePanel } from '../components/organisms/WelcomePanel';
-import { useTheme } from '../hooks/useTheme';
 import { useApiHealth } from '../hooks/useApiHealth';
+import { useTheme } from '../hooks/useTheme';
 import { bootstrapStyles as styles } from './bootstrap.styles';
 
-/** Pantalla de etapa 1: solo composición y conexión de hooks. */
+/** Pantalla de etapa 1: solo composición y conexión de hooks.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function BootstrapScreen() {
   const { colors } = useTheme();
   const { state, retry } = useApiHealth();

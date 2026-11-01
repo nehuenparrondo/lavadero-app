@@ -1,5 +1,7 @@
 import { RoleTabs } from '../../navigation/RoleTabs';
-/** Agenda, historial y perfil del empleado. */
+/** Agenda, historial y perfil del empleado.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export default function EmployeeLayout() {
   return (
     <RoleTabs

@@ -1,11 +1,14 @@
-import { Pressable, View } from 'react-native';
-import { Card } from '../molecules/Card';
-import { Text } from '../atoms/Text';
-import { StatusBadge } from '../molecules/StatusBadge';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { useTheme } from '../../hooks/useTheme';
 import type { Appointment } from '../../types/entities';
 import { appointmentDate, money } from '../../utils/format';
-import { useTheme } from '../../hooks/useTheme';
-/** Resumen operativo de reserva; la API controla qué importes/datos recibe cada rol. */
+import { Text } from '../atoms/Text';
+import { Card } from '../molecules/Card';
+import { StatusBadge } from '../molecules/StatusBadge';
+/** Resumen operativo de reserva; la API controla qué importes/datos recibe cada rol.
+ * @param props - Propiedades tipadas: appointment, onPress. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function AppointmentCard({
   appointment,
   onPress,
@@ -17,14 +20,7 @@ export function AppointmentCard({
   return (
     <Pressable accessibilityRole="button" onPress={onPress}>
       <Card>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            gap: 10,
-            flexWrap: 'wrap',
-          }}
-        >
+        <View style={styles.heading}>
           <StatusBadge status={appointment.status} />
           <Text style={{ fontWeight: '700' }}>{appointmentDate(appointment.startsAt)}</Text>
         </View>
@@ -49,3 +45,12 @@ export function AppointmentCard({
     </Pressable>
   );
 }
+
+const styles = StyleSheet.create({
+  heading: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 10,
+    flexWrap: 'wrap',
+  },
+});

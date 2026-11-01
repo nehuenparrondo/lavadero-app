@@ -1,7 +1,10 @@
 import { Image, View } from 'react-native';
-import { Text } from './Text';
 import { useTheme } from '../../hooks/useTheme';
-/** Foto opcional o iniciales del perfil, sin datos de otros clientes. */
+import { Text } from './Text';
+/** Foto opcional o iniciales del perfil, sin datos de otros clientes.
+ * @param props - Propiedades tipadas: name, url. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function Avatar({ name, url }: { name: string; url?: string | null }) {
   const { colors } = useTheme();
   return url ? (

@@ -1,6 +1,8 @@
-import { Pressable, ActivityIndicator, StyleSheet } from 'react-native';
-import { Text } from './Text';
+import { Pressable, StyleSheet } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
+import { buttonColors } from '../../utils/buttonColors';
+import { Spinner } from './Spinner';
+import { Text } from './Text';
 /** Props de una acción accesible. */
 export interface ButtonProps {
   label: string;
@@ -9,7 +11,10 @@ export interface ButtonProps {
   loading?: boolean;
   variant?: 'primary' | 'secondary' | 'danger' | 'quiet';
 }
-/** Acción con estado de carga y superficie del tema. */
+/** Acción con estado de carga y superficie del tema.
+ * @param props - Propiedades tipadas: label, onPress, disabled, loading, variant. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function Button({
   label,
   onPress,
@@ -18,20 +23,7 @@ export function Button({
   variant = 'primary',
 }: ButtonProps) {
   const { colors } = useTheme();
-  const background =
-    variant === 'primary'
-      ? colors.primary
-      : variant === 'danger'
-        ? colors.danger
-        : variant === 'quiet'
-          ? 'transparent'
-          : colors.soft;
-  const foreground =
-    variant === 'primary'
-      ? colors.onPrimary
-      : variant === 'danger'
-        ? colors.background
-        : colors.primary;
+  const { background, foreground } = buttonColors(variant, colors);
   return (
     <Pressable
       accessibilityRole="button"
@@ -44,7 +36,7 @@ export function Button({
       ]}
     >
       {loading ? (
-        <ActivityIndicator color={foreground} />
+        <Spinner color={foreground} />
       ) : (
         <Text style={{ color: foreground, fontWeight: '700', textAlign: 'center' }}>
           {label}

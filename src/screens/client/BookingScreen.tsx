@@ -1,11 +1,16 @@
-import { Screen } from '../../components/organisms/Screen';
-import { SectionHeader } from '../../components/molecules/SectionHeader';
-import { FormField } from '../../components/molecules/FormField';
 import { Button } from '../../components/atoms/Button';
+import { FormField } from '../../components/molecules/FormField';
 import { Notice } from '../../components/molecules/Notice';
+import { SectionHeader } from '../../components/molecules/SectionHeader';
+import { BookingClientField } from '../../components/organisms/BookingClientField';
+import { BookingServicesField } from '../../components/organisms/BookingServicesField';
+import { BookingVehicleField } from '../../components/organisms/BookingVehicleField';
 import { ScheduleSelector } from '../../components/organisms/ScheduleSelector';
+import { Screen } from '../../components/organisms/Screen';
 import { useBooking } from '../../hooks/useBooking';
-/** Selección de vehículo, servicios, fecha y horario con total antes de confirmar. */
+/** Selección de vehículo, servicios, fecha y horario con total antes de confirmar.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function BookingScreen() {
   const b = useBooking();
   return (
@@ -15,47 +20,9 @@ export function BookingScreen() {
         subtitle="Elegí los detalles. Nosotros nos ocupamos del resto."
       />
       <Notice error={b.error || b.loadError} />
-      {b.admin && (
-        <FormField
-          field={{
-            name: 'client',
-            label: 'Cliente',
-            kind: 'choice',
-            options: b.clients.map((c) => ({
-              value: c.id,
-              label: `${c.firstName} ${c.lastName}`,
-            })),
-          }}
-          value={b.clientId}
-          onChange={b.chooseClient}
-        />
-      )}
-      <FormField
-        field={{
-          name: 'vehicle',
-          label: 'Vehículo',
-          kind: 'choice',
-          options: b.vehicles.map((v) => ({
-            value: v.id,
-            label: `${v.plate} · ${v.brand} ${v.model}`,
-          })),
-        }}
-        value={b.vehicleId}
-        onChange={b.chooseVehicle}
-      />
-      <FormField
-        field={{
-          name: 'services',
-          label: 'Servicios',
-          kind: 'multiple',
-          options: b.offered.map((s) => ({
-            value: s.id,
-            label: `${s.name} · ${s.durationMinutes} min`,
-          })),
-        }}
-        value={b.serviceIds}
-        onChange={b.setServiceIds}
-      />
+      {b.admin && <BookingClientField b={b} />}
+      <BookingVehicleField b={b} />
+      <BookingServicesField b={b} />
       <FormField
         field={{ name: 'date', label: 'Fecha', kind: 'date', placeholder: 'AAAA-MM-DD' }}
         value={b.date}

@@ -1,5 +1,6 @@
+import { APPOINTMENT_STATUS, ROLES } from '../constants/business';
 /** Roles enviados y verificados por la API, sin código importado desde el backend. */
-export type Role = 'client' | 'employee' | 'admin';
+export type Role = (typeof ROLES)[number];
 /** Perfil público y permisos vigentes. */
 export interface User {
   id: string;
@@ -10,7 +11,9 @@ export interface User {
   phone: string | null;
   avatarUrl: string | null;
   isActive: boolean;
+  /** Permiso adicional del empleado; no se obtiene del formulario público. */
   canRecordPayments: boolean;
+  /** Indica si corresponde ofrecer cambio o confirmación de contraseña local. */
   hasPassword: boolean;
 }
 /** Sesión propia del backend; refresh se persiste solo en almacenamiento seguro nativo. */
@@ -30,6 +33,7 @@ export interface Page<T> {
 /** Vehículo registrado. */
 export interface Vehicle {
   id: string;
+  /** Titular del vehículo; el backend verifica la propiedad en cada operación. */
   ownerId: string;
   vehicleTypeId: string;
   plate: string;
@@ -51,13 +55,13 @@ export interface Service {
   code: string;
   name: string;
   description: string;
+  /** Tiempo estimado completo del servicio, en minutos. */
   durationMinutes: number;
   isActive: boolean;
   prices: { vehicleTypeId: string; priceCents: number }[];
 }
 /** Estados reales de una reserva. */
-export type AppointmentStatus =
-  'pending' | 'confirmed' | 'in_progress' | 'completed' | 'cancelled';
+export type AppointmentStatus = (typeof APPOINTMENT_STATUS)[number];
 /** Proyección de una reserva según el rol. Importes pueden faltar para empleados sin cobros. */
 export interface Appointment {
   id: string;
@@ -74,7 +78,9 @@ export interface Appointment {
   clientName: string;
   clientPhone: string | null;
   employeeName: string | null;
+  /** Total histórico del contrato, expresado en centavos ARS. */
   totalCents?: number;
+  /** Suma registrada de cobros en centavos; no ejecuta transferencias. */
   paidCents?: number;
   currencyCode?: string;
   version: number;
@@ -90,13 +96,16 @@ export interface Appointment {
 /** Cotización y opciones calculadas en backend. */
 export interface Availability {
   slots: string[];
+  /** Total histórico del contrato, expresado en centavos ARS. */
   totalCents: number;
+  /** Tiempo estimado completo del servicio, en minutos. */
   durationMinutes: number;
   currencyCode: string;
 }
 /** Configuración de operación. */
 export interface Settings {
   currencyCode: string;
+  /** Zona IANA del negocio para horarios de atención y fechas de reportes. */
   timeZone: string;
   cancellationNoticeMinutes: number;
   simultaneousCapacity: number;

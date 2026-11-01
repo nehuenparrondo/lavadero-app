@@ -15,7 +15,7 @@ Para una cuenta nueva elegí **Creá tu cuenta**, completá nombre, apellido, em
 teléfono opcional y contraseña. La cuenta se crea como Cliente. Un Administrador
 puede promoverla después; no existe elección pública de rol.
 En el APK, Google, Discord y GitHub abren el navegador del sistema; en web se usa la misma pestaña. Revisá el consentimiento,
-autorizá y volvé a la app. No uses Expo Go para evaluar ese retorno.
+autorizá y volvé a la app. Si el correo ya tiene una cuenta con contraseña, confirmala una vez para vincular el mismo perfil. No uses Expo Go para evaluar ese retorno.
 
 ![Ingreso y tema oscuro](images/login-publicado.png)
 
@@ -137,3 +137,7 @@ es ficticio. Esos registros permiten evaluar los flujos; no son operaciones del 
 - Sesión vencida: volvé a ingresar. Cambios de rol/contraseña revocan permisos anteriores.
 - Permiso insuficiente o recurso ajeno: ingresá con la cuenta/rol correspondiente.
 - Un proveedor social puede tardar en aplicar su configuración; el estado exacto figura en entrega.
+
+## Si usás iPhone
+
+Abrí la versión web en Safari. El APK entregado es para Android; Expo Go no valida el retorno OAuth con scheme propio. Ver PROBAR-EN-IPHONE.md en la entrega o docs/iphone-expo-go.md en el repositorio.

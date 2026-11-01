@@ -1,56 +1,27 @@
-import { Screen } from '../../components/organisms/Screen';
-import { SectionHeader } from '../../components/molecules/SectionHeader';
-import { Input } from '../../components/atoms/Input';
 import { Button } from '../../components/atoms/Button';
-import { ChoiceGroup } from '../../components/molecules/ChoiceGroup';
-import { UserTable } from '../../components/organisms/UserTable';
-import { CollectionState } from '../../components/organisms/CollectionState';
-import { Pagination } from '../../components/molecules/Pagination';
-import { ModalPanel } from '../../components/organisms/ModalPanel';
-import { EntityForm } from '../../components/organisms/EntityForm';
 import { Notice } from '../../components/molecules/Notice';
-import { Text } from '../../components/atoms/Text';
+import { Pagination } from '../../components/molecules/Pagination';
+import { SearchBar } from '../../components/molecules/SearchBar';
+import { SectionHeader } from '../../components/molecules/SectionHeader';
+import { Screen } from '../../components/organisms/Screen';
+import { UserCollection } from '../../components/organisms/UserCollection';
+import { UserDeleteDialog } from '../../components/organisms/UserDeleteDialog';
+import { UserEditDialog } from '../../components/organisms/UserEditDialog';
+import { UserRoleFilter } from '../../components/organisms/UserRoleFilter';
 import { useUsers } from '../../hooks/useUsers';
-/** ABML de usuarios con filtros y cambios de rol reservados al administrador. */
+/** ABML de usuarios con filtros y cambios de rol reservados al administrador.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function UsersScreen() {
   const m = useUsers();
   return (
-    <Screen
-      refreshing={m.loading}
-      onRefresh={() => {
-        void m.refresh();
-      }}
-    >
+    <Screen refreshing={m.loading} onRefresh={m.refresh}>
       <SectionHeader title="Usuarios" subtitle="Clientes, equipo y permisos del lavadero." />
       <Button label="+ Crear usuario" onPress={m.create} />
-      <Input
-        accessibilityLabel="Buscar usuario"
-        placeholder="Buscar por nombre o email"
-        value={m.search}
-        onChangeText={m.setSearch}
-      />
-      <ChoiceGroup
-        value={m.role}
-        onChange={m.setRole}
-        options={[
-          { value: '', label: 'Todos' },
-          { value: 'client', label: 'Clientes' },
-          { value: 'employee', label: 'Empleados' },
-          { value: 'admin', label: 'Administradores' },
-        ]}
-      />
+      <SearchBar label="Buscar por nombre o email" value={m.search} onChange={m.setSearch} />
+      <UserRoleFilter m={m} />
       <Notice message={m.message} error={!m.open ? m.error : ''} />
-      <CollectionState
-        loading={m.loading}
-        error={m.fetchError}
-        empty={!m.data?.items.length}
-        emptyTitle="No hay usuarios con estos filtros"
-        onRetry={() => {
-          void m.refresh();
-        }}
-      >
-        <UserTable users={m.data?.items ?? []} onEdit={m.edit} onDelete={m.requestDelete} />
-      </CollectionState>
+      <UserCollection m={m} />
       {m.data && (
         <Pagination
           page={m.page}
@@ -59,39 +30,8 @@ export function UsersScreen() {
           onChange={m.setPage}
         />
       )}
-      <ModalPanel
-        visible={m.open}
-        title={m.editing ? 'Editar usuario' : 'Crear usuario'}
-        onClose={m.close}
-      >
-        <Notice error={m.error} />
-        <EntityForm
-          key={m.editing?.id ?? 'new'}
-          fields={m.fields}
-          initialValues={m.initialValues}
-          onSubmit={m.save}
-          busy={m.busy}
-        />
-      </ModalPanel>
-      <ModalPanel
-        visible={Boolean(m.deleting)}
-        title="Eliminar usuario"
-        onClose={m.cancelDelete}
-      >
-        <Text>
-          ¿Querés eliminar a {m.deleting?.firstName} {m.deleting?.lastName}? Sus turnos
-          conservarán el historial.
-        </Text>
-        <Notice error={m.error} />
-        <Button
-          label="Eliminar usuario"
-          variant="danger"
-          loading={m.busy}
-          onPress={() => {
-            void m.remove();
-          }}
-        />
-      </ModalPanel>
+      <UserEditDialog m={m} />
+      <UserDeleteDialog m={m} />
     </Screen>
   );
 }

@@ -1,10 +1,14 @@
 import { View } from 'react-native';
-import { ChoiceGroup } from '../molecules/ChoiceGroup';
-import { Input } from '../atoms/Input';
-import { FormField } from '../molecules/FormField';
-import { statusLabels } from '../molecules/StatusBadge';
 import type { useAppointments } from '../../hooks/useAppointments';
-/** Filtros por experiencia; cliente no puede seleccionar titulares ajenos. */
+import { Input } from '../atoms/Input';
+import { ChoiceGroup } from '../molecules/ChoiceGroup';
+import { AppointmentClientFilter } from './AppointmentClientFilter';
+import { AppointmentEmployeeFilter } from './AppointmentEmployeeFilter';
+import { AppointmentStatusFilter } from './AppointmentStatusFilter';
+/** Filtros por experiencia; cliente no puede seleccionar titulares ajenos.
+ * @param props - Propiedades tipadas: manager. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function AppointmentFilters({
   manager: m,
 }: {
@@ -30,46 +34,9 @@ export function AppointmentFilters({
       />
       {m.mode === 'admin' && (
         <>
-          <ChoiceGroup
-            value={m.status}
-            onChange={m.setStatus}
-            options={[
-              { value: '', label: 'Todos' },
-              ...Object.entries(statusLabels).map(([value, label]) => ({ value, label })),
-            ]}
-          />
-          <FormField
-            field={{
-              name: 'client',
-              label: 'Cliente',
-              kind: 'choice',
-              options: [
-                { value: '', label: 'Todos' },
-                ...m.clients.map((u) => ({
-                  value: u.id,
-                  label: `${u.firstName} ${u.lastName}`,
-                })),
-              ],
-            }}
-            value={m.clientId}
-            onChange={m.setClientId}
-          />
-          <FormField
-            field={{
-              name: 'employee',
-              label: 'Empleado',
-              kind: 'choice',
-              options: [
-                { value: '', label: 'Todos' },
-                ...m.employees.map((u) => ({
-                  value: u.id,
-                  label: `${u.firstName} ${u.lastName}`,
-                })),
-              ],
-            }}
-            value={m.employeeId}
-            onChange={m.setEmployeeId}
-          />
+          <AppointmentStatusFilter m={m} />
+          <AppointmentClientFilter m={m} />
+          <AppointmentEmployeeFilter m={m} />
         </>
       )}
     </View>

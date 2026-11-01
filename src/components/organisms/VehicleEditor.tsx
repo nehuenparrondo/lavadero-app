@@ -1,46 +1,15 @@
-import { ModalPanel } from './ModalPanel';
-import { EntityForm } from './EntityForm';
-import { Notice } from '../molecules/Notice';
-import { Text } from '../atoms/Text';
-import { Button } from '../atoms/Button';
 import type { useVehicles } from '../../hooks/useVehicles';
-/** Formularios y confirmación de baja con datos del vehículo seleccionado. */
+import { VehicleDeleteDialog } from './VehicleDeleteDialog';
+import { VehicleEditDialog } from './VehicleEditDialog';
+/** Formularios y confirmación de baja con datos del vehículo seleccionado.
+ * @param props - Propiedades tipadas: manager. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function VehicleEditor({ manager }: { manager: ReturnType<typeof useVehicles> }) {
   return (
     <>
-      <ModalPanel
-        visible={manager.open}
-        title={manager.editing ? 'Editar vehículo' : 'Agregar vehículo'}
-        onClose={manager.close}
-      >
-        <Notice error={manager.error || manager.optionsError} />
-        <EntityForm
-          key={manager.editing?.id ?? 'new'}
-          fields={manager.fields}
-          initialValues={manager.initialValues}
-          onSubmit={manager.save}
-          busy={manager.busy}
-        />
-      </ModalPanel>
-      <ModalPanel
-        visible={Boolean(manager.deleting)}
-        title="Eliminar vehículo"
-        onClose={manager.cancelDelete}
-      >
-        <Text>
-          ¿Querés eliminar {manager.deleting?.plate}? Los turnos pasados conservarán su
-          historial.
-        </Text>
-        <Notice error={manager.error} />
-        <Button
-          label="Eliminar vehículo"
-          variant="danger"
-          loading={manager.busy}
-          onPress={() => {
-            void manager.remove();
-          }}
-        />
-      </ModalPanel>
+      <VehicleEditDialog manager={manager} />
+      <VehicleDeleteDialog manager={manager} />
     </>
   );
 }

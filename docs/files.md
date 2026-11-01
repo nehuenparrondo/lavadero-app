@@ -1,133 +1,222 @@
 # Índice de archivos fuente
 
-Cada pieza mantiene su TSDoc. Este índice ayuda a ubicar responsabilidades.
+Los comentarios TSDoc explican propósito, parámetros, resultado y fallos relevantes. Cada enlace pertenece a este repositorio.
 
-- [src/api/client.ts](../src/api/client.ts): infraestructura o utilidades.
-- [src/api/services/authService.ts](../src/api/services/authService.ts): casos de uso.
-- [src/api/services/healthService.ts](../src/api/services/healthService.ts): casos de uso.
-- [src/api/services/resourceService.ts](../src/api/services/resourceService.ts): casos de uso.
-- [src/api/services/userService.ts](../src/api/services/userService.ts): casos de uso.
-- [src/api/sessionStorage.ts](../src/api/sessionStorage.ts): infraestructura o utilidades.
-- [src/api/sessionStore.ts](../src/api/sessionStore.ts): infraestructura o utilidades.
-- [src/api/transport.ts](../src/api/transport.ts): infraestructura o utilidades.
-- [src/app/(admin)/_layout.tsx](<../src/app/(admin)/_layout.tsx>): infraestructura o utilidades.
-- [src/app/(admin)/appointments.tsx](<../src/app/(admin)/appointments.tsx>): infraestructura o utilidades.
-- [src/app/(admin)/dashboard.tsx](<../src/app/(admin)/dashboard.tsx>): infraestructura o utilidades.
-- [src/app/(admin)/profile.tsx](<../src/app/(admin)/profile.tsx>): infraestructura o utilidades.
-- [src/app/(admin)/reports.tsx](<../src/app/(admin)/reports.tsx>): infraestructura o utilidades.
-- [src/app/(admin)/services.tsx](<../src/app/(admin)/services.tsx>): casos de uso.
-- [src/app/(admin)/settings.tsx](<../src/app/(admin)/settings.tsx>): infraestructura o utilidades.
-- [src/app/(admin)/users.tsx](<../src/app/(admin)/users.tsx>): infraestructura o utilidades.
-- [src/app/(admin)/vehicles.tsx](<../src/app/(admin)/vehicles.tsx>): infraestructura o utilidades.
-- [src/app/(client)/_layout.tsx](<../src/app/(client)/_layout.tsx>): infraestructura o utilidades.
-- [src/app/(client)/appointments.tsx](<../src/app/(client)/appointments.tsx>): infraestructura o utilidades.
-- [src/app/(client)/home.tsx](<../src/app/(client)/home.tsx>): infraestructura o utilidades.
-- [src/app/(client)/profile.tsx](<../src/app/(client)/profile.tsx>): infraestructura o utilidades.
-- [src/app/(client)/services.tsx](<../src/app/(client)/services.tsx>): casos de uso.
-- [src/app/(client)/vehicles.tsx](<../src/app/(client)/vehicles.tsx>): infraestructura o utilidades.
-- [src/app/(employee)/_layout.tsx](<../src/app/(employee)/_layout.tsx>): infraestructura o utilidades.
-- [src/app/(employee)/agenda.tsx](<../src/app/(employee)/agenda.tsx>): infraestructura o utilidades.
-- [src/app/(employee)/history.tsx](<../src/app/(employee)/history.tsx>): infraestructura o utilidades.
-- [src/app/(employee)/profile.tsx](<../src/app/(employee)/profile.tsx>): infraestructura o utilidades.
-- [src/app/_layout.tsx](../src/app/_layout.tsx): infraestructura o utilidades.
-- [src/app/appointment/[id].tsx](../src/app/appointment/[id].tsx): infraestructura o utilidades.
-- [src/app/booking.tsx](../src/app/booking.tsx): infraestructura o utilidades.
-- [src/app/index.tsx](../src/app/index.tsx): infraestructura o utilidades.
-- [src/app/loading.tsx](../src/app/loading.tsx): infraestructura o utilidades.
-- [src/app/oauth.tsx](../src/app/oauth.tsx): infraestructura o utilidades.
-- [src/app/sign-in.tsx](../src/app/sign-in.tsx): infraestructura o utilidades.
-- [src/app/sign-up.tsx](../src/app/sign-up.tsx): infraestructura o utilidades.
-- [src/components/atoms/Avatar.tsx](../src/components/atoms/Avatar.tsx): interfaz reutilizable.
-- [src/components/atoms/Badge.tsx](../src/components/atoms/Badge.tsx): interfaz reutilizable.
-- [src/components/atoms/Button.tsx](../src/components/atoms/Button.tsx): interfaz reutilizable.
-- [src/components/atoms/Input.tsx](../src/components/atoms/Input.tsx): interfaz reutilizable.
-- [src/components/atoms/Text.tsx](../src/components/atoms/Text.tsx): interfaz reutilizable.
-- [src/components/molecules/Card.tsx](../src/components/molecules/Card.tsx): interfaz reutilizable.
-- [src/components/molecules/ChoiceGroup.tsx](../src/components/molecules/ChoiceGroup.tsx): interfaz reutilizable.
-- [src/components/molecules/ConnectionStatus.tsx](../src/components/molecules/ConnectionStatus.tsx): interfaz reutilizable.
-- [src/components/molecules/EmptyState.tsx](../src/components/molecules/EmptyState.tsx): interfaz reutilizable.
-- [src/components/molecules/FormField.tsx](../src/components/molecules/FormField.tsx): interfaz reutilizable.
-- [src/components/molecules/LoadingState.tsx](../src/components/molecules/LoadingState.tsx): interfaz reutilizable.
-- [src/components/molecules/Notice.tsx](../src/components/molecules/Notice.tsx): interfaz reutilizable.
-- [src/components/molecules/OpeningHoursCard.tsx](../src/components/molecules/OpeningHoursCard.tsx): interfaz reutilizable.
-- [src/components/molecules/Pagination.tsx](../src/components/molecules/Pagination.tsx): interfaz reutilizable.
-- [src/components/molecules/SectionHeader.tsx](../src/components/molecules/SectionHeader.tsx): interfaz reutilizable.
-- [src/components/molecules/ServiceCard.tsx](../src/components/molecules/ServiceCard.tsx): interfaz reutilizable.
-- [src/components/molecules/SocialLoginButton.tsx](../src/components/molecules/SocialLoginButton.tsx): interfaz reutilizable.
-- [src/components/molecules/StatusBadge.tsx](../src/components/molecules/StatusBadge.tsx): interfaz reutilizable.
-- [src/components/organisms/AppointmentActions.tsx](../src/components/organisms/AppointmentActions.tsx): interfaz reutilizable.
-- [src/components/organisms/AppointmentCard.tsx](../src/components/organisms/AppointmentCard.tsx): interfaz reutilizable.
-- [src/components/organisms/AppointmentDialogs.tsx](../src/components/organisms/AppointmentDialogs.tsx): interfaz reutilizable.
-- [src/components/organisms/AppointmentFilters.tsx](../src/components/organisms/AppointmentFilters.tsx): interfaz reutilizable.
-- [src/components/organisms/CollectionState.tsx](../src/components/organisms/CollectionState.tsx): interfaz reutilizable.
-- [src/components/organisms/EntityForm.tsx](../src/components/organisms/EntityForm.tsx): interfaz reutilizable.
-- [src/components/organisms/ModalPanel.tsx](../src/components/organisms/ModalPanel.tsx): interfaz reutilizable.
-- [src/components/organisms/ReportSummary.tsx](../src/components/organisms/ReportSummary.tsx): interfaz reutilizable.
-- [src/components/organisms/ScheduleSelector.tsx](../src/components/organisms/ScheduleSelector.tsx): interfaz reutilizable.
-- [src/components/organisms/Screen.tsx](../src/components/organisms/Screen.tsx): interfaz reutilizable.
-- [src/components/organisms/ServiceEditors.tsx](../src/components/organisms/ServiceEditors.tsx): interfaz reutilizable.
-- [src/components/organisms/SocialLogins.tsx](../src/components/organisms/SocialLogins.tsx): interfaz reutilizable.
-- [src/components/organisms/UserTable.tsx](../src/components/organisms/UserTable.tsx): interfaz reutilizable.
-- [src/components/organisms/VehicleEditor.tsx](../src/components/organisms/VehicleEditor.tsx): interfaz reutilizable.
-- [src/components/organisms/VehicleTypeManager.tsx](../src/components/organisms/VehicleTypeManager.tsx): interfaz reutilizable.
-- [src/components/organisms/WelcomePanel.tsx](../src/components/organisms/WelcomePanel.tsx): interfaz reutilizable.
-- [src/constants/authFields.ts](../src/constants/authFields.ts): infraestructura o utilidades.
-- [src/context/AuthContext.tsx](../src/context/AuthContext.tsx): estado global.
-- [src/context/ThemeContext.tsx](../src/context/ThemeContext.tsx): estado global.
-- [src/hooks/useAction.ts](../src/hooks/useAction.ts): estado y coordinación.
-- [src/hooks/useApiHealth.ts](../src/hooks/useApiHealth.ts): estado y coordinación.
-- [src/hooks/useAppointmentDetail.ts](../src/hooks/useAppointmentDetail.ts): estado y coordinación.
-- [src/hooks/useAppointments.ts](../src/hooks/useAppointments.ts): estado y coordinación.
-- [src/hooks/useAuth.ts](../src/hooks/useAuth.ts): estado y coordinación.
-- [src/hooks/useBooking.ts](../src/hooks/useBooking.ts): estado y coordinación.
-- [src/hooks/useCatalog.ts](../src/hooks/useCatalog.ts): estado y coordinación.
-- [src/hooks/useDebouncedValue.ts](../src/hooks/useDebouncedValue.ts): estado y coordinación.
-- [src/hooks/useEntityManager.ts](../src/hooks/useEntityManager.ts): estado y coordinación.
-- [src/hooks/useOptions.ts](../src/hooks/useOptions.ts): estado y coordinación.
-- [src/hooks/usePagedList.ts](../src/hooks/usePagedList.ts): estado y coordinación.
-- [src/hooks/useProfile.ts](../src/hooks/useProfile.ts): estado y coordinación.
-- [src/hooks/useRemoteData.ts](../src/hooks/useRemoteData.ts): estado y coordinación.
-- [src/hooks/useReports.ts](../src/hooks/useReports.ts): estado y coordinación.
-- [src/hooks/useSettings.ts](../src/hooks/useSettings.ts): estado y coordinación.
-- [src/hooks/useSignIn.ts](../src/hooks/useSignIn.ts): estado y coordinación.
-- [src/hooks/useSocialLogin.ts](../src/hooks/useSocialLogin.ts): estado y coordinación.
-- [src/hooks/useTheme.ts](../src/hooks/useTheme.ts): estado y coordinación.
-- [src/hooks/useUsers.ts](../src/hooks/useUsers.ts): estado y coordinación.
-- [src/hooks/useVehicles.ts](../src/hooks/useVehicles.ts): estado y coordinación.
-- [src/hooks/useVehicleTypes.ts](../src/hooks/useVehicleTypes.ts): estado y coordinación.
-- [src/navigation/AdminHeader.tsx](../src/navigation/AdminHeader.tsx): navegación por rol.
-- [src/navigation/RoleTabs.tsx](../src/navigation/RoleTabs.tsx): navegación por rol.
-- [src/navigation/RootNavigation.tsx](../src/navigation/RootNavigation.tsx): navegación por rol.
-- [src/screens/admin/DashboardScreen.tsx](../src/screens/admin/DashboardScreen.tsx): pantalla.
-- [src/screens/admin/ReportsScreen.tsx](../src/screens/admin/ReportsScreen.tsx): pantalla.
-- [src/screens/admin/SettingsScreen.tsx](../src/screens/admin/SettingsScreen.tsx): pantalla.
-- [src/screens/admin/UsersScreen.tsx](../src/screens/admin/UsersScreen.tsx): pantalla.
-- [src/screens/auth/SignInScreen.tsx](../src/screens/auth/SignInScreen.tsx): pantalla.
-- [src/screens/auth/SignUpScreen.tsx](../src/screens/auth/SignUpScreen.tsx): pantalla.
-- [src/screens/bootstrap.styles.ts](../src/screens/bootstrap.styles.ts): pantalla.
-- [src/screens/BootstrapScreen.tsx](../src/screens/BootstrapScreen.tsx): pantalla.
-- [src/screens/client/AppointmentDetailScreen.tsx](../src/screens/client/AppointmentDetailScreen.tsx): pantalla.
-- [src/screens/client/AppointmentsScreen.tsx](../src/screens/client/AppointmentsScreen.tsx): pantalla.
-- [src/screens/client/BookingScreen.tsx](../src/screens/client/BookingScreen.tsx): pantalla.
-- [src/screens/client/HomeScreen.tsx](../src/screens/client/HomeScreen.tsx): pantalla.
-- [src/screens/client/ProfileScreen.tsx](../src/screens/client/ProfileScreen.tsx): pantalla.
-- [src/screens/client/ServicesScreen.tsx](../src/screens/client/ServicesScreen.tsx): pantalla.
-- [src/screens/client/VehiclesScreen.tsx](../src/screens/client/VehiclesScreen.tsx): pantalla.
-- [src/theme/palettes.ts](../src/theme/palettes.ts): infraestructura o utilidades.
-- [src/theme/tokens.ts](../src/theme/tokens.ts): infraestructura o utilidades.
-- [src/types/entities.ts](../src/types/entities.ts): contrato tipado.
-- [src/types/form.ts](../src/types/form.ts): contrato tipado.
-- [src/types/health.ts](../src/types/health.ts): contrato tipado.
-- [src/utils/buildFormSchema.ts](../src/utils/buildFormSchema.ts): infraestructura o utilidades.
-- [src/utils/errorMessage.ts](../src/utils/errorMessage.ts): infraestructura o utilidades.
-- [src/utils/format.ts](../src/utils/format.ts): infraestructura o utilidades.
-- [src/utils/parseApiUrl.ts](../src/utils/parseApiUrl.ts): infraestructura o utilidades.
-- [src/utils/pesosToCents.ts](../src/utils/pesosToCents.ts): infraestructura o utilidades.
-- [tests/parseApiUrl.test.ts](../tests/parseApiUrl.test.ts): verificación.
-
-## Archivos incorporados en la revisión de producción
-
-- [src/app/oauth.web.tsx](../src/app/oauth.web.tsx): módulo documentado junto a su implementación.
-- [src/hooks/useSocialLogin.web.ts](../src/hooks/useSocialLogin.web.ts): módulo documentado junto a su implementación.
-- [src/hooks/useWebOAuthReturn.ts](../src/hooks/useWebOAuthReturn.ts): módulo documentado junto a su implementación.
-- [src/utils/pendingOAuth.ts](../src/utils/pendingOAuth.ts): módulo documentado junto a su implementación.
+- [src/api/client.ts](../src/api/client.ts): Cliente autenticado; solo api/services envía solicitudes.
+- [src/api/services/authService.ts](../src/api/services/authService.ts): Registro siempre Cliente; rol no forma parte de este contrato.
+- [src/api/services/healthService.ts](../src/api/services/healthService.ts): Comprueba conectividad. @throws Error ante configuración ausente, red o respuesta inválida.
+- [src/api/services/resourceService.ts](../src/api/services/resourceService.ts): Parámetros de filtros de listas, nunca URLs arbitrarias de terceros.
+- [src/api/services/restoreSession.ts](../src/api/services/restoreSession.ts): Restaura la sesión segura sin publicar resultados de un proveedor desmontado.
+- [src/api/services/sessionActions.ts](../src/api/services/sessionActions.ts): Ejecuta la operación tipada de este módulo.
+- [src/api/services/userService.ts](../src/api/services/userService.ts): Alta o edición administrativa; los cambios de rol tienen endpoint independiente.
+- [src/api/sessionStorage.ts](../src/api/sessionStorage.ts): Lee refresh del dispositivo. Web de demostración usa solo sessionStorage de la pestaña.
+- [src/api/sessionStore.ts](../src/api/sessionStore.ts): Lee sesión solo en memoria; componentes consumen AuthContext.
+- [src/api/transport.ts](../src/api/transport.ts): El origen siempre viene de entorno y exige HTTPS público.
+- [src/app/(admin)/_layout.tsx](<../src/app/(admin)/_layout.tsx>): Navegación administrativa con menú de siete destinos y guardas en raíz.
+- [src/app/(admin)/appointments.tsx](<../src/app/(admin)/appointments.tsx>): Vista administrativa de todos los turnos.
+- [src/app/(admin)/dashboard.tsx](<../src/app/(admin)/dashboard.tsx>): Tipos o configuración del módulo.
+- [src/app/(admin)/profile.tsx](<../src/app/(admin)/profile.tsx>): Tipos o configuración del módulo.
+- [src/app/(admin)/reports.tsx](<../src/app/(admin)/reports.tsx>): Tipos o configuración del módulo.
+- [src/app/(admin)/services.tsx](<../src/app/(admin)/services.tsx>): Administración del catálogo y precios.
+- [src/app/(admin)/settings.tsx](<../src/app/(admin)/settings.tsx>): Tipos o configuración del módulo.
+- [src/app/(admin)/users.tsx](<../src/app/(admin)/users.tsx>): Tipos o configuración del módulo.
+- [src/app/(admin)/vehicles.tsx](<../src/app/(admin)/vehicles.tsx>): Tipos o configuración del módulo.
+- [src/app/(client)/_layout.tsx](<../src/app/(client)/_layout.tsx>): Cinco destinos del cliente, protegidos por el layout raíz.
+- [src/app/(client)/appointments.tsx](<../src/app/(client)/appointments.tsx>): Tipos o configuración del módulo.
+- [src/app/(client)/home.tsx](<../src/app/(client)/home.tsx>): Tipos o configuración del módulo.
+- [src/app/(client)/profile.tsx](<../src/app/(client)/profile.tsx>): Tipos o configuración del módulo.
+- [src/app/(client)/services.tsx](<../src/app/(client)/services.tsx>): Tipos o configuración del módulo.
+- [src/app/(client)/vehicles.tsx](<../src/app/(client)/vehicles.tsx>): Tipos o configuración del módulo.
+- [src/app/(employee)/_layout.tsx](<../src/app/(employee)/_layout.tsx>): Agenda, historial y perfil del empleado.
+- [src/app/(employee)/agenda.tsx](<../src/app/(employee)/agenda.tsx>): Agenda del empleado, limitada en servidor a sus asignaciones.
+- [src/app/(employee)/history.tsx](<../src/app/(employee)/history.tsx>): Trabajos anteriores del empleado.
+- [src/app/(employee)/profile.tsx](<../src/app/(employee)/profile.tsx>): Tipos o configuración del módulo.
+- [src/app/_layout.tsx](../src/app/_layout.tsx): Raíz Expo Router: proveedores separados de rutas y pantallas.
+- [src/app/appointment/[id].tsx](../src/app/appointment/[id].tsx): Tipos o configuración del módulo.
+- [src/app/booking.tsx](../src/app/booking.tsx): Tipos o configuración del módulo.
+- [src/app/index.tsx](../src/app/index.tsx): Entrada dirige al árbol del rol autorizado.
+- [src/app/loading.tsx](../src/app/loading.tsx): Mantiene el navegador montado mientras se restaura y verifica la sesión.
+- [src/app/oauth.tsx](../src/app/oauth.tsx): Destino nativo de AuthSession; el popup devuelve el código al hook iniciador.
+- [src/app/oauth.web.tsx](../src/app/oauth.web.tsx): Retorno web en la misma pestaña; el APK usa oauth.tsx y AuthSession nativo.
+- [src/app/sign-in.tsx](../src/app/sign-in.tsx): Tipos o configuración del módulo.
+- [src/app/sign-up.tsx](../src/app/sign-up.tsx): Tipos o configuración del módulo.
+- [src/components/atoms/Avatar.tsx](../src/components/atoms/Avatar.tsx): Foto opcional o iniciales del perfil, sin datos de otros clientes.
+- [src/components/atoms/Badge.tsx](../src/components/atoms/Badge.tsx): Etiqueta compacta con tono semántico.
+- [src/components/atoms/Button.tsx](../src/components/atoms/Button.tsx): Props de una acción accesible.
+- [src/components/atoms/Icon.tsx](../src/components/atoms/Icon.tsx): Símbolo decorativo; el control que lo contiene aporta la etiqueta accesible.
+- [src/components/atoms/Input.tsx](../src/components/atoms/Input.tsx): Entrada controlada accesible, con tema y altura táctil suficiente.
+- [src/components/atoms/Spinner.tsx](../src/components/atoms/Spinner.tsx): Indicador de espera con color semántico y descripción accesible.
+- [src/components/atoms/Text.tsx](../src/components/atoms/Text.tsx): Texto con color semántico y tamaño consistente.
+- [src/components/molecules/AvailableSlots.tsx](../src/components/molecules/AvailableSlots.tsx): Horarios ya validados por el servidor y estado vacío cuando la fecha está completa.
+- [src/components/molecules/Card.tsx](../src/components/molecules/Card.tsx): Superficie reutilizable de lectura y formularios.
+- [src/components/molecules/ChoiceButton.tsx](../src/components/molecules/ChoiceButton.tsx): Opción táctil con estado seleccionado accesible y contraste del tema.
+- [src/components/molecules/ChoiceGroup.tsx](../src/components/molecules/ChoiceGroup.tsx): Selector simple o múltiple; delega apariencia y transformación en piezas independientes.
+- [src/components/molecules/ConnectionStatus.tsx](../src/components/molecules/ConnectionStatus.tsx): Estado real de red.
+- [src/components/molecules/ContractServiceLines.tsx](../src/components/molecules/ContractServiceLines.tsx): Servicios históricos; solo muestra importes que el servidor incluyó en la proyección del rol.
+- [src/components/molecules/ControlledField.tsx](../src/components/molecules/ControlledField.tsx): Adapta un campo RHF a la molécula de entrada, incluyendo errores y blur.
+- [src/components/molecules/EmptyState.tsx](../src/components/molecules/EmptyState.tsx): Lista vacía con una explicación específica del recurso.
+- [src/components/molecules/FieldInput.tsx](../src/components/molecules/FieldInput.tsx): Ajusta teclado y privacidad según el tipo semántico del campo.
+- [src/components/molecules/FormField.tsx](../src/components/molecules/FormField.tsx): Label, entrada y error, con selectors legibles para campos enumerados.
+- [src/components/molecules/LoadingState.tsx](../src/components/molecules/LoadingState.tsx): Estado visible mientras se verifica sesión o se carga una lista.
+- [src/components/molecules/Notice.tsx](../src/components/molecules/Notice.tsx): Mensaje de error/éxito anunciado a lectores de pantalla.
+- [src/components/molecules/OpeningHoursCard.tsx](../src/components/molecules/OpeningHoursCard.tsx): Muestra el horario confirmado y el estado real de conexión.
+- [src/components/molecules/Pagination.tsx](../src/components/molecules/Pagination.tsx): Navegación de listas grandes sin perder búsqueda y filtros.
+- [src/components/molecules/QuotedTotal.tsx](../src/components/molecules/QuotedTotal.tsx): Total y duración estimados exactamente como los devuelve la cotización del servidor.
+- [src/components/molecules/SearchBar.tsx](../src/components/molecules/SearchBar.tsx): Búsqueda controlada, con etiqueta accesible y teclado de búsqueda.
+- [src/components/molecules/SectionHeader.tsx](../src/components/molecules/SectionHeader.tsx): Título y descripción de una sección con jerarquía tipográfica.
+- [src/components/molecules/ServiceCard.tsx](../src/components/molecules/ServiceCard.tsx): Servicio con descripción, duración y tarifa del tipo seleccionado.
+- [src/components/molecules/StatusBadge.tsx](../src/components/molecules/StatusBadge.tsx): Traducciones estables del flujo de trabajo.
+- [src/components/molecules/VehicleTypeItem.tsx](../src/components/molecules/VehicleTypeItem.tsx): Categoría y acciones del catálogo; una baja lógica conserva el nombre visible en el historial.
+- [src/components/organisms/AdminMenu.tsx](../src/components/organisms/AdminMenu.tsx): Menú de administración; cierra el diálogo antes de cambiar de sección.
+- [src/components/organisms/AppointmentActions.tsx](../src/components/organisms/AppointmentActions.tsx): Acciones del rol visible; el servidor vuelve a validarlas con propiedad/asignación.
+- [src/components/organisms/AppointmentAssignment.tsx](../src/components/organisms/AppointmentAssignment.tsx): Presenta appointment assignment con datos y acciones recibidos de su hook.
+- [src/components/organisms/AppointmentCancellationDialog.tsx](../src/components/organisms/AppointmentCancellationDialog.tsx): Presenta appointment cancellation dialog con datos y acciones recibidos de su hook.
+- [src/components/organisms/AppointmentCard.tsx](../src/components/organisms/AppointmentCard.tsx): Resumen operativo de reserva; la API controla qué importes/datos recibe cada rol.
+- [src/components/organisms/AppointmentClientFilter.tsx](../src/components/organisms/AppointmentClientFilter.tsx): Presenta appointment client filter con datos y acciones recibidos de su hook.
+- [src/components/organisms/AppointmentDialogs.tsx](../src/components/organisms/AppointmentDialogs.tsx): Confirmaciones, cobro y comprobante histórico sin exponer datos de otros turnos.
+- [src/components/organisms/AppointmentEmployeeFilter.tsx](../src/components/organisms/AppointmentEmployeeFilter.tsx): Presenta appointment employee filter con datos y acciones recibidos de su hook.
+- [src/components/organisms/AppointmentFilters.tsx](../src/components/organisms/AppointmentFilters.tsx): Filtros por experiencia; cliente no puede seleccionar titulares ajenos.
+- [src/components/organisms/AppointmentInformation.tsx](../src/components/organisms/AppointmentInformation.tsx): Presenta appointment information con datos y acciones recibidos de su hook.
+- [src/components/organisms/AppointmentList.tsx](../src/components/organisms/AppointmentList.tsx): Presenta appointment list con datos y acciones recibidos de su hook.
+- [src/components/organisms/AppointmentNotes.tsx](../src/components/organisms/AppointmentNotes.tsx): Presenta appointment notes con datos y acciones recibidos de su hook.
+- [src/components/organisms/AppointmentPaymentAction.tsx](../src/components/organisms/AppointmentPaymentAction.tsx): Presenta appointment payment action con datos y acciones recibidos de su hook.
+- [src/components/organisms/AppointmentPaymentDialog.tsx](../src/components/organisms/AppointmentPaymentDialog.tsx): Presenta appointment payment dialog con datos y acciones recibidos de su hook.
+- [src/components/organisms/AppointmentPayments.tsx](../src/components/organisms/AppointmentPayments.tsx): Presenta appointment payments con datos y acciones recibidos de su hook.
+- [src/components/organisms/AppointmentReceiptDialog.tsx](../src/components/organisms/AppointmentReceiptDialog.tsx): Presenta appointment receipt dialog con datos y acciones recibidos de su hook.
+- [src/components/organisms/AppointmentStatusEditor.tsx](../src/components/organisms/AppointmentStatusEditor.tsx): Presenta appointment status editor con datos y acciones recibidos de su hook.
+- [src/components/organisms/AppointmentStatusFilter.tsx](../src/components/organisms/AppointmentStatusFilter.tsx): Presenta appointment status filter con datos y acciones recibidos de su hook.
+- [src/components/organisms/BookingClientField.tsx](../src/components/organisms/BookingClientField.tsx): Presenta booking client field con datos y acciones recibidos de su hook.
+- [src/components/organisms/BookingInvitation.tsx](../src/components/organisms/BookingInvitation.tsx): Presenta booking invitation con datos y acciones recibidos de su hook.
+- [src/components/organisms/BookingServicesField.tsx](../src/components/organisms/BookingServicesField.tsx): Presenta booking services field con datos y acciones recibidos de su hook.
+- [src/components/organisms/BookingVehicleField.tsx](../src/components/organisms/BookingVehicleField.tsx): Presenta booking vehicle field con datos y acciones recibidos de su hook.
+- [src/components/organisms/CollectionState.tsx](../src/components/organisms/CollectionState.tsx): Estados consistentes de lista: carga inicial, error recuperable y vacío.
+- [src/components/organisms/DashboardIndicators.tsx](../src/components/organisms/DashboardIndicators.tsx): Presenta dashboard indicators con datos y acciones recibidos de su hook.
+- [src/components/organisms/EmployeePerformance.tsx](../src/components/organisms/EmployeePerformance.tsx): Presenta employee performance con datos y acciones recibidos de su hook.
+- [src/components/organisms/EmployeeWorkAction.tsx](../src/components/organisms/EmployeeWorkAction.tsx): Presenta employee work action con datos y acciones recibidos de su hook.
+- [src/components/organisms/EntityForm.tsx](../src/components/organisms/EntityForm.tsx): Formulario RHF + Zod con errores por campo y callback sin HTTP propio.
+- [src/components/organisms/ModalPanel.tsx](../src/components/organisms/ModalPanel.tsx): Panel accesible para formularios y confirmaciones sin ventanas nativas bloqueantes.
+- [src/components/organisms/OAuthLinkForm.tsx](../src/components/organisms/OAuthLinkForm.tsx): Confirma la contraseña local una sola vez antes de unir ambas formas de ingreso.
+- [src/components/organisms/PendingAppointments.tsx](../src/components/organisms/PendingAppointments.tsx): Solicitudes pendientes del tablero y acceso a la gestión completa.
+- [src/components/organisms/PopularServices.tsx](../src/components/organisms/PopularServices.tsx): Presenta popular services con datos y acciones recibidos de su hook.
+- [src/components/organisms/ProfileIdentity.tsx](../src/components/organisms/ProfileIdentity.tsx): Presenta profile identity con datos y acciones recibidos de su hook.
+- [src/components/organisms/ProfilePasswordForm.tsx](../src/components/organisms/ProfilePasswordForm.tsx): Presenta profile password form con datos y acciones recibidos de su hook.
+- [src/components/organisms/ReportSummary.tsx](../src/components/organisms/ReportSummary.tsx): Indicadores y barras de ingresos diarios a partir de datos reales.
+- [src/components/organisms/RevenueByDay.tsx](../src/components/organisms/RevenueByDay.tsx): Presenta revenue by day con datos y acciones recibidos de su hook.
+- [src/components/organisms/ScheduleSelector.tsx](../src/components/organisms/ScheduleSelector.tsx): Horarios y total provienen del backend; no calcula precios en el cliente.
+- [src/components/organisms/Screen.tsx](../src/components/organisms/Screen.tsx): Layout móvil desplazable, ancho legible en tablet y pull-to-refresh opcional.
+- [src/components/organisms/ServiceCollection.tsx](../src/components/organisms/ServiceCollection.tsx): Presenta service collection con datos y acciones recibidos de su hook.
+- [src/components/organisms/ServiceDeleteDialog.tsx](../src/components/organisms/ServiceDeleteDialog.tsx): Presenta service delete dialog con datos y acciones recibidos de su hook.
+- [src/components/organisms/ServiceEditDialog.tsx](../src/components/organisms/ServiceEditDialog.tsx): Presenta service edit dialog con datos y acciones recibidos de su hook.
+- [src/components/organisms/ServiceEditors.tsx](../src/components/organisms/ServiceEditors.tsx): Edición de servicio, tarifa por tipo y confirmación de baja lógica.
+- [src/components/organisms/ServicePriceDialog.tsx](../src/components/organisms/ServicePriceDialog.tsx): Presenta service price dialog con datos y acciones recibidos de su hook.
+- [src/components/organisms/SignInForm.tsx](../src/components/organisms/SignInForm.tsx): Presenta sign in form con datos y acciones recibidos de su hook.
+- [src/components/organisms/SocialLoginButton.tsx](../src/components/organisms/SocialLoginButton.tsx): Botón OAuth de un proveedor configurado, con su propia solicitud PKCE.
+- [src/components/organisms/SocialLogins.tsx](../src/components/organisms/SocialLogins.tsx): Muestra proveedores y deshabilita los que el negocio todavía no configuró.
+- [src/components/organisms/ThemeSelector.tsx](../src/components/organisms/ThemeSelector.tsx): Presenta theme selector con datos y acciones recibidos de su hook.
+- [src/components/organisms/UserCollection.tsx](../src/components/organisms/UserCollection.tsx): Presenta user collection con datos y acciones recibidos de su hook.
+- [src/components/organisms/UserDeleteDialog.tsx](../src/components/organisms/UserDeleteDialog.tsx): Presenta user delete dialog con datos y acciones recibidos de su hook.
+- [src/components/organisms/UserEditDialog.tsx](../src/components/organisms/UserEditDialog.tsx): Presenta user edit dialog con datos y acciones recibidos de su hook.
+- [src/components/organisms/UserRoleFilter.tsx](../src/components/organisms/UserRoleFilter.tsx): Presenta user role filter con datos y acciones recibidos de su hook.
+- [src/components/organisms/UserTable.tsx](../src/components/organisms/UserTable.tsx): Usuarios como filas adaptables a tarjetas en teléfono.
+- [src/components/organisms/VehicleCollection.tsx](../src/components/organisms/VehicleCollection.tsx): Presenta vehicle collection con datos y acciones recibidos de su hook.
+- [src/components/organisms/VehicleDeleteDialog.tsx](../src/components/organisms/VehicleDeleteDialog.tsx): Presenta vehicle delete dialog con datos y acciones recibidos de su hook.
+- [src/components/organisms/VehicleEditDialog.tsx](../src/components/organisms/VehicleEditDialog.tsx): Presenta vehicle edit dialog con datos y acciones recibidos de su hook.
+- [src/components/organisms/VehicleEditor.tsx](../src/components/organisms/VehicleEditor.tsx): Formularios y confirmación de baja con datos del vehículo seleccionado.
+- [src/components/organisms/VehicleTypeDialog.tsx](../src/components/organisms/VehicleTypeDialog.tsx): Presenta vehicle type dialog con datos y acciones recibidos de su hook.
+- [src/components/organisms/VehicleTypeManager.tsx](../src/components/organisms/VehicleTypeManager.tsx): Categorías registradas y formularios administrativos sin exponer SQL ni identificadores técnicos.
+- [src/components/organisms/WelcomePanel.tsx](../src/components/organisms/WelcomePanel.tsx): Presentación inicial del producto.
+- [src/constants/authFields.ts](../src/constants/authFields.ts): Campos de acceso sin selector de rol.
+- [src/constants/business.ts](../src/constants/business.ts): Roles que puede emitir y validar el contrato del sistema.
+- [src/constants/paymentFields.ts](../src/constants/paymentFields.ts): Un cobro se registra en centavos en la API; el formulario recibe pesos argentinos.
+- [src/constants/profileFields.ts](../src/constants/profileFields.ts): Campos editables del perfil; el rol y el correo no se incluyen.
+- [src/constants/rootRoutes.ts](../src/constants/rootRoutes.ts): Acceso necesario para cada pantalla; el backend valida además cada recurso.
+- [src/constants/serviceFields.ts](../src/constants/serviceFields.ts): Campos reutilizados por alta y edición de servicios.
+- [src/constants/settingsFields.ts](../src/constants/settingsFields.ts): Configuración inicial de horarios, cancelación y capacidad.
+- [src/constants/userFields.ts](../src/constants/userFields.ts): Roles y etiquetas compartidos por los filtros y el editor administrativo.
+- [src/context/AuthContext.tsx](../src/context/AuthContext.tsx): Contexto de sesión compartido por las experiencias de los tres roles.
+- [src/context/ThemeContext.tsx](../src/context/ThemeContext.tsx): Preferencia manual o seguimiento del sistema.
+- [src/hooks/appointmentCommands.ts](../src/hooks/appointmentCommands.ts): Acciones operativas; el permiso y la transición se vuelven a validar en el backend.
+- [src/hooks/profileCommands.ts](../src/hooks/profileCommands.ts): Operaciones propias; cambiar contraseña revoca sesiones e inicia nuevamente el acceso.
+- [src/hooks/useAction.ts](../src/hooks/useAction.ts): Ejecuta una acción y publica carga/error/resultado sin propagar errores a la vista.
+- [src/hooks/useApiHealth.ts](../src/hooks/useApiHealth.ts): Consulta el backend y cancela la solicitud al desmontar.
+- [src/hooks/useAppointmentDetail.ts](../src/hooks/useAppointmentDetail.ts): Compone datos, selección y acciones del detalle de turno con ownership en la API.
+- [src/hooks/useAppointmentFiltersState.ts](../src/hooks/useAppointmentFiltersState.ts): Filtros locales; no sustituyen las restricciones de propiedad aplicadas por la API.
+- [src/hooks/useAppointmentFlags.ts](../src/hooks/useAppointmentFlags.ts): Selecciones de administración y apertura de diálogos; se sincronizan con la versión remota.
+- [src/hooks/useAppointmentMutation.ts](../src/hooks/useAppointmentMutation.ts): Mutación de turno y actualización de los recursos afectados después de confirmar.
+- [src/hooks/useAppointmentPayment.ts](../src/hooks/useAppointmentPayment.ts): Mantiene la misma clave al reintentar un pago y la renueva solo tras su confirmación.
+- [src/hooks/useAppointmentResources.ts](../src/hooks/useAppointmentResources.ts): Consultas del detalle; los recursos administrativos no se solicitan para otros roles.
+- [src/hooks/useAppointments.ts](../src/hooks/useAppointments.ts): Agenda filtrada según experiencia, sin ampliar los permisos aplicados por backend.
+- [src/hooks/useAuth.ts](../src/hooks/useAuth.ts): Accede a sesión verificada. @throws Error si falta AuthProvider.
+- [src/hooks/useBooking.ts](../src/hooks/useBooking.ts): Compone selección, consulta y confirmación sin lógica de negocio dentro de la pantalla.
+- [src/hooks/useBookingResources.ts](../src/hooks/useBookingResources.ts): Consulta opciones autorizadas y cotiza únicamente una selección válida.
+- [src/hooks/useBookingSelection.ts](../src/hooks/useBookingSelection.ts): Selección de reserva; cambiar titular, vehículo, servicios o fecha invalida el horario previo.
+- [src/hooks/useBookingSubmit.ts](../src/hooks/useBookingSubmit.ts): Envía la cotización elegida; el servidor recalcula precios y bloquea disponibilidad.
+- [src/hooks/useCatalog.ts](../src/hooks/useCatalog.ts): Compone consulta, edición de servicio y edición de tarifa como responsabilidades separadas.
+- [src/hooks/useDashboard.ts](../src/hooks/useDashboard.ts): Datos del tablero; refresca resumen y solicitudes como una sola acción de pantalla.
+- [src/hooks/useDebouncedValue.ts](../src/hooks/useDebouncedValue.ts): Evita una solicitud de búsqueda por cada tecla sin retrasar la escritura visible.
+- [src/hooks/useEditorState.ts](../src/hooks/useEditorState.ts): Mantiene exclusivamente la selección y apertura de un editor de entidad.
+- [src/hooks/useEntityManager.ts](../src/hooks/useEntityManager.ts): Une una colección paginada con el editor reutilizable; preserva error de lectura separado.
+- [src/hooks/useHome.ts](../src/hooks/useHome.ts): Próximas tres visitas propias, ordenadas cronológicamente.
+- [src/hooks/useOptions.ts](../src/hooks/useOptions.ts): Lee todas las páginas de un selector, solo cuando el rol lo permite.
+- [src/hooks/usePagedList.ts](../src/hooks/usePagedList.ts): Lista paginada con filtro y navegación entre páginas para no truncar datos.
+- [src/hooks/useProfile.ts](../src/hooks/useProfile.ts): Perfil propio con formularios, sesión y comandos separados por responsabilidad.
+- [src/hooks/useRemoteData.ts](../src/hooks/useRemoteData.ts): Consulta cancelable lógicamente con estados de carga/error, filtros y pull-to-refresh.
+- [src/hooks/useReports.ts](../src/hooks/useReports.ts): Reporte por período calendario local y fecha elegida.
+- [src/hooks/useResourceEditor.ts](../src/hooks/useResourceEditor.ts): Compone selección, confirmaciones y persistencia para editores sin duplicar el ABML.
+- [src/hooks/useServicePrice.ts](../src/hooks/useServicePrice.ts): Administra la tarifa por tipo de vehículo, independientemente del formulario de servicio.
+- [src/hooks/useSessionRestore.ts](../src/hooks/useSessionRestore.ts): Publica la fase de arranque y cancela lógicamente respuestas tardías.
+- [src/hooks/useSettings.ts](../src/hooks/useSettings.ts): Configuración operativa con horario local y capacidad simultánea.
+- [src/hooks/useSignIn.ts](../src/hooks/useSignIn.ts): Conecta formulario con registro/login y guarda refresh de forma segura.
+- [src/hooks/useSocialExchange.ts](../src/hooks/useSocialExchange.ts): Canje compartido por web/APK; la contraseña se conserva solo mientras se envía.
+- [src/hooks/useSocialLogin.ts](../src/hooks/useSocialLogin.ts): Inicia AuthSession con PKCE; la API intercambia el código y emite su propia sesión.
+- [src/hooks/useSocialLogin.web.ts](../src/hooks/useSocialLogin.web.ts): Estado del botón web; la confirmación de vinculación ocurre en la ruta de retorno.
+- [src/hooks/useSocialProviders.ts](../src/hooks/useSocialProviders.ts): Consulta proveedores y permite reintentar si Render estaba despertando.
+- [src/hooks/useSocialResponse.ts](../src/hooks/useSocialResponse.ts): Completa retornos nativos y muestra también cancelaciones y errores del proveedor.
+- [src/hooks/useTheme.ts](../src/hooks/useTheme.ts): Retorna tema y selector. @throws Error fuera de ThemeProvider.
+- [src/hooks/useUsers.ts](../src/hooks/useUsers.ts): Gestión de usuarios; delega selección, persistencia y definición de formularios.
+- [src/hooks/useVehicles.ts](../src/hooks/useVehicles.ts): ABML de vehículos con definición de formulario separada de las consultas y acciones.
+- [src/hooks/useVehicleTypes.ts](../src/hooks/useVehicleTypes.ts): Categorías con edición común y baja lógica que conserva referencias históricas.
+- [src/hooks/useWebOAuthReturn.ts](../src/hooks/useWebOAuthReturn.ts): Consume el retorno web una vez, validando state/PKCE antes de guardar sesión.
+- [src/navigation/AdminHeader.tsx](../src/navigation/AdminHeader.tsx): Encabezado adaptable; el menú y sus rutas están separados de la presentación.
+- [src/navigation/RoleTabs.tsx](../src/navigation/RoleTabs.tsx): Entrada de navegación de un rol.
+- [src/navigation/RootNavigation.tsx](../src/navigation/RootNavigation.tsx): Mantiene el stack montado mientras restaura sesión y aplica guardas por ruta.
+- [src/screens/admin/DashboardScreen.tsx](../src/screens/admin/DashboardScreen.tsx): Panel del administrador con pendientes reales y resumen del día.
+- [src/screens/admin/ReportsScreen.tsx](../src/screens/admin/ReportsScreen.tsx): Reportes administrativos por día, semana o mes.
+- [src/screens/admin/SettingsScreen.tsx](../src/screens/admin/SettingsScreen.tsx): Horarios, capacidad, ventana de cancelación y categorías del negocio.
+- [src/screens/admin/UsersScreen.tsx](../src/screens/admin/UsersScreen.tsx): ABML de usuarios con filtros y cambios de rol reservados al administrador.
+- [src/screens/auth/SignInScreen.tsx](../src/screens/auth/SignInScreen.tsx): Acceso tradicional/social con errores claros y rol decidido por la API.
+- [src/screens/auth/SignUpScreen.tsx](../src/screens/auth/SignUpScreen.tsx): Registro de clientes con validación por campo.
+- [src/screens/bootstrap.styles.ts](../src/screens/bootstrap.styles.ts): Layout centrado, desplazable y con ancho legible en teléfono o tablet.
+- [src/screens/BootstrapScreen.tsx](../src/screens/BootstrapScreen.tsx): Pantalla de etapa 1: solo composición y conexión de hooks.
+- [src/screens/client/AppointmentDetailScreen.tsx](../src/screens/client/AppointmentDetailScreen.tsx): Detalle de reserva con controles del rol, notas y comprobante histórico.
+- [src/screens/client/AppointmentsScreen.tsx](../src/screens/client/AppointmentsScreen.tsx): Lista de turnos con filtros, estados y navegación a detalles.
+- [src/screens/client/BookingScreen.tsx](../src/screens/client/BookingScreen.tsx): Selección de vehículo, servicios, fecha y horario con total antes de confirmar.
+- [src/screens/client/HomeScreen.tsx](../src/screens/client/HomeScreen.tsx): Inicio del cliente con sus próximas visitas reales y una acción principal.
+- [src/screens/client/ProfileScreen.tsx](../src/screens/client/ProfileScreen.tsx): Perfil, preferencia de tema persistente, contraseña local y cierre de sesión.
+- [src/screens/client/ServicesScreen.tsx](../src/screens/client/ServicesScreen.tsx): Catálogo del cliente y ABML administrativo reutilizando componentes.
+- [src/screens/client/VehiclesScreen.tsx](../src/screens/client/VehiclesScreen.tsx): Vehículos propios o administración de titulares, con ABML y búsqueda.
+- [src/theme/adminHeader.styles.ts](../src/theme/adminHeader.styles.ts): Geometría del encabezado; las superficies se toman del tema en el componente.
+- [src/theme/palettes.ts](../src/theme/palettes.ts): Paleta semántica para temas claro y oscuro.
+- [src/theme/tokens.ts](../src/theme/tokens.ts): Espaciado, tipografía y ancho máximo compartidos por todos los componentes.
+- [src/types/entities.ts](../src/types/entities.ts): Roles enviados y verificados por la API, sin código importado desde el backend.
+- [src/types/form.ts](../src/types/form.ts): Opción de catálogo o filtro sin dependencia del sistema visual.
+- [src/types/health.ts](../src/types/health.ts): Contrato propio del frontend, documentado en OpenAPI v0.1.0 del backend.
+- [src/utils/appointmentListTitle.ts](../src/utils/appointmentListTitle.ts): Título de la colección según rol e historial, sin reglas de acceso dentro del JSX.
+- [src/utils/buildFormSchema.ts](../src/utils/buildFormSchema.ts): Genera validación por campo sobre valores de texto del formulario móvil.
+- [src/utils/buttonColors.ts](../src/utils/buttonColors.ts): Resuelve contraste y superficie de variantes sin repetir colores en los botones.
+- [src/utils/catalogFields.ts](../src/utils/catalogFields.ts): Opciones de tarifa para los tipos registrados; la API valida su vigencia.
+- [src/utils/editorCommands.ts](../src/utils/editorCommands.ts): Construye el guardado; solo cierra el formulario cuando el servidor lo confirma.
+- [src/utils/errorMessage.ts](../src/utils/errorMessage.ts): Traduce fallas de red y errores REST a mensajes presentables.
+- [src/utils/format.ts](../src/utils/format.ts): Presenta centavos como pesos argentinos sin alterar el valor persistido.
+- [src/utils/makeCatalogCode.ts](../src/utils/makeCatalogCode.ts): Código técnico estable para el catálogo; solo se genera durante el alta.
+- [src/utils/navigationOptions.ts](../src/utils/navigationOptions.ts): Apariencia común del stack; las pantallas no redefinen colores de navegación.
+- [src/utils/parseApiUrl.ts](../src/utils/parseApiUrl.ts): Valida un origen público HTTPS, sin credenciales, rutas ni direcciones locales.
+- [src/utils/pendingOAuth.ts](../src/utils/pendingOAuth.ts): Solo almacena PKCE temporal de la pestaña; nunca secretos de proveedores.
+- [src/utils/pesosToCents.ts](../src/utils/pesosToCents.ts): Convierte un importe validado en pesos a centavos, sin multiplicación decimal inexacta.
+- [src/utils/routeAccess.ts](../src/utils/routeAccess.ts): Resuelve guardas con el rol verificado; durante restauración solo deja rutas públicas.
+- [src/utils/serviceForm.ts](../src/utils/serviceForm.ts): Serializa campos de servicio; el código permanece estable durante una edición.
+- [src/utils/settingsForm.ts](../src/utils/settingsForm.ts): Presenta configuración remota como campos de texto sin alterar zona ni moneda.
+- [src/utils/startWebOAuth.ts](../src/utils/startWebOAuth.ts): Prepara PKCE y navega en la misma pestaña, sin secretos de proveedor ni popups.
+- [src/utils/toggleChoice.ts](../src/utils/toggleChoice.ts): Agrega/quita una selección; la representación CSV coincide con filtros del contrato REST.
+- [src/utils/userForm.ts](../src/utils/userForm.ts): Construye opciones autorizadas; la cuenta propia conserva el rol administrador.
+- [src/utils/vehicleForm.ts](../src/utils/vehicleForm.ts): Construye el formulario sin ofrecer selección de titulares a un cliente.

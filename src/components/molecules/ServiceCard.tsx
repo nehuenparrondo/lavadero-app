@@ -1,11 +1,14 @@
 import { View } from 'react-native';
-import { Card } from './Card';
-import { Text } from '../atoms/Text';
+import type { Service } from '../../types/entities';
+import { money } from '../../utils/format';
 import { Badge } from '../atoms/Badge';
 import { Button } from '../atoms/Button';
-import { money } from '../../utils/format';
-import type { Service } from '../../types/entities';
-/** Servicio con descripción, duración y tarifa del tipo seleccionado. */
+import { Text } from '../atoms/Text';
+import { Card } from './Card';
+/** Servicio con descripción, duración y tarifa del tipo seleccionado.
+ * @param props - Propiedades tipadas: service, typeId, onEdit, onPrice, onDelete. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function ServiceCard({
   service,
   typeId,

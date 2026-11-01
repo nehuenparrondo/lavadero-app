@@ -1,9 +1,9 @@
 import { View } from 'react-native';
-import { Text } from '../atoms/Text';
-import { ConnectionStatus } from './ConnectionStatus';
 import { useTheme } from '../../hooks/useTheme';
 import { tokens } from '../../theme/tokens';
 import type { HealthState } from '../../types/health';
+import { Text } from '../atoms/Text';
+import { ConnectionStatus } from './ConnectionStatus';
 
 /** Muestra el horario confirmado y el estado real de conexión.
  * @param props Estado de red y acción de reintento.

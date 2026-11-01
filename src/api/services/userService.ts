@@ -1,6 +1,10 @@
 import type { User } from '../../types/entities';
 import { writeResource } from './resourceService';
-/** Alta o edición administrativa; los cambios de rol tienen endpoint independiente. */
+/** Alta o edición administrativa; los cambios de rol tienen endpoint independiente.
+ * @param current - Identidad o entidad actual usada para conservar sus invariantes.
+ * @param v - Datos tipados del elemento o formulario que se transforma.
+ * @returns `Promise<unknown>`, según el contrato de la operación.
+ */
 export async function saveUser(current: User | null, v: Record<string, string>) {
   const profile = {
     email: v.email,

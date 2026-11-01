@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { useRemoteData } from './useRemoteData';
 import type { Report } from '../types/entities';
 import { today } from '../utils/format';
-/** Reporte por período calendario local y fecha elegida. */
+import { useRemoteData } from './useRemoteData';
+/** Reporte por período calendario local y fecha elegida.
+ * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ */
 export function useReports() {
   const [period, setPeriod] = useState('week');
   const [date, setDate] = useState(today());

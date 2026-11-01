@@ -1,19 +1,20 @@
-import { useState } from 'react';
-import { usePagedList } from './usePagedList';
-import { useRemoteData } from './useRemoteData';
-import { useOptions } from './useOptions';
 import type { Appointment, User } from '../types/entities';
 import { today } from '../utils/format';
-/** Agenda filtrada según experiencia, sin ampliar los permisos aplicados por backend. */
+import { useAppointmentFiltersState } from './useAppointmentFiltersState';
+import { useOptions } from './useOptions';
+import { usePagedList } from './usePagedList';
+import { useRemoteData } from './useRemoteData';
+/** Agenda filtrada según experiencia, sin ampliar los permisos aplicados por backend.
+ * @param mode - Valor tipado de mode utilizado por esta operación.
+ * @param initialHistory - Valor tipado de initialHistory utilizado por esta operación.
+ * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ */
 export function useAppointments(
   mode: 'client' | 'employee' | 'admin',
   initialHistory = false,
 ) {
-  const [history, setHistory] = useState(initialHistory);
-  const [date, setDate] = useState(mode === 'client' || initialHistory ? '' : today());
-  const [status, setStatus] = useState('');
-  const [clientId, setClientId] = useState('');
-  const [employeeId, setEmployeeId] = useState('');
+  const filters = useAppointmentFiltersState(mode, initialHistory);
+  const { history, date, status, clientId, employeeId } = filters;
   const list = usePagedList<Appointment>('/appointments', {
     history: mode === 'admin' ? undefined : String(history),
     date: /^\d{4}-\d{2}-\d{2}$/u.test(date) ? date : undefined,
@@ -31,16 +32,7 @@ export function useAppointments(
   return {
     ...list,
     mode,
-    history,
-    setHistory,
-    date,
-    setDate,
-    status,
-    setStatus,
-    clientId,
-    setClientId,
-    employeeId,
-    setEmployeeId,
+    ...filters,
     clients: clients.items,
     employees: employees.items,
     summary: summary.data,

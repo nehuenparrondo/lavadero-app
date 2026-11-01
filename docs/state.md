@@ -12,3 +12,5 @@ errores de listado de errores al guardar. La búsqueda se demora 300 ms.
 La app no conserva una copia mutable del catálogo como autoridad de precio. La reserva
 muestra cotización del servidor y maneja 409 limpiando el horario elegido. Los cobros
 reutilizan su clave de idempotencia al reintentar un envío incierto.
+
+La restauración se separa en `useSessionRestore`/`restoreSession`; `AuthProvider` conecta el contexto. Los editores usan `useEditorState` y `useResourceEditor`; reserva y detalle separan selección, consultas y comandos. La confirmación social comparte `useSocialExchange` entre web y nativo; una contraseña local solo permanece durante su envío TLS.

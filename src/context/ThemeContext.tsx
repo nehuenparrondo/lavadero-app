@@ -1,9 +1,9 @@
-import { createContext, useEffect, useMemo, useState } from 'react';
-import type { PropsWithChildren } from 'react';
-import { useColorScheme } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { palettes } from '../theme/palettes';
+import type { PropsWithChildren } from 'react';
+import { createContext, useEffect, useMemo, useState } from 'react';
+import { useColorScheme } from 'react-native';
 import type { Palette } from '../theme/palettes';
+import { palettes } from '../theme/palettes';
 /** Preferencia manual o seguimiento del sistema. */
 export type ThemeMode = 'system' | 'light' | 'dark';
 interface ThemeValue {
@@ -14,7 +14,10 @@ interface ThemeValue {
 }
 /** Contexto de tema persistente, sin datos de autenticación. */
 export const ThemeContext = createContext<ThemeValue | undefined>(undefined);
-/** Provee paleta y restaura preferencia desde almacenamiento no sensible. */
+/** Provee paleta y restaura preferencia desde almacenamiento no sensible.
+ * @param props - Propiedades tipadas: children. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function ThemeProvider({ children }: PropsWithChildren) {
   const system = useColorScheme();
   const [mode, setModeState] = useState<ThemeMode>('system');

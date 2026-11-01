@@ -1,7 +1,10 @@
 import { View } from 'react-native';
-import { Text } from './Text';
 import { useTheme } from '../../hooks/useTheme';
-/** Etiqueta compacta con tono semántico. */
+import { Text } from './Text';
+/** Etiqueta compacta con tono semántico.
+ * @param props - Propiedades tipadas: label, tone. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function Badge({
   label,
   tone = 'primary',

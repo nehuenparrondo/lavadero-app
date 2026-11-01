@@ -1,9 +1,9 @@
-import axios from 'axios';
 import type { InternalAxiosRequestConfig } from 'axios';
-import { apiUrl, requireApi } from './transport';
-import { getSession, setSession } from './sessionStore';
+import axios from 'axios';
 import { refreshSession } from './services/authService';
-import { storeRefresh, deleteRefresh } from './sessionStorage';
+import { deleteRefresh, storeRefresh } from './sessionStorage';
+import { getSession, setSession } from './sessionStore';
+import { apiUrl, requireApi } from './transport';
 export { apiUrl } from './transport';
 let refreshing: Promise<string> | null = null;
 /** Cliente autenticado; solo api/services envía solicitudes. */

@@ -1,23 +1,20 @@
-import { Screen } from '../../components/organisms/Screen';
-import { SectionHeader } from '../../components/molecules/SectionHeader';
-import { ChoiceGroup } from '../../components/molecules/ChoiceGroup';
 import { Button } from '../../components/atoms/Button';
-import { CollectionState } from '../../components/organisms/CollectionState';
-import { ServiceCard } from '../../components/molecules/ServiceCard';
-import { ServiceEditors } from '../../components/organisms/ServiceEditors';
+import { ChoiceGroup } from '../../components/molecules/ChoiceGroup';
 import { Notice } from '../../components/molecules/Notice';
+import { SectionHeader } from '../../components/molecules/SectionHeader';
+import { Screen } from '../../components/organisms/Screen';
+import { ServiceCollection } from '../../components/organisms/ServiceCollection';
+import { ServiceEditors } from '../../components/organisms/ServiceEditors';
 import { useCatalog } from '../../hooks/useCatalog';
-/** Catálogo del cliente y ABML administrativo reutilizando componentes. */
+/** Catálogo del cliente y ABML administrativo reutilizando componentes.
+ * @param props - Propiedades tipadas: admin. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function ServicesScreen({ admin = false }: { admin?: boolean }) {
   const c = useCatalog();
   const typeId = c.typeId || c.types.data?.[0]?.id || '';
   return (
-    <Screen
-      refreshing={c.list.loading}
-      onRefresh={() => {
-        void c.list.refresh();
-      }}
-    >
+    <Screen refreshing={c.list.loading} onRefresh={c.list.refresh}>
       <SectionHeader
         title={admin ? 'Servicios y precios' : 'Elegí cómo cuidarlo'}
         subtitle="Precios en pesos argentinos, según tu vehículo."
@@ -29,30 +26,7 @@ export function ServicesScreen({ admin = false }: { admin?: boolean }) {
         options={(c.types.data ?? []).map((t) => ({ value: t.id, label: t.name }))}
       />
       <Notice error={c.types.error} message={c.action.message} />
-      <CollectionState
-        loading={c.list.loading}
-        error={c.list.error}
-        empty={!c.list.data?.length}
-        emptyTitle="Todavía no hay servicios disponibles"
-        onRetry={() => {
-          void c.list.refresh();
-        }}
-      >
-        {c.list.data?.map((s) => (
-          <ServiceCard
-            key={s.id}
-            service={s}
-            typeId={typeId}
-            {...(admin
-              ? {
-                  onEdit: () => c.edit(s),
-                  onPrice: () => c.setPricing(s),
-                  onDelete: () => c.setDeleting(s),
-                }
-              : {})}
-          />
-        ))}
-      </CollectionState>
+      <ServiceCollection c={c} admin={admin} typeId={typeId} />
       {admin && <ServiceEditors catalog={c} />}
     </Screen>
   );
