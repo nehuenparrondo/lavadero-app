@@ -124,3 +124,10 @@ Cada pieza mantiene su TSDoc. Este índice ayuda a ubicar responsabilidades.
 - [src/utils/parseApiUrl.ts](../src/utils/parseApiUrl.ts): infraestructura o utilidades.
 - [src/utils/pesosToCents.ts](../src/utils/pesosToCents.ts): infraestructura o utilidades.
 - [tests/parseApiUrl.test.ts](../tests/parseApiUrl.test.ts): verificación.
+
+## Archivos incorporados en la revisión de producción
+
+- [src/app/oauth.web.tsx](../src/app/oauth.web.tsx): módulo documentado junto a su implementación.
+- [src/hooks/useSocialLogin.web.ts](../src/hooks/useSocialLogin.web.ts): módulo documentado junto a su implementación.
+- [src/hooks/useWebOAuthReturn.ts](../src/hooks/useWebOAuthReturn.ts): módulo documentado junto a su implementación.
+- [src/utils/pendingOAuth.ts](../src/utils/pendingOAuth.ts): módulo documentado junto a su implementación.

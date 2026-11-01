@@ -14,10 +14,10 @@ Las credenciales iniciales están en el archivo privado de acceso, separado del 
 Para una cuenta nueva elegí **Creá tu cuenta**, completá nombre, apellido, email,
 teléfono opcional y contraseña. La cuenta se crea como Cliente. Un Administrador
 puede promoverla después; no existe elección pública de rol.
-Google, Discord y GitHub abren el navegador del sistema. Revisá el consentimiento,
+En el APK, Google, Discord y GitHub abren el navegador del sistema; en web se usa la misma pestaña. Revisá el consentimiento,
 autorizá y volvé a la app. No uses Expo Go para evaluar ese retorno.
 
-![Ingreso y tema oscuro](images/login-mobile-dark.png)
+![Ingreso y tema oscuro](images/login-publicado.png)
 
 ## Cliente
 
