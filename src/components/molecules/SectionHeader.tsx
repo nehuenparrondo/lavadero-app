@@ -1,7 +1,10 @@
 import { View } from 'react-native';
-import { Text } from '../atoms/Text';
 import { useTheme } from '../../hooks/useTheme';
-/** Título y descripción de una sección con jerarquía tipográfica. */
+import { Text } from '../atoms/Text';
+/** Título y descripción de una sección con jerarquía tipográfica.
+ * @param props - Propiedades tipadas: title, subtitle. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function SectionHeader({ title, subtitle }: { title: string; subtitle?: string }) {
   const { colors } = useTheme();
   return (

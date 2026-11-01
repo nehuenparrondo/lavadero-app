@@ -1,65 +1,35 @@
 import { useState } from 'react';
-import { View, Pressable } from 'react-native';
-import { useRouter } from 'expo-router';
-import type { Href } from 'expo-router';
-import { ModalPanel } from '../components/organisms/ModalPanel';
+import { Pressable, View } from 'react-native';
+import { Icon } from '../components/atoms/Icon';
 import { Text } from '../components/atoms/Text';
-import { Button } from '../components/atoms/Button';
+import { AdminMenu } from '../components/organisms/AdminMenu';
 import { useTheme } from '../hooks/useTheme';
-const items = [
-  ['dashboard', 'Tablero'],
-  ['appointments', 'Turnos'],
-  ['users', 'Usuarios'],
-  ['services', 'Servicios y precios'],
-  ['reports', 'Reportes'],
-  ['settings', 'Configuración'],
-  ['profile', 'Perfil'],
-] as const;
-/** Menú administrativo accesible en teléfono y tablet. */
+import { adminHeaderStyles as styles } from '../theme/adminHeader.styles';
+/** Encabezado adaptable; el menú y sus rutas están separados de la presentación.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function AdminHeader() {
   const [open, setOpen] = useState(false);
-  const router = useRouter();
   const { colors } = useTheme();
   return (
     <>
       <View
-        style={{
-          paddingHorizontal: 20,
-          paddingTop: 18,
-          paddingBottom: 14,
-          backgroundColor: colors.surface,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          borderBottomWidth: 1,
-          borderColor: colors.border,
-        }}
+        style={[
+          styles.header,
+          { backgroundColor: colors.surface, borderColor: colors.border },
+        ]}
       >
-        <Text style={{ fontWeight: '900', color: colors.primary, letterSpacing: 2 }}>
-          LAVADERO
-        </Text>
+        <Text style={[styles.brand, { color: colors.primary }]}>LAVADERO</Text>
         <Pressable
           accessibilityRole="button"
           accessibilityLabel="Abrir menú de administración"
           onPress={() => setOpen(true)}
-          style={{ padding: 10 }}
+          style={styles.toggle}
         >
-          <Text style={{ fontSize: 20 }}>☰</Text>
+          <Icon symbol="☰" size={20} />
         </Pressable>
       </View>
-      <ModalPanel visible={open} title="Administración" onClose={() => setOpen(false)}>
-        {items.map(([path, label]) => (
-          <Button
-            key={path}
-            label={label}
-            variant="secondary"
-            onPress={() => {
-              setOpen(false);
-              router.push(`/(admin)/${path}` as Href);
-            }}
-          />
-        ))}
-      </ModalPanel>
+      <AdminMenu open={open} onClose={() => setOpen(false)} />
     </>
   );
 }

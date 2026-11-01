@@ -1,9 +1,12 @@
-import { Modal, View, ScrollView } from 'react-native';
 import type { PropsWithChildren } from 'react';
+import { Modal, ScrollView, StyleSheet, View } from 'react-native';
+import { useTheme } from '../../hooks/useTheme';
 import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
-import { useTheme } from '../../hooks/useTheme';
-/** Panel accesible para formularios y confirmaciones sin ventanas nativas bloqueantes. */
+/** Panel accesible para formularios y confirmaciones sin ventanas nativas bloqueantes.
+ * @param props - Propiedades tipadas: visible, title, onClose, children. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function ModalPanel({
   visible,
   title,
@@ -13,24 +16,8 @@ export function ModalPanel({
   const { colors } = useTheme();
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: '#00000088',
-          justifyContent: 'center',
-          padding: 16,
-        }}
-      >
-        <View
-          style={{
-            maxHeight: '90%',
-            width: '100%',
-            maxWidth: 620,
-            alignSelf: 'center',
-            backgroundColor: colors.surface,
-            borderRadius: 24,
-          }}
-        >
+      <View style={styles.backdrop}>
+        <View style={[styles.panel, { backgroundColor: colors.surface }]}>
           <ScrollView
             keyboardShouldPersistTaps="handled"
             contentContainerStyle={{ padding: 24, gap: 18 }}
@@ -46,3 +33,14 @@ export function ModalPanel({
     </Modal>
   );
 }
+
+const styles = StyleSheet.create({
+  backdrop: { flex: 1, backgroundColor: '#00000088', justifyContent: 'center', padding: 16 },
+  panel: {
+    maxHeight: '90%',
+    width: '100%',
+    maxWidth: 620,
+    alignSelf: 'center',
+    borderRadius: 24,
+  },
+});

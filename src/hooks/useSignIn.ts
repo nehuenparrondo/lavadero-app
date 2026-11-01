@@ -1,8 +1,11 @@
 import { useRouter } from 'expo-router';
 import { login, register } from '../api/services/authService';
-import { useAuth } from './useAuth';
 import { useAction } from './useAction';
-/** Conecta formulario con registro/login y guarda refresh de forma segura. */
+import { useAuth } from './useAuth';
+/** Conecta formulario con registro/login y guarda refresh de forma segura.
+ * @param signUp - Valor tipado de signUp utilizado por esta operación.
+ * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ */
 export function useSignIn(signUp = false) {
   const auth = useAuth();
   const action = useAction();

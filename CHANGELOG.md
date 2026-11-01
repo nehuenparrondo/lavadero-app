@@ -1,5 +1,11 @@
 # Changelog
 
+## Revisión de requisitos — 01/11/2026
+
+- Vinculación social de cuentas locales confirmando su contraseña, PKCE y límite de intentos.
+- Separación de consultas, estado, comandos y secciones visuales; auditoría automática de fuente, TSDoc y ciclos.
+- Documentación por requisito, catálogo de componentes actualizado y guía para iPhone/Expo Go.
+
 ## Revisión final de producción — 01/11/2026
 
 - OAuth con state UUID explícito, retorno web en la misma pestaña y pruebas de vencimiento/CSRF.

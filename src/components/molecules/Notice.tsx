@@ -1,8 +1,11 @@
 import { View } from 'react-native';
-import { Text } from '../atoms/Text';
-import { Button } from '../atoms/Button';
 import { useTheme } from '../../hooks/useTheme';
-/** Mensaje de error/éxito anunciado a lectores de pantalla. */
+import { Button } from '../atoms/Button';
+import { Text } from '../atoms/Text';
+/** Mensaje de error/éxito anunciado a lectores de pantalla.
+ * @param props - Propiedades tipadas: error, message, onRetry. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function Notice({
   error,
   message,

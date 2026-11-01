@@ -1,14 +1,16 @@
-import { useEffect, useRef } from 'react';
 import { useLocalSearchParams } from 'expo-router';
-import { exchangeSocial } from '../api/services/authService';
+import { useEffect, useRef } from 'react';
 import { pendingOAuthKey, readPendingOAuth } from '../utils/pendingOAuth';
 import { useAuth } from './useAuth';
-import { useAction } from './useAction';
+import { useSocialExchange } from './useSocialExchange';
 
-/** Consume el retorno web una vez, validando state/PKCE antes de guardar sesión. */
+/** Consume el retorno web una vez, validando state/PKCE antes de guardar sesión.
+ * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
+ */
 export function useWebOAuthReturn() {
   const auth = useAuth();
-  const action = useAction();
+  const action = useSocialExchange();
   const params = useLocalSearchParams<{ code?: string; state?: string; error?: string }>();
   const started = useRef(false);
   useEffect(() => {
@@ -20,8 +22,8 @@ export function useWebOAuthReturn() {
       if (params.error) throw new Error('El ingreso social fue cancelado.');
       if (typeof params.code !== 'string')
         throw new Error('Falta el código de acceso social.');
-      await auth.accept(await exchangeSocial(params.code, pending.verifier));
+      await action.complete(params.code, pending.verifier);
     }, '');
   }, [auth.restoring]);
-  return { user: auth.user, error: action.error };
+  return { user: auth.user, ...action };
 }

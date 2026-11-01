@@ -46,10 +46,11 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "tsx --test tests/*.test.ts",
-    "check": "npm run typecheck && npm run lint && npm test",
+    "check": "npm run typecheck && npm run lint && npm test && npm run audit:source",
     "export:android": "expo export --platform android --output-dir dist",
     "web": "expo start --web",
-    "export:web": "expo export --platform web --output-dir web-dist"
+    "export:web": "expo export --platform web --output-dir web-dist",
+    "audit:source": "tsx scripts/auditSource.ts"
   },
   "private": true,
   "engines": {

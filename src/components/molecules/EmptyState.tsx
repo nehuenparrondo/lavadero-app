@@ -1,7 +1,10 @@
 import { View } from 'react-native';
-import { Text } from '../atoms/Text';
 import { useTheme } from '../../hooks/useTheme';
-/** Lista vacía con una explicación específica del recurso. */
+import { Text } from '../atoms/Text';
+/** Lista vacía con una explicación específica del recurso.
+ * @param props - Propiedades tipadas: title, detail. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function EmptyState({ title, detail }: { title: string; detail?: string }) {
   const { colors } = useTheme();
   return (

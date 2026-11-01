@@ -1,5 +1,5 @@
-import { Text as NativeText } from 'react-native';
 import type { TextProps } from 'react-native';
+import { Text as NativeText } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
 import { tokens } from '../../theme/tokens';
 

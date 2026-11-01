@@ -1,21 +1,18 @@
-import { Screen } from '../../components/organisms/Screen';
-import { SectionHeader } from '../../components/molecules/SectionHeader';
-import { Card } from '../../components/molecules/Card';
-import { EntityForm } from '../../components/organisms/EntityForm';
-import { Notice } from '../../components/molecules/Notice';
 import { Text } from '../../components/atoms/Text';
+import { Card } from '../../components/molecules/Card';
+import { Notice } from '../../components/molecules/Notice';
+import { SectionHeader } from '../../components/molecules/SectionHeader';
+import { EntityForm } from '../../components/organisms/EntityForm';
+import { Screen } from '../../components/organisms/Screen';
 import { VehicleTypeManager } from '../../components/organisms/VehicleTypeManager';
 import { useSettings } from '../../hooks/useSettings';
-/** Horarios, capacidad, ventana de cancelación y categorías del negocio. */
+/** Horarios, capacidad, ventana de cancelación y categorías del negocio.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function SettingsScreen() {
   const m = useSettings();
   return (
-    <Screen
-      refreshing={m.state.loading}
-      onRefresh={() => {
-        void m.state.refresh();
-      }}
-    >
+    <Screen refreshing={m.state.loading} onRefresh={m.state.refresh}>
       <SectionHeader title="Configuración" subtitle="Ajustá la atención del lavadero." />
       <Notice error={m.state.error || m.action.error} message={m.action.message} />
       {m.state.data && (

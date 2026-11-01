@@ -1,7 +1,10 @@
-import { TextInput, StyleSheet } from 'react-native';
 import type { TextInputProps } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
-/** Entrada controlada accesible, con tema y altura táctil suficiente. */
+/** Entrada controlada accesible, con tema y altura táctil suficiente.
+ * @param props - Valor tipado de props utilizado por esta operación.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function Input(props: TextInputProps) {
   const { colors } = useTheme();
   return (

@@ -1,8 +1,11 @@
 import type { PropsWithChildren } from 'react';
-import { LoadingState } from '../molecules/LoadingState';
 import { EmptyState } from '../molecules/EmptyState';
+import { LoadingState } from '../molecules/LoadingState';
 import { Notice } from '../molecules/Notice';
-/** Estados consistentes de lista: carga inicial, error recuperable y vacío. */
+/** Estados consistentes de lista: carga inicial, error recuperable y vacío.
+ * @param props - Propiedades tipadas: loading, error, empty, emptyTitle, onRetry, children. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function CollectionState({
   loading,
   error,

@@ -7,7 +7,10 @@ export const publicTransport = axios.create({
   timeout: 65000,
   ...(apiUrl ? { baseURL: apiUrl } : {}),
 });
-/** Exige configuración antes de enviar cualquier petición. */
+/** Exige configuración antes de enviar cualquier petición.
+ * @returns `void`, según el contrato de la operación.
+ * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
+ */
 export function requireApi() {
   if (!apiUrl) throw new Error('La conexión con el lavadero todavía no fue configurada.');
 }

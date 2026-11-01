@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
+import { makeRedirectUri, ResponseType, useAuthRequest } from 'expo-auth-session';
 import { randomUUID } from 'expo-crypto';
-import { makeRedirectUri, useAuthRequest, ResponseType } from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
+import { useState } from 'react';
 import { apiUrl } from '../api/transport';
-import { exchangeSocial } from '../api/services/authService';
-import { useAuth } from './useAuth';
-import { useAction } from './useAction';
+import { useSocialExchange } from './useSocialExchange';
+import { useSocialResponse } from './useSocialResponse';
 WebBrowser.maybeCompleteAuthSession();
-/** Inicia AuthSession con PKCE; la API intercambia el código y emite su propia sesión. */
+/** Inicia AuthSession con PKCE; la API intercambia el código y emite su propia sesión.
+ * @param provider - Proveedor permitido: Google, Discord o GitHub.
+ * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ */
 export function useSocialLogin(provider: 'google' | 'discord' | 'github') {
-  const auth = useAuth();
-  const action = useAction();
+  const action = useSocialExchange();
   const [opening, setOpening] = useState(false);
   const [oauthState] = useState(() => randomUUID());
   const [request, response, prompt] = useAuthRequest(
@@ -23,16 +24,7 @@ export function useSocialLogin(provider: 'google' | 'discord' | 'github') {
     },
     { authorizationEndpoint: `${apiUrl}/api/v1/auth/oauth/${provider}/authorize` },
   );
-  useEffect(() => {
-    if (response?.type === 'success' && request?.codeVerifier) {
-      const code = response.params.code;
-      const verifier = request.codeVerifier;
-      if (code)
-        void action.run(async () => {
-          await auth.accept(await exchangeSocial(code, verifier));
-        }, '');
-    }
-  }, [response]);
+  useSocialResponse(request, response, action);
   const start = async () => {
     setOpening(true);
     await action.run(async () => {
@@ -40,5 +32,5 @@ export function useSocialLogin(provider: 'google' | 'discord' | 'github') {
     }, '');
     setOpening(false);
   };
-  return { start, ready: Boolean(request), busy: opening || action.busy, error: action.error };
+  return { ...action, start, ready: Boolean(request), busy: opening || action.busy };
 }

@@ -56,3 +56,7 @@ correctamente el scheme propio. El backend conserva los secretos del proveedor.
 
 En Android el refresh se guarda con SecureStore. En la vista web se usa sessionStorage
 de la pestaña; cerrar la pestaña elimina esa persistencia. El access token queda en memoria.
+
+## Revisión de la consigna
+
+[Matriz de requisitos y evidencia](docs/requirements-review.md) · [Prueba desde iPhone/Expo Go](docs/iphone-expo-go.md).

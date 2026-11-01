@@ -1,5 +1,7 @@
 import { RoleTabs } from '../../navigation/RoleTabs';
-/** Cinco destinos del cliente, protegidos por el layout raíz. */
+/** Cinco destinos del cliente, protegidos por el layout raíz.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export default function ClientLayout() {
   return (
     <RoleTabs

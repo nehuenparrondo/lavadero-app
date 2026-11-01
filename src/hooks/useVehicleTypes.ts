@@ -1,60 +1,35 @@
-import { useState } from 'react';
-import { useRemoteData } from './useRemoteData';
-import { useAction } from './useAction';
 import { writeResource } from '../api/services/resourceService';
 import type { VehicleType } from '../types/entities';
-/** ABML de categorías; las bajas conservan vehículos y precios históricos asociados. */
+import { makeCatalogCode } from '../utils/makeCatalogCode';
+import { useRemoteData } from './useRemoteData';
+import { useResourceEditor } from './useResourceEditor';
+/** Categorías con edición común y baja lógica que conserva referencias históricas.
+ * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ */
 export function useVehicleTypes() {
   const state = useRemoteData<VehicleType[]>('/vehicle-types');
-  const action = useAction();
-  const [editing, setEditing] = useState<VehicleType | null>(null);
-  const [open, setOpen] = useState(false);
-  const create = () => {
-    setEditing(null);
-    setOpen(true);
-    action.clear();
-  };
-  const edit = (type: VehicleType) => {
-    setEditing(type);
-    setOpen(true);
-    action.clear();
-  };
-  const save = async (v: Record<string, string>) => {
-    const code =
-      editing?.code ??
-      `${v.name
-        ?.normalize('NFD')
-        .replace(/[\u0300-\u036f]/gu, '')
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/gu, '-')
-        .slice(0, 14)}-${Date.now().toString(36)}`;
-    const result = await action.run(() =>
-      writeResource(
-        editing ? 'put' : 'post',
-        editing ? `/vehicle-types/${editing.id}` : '/vehicle-types',
-        { code, name: v.name, isActive: v.isActive === 'true' },
-      ),
-    );
-    if (result !== undefined) {
-      setOpen(false);
-      await state.refresh();
-    }
-  };
+  const editor = useResourceEditor<VehicleType>(
+    '/vehicle-types',
+    (v) => v,
+    state.refresh,
+    (current, body) => {
+      const v = body as Record<string, string>;
+      return writeResource(
+        current ? 'put' : 'post',
+        current ? `/vehicle-types/${current.id}` : '/vehicle-types',
+        {
+          code: current?.code ?? makeCatalogCode(v.name ?? '', 14),
+          name: v.name,
+          isActive: v.isActive === 'true',
+        },
+      );
+    },
+  );
   const remove = async (type: VehicleType) => {
-    await action.run(async () => {
+    await editor.action.run(async () => {
       await writeResource('delete', `/vehicle-types/${type.id}`);
       await state.refresh();
     }, 'Tipo desactivado.');
   };
-  return {
-    state,
-    action,
-    editing,
-    open,
-    create,
-    edit,
-    save,
-    remove,
-    close: () => setOpen(false),
-  };
+  return { ...editor, state, action: editor.action, remove };
 }

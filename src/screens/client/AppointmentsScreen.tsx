@@ -1,14 +1,17 @@
 import { useRouter } from 'expo-router';
-import { Screen } from '../../components/organisms/Screen';
-import { SectionHeader } from '../../components/molecules/SectionHeader';
 import { Button } from '../../components/atoms/Button';
 import { Text } from '../../components/atoms/Text';
-import { AppointmentCard } from '../../components/organisms/AppointmentCard';
-import { AppointmentFilters } from '../../components/organisms/AppointmentFilters';
-import { CollectionState } from '../../components/organisms/CollectionState';
 import { Pagination } from '../../components/molecules/Pagination';
+import { SectionHeader } from '../../components/molecules/SectionHeader';
+import { AppointmentFilters } from '../../components/organisms/AppointmentFilters';
+import { AppointmentList } from '../../components/organisms/AppointmentList';
+import { Screen } from '../../components/organisms/Screen';
 import { useAppointments } from '../../hooks/useAppointments';
-/** Lista de turnos con filtros, estados y navegación a detalles. */
+import { appointmentListTitle } from '../../utils/appointmentListTitle';
+/** Lista de turnos con filtros, estados y navegación a detalles.
+ * @param props - Propiedades tipadas: mode, history. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function AppointmentsScreen({
   mode = 'client',
   history = false,
@@ -19,22 +22,9 @@ export function AppointmentsScreen({
   const m = useAppointments(mode, history);
   const router = useRouter();
   return (
-    <Screen
-      refreshing={m.loading}
-      onRefresh={() => {
-        void m.refresh();
-      }}
-    >
+    <Screen refreshing={m.loading} onRefresh={m.refresh}>
       <SectionHeader
-        title={
-          mode === 'employee'
-            ? history
-              ? 'Historial de trabajos'
-              : 'Mi agenda'
-            : mode === 'admin'
-              ? 'Turnos'
-              : 'Mis turnos'
-        }
+        title={appointmentListTitle(mode, history)}
         subtitle="El estado de cada lavado, actualizado."
       />
       {mode !== 'employee' && (
@@ -46,23 +36,7 @@ export function AppointmentsScreen({
         </Text>
       )}
       <AppointmentFilters manager={m} />
-      <CollectionState
-        loading={m.loading}
-        error={m.error}
-        empty={!m.data?.items.length}
-        emptyTitle="No hay turnos con estos filtros"
-        onRetry={() => {
-          void m.refresh();
-        }}
-      >
-        {m.data?.items.map((a) => (
-          <AppointmentCard
-            key={a.id}
-            appointment={a}
-            onPress={() => router.push(`/appointment/${a.id}`)}
-          />
-        ))}
-      </CollectionState>
+      <AppointmentList m={m} />
       {m.data && (
         <Pagination
           page={m.page}

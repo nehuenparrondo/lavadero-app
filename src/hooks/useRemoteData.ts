@@ -1,8 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { readResource } from '../api/services/resourceService';
 import type { Query } from '../api/services/resourceService';
+import { readResource } from '../api/services/resourceService';
 import { errorMessage } from '../utils/errorMessage';
-/** Consulta cancelable lógicamente con estados de carga/error, filtros y pull-to-refresh. */
+/** Consulta cancelable lógicamente con estados de carga/error, filtros y pull-to-refresh.
+ * @param path - Ruta relativa del recurso dentro de la API versionada.
+ * @param query - Filtros y paginación enviados como parámetros de consulta.
+ * @param enabled - Valor tipado de enabled utilizado por esta operación.
+ * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ */
 export function useRemoteData<T>(path: string, query: Query = {}, enabled = true) {
   const key = JSON.stringify(query);
   const [data, setData] = useState<T | null>(null);

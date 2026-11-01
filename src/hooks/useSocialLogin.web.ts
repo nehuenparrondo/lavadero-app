@@ -1,35 +1,19 @@
-import { AuthRequest, makeRedirectUri, ResponseType } from 'expo-auth-session';
-import { randomUUID } from 'expo-crypto';
-import { apiUrl, requireApi } from '../api/transport';
-import { pendingOAuthKey } from '../utils/pendingOAuth';
+import { apiUrl } from '../api/transport';
+import { startWebOAuth } from '../utils/startWebOAuth';
 import { useAction } from './useAction';
-
-/** AuthSession prepara PKCE; web navega en la pestaña para no depender de popups. */
+/** Estado del botón web; la confirmación de vinculación ocurre en la ruta de retorno.
+ * @param provider - Proveedor permitido: Google, Discord o GitHub.
+ * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ */
 export function useSocialLogin(provider: 'google' | 'discord' | 'github') {
   const action = useAction();
-  const start = () =>
-    action.run(async () => {
-      requireApi();
-      const request = new AuthRequest({
-        clientId: 'lavadero-web',
-        responseType: ResponseType.Code,
-        redirectUri: makeRedirectUri({ path: 'oauth' }),
-        usePKCE: true,
-        state: randomUUID(),
-      });
-      const url = await request.makeAuthUrlAsync({
-        authorizationEndpoint: `${apiUrl}/api/v1/auth/oauth/${provider}/authorize`,
-      });
-      if (!request.codeVerifier) throw new Error('No se pudo preparar el acceso seguro.');
-      sessionStorage.setItem(
-        pendingOAuthKey,
-        JSON.stringify({
-          state: request.state,
-          verifier: request.codeVerifier,
-          createdAt: Date.now(),
-        }),
-      );
-      window.location.assign(url);
-    }, '');
-  return { start, ready: Boolean(apiUrl), busy: action.busy, error: action.error };
+  return {
+    start: () => action.run(() => startWebOAuth(provider), ''),
+    ready: Boolean(apiUrl),
+    busy: action.busy,
+    error: action.error,
+    linkRequired: false,
+    cancelLink: () => {},
+    confirm: async () => {},
+  };
 }

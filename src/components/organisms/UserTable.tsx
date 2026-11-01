@@ -1,11 +1,14 @@
 import { View } from 'react-native';
-import { Card } from '../molecules/Card';
-import { Text } from '../atoms/Text';
+import type { User } from '../../types/entities';
 import { Badge } from '../atoms/Badge';
 import { Button } from '../atoms/Button';
-import type { User } from '../../types/entities';
+import { Text } from '../atoms/Text';
+import { Card } from '../molecules/Card';
 const labels = { admin: 'Administrador', employee: 'Empleado', client: 'Cliente' };
-/** Usuarios como filas adaptables a tarjetas en teléfono. */
+/** Usuarios como filas adaptables a tarjetas en teléfono.
+ * @param props - Propiedades tipadas: users, onEdit, onDelete. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function UserTable({
   users,
   onEdit,

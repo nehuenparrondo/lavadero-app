@@ -1,12 +1,13 @@
 import { View } from 'react-native';
-import { ChoiceGroup } from '../molecules/ChoiceGroup';
-import { Text } from '../atoms/Text';
+import type { useBooking } from '../../hooks/useBooking';
+import { AvailableSlots } from '../molecules/AvailableSlots';
 import { LoadingState } from '../molecules/LoadingState';
 import { Notice } from '../molecules/Notice';
-import { Card } from '../molecules/Card';
-import { money, slotTime } from '../../utils/format';
-import type { useBooking } from '../../hooks/useBooking';
-/** Horarios y total provienen del backend; no calcula precios en el cliente. */
+import { QuotedTotal } from '../molecules/QuotedTotal';
+/** Horarios y total provienen del backend; no calcula precios en el cliente.
+ * @param props - Propiedades tipadas: booking. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function ScheduleSelector({ booking: b }: { booking: ReturnType<typeof useBooking> }) {
   if (!b.vehicleId || !b.serviceIds) return null;
   return (
@@ -15,33 +16,15 @@ export function ScheduleSelector({ booking: b }: { booking: ReturnType<typeof us
         <LoadingState label="Buscando horarios…" />
       ) : (
         <>
-          <Notice
-            error={b.availability.error}
-            onRetry={() => {
-              void b.availability.refresh();
-            }}
-          />
+          <Notice error={b.availability.error} onRetry={b.availability.refresh} />
           {b.availability.data && (
             <>
-              <Card>
-                <Text style={{ fontSize: 24, fontWeight: '800' }}>
-                  {money(b.availability.data.totalCents)}
-                </Text>
-                <Text>{b.availability.data.durationMinutes} minutos estimados · ARS</Text>
-              </Card>
-              <Text style={{ fontWeight: '700' }}>Elegí un horario</Text>
-              {b.availability.data.slots.length ? (
-                <ChoiceGroup
-                  value={b.slot}
-                  onChange={b.setSlot}
-                  options={b.availability.data.slots.map((value) => ({
-                    value,
-                    label: slotTime(value),
-                  }))}
-                />
-              ) : (
-                <Text>No quedan horarios disponibles para esta fecha. Probá otro día.</Text>
-              )}
+              <QuotedTotal quote={b.availability.data} />
+              <AvailableSlots
+                quote={b.availability.data}
+                value={b.slot}
+                onChange={b.setSlot}
+              />
             </>
           )}
         </>

@@ -1,12 +1,15 @@
-import { useMemo } from 'react';
-import { View } from 'react-native';
-import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMemo } from 'react';
+import { useForm } from 'react-hook-form';
+import { View } from 'react-native';
 import type { FormFieldDefinition } from '../../types/form';
 import { buildFormSchema } from '../../utils/buildFormSchema';
-import { FormField } from '../molecules/FormField';
 import { Button } from '../atoms/Button';
-/** Formulario RHF + Zod con errores por campo y callback sin HTTP propio. */
+import { ControlledField } from '../molecules/ControlledField';
+/** Formulario RHF + Zod con errores por campo y callback sin HTTP propio.
+ * @param props - Propiedades tipadas: fields, initialValues, onSubmit, busy, submitLabel. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function EntityForm({
   fields,
   initialValues = {},
@@ -31,20 +34,7 @@ export function EntityForm({
   return (
     <View style={{ gap: 16 }}>
       {fields.map((field) => (
-        <Controller
-          key={field.name}
-          name={field.name}
-          control={control}
-          render={({ field: binding, fieldState }) => (
-            <FormField
-              field={field}
-              value={binding.value ?? ''}
-              onChange={binding.onChange}
-              onBlur={binding.onBlur}
-              error={fieldState.error?.message}
-            />
-          )}
-        />
+        <ControlledField key={field.name} field={field} control={control} />
       ))}
       <Button
         label={submitLabel}

@@ -1,12 +1,14 @@
 import { View } from 'react-native';
-import { Button } from '../atoms/Button';
-import { ChoiceGroup } from '../molecules/ChoiceGroup';
-import { Text } from '../atoms/Text';
-import { statusLabels } from '../molecules/StatusBadge';
-import { Card } from '../molecules/Card';
 import type { useAppointmentDetail } from '../../hooks/useAppointmentDetail';
-import type { AppointmentStatus } from '../../types/entities';
-/** Acciones del rol visible; el servidor vuelve a validarlas con propiedad/asignación. */
+import { Button } from '../atoms/Button';
+import { AppointmentAssignment } from './AppointmentAssignment';
+import { AppointmentPaymentAction } from './AppointmentPaymentAction';
+import { AppointmentStatusEditor } from './AppointmentStatusEditor';
+import { EmployeeWorkAction } from './EmployeeWorkAction';
+/** Acciones del rol visible; el servidor vuelve a validarlas con propiedad/asignación.
+ * @param props - Propiedades tipadas: manager. Los callbacks conectan la interacción con su hook.
+ * @returns Elemento React de esta pieza visual; puede omitir contenido cuando no corresponde al estado actual.
+ */
 export function AppointmentActions({
   manager: m,
 }: {
@@ -17,56 +19,11 @@ export function AppointmentActions({
   const closed = ['completed', 'cancelled'].includes(appointment.status);
   return (
     <View style={{ gap: 16 }}>
-      {m.user?.role === 'admin' && !closed && (
-        <Card>
-          <Text style={{ fontWeight: '700' }}>Empleado asignado</Text>
-          <ChoiceGroup
-            options={m.employees.map((e) => ({
-              value: e.id,
-              label: `${e.firstName} ${e.lastName}`,
-            }))}
-            value={m.employeeId}
-            onChange={m.setEmployeeId}
-          />
-          <Button
-            label={
-              appointment.status === 'pending' ? 'Asignar y confirmar' : 'Guardar asignación'
-            }
-            disabled={!m.employeeId}
-            loading={m.action.busy}
-            onPress={() => {
-              void m.assign();
-            }}
-          />
-        </Card>
-      )}
-      {m.user?.role === 'admin' && (
-        <Card>
-          <Text style={{ fontWeight: '700' }}>Estado del turno</Text>
-          <ChoiceGroup
-            options={Object.entries(statusLabels).map(([value, label]) => ({ value, label }))}
-            value={m.status}
-            onChange={(v) => m.setStatus(v as AppointmentStatus)}
-          />
-          <Button
-            label="Actualizar estado"
-            disabled={m.status === appointment.status}
-            loading={m.action.busy}
-            onPress={() => {
-              void m.setAdminStatus();
-            }}
-          />
-        </Card>
-      )}
+      {m.user?.role === 'admin' && !closed && <AppointmentAssignment m={m} />}
+      {m.user?.role === 'admin' && <AppointmentStatusEditor m={m} />}
       {m.user?.role === 'employee' &&
         ['confirmed', 'in_progress'].includes(appointment.status) && (
-          <Button
-            label={appointment.status === 'confirmed' ? 'Comenzar lavado' : 'Finalizar lavado'}
-            loading={m.action.busy}
-            onPress={() => {
-              void m.advance();
-            }}
-          />
+          <EmployeeWorkAction m={m} />
         )}
       {m.canCancel && !closed && (
         <Button
@@ -76,11 +33,7 @@ export function AppointmentActions({
         />
       )}
       {m.canPay && ['in_progress', 'completed'].includes(appointment.status) && (
-        <Button
-          label="Registrar cobro"
-          variant="secondary"
-          onPress={() => m.setPaymentOpen(true)}
-        />
+        <AppointmentPaymentAction m={m} />
       )}
       {m.user?.role !== 'employee' && appointment.status === 'completed' && (
         <Button label="Ver comprobante" onPress={() => m.setReceiptOpen(true)} />

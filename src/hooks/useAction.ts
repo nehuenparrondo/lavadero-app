@@ -1,36 +1,24 @@
 import { useState } from 'react';
 import { errorMessage } from '../utils/errorMessage';
-/** Ejecuta acciones con carga, error y resultado; evita lógica HTTP dentro de JSX. */
+/** Ejecuta una acción y publica carga/error/resultado sin propagar errores a la vista.
+ * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ */
 export function useAction() {
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
+  const [state, setState] = useState({ busy: false, error: '', message: '' });
   async function run<T>(
     task: () => Promise<T>,
     success = 'Cambios guardados.',
   ): Promise<T | undefined> {
-    setBusy(true);
-    setError('');
-    setMessage('');
+    setState({ busy: true, error: '', message: '' });
     try {
       const result = await task();
-      setMessage(success);
+      setState({ busy: false, error: '', message: success });
       return result;
-    } catch (e) {
-      setError(errorMessage(e));
+    } catch (error) {
+      setState({ busy: false, error: errorMessage(error), message: '' });
       return undefined;
-    } finally {
-      setBusy(false);
     }
   }
-  return {
-    busy,
-    error,
-    message,
-    run,
-    clear: () => {
-      setError('');
-      setMessage('');
-    },
-  };
+  const clear = () => setState((current) => ({ ...current, error: '', message: '' }));
+  return { ...state, run, clear };
 }
