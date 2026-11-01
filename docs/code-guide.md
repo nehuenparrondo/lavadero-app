@@ -30,7 +30,7 @@ api/client añade el access y comparte una sola renovación entre peticiones con
 Reintenta cada 401 una sola vez. renew comprueba que el refresh original siga siendo
 el actual antes de publicar; una respuesta tardía no puede restaurar la sesión cerrada.
 El transporte público de autenticación no lleva ese interceptor para evitar recursión.
-En nativo el refresh usa SecureStore; en web AsyncStorage conserva la sesión dentro
+En nativo el refresh usa SecureStore; en web sessionStorage conserva el refresh dentro
 del almacenamiento del navegador. No hay secretos OAuth en el cliente.
 
 RootNavigation conserva montado el navegador y usa /loading durante la restauración.
@@ -92,7 +92,7 @@ La cotización de availability viene del backend; la UI solo presenta total y du
 useBookingSubmit no envía precio como fuente de verdad. Si pierde el horario,
 limpia la selección de inicio y vuelve a consultar disponibilidad.
 
-useAppointmentFlags calcula únicamente qué controles mostrar. Las mutaciones siempre
+useAppointmentFlags conserva la selección administrativa y la apertura de diálogos; useAppointmentDetail calcula canCancel y canPay para los controles. Las mutaciones siempre
 se envían al backend. El detalle usa el importe solo si la proyección lo incluye:
 ausencia por falta de permiso no es un precio de cero.
 useAppointmentPayment mantiene su UUID de idempotencia entre reintentos y lo renueva

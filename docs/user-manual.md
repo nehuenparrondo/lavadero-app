@@ -4,6 +4,22 @@ La misma app muestra una experiencia distinta según el rol asignado por el serv
 Las capturas provienen de la versión web conectada a la API publicada. Se revisaron
 anchos de teléfono y paisaje; no son capturas de un teléfono físico.
 
+## Interfaz actualizada 1.1
+
+La portada de cada rol tiene una composición propia y comparte el mismo sistema
+visual. En escritorio se usa la barra lateral; en teléfono Cliente/Empleado usan
+pestañas inferiores y Administración usa el botón de menú de la cabecera.
+
+![Inicio del cliente](images/diseno-cliente-escritorio.png)
+
+![Agenda del empleado](images/diseno-empleado-escritorio.png)
+
+![Tablero administrativo](images/diseno-admin-escritorio.png)
+
+Las capturas funcionales de los recorridos siguientes provienen también de las
+pruebas anteriores. Sus controles conservan la función; la apariencia vigente
+se muestra en estas portadas. Ver redesign-review.md para la revisión actual.
+
 ## Acceso e instalación
 
 Abrí https://lavadero-app-2558.onrender.com o instalá el APK Android de la entrega.

@@ -4,18 +4,18 @@ Catálogos de solo lectura y definiciones declarativas. No contienen secretos ni
 
 ## Archivos y responsabilidades
 
-| Archivo                                | Responsabilidad                                                                    |
-| -------------------------------------- | ---------------------------------------------------------------------------------- |
-| [authFields.ts](authFields.ts)         | Campos de acceso sin selector de rol.                                              |
-| [business.ts](business.ts)             | Roles que puede emitir y validar el contrato del sistema.                          |
-| [iconPaths.ts](iconPaths.ts)           | Trazos originales sobre una grilla de 24 unidades, compartidos por web y nativo.   |
-| [paymentFields.ts](paymentFields.ts)   | Un cobro se registra en centavos en la API; el formulario recibe pesos argentinos. |
-| [profileFields.ts](profileFields.ts)   | Campos editables del perfil; el rol y el correo no se incluyen.                    |
-| [roleNavigation.ts](roleNavigation.ts) | Un único catálogo alimenta el menú móvil y la barra lateral.                       |
-| [rootRoutes.ts](rootRoutes.ts)         | Acceso necesario para cada pantalla; el backend valida además cada recurso.        |
-| [serviceFields.ts](serviceFields.ts)   | Campos reutilizados por alta y edición de servicios.                               |
-| [settingsFields.ts](settingsFields.ts) | Configuración inicial de horarios, cancelación y capacidad.                        |
-| [userFields.ts](userFields.ts)         | Roles y etiquetas compartidos por los filtros y el editor administrativo.          |
+| Archivo | Responsabilidad |
+| --- | --- |
+| [authFields.ts](authFields.ts) | Campos de acceso sin selector de rol. |
+| [business.ts](business.ts) | Roles que puede emitir y validar el contrato del sistema. |
+| [iconPaths.ts](iconPaths.ts) | Trazos originales sobre una grilla de 24 unidades, compartidos por web y nativo. |
+| [paymentFields.ts](paymentFields.ts) | Un cobro se registra en centavos en la API; el formulario recibe pesos argentinos. |
+| [profileFields.ts](profileFields.ts) | Campos editables del perfil; el rol y el correo no se incluyen. |
+| [roleNavigation.ts](roleNavigation.ts) | Un único catálogo alimenta el menú móvil y la barra lateral. |
+| [rootRoutes.ts](rootRoutes.ts) | Acceso necesario para cada pantalla; el backend valida además cada recurso. |
+| [serviceFields.ts](serviceFields.ts) | Campos reutilizados por alta y edición de servicios. |
+| [settingsFields.ts](settingsFields.ts) | Configuración inicial de horarios, cancelación y capacidad. |
+| [userFields.ts](userFields.ts) | Roles y etiquetas compartidos por los filtros y el editor administrativo. |
 
 ## Mantenimiento
 

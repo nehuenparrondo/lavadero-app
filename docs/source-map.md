@@ -2168,13 +2168,13 @@ Mantiene el stack montado mientras restaura sesión y aplica guardas por ruta.
 
 ## src/screens/BootstrapScreen.tsx
 
-Pantalla de etapa 1: solo composición y conexión de hooks.
+Pantalla de arranque: compone el estado de conectividad mientras se prepara la navegación.
 
 [Abrir fuente](../src/screens/BootstrapScreen.tsx)
 
-| Exportación     | Responsabilidad                                            |
-| --------------- | ---------------------------------------------------------- |
-| BootstrapScreen | Pantalla de etapa 1: solo composición y conexión de hooks. |
+| Exportación     | Responsabilidad                                                                            |
+| --------------- | ------------------------------------------------------------------------------------------ |
+| BootstrapScreen | Pantalla de arranque: compone el estado de conectividad mientras se prepara la navegación. |
 
 ## src/screens/admin/DashboardScreen.tsx
 

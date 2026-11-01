@@ -15,7 +15,7 @@ const lifetimeMs = 10 * 60 * 1000;
  * @param raw Solicitud temporal serializada por esta pestaña.
  * @param state State recibido en el callback.
  * @param now Reloj en milisegundos; permite verificar límites de vencimiento.
- * @returns Verifier PKCE validado. @throws Error si el retorno no corresponde a la solicitud.
+ * @returns Solicitud validada con state, verifier y createdAt. @throws Error si el retorno no corresponde a la solicitud.
  */
 export function readPendingOAuth(raw: string | null, state: unknown, now = Date.now()) {
   let value: unknown;

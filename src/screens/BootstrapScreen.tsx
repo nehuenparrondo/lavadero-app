@@ -5,7 +5,7 @@ import { useApiHealth } from '../hooks/useApiHealth';
 import { useTheme } from '../hooks/useTheme';
 import { bootstrapStyles as styles } from './bootstrap.styles';
 
-/** Pantalla de etapa 1: solo composición y conexión de hooks.
+/** Pantalla de arranque: compone el estado de conectividad mientras se prepara la navegación.
  * @returns Vista de BootstrapScreen con el contrato de propiedades declarado.
  */
 export function BootstrapScreen() {

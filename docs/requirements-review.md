@@ -67,3 +67,12 @@ La disponibilidad Free depende de cuotas y del proveedor. No se promete servicio
 ## Opcionales del documento
 
 La versión web está implementada y publicada. Recuperación automática de contraseña, EAS Update, publicación en tiendas y video no se realizaron: el documento los define como opcionales. No se generó un binario iOS; el APK solicitado es Android.
+
+## Actualización de documentación e interfaz 1.1
+
+La revisión actual conserva los requisitos y agrega portadas profesionales por rol,
+layout adaptable, íconos vectoriales locales, 117 componentes catalogados y guías
+de mantenimiento. Se verificaron 111 archivos backend y 259 frontend con el límite
+de tamaño y TSDoc público. Esta actualización repitió 18 pruebas unitarias/HTTP/frontend;
+las 17 de aceptación MySQL y los accesos sociales conservan la evidencia anterior.
+Ver docs/code-guide.md y docs/source-map.md; en frontend, docs/redesign-review.md.

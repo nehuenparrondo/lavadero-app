@@ -2,7 +2,7 @@
 
 ## Documentación y experiencia profesional — 01/11/2026
 
-- Versión 1.1.0, Android versionCode 5.
+- Versión 1.1.0, Android versionCode 6.
 - Portadas propias de Cliente, Empleado y Administrador, barra lateral y menú/tabs móviles.
 - Sistema visual compartido, iconografía SVG local, tarjetas/indicadores y catálogos adaptables.
 - Resumen personal se recarga con la agenda; proveedores sociales distinguen carga de indisponibilidad.
