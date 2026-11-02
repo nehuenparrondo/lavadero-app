@@ -11,6 +11,8 @@
 - Una espera inicial compartida verifica GET /ready antes de enviar credenciales o escrituras. La app muestra un aviso después de dos segundos. No reenvía automáticamente reservas o pagos ante un timeout, ni realiza sondeos periódicos estando inactiva.
 - La sesión se conserva ante problemas de red, 429 o 5xx. Un rechazo definitivo 401/403 de la renovación la invalida. El arranque ofrece reintentar si no puede restaurarla. Las peticiones de una cuenta anterior no cierran la cuenta actual.
 
+- Recargar un enlace interno conserva la pantalla solicitada después de restaurar la sesión. Los destinos se validan según el rol y no permiten URLs externas.
+
 ## Límite del alojamiento gratuito
 
 Render Free suspende el backend después de 15 minutos sin tráfico. La primera conexión puede tardar cerca de un minuto; el código puede mantener esa espera en la app y compartirla entre consultas, pero no eliminar el tiempo de arranque del proveedor. No se agregó un servicio de pago ni un mecanismo para mantenerlo activo artificialmente.
@@ -25,8 +27,20 @@ Backend: `POST /api/v1/auth/oauth/:provider/start` conserva las validaciones de 
 
 ## Verificación automatizada
 
-- Frontend: 11 pruebas, incluidas conexión compartida/acotada, respuestas fuera de orden, invalidación de horarios, compatibilidad de tarifas, calendario y clasificación de rechazos de sesión.
+- Frontend: 12 pruebas, incluidas conexión compartida/acotada, respuestas fuera de orden, invalidación de horarios, compatibilidad de tarifas, calendario y clasificación de rechazos de sesión.
 - Backend: 16 pruebas unitarias/HTTP. Aceptación adicional: 18 pruebas contra una base MySQL local descartable, con reserva, simultaneidad, propiedad, estados, cobros, comprobante, OAuth de tres proveedores, PKCE y estados de un solo uso. Los proveedores se simulan solamente en estas pruebas automatizadas.
 - TypeScript, ESLint y auditoría de modularidad: archivos fuente de hasta 149 líneas, funciones/callbacks de hasta 30 líneas, TSDoc público y ausencia de ciclos internos.
 
 Las pruebas instaladas en dispositivos no se infieren de las exportaciones ni de las pruebas web. El propietario dispone de iPhone con Expo Go; no hay dispositivo Android disponible.
+
+## Verificación en producción — 2 de noviembre de 2026
+
+Se completaron los ingresos web con GitHub, Google y Discord utilizando las cuentas previamente autorizadas. Para las operaciones de reserva se creó una cuenta ficticia separada, «Verificación Reserva QA», y el auto QA0211ZZ. Desde la interfaz se registró el vehículo, se volvió a la reserva y se verificó su aparición sin recargar manualmente. Se eligió Lavado completo (40 minutos, ARS 15.000), se comprobó el mensaje de domingo cerrado y se reservó el 3 de noviembre a las 09:30. El turno 3 quedó guardado y luego se canceló con motivo explícito de QA: no ocupa cupo ni registra dinero.
+
+También se revisaron reportes administrativos con la semana histórica del 30 de octubre: un lavado y ARS 15.000 de un cobro ficticio ya existente. No se agregó un nuevo cobro de producción. La recarga de un enlace de detalle se verificó después de restaurar sesión con la versión actual. Se comprobó acceso de los tres roles; las transiciones, notas, cobros y comprobantes se probaron adicionalmente en las 18 pruebas contra MySQL local descartable.
+
+La publicación estática tiene una regla `/*` → `Cache-Control: no-cache, max-age=0, s-maxage=0, must-revalidate`, guardada en Render y comprobada en las respuestas HTTPS. Esto exige revalidar los recursos al recargar; las pestañas que ya estaban abiertas deben recargarse para ejecutar la versión nueva. No modifica el reposo del backend gratuito.
+
+La auditoría final del código comprende 113 archivos/318 funciones y callbacks en la API y 284/545 en la app; 123 componentes tienen catálogo generado. El conjunto automatizado suma 46 pruebas aprobadas: 16 backend, 18 de aceptación MySQL y 12 frontend. Expo Doctor aprobó 20 de 20 comprobaciones y se exportaron web y Android.
+
+Las capturas `correccion-*.png` se conservan en la entrega y en `docs/images` del frontend. Las pruebas de web no acreditan ejecución instalada en Android ni en un iPhone físico.

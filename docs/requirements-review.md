@@ -76,3 +76,7 @@ de mantenimiento. Se verificaron 111 archivos backend y 259 frontend con el lím
 de tamaño y TSDoc público. Esta actualización repitió 18 pruebas unitarias/HTTP/frontend;
 las 17 de aceptación MySQL y los accesos sociales conservan la evidencia anterior.
 Ver docs/code-guide.md y docs/source-map.md; en frontend, docs/redesign-review.md.
+
+## Corrección funcional 1.1.1
+
+El 2 de noviembre se repitieron 46 pruebas: 16 backend, 18 de aceptación MySQL y 12 frontend. Se completaron nuevamente los ingresos sociales reales y la reserva/cancelación desde una cuenta ficticia nueva en la web publicada. La fuente actual comprende 113 archivos backend y 284 frontend, con 123 componentes catalogados. Ver CORRECCIONES-ACCESO-Y-RESERVAS.md y docs/reliability.md. Las revisiones históricas anteriores se conservan con sus fechas.

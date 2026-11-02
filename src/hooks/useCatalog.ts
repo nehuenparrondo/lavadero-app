@@ -3,6 +3,7 @@ import { writeResource } from '../api/services/resourceService';
 import { serviceFields } from '../constants/serviceFields';
 import type { Service, VehicleType } from '../types/entities';
 import { serviceInitialValues, servicePayload } from '../utils/serviceForm';
+import { refreshResources } from '../utils/refreshResources';
 import { useRemoteData } from './useRemoteData';
 import { useResourceEditor } from './useResourceEditor';
 import { useServicePrice } from './useServicePrice';
@@ -29,6 +30,7 @@ export function useCatalog() {
   return {
     ...editor,
     ...prices,
+    refresh: () => refreshResources(list, types),
     list,
     types,
     typeId,

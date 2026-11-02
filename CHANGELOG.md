@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.1 — 02/11/2026
+
+- Conexión inicial compartida, preparación social por JSON y conservación de sesión ante fallas transitorias.
+- Reserva guiada, calendario, disponibilidad vinculada a la selección actual y recarga de selectores al volver.
+- Retorno a enlaces autorizados después de restaurar y revalidación de la publicación web.
+- 46 pruebas y verificación real de los ingresos sociales y la reserva/cancelación web.
+
 ## Documentación y experiencia profesional — 01/11/2026
 
 - Versión 1.1.0, Android versionCode 6.

@@ -26,11 +26,16 @@ export function useAppointments(
     mode,
     ...filters,
     refresh: async () => {
-      await Promise.all([list.refresh(), summary.refresh()]);
+      await Promise.all([
+        list.refresh(),
+        summary.refresh(),
+        clients.refresh(),
+        employees.refresh(),
+      ]);
     },
     clients: clients.items,
     employees: employees.items,
     summary: summary.error || summary.loading ? null : summary.data,
-    summaryError: summary.error,
+    summaryError: summary.error || clients.error || employees.error,
   };
 }

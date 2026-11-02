@@ -1,25 +1,13 @@
-# Verificación de Lavadero 1.1
+# Verificación de Lavadero 1.1.1
 
-Revisión: 01/11/2026. Detalles visuales y capturas en redesign-review.md.
+Revisión: 2 de noviembre de 2026. Detalles de las correcciones en reliability.md.
 
-Se repitieron 18 pruebas: 15 unitarias/HTTP de API y 3 frontend. Pasaron TypeScript
-estricto, ESLint y auditoría de fuente en ambos repositorios. La lógica ejecutable
-del backend resultó idéntica al comparar JavaScript emitido sin comentarios antes/después de documentar.
-Las 17 pruebas de aceptación MySQL de la entrega anterior no se reejecutaron aquí.
+46 pruebas aprobadas: 16 unitarias/HTTP de backend, 18 de aceptación contra MySQL real local descartable y 12 frontend. La aceptación comprueba reserva, propiedad, dos reservas simultáneas, cancelación, asignación, estados del empleado, observaciones, pagos idempotentes, comprobante, permisos, sesiones y OAuth de tres proveedores con respuestas simuladas.
 
-Fuente: 111 archivos / 314 funciones-callbacks en API y 259 / 473 en app.
-La auditoría verifica hasta 149 líneas por archivo de src, 30 por cuerpo,
-TSDoc público, ausencia de ciclos y ausencia de HTTP directo en UI.
+La web publicada se probó con ingreso real por email y Google/GitHub/Discord, alta de un auto ficticio desde la reserva vacía, actualización al regresar, calendario, día cerrado, cotización, confirmación y cancelación del turno 3. Se revisaron reportes con datos históricos de demostración y la recarga de enlaces autorizados. No se registró un cobro nuevo en producción. Las credenciales no forman parte de los ZIP.
 
-Exportaciones Android y web aprobadas. Las tres sesiones locales se probaron en la
-web publicada. Se revisaron escritorio 1280 × 720 y teléfono 390 × 844, navegación,
-temas, vehículo/formulario de reserva, historial asignado y filtro administrativo.
-No se crearon nuevos turnos ni cobros en esta revisión.
+TypeScript estricto, ESLint sin advertencias y auditoría de modularidad aprobados. Fuente: API 113 archivos/318 funciones-callbacks y app 284/545. Límite de src: 149 líneas por archivo y 30 por cuerpo, TSDoc público y ausencia de ciclos internos; sin HTTP en componentes/pantallas. Catálogo: 123 componentes.
 
-El estado y origen del APK se registran en delivery.md y apk-info.json. No se
-ejecutó un APK en teléfono ni emulador y no se generó un binario iOS.
-Las capturas de ancho móvil son web, no de un dispositivo físico.
-El dueño dispone de iPhone: ver iphone-expo-go.md.
+Exportaciones web y Android correctas. Expo 58.0.22, Router 58.0.29, Doctor 20/20. El estado final del APK se registra en delivery.md y apk-info.json; exportar o firmar no sustituye una prueba instalada. El dueño dispone de iPhone con Expo Go: ver iphone-expo-go.md en el frontend. No se ejecutó un binario Android ni iOS en dispositivo físico en esta revisión.
 
-Compatibilidad final: Expo 58.0.22 / dev-client 58.0.18 / Router 58.0.29;
-expo-doctor 20/20 aprobado. Los avisos de dependencias se describen en dependencies.md.
+Render Free sigue teniendo tiempo de arranque después de inactividad. La app comparte una espera acotada en su propia interfaz y no mantiene activo el servidor artificialmente. La revisión de los cambios conserva los límites de uso gratuito.

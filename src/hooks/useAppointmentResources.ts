@@ -22,12 +22,13 @@ export function useAppointmentResources(id: string, user: User | null, receiptOp
     {},
     receiptOpen && user?.role !== 'employee',
   );
-  const refresh = () => refreshResources(detail, payments, receipt, settings);
+  const refresh = () => refreshResources(detail, payments, receipt, settings, employees);
   return {
     refresh,
     detail,
     settings,
     employees: employees.items.filter((e) => e.isActive),
+    optionsError: employees.error,
     payments,
     receipt,
   };

@@ -21,7 +21,7 @@ export function AppointmentDetailScreen() {
   return (
     <Screen refreshing={m.detail.loading} onRefresh={m.refresh}>
       <Notice
-        error={m.detail.error || m.payments.error || m.action.error}
+        error={m.detail.error || m.payments.error || m.optionsError || m.action.error}
         message={m.action.message}
         onRetry={m.refresh}
       />
