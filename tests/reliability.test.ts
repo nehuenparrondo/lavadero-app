@@ -7,6 +7,20 @@ import { canBook } from '../src/utils/bookingAvailability';
 import { calendarDays, shiftMonth, validDate } from '../src/utils/calendar';
 import { bookingOptions } from '../src/utils/bookingSelection';
 import { isSessionRejected } from '../src/utils/sessionFailure';
+import { restoreDestination } from '../src/utils/restoreDestination';
+
+test('recargar conserva enlaces de reserva/detalle, sin redirecciones externas ni acceso de otro rol', () => {
+  assert.equal(restoreDestination('/booking', 'client'), '/booking');
+  assert.equal(restoreDestination('/appointment/123', 'employee'), '/appointment/123');
+  assert.equal(restoreDestination('/reports', 'admin'), '/reports');
+  for (const destination of [
+    'https://evil.example',
+    '//evil.example',
+    '/reports',
+    '/booking?returnTo=https://evil.example',
+  ])
+    assert.equal(restoreDestination(destination, 'employee'), '/');
+});
 
 test('servidor dormido: comparte conexión, tolera HTML/transitorios y no sondea estando inactivo', async () => {
   let now = 1,

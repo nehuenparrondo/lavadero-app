@@ -2170,6 +2170,16 @@ Compone selección, confirmaciones y persistencia para editores sin duplicar el 
 | ----------------- | ------------------------------------------------------------------------------------ |
 | useResourceEditor | Compone selección, confirmaciones y persistencia para editores sin duplicar el ABML. |
 
+## src/hooks/useRestoreDestination.ts
+
+Conserva el enlace solicitado mientras las guardas esperan la sesión.
+
+[Abrir fuente](../src/hooks/useRestoreDestination.ts)
+
+| Exportación           | Responsabilidad                                                       |
+| --------------------- | --------------------------------------------------------------------- |
+| useRestoreDestination | Conserva el enlace solicitado mientras las guardas esperan la sesión. |
+
 ## src/hooks/useServicePrice.ts
 
 Administra la tarifa por tipo de vehículo, independientemente del formulario de servicio.
@@ -2809,6 +2819,16 @@ Recarga consultas relacionadas después de una acción o regreso a la pantalla.
 | Exportación      | Responsabilidad                                                               |
 | ---------------- | ----------------------------------------------------------------------------- |
 | refreshResources | Recarga consultas relacionadas después de una acción o regreso a la pantalla. |
+
+## src/utils/restoreDestination.ts
+
+Limita el retorno de arranque a pantallas internas permitidas para el rol actual.
+
+[Abrir fuente](../src/utils/restoreDestination.ts)
+
+| Exportación        | Responsabilidad                                                                   |
+| ------------------ | --------------------------------------------------------------------------------- |
+| restoreDestination | Limita el retorno de arranque a pantallas internas permitidas para el rol actual. |
 
 ## src/utils/routeAccess.ts
 

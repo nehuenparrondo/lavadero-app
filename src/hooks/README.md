@@ -39,6 +39,7 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 | [useRemoteData.ts](useRemoteData.ts)                           | Consulta un recurso sin conservar resultados de filtros anteriores.                            |
 | [useReports.ts](useReports.ts)                                 | Reporte por período calendario local y fecha elegida.                                          |
 | [useResourceEditor.ts](useResourceEditor.ts)                   | Compone selección, confirmaciones y persistencia para editores sin duplicar el ABML.           |
+| [useRestoreDestination.ts](useRestoreDestination.ts)           | Conserva el enlace solicitado mientras las guardas esperan la sesión.                          |
 | [useServicePrice.ts](useServicePrice.ts)                       | Administra la tarifa por tipo de vehículo, independientemente del formulario de servicio.      |
 | [useSessionRestore.ts](useSessionRestore.ts)                   | Conserva credenciales ante una caída de conexión y permite reintentar el arranque.             |
 | [useSettings.ts](useSettings.ts)                               | Configuración operativa con horario local y capacidad simultánea.                              |

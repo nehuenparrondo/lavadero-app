@@ -3,6 +3,7 @@ import { ConnectionNotice } from '../components/molecules/ConnectionNotice';
 import { StatusBar } from 'expo-status-bar';
 import { rootRoutes } from '../constants/rootRoutes';
 import { useAuth } from '../hooks/useAuth';
+import { useRestoreDestination } from '../hooks/useRestoreDestination';
 import { useTheme } from '../hooks/useTheme';
 import { stackOptions } from '../utils/navigationOptions';
 import { hasRouteAccess } from '../utils/routeAccess';
@@ -12,7 +13,8 @@ import { hasRouteAccess } from '../utils/routeAccess';
 export function RootNavigation() {
   const { user, restoring } = useAuth();
   const { dark, colors } = useTheme();
-  const redirect = restoring ? '/loading' : user ? '/' : '/sign-in';
+  const loading = useRestoreDestination(restoring);
+  const redirect = restoring ? loading : user ? '/' : '/sign-in';
   return (
     <>
       <StatusBar style={dark ? 'light' : 'dark'} />

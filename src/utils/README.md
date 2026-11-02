@@ -23,6 +23,7 @@ Transformaciones puras o infraestructura puntual. Mantener unidades explícitas:
 | [pesosToCents.ts](pesosToCents.ts)                 | Convierte un importe validado en pesos a centavos, sin multiplicación decimal inexacta.   |
 | [queryState.ts](queryState.ts)                     | Una respuesta siempre conserva la identidad de los filtros que la produjeron.             |
 | [refreshResources.ts](refreshResources.ts)         | Recarga consultas relacionadas después de una acción o regreso a la pantalla.             |
+| [restoreDestination.ts](restoreDestination.ts)     | Limita el retorno de arranque a pantallas internas permitidas para el rol actual.         |
 | [routeAccess.ts](routeAccess.ts)                   | Resuelve guardas con el rol verificado; durante restauración solo deja rutas públicas.    |
 | [serviceForm.ts](serviceForm.ts)                   | Serializa campos de servicio; el código permanece estable durante una edición.            |
 | [sessionFailure.ts](sessionFailure.ts)             | Solo un rechazo definitivo de credenciales invalida la sesión local.                      |
