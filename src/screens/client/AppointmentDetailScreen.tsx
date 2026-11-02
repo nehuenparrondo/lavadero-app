@@ -19,8 +19,12 @@ export function AppointmentDetailScreen() {
   const a = m.detail.data;
   if (!a && m.detail.loading) return <LoadingState />;
   return (
-    <Screen refreshing={m.detail.loading} onRefresh={m.detail.refresh}>
-      <Notice error={m.detail.error || m.action.error} message={m.action.message} />
+    <Screen refreshing={m.detail.loading} onRefresh={m.refresh}>
+      <Notice
+        error={m.detail.error || m.payments.error || m.action.error}
+        message={m.action.message}
+        onRetry={m.refresh}
+      />
       {a && (
         <>
           <SectionHeader

@@ -1,6 +1,7 @@
 import { View } from 'react-native';
 import type { useAppointments } from '../../hooks/useAppointments';
-import { Input } from '../atoms/Input';
+import { Button } from '../atoms/Button';
+import { DateInput } from '../molecules/DateInput';
 import { ChoiceGroup } from '../molecules/ChoiceGroup';
 import { AppointmentClientFilter } from './AppointmentClientFilter';
 import { AppointmentEmployeeFilter } from './AppointmentEmployeeFilter';
@@ -26,12 +27,10 @@ export function AppointmentFilters({
           ]}
         />
       )}
-      <Input
-        accessibilityLabel="Filtrar fecha"
-        placeholder="Fecha (AAAA-MM-DD), vacía para ver todas"
-        value={m.date}
-        onChangeText={m.setDate}
-      />
+      <DateInput label="Filtrar fecha" value={m.date} onChange={m.setDate} />
+      {m.date && (
+        <Button label="Quitar filtro de fecha" variant="quiet" onPress={() => m.setDate('')} />
+      )}
       {m.mode === 'admin' && (
         <>
           <AppointmentStatusFilter m={m} />

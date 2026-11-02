@@ -1,4 +1,5 @@
 import type { Appointment, Payment, Settings, User } from '../types/entities';
+import { refreshResources } from '../utils/refreshResources';
 import { useOptions } from './useOptions';
 import { useRemoteData } from './useRemoteData';
 /** Consultas del detalle; los recursos administrativos no se solicitan para otros roles.
@@ -21,7 +22,9 @@ export function useAppointmentResources(id: string, user: User | null, receiptOp
     {},
     receiptOpen && user?.role !== 'employee',
   );
+  const refresh = () => refreshResources(detail, payments, receipt, settings);
   return {
+    refresh,
     detail,
     settings,
     employees: employees.items.filter((e) => e.isActive),

@@ -30,7 +30,8 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [BookingInvitation.tsx](BookingInvitation.tsx)                         | Composición de la acción principal del cliente, sin información comercial fija.                   |
 | [BookingInvitationCopy.tsx](BookingInvitationCopy.tsx)                 | Contenido editorial de la portada de reserva, independiente de navegación e ilustración.          |
 | [BookingServicesField.tsx](BookingServicesField.tsx)                   | Ofrece servicios activos con tarifa para el vehículo elegido.                                     |
-| [BookingVehicleField.tsx](BookingVehicleField.tsx)                     | Selecciona un vehículo del titular y orienta cuando aún no tiene ninguno.                         |
+| [BookingVehicleEmpty.tsx](BookingVehicleEmpty.tsx)                     | Próximo paso de una reserva sin vehículos registrados.                                            |
+| [BookingVehicleField.tsx](BookingVehicleField.tsx)                     | Orienta al titular sin vehículos y ofrece registrar uno antes de reservar.                        |
 | [ClientQuickActions.tsx](ClientQuickActions.tsx)                       | Tareas de preparación antes de reservar; no duplica consultas del catálogo.                       |
 | [ClientVisitList.tsx](ClientVisitList.tsx)                             | Visitas autorizadas, con carga/error separados del estado vacío.                                  |
 | [CollectionState.tsx](CollectionState.tsx)                             | Estados consistentes de lista: carga inicial, error recuperable y vacío.                          |

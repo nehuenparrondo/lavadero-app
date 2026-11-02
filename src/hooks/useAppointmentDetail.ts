@@ -14,9 +14,7 @@ export function useAppointmentDetail(id: string) {
   const [receiptOpen, setReceiptOpen] = useState(false);
   const resources = useAppointmentResources(id, user, receiptOpen);
   const flags = useAppointmentFlags(resources.detail.data);
-  const { action, mutate } = useAppointmentMutation(id, async () => {
-    await Promise.all([resources.detail.refresh(), resources.payments.refresh()]);
-  });
+  const { action, mutate } = useAppointmentMutation(id, resources.refresh);
   const pay = useAppointmentPayment(mutate, () => flags.setPaymentOpen(false));
   const a = resources.detail.data;
   const canCancel =

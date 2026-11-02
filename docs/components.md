@@ -325,6 +325,88 @@ Uso:
 <BrandLockup />
 ```
 
+### CalendarDay
+
+Celda táctil del calendario o espacio vacío de la semana.
+
+[Fuente](../src/components/molecules/CalendarDay.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  day: string;
+  selected: boolean;
+  onChange: (day: string) => void;
+}
+```
+
+| Prop     | Obligatoria | Tipo                    |
+| -------- | ----------- | ----------------------- |
+| day      | Sí          | `string`                |
+| selected | Sí          | `boolean`               |
+| onChange | Sí          | `(day: string) => void` |
+
+Uso:
+
+```tsx
+<CalendarDay day={day} selected={selected} onChange={handleAction} />
+```
+
+### CalendarGrid
+
+Seis semanas de calendario, compartidas por web y dispositivos nativos.
+
+[Fuente](../src/components/molecules/CalendarGrid.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  month: string;
+  value: string;
+  onChange: (value: string) => void;
+}
+```
+
+| Prop     | Obligatoria | Tipo                      |
+| -------- | ----------- | ------------------------- |
+| month    | Sí          | `string`                  |
+| value    | Sí          | `string`                  |
+| onChange | Sí          | `(value: string) => void` |
+
+Uso:
+
+```tsx
+<CalendarGrid month={month} value={value} onChange={handleAction} />
+```
+
+### CalendarNavigation
+
+Cambia el mes visible sin modificar la fecha del formulario.
+
+[Fuente](../src/components/molecules/CalendarNavigation.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  month: string;
+  onChange: (month: string) => void;
+}
+```
+
+| Prop     | Obligatoria | Tipo                      |
+| -------- | ----------- | ------------------------- |
+| month    | Sí          | `string`                  |
+| onChange | Sí          | `(month: string) => void` |
+
+Uso:
+
+```tsx
+<CalendarNavigation month={month} onChange={handleAction} />
+```
+
 ### Card
 
 Superficie neutra para agrupar información; el estilo permite componer grids sin duplicarla.
@@ -419,6 +501,20 @@ Uso:
 <ChoiceGroup options={options} value={value} onChange={handleAction} />
 ```
 
+### ConnectionNotice
+
+Aviso global durante el arranque, sin sacar al usuario de su pantalla.
+
+[Fuente](../src/components/molecules/ConnectionNotice.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<ConnectionNotice />
+```
+
 ### ConnectionStatus
 
 Estado real de red.
@@ -495,6 +591,36 @@ Uso:
 
 ```tsx
 <ControlledField field={field} control={control} />
+```
+
+### DateInput
+
+Selección de fecha mediante calendario, con valor ISO separado de su presentación.
+
+[Fuente](../src/components/molecules/DateInput.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  onBlur?: (() => void) | undefined;
+}
+```
+
+| Prop     | Obligatoria | Tipo                        |
+| -------- | ----------- | --------------------------- |
+| label    | Sí          | `string`                    |
+| value    | Sí          | `string`                    |
+| onChange | Sí          | `(value: string) => void`   |
+| onBlur   | No          | `(() => void) \| undefined` |
+
+Uso:
+
+```tsx
+<DateInput label="Guardar" value={value} onChange={handleAction} />
 ```
 
 ### EmptyState
@@ -1634,9 +1760,33 @@ Uso:
 <BookingServicesField b={b} />
 ```
 
+### BookingVehicleEmpty
+
+Próximo paso de una reserva sin vehículos registrados.
+
+[Fuente](../src/components/organisms/BookingVehicleEmpty.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  admin: boolean;
+}
+```
+
+| Prop  | Obligatoria | Tipo      |
+| ----- | ----------- | --------- |
+| admin | Sí          | `boolean` |
+
+Uso:
+
+```tsx
+<BookingVehicleEmpty admin={admin} />
+```
+
 ### BookingVehicleField
 
-Selecciona un vehículo del titular y orienta cuando aún no tiene ninguno.
+Orienta al titular sin vehículos y ofrece registrar uno antes de reservar.
 
 [Fuente](../src/components/organisms/BookingVehicleField.tsx)
 

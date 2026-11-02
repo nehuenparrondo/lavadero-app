@@ -19,7 +19,12 @@ export function useWebOAuthReturn() {
     void action.run(async () => {
       const pending = readPendingOAuth(sessionStorage.getItem(pendingOAuthKey), params.state);
       sessionStorage.removeItem(pendingOAuthKey);
-      if (params.error) throw new Error('El ingreso social fue cancelado.');
+      if (params.error)
+        throw new Error(
+          params.error === 'access_denied'
+            ? 'El ingreso social fue cancelado.'
+            : 'No pudimos completar el ingreso con ese proveedor. Volvé a intentar.',
+        );
       if (typeof params.code !== 'string')
         throw new Error('Falta el código de acceso social.');
       await action.complete(params.code, pending.verifier);

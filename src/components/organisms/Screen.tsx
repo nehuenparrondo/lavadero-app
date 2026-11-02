@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { RefreshControl, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRefreshOnReturn } from '../../hooks/useRefreshOnReturn';
 import { useTheme } from '../../hooks/useTheme';
 import { useWorkspaceLayout } from '../../hooks/useWorkspaceLayout';
 import { tokens } from '../../theme/tokens';
@@ -18,6 +19,7 @@ export function Screen({
   refreshing?: boolean;
   onRefresh?: () => void;
 }) {
+  useRefreshOnReturn(onRefresh);
   const { colors } = useTheme();
   const { wide } = useWorkspaceLayout();
   return (

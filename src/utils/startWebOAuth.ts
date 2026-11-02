@@ -1,5 +1,6 @@
 import { AuthRequest, makeRedirectUri, ResponseType } from 'expo-auth-session';
 import { randomUUID } from 'expo-crypto';
+import { prepareSocialLogin } from '../api/services/oauthStartService';
 import { apiUrl, requireApi } from '../api/transport';
 import { pendingOAuthKey } from './pendingOAuth';
 
@@ -21,6 +22,7 @@ export async function startWebOAuth(provider: 'google' | 'discord' | 'github') {
     authorizationEndpoint: `${apiUrl}/api/v1/auth/oauth/${provider}/authorize`,
   });
   if (!request.codeVerifier) throw new Error('No se pudo preparar el acceso seguro.');
+  const destination = await prepareSocialLogin(provider, url);
   sessionStorage.setItem(
     pendingOAuthKey,
     JSON.stringify({
@@ -29,5 +31,5 @@ export async function startWebOAuth(provider: 'google' | 'discord' | 'github') {
       createdAt: Date.now(),
     }),
   );
-  window.location.assign(url);
+  window.location.assign(destination);
 }

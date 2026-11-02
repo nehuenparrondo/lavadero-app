@@ -1,4 +1,5 @@
 import type { Availability } from '../../types/entities';
+import { emptyAvailability } from '../../utils/bookingAvailability';
 import { slotTime } from '../../utils/format';
 import { Text } from '../atoms/Text';
 import { ChoiceGroup } from './ChoiceGroup';
@@ -25,7 +26,7 @@ export function AvailableSlots({
           options={quote.slots.map((value) => ({ value, label: slotTime(value) }))}
         />
       ) : (
-        <Text>No quedan horarios disponibles para esta fecha. Probá otro día.</Text>
+        <Text>{emptyAvailability(quote.unavailableReason)}</Text>
       )}
     </>
   );

@@ -2,6 +2,7 @@ import { makeRedirectUri, ResponseType, useAuthRequest } from 'expo-auth-session
 import { randomUUID } from 'expo-crypto';
 import * as WebBrowser from 'expo-web-browser';
 import { useState } from 'react';
+import { ensureBackendReady } from '../api/backendConnection';
 import { apiUrl } from '../api/transport';
 import { useSocialExchange } from './useSocialExchange';
 import { useSocialResponse } from './useSocialResponse';
@@ -28,6 +29,7 @@ export function useSocialLogin(provider: 'google' | 'discord' | 'github') {
   const start = async () => {
     setOpening(true);
     await action.run(async () => {
+      await ensureBackendReady();
       await prompt();
     }, '');
     setOpening(false);

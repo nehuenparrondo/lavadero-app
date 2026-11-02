@@ -10,13 +10,18 @@ Composiciones reutilizables: tarjetas, campos, indicadores y distribución adapt
 | [AppointmentVehicle.tsx](AppointmentVehicle.tsx)       | Datos operativos presentes en la proyección de todos los roles.                                |
 | [AvailableSlots.tsx](AvailableSlots.tsx)               | Horarios ya validados por el servidor y estado vacío cuando la fecha está completa.            |
 | [BrandLockup.tsx](BrandLockup.tsx)                     | Firma de marca compacta para acceso, menú y cabecera.                                          |
+| [CalendarDay.tsx](CalendarDay.tsx)                     | Celda táctil del calendario o espacio vacío de la semana.                                      |
+| [CalendarGrid.tsx](CalendarGrid.tsx)                   | Seis semanas de calendario, compartidas por web y dispositivos nativos.                        |
+| [CalendarNavigation.tsx](CalendarNavigation.tsx)       | Cambia el mes visible sin modificar la fecha del formulario.                                   |
 | [Card.tsx](Card.tsx)                                   | Superficie neutra para agrupar información; el estilo permite componer grids sin duplicarla.   |
 | [CareGuide.tsx](CareGuide.tsx)                         | Ayuda basada en funciones existentes, sin prometer servicios ni tiempos fijos.                 |
 | [ChoiceButton.tsx](ChoiceButton.tsx)                   | Opción táctil con estado seleccionado accesible y contraste del tema.                          |
 | [ChoiceGroup.tsx](ChoiceGroup.tsx)                     | Selector simple o múltiple; delega apariencia y transformación en piezas independientes.       |
+| [ConnectionNotice.tsx](ConnectionNotice.tsx)           | Aviso global durante el arranque, sin sacar al usuario de su pantalla.                         |
 | [ConnectionStatus.tsx](ConnectionStatus.tsx)           | Estado real de red.                                                                            |
 | [ContractServiceLines.tsx](ContractServiceLines.tsx)   | Servicios históricos; solo muestra importes que el servidor incluyó en la proyección del rol.  |
 | [ControlledField.tsx](ControlledField.tsx)             | Adapta un campo RHF a la molécula de entrada, incluyendo errores y blur.                       |
+| [DateInput.tsx](DateInput.tsx)                         | Selección de fecha mediante calendario, con valor ISO separado de su presentación.             |
 | [EmptyState.tsx](EmptyState.tsx)                       | Explica una colección vacía sin confundirla con carga o error de red.                          |
 | [FieldInput.tsx](FieldInput.tsx)                       | Ajusta teclado y privacidad según el tipo semántico del campo.                                 |
 | [FormField.tsx](FormField.tsx)                         | Label, entrada y error, con selectors legibles para campos enumerados.                         |

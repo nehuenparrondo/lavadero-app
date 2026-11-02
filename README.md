@@ -66,3 +66,7 @@ de la pestaña; cerrar la pestaña elimina esa persistencia. El access token que
 - [Guía de código e invariantes](docs/code-guide.md)
 - [Mapa de todos los módulos](docs/source-map.md)
 - [Sistema visual](docs/design-system.md)
+
+## Correcciones de acceso y reservas
+
+Ver [comportamiento, módulos y pruebas de la versión 1.1.1](docs/reliability.md).

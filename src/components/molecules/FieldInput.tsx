@@ -1,4 +1,5 @@
 import type { FormFieldDefinition } from '../../types/form';
+import { DateInput } from './DateInput';
 import { Input } from '../atoms/Input';
 /** Ajusta teclado y privacidad según el tipo semántico del campo.
  * @param props - Propiedades tipadas: field, value, onChange, onBlur.
@@ -15,6 +16,8 @@ export function FieldInput({
   onChange: (value: string) => void;
   onBlur?: (() => void) | undefined;
 }) {
+  if (field.kind === 'date')
+    return <DateInput label={field.label} value={value} onChange={onChange} onBlur={onBlur} />;
   return (
     <Input
       accessibilityLabel={field.label}

@@ -1,4 +1,5 @@
 import { Stack } from 'expo-router';
+import { ConnectionNotice } from '../components/molecules/ConnectionNotice';
 import { StatusBar } from 'expo-status-bar';
 import { rootRoutes } from '../constants/rootRoutes';
 import { useAuth } from '../hooks/useAuth';
@@ -26,6 +27,7 @@ export function RootNavigation() {
           </Stack.Protected>
         ))}
       </Stack>
+      <ConnectionNotice />
     </>
   );
 }

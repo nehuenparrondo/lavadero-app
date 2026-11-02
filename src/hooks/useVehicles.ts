@@ -22,6 +22,10 @@ export function useVehicles() {
     initialValues: vehicleInitialValues(manager.editing),
     search,
     setSearch,
+    admin: user?.role === 'admin',
+    refresh: async () => {
+      await Promise.all([manager.refresh(), types.refresh(), clients.refresh()]);
+    },
     optionsError: types.error || clients.error,
   };
 }

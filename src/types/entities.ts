@@ -96,6 +96,7 @@ export interface Appointment {
 /** Cotización y opciones calculadas en backend. */
 export interface Availability {
   slots: string[];
+  unavailableReason?: 'closed' | 'past' | 'duration' | 'full' | null;
   /** Total histórico del contrato, expresado en centavos ARS. */
   totalCents: number;
   /** Tiempo estimado completo del servicio, en minutos. */

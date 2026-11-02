@@ -7,6 +7,8 @@ import type { Session, User } from '../types/entities';
 interface AuthValue {
   user: User | null;
   restoring: boolean;
+  restoreError: string;
+  retryRestore: () => void;
   accept: (session: Session) => Promise<void>;
   signOut: () => Promise<void>;
   reloadUser: () => Promise<void>;
@@ -20,11 +22,11 @@ export const AuthContext = createContext<AuthValue | undefined>(undefined);
  */
 export function AuthProvider({ children }: PropsWithChildren) {
   const [session, update] = useState(getSession());
-  const restoring = useSessionRestore();
+  const restoration = useSessionRestore();
   useEffect(() => subscribeSession(update), []);
   return (
     <AuthContext.Provider
-      value={{ user: session?.user ?? null, restoring, accept, signOut, reloadUser }}
+      value={{ user: session?.user ?? null, ...restoration, accept, signOut, reloadUser }}
     >
       {children}
     </AuthContext.Provider>

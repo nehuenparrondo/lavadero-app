@@ -1,3 +1,4 @@
+import { canBook } from '../utils/bookingAvailability';
 import { useAuth } from './useAuth';
 import { useBookingResources } from './useBookingResources';
 import { useBookingSelection } from './useBookingSelection';
@@ -10,6 +11,18 @@ export function useBooking() {
   const admin = user?.role === 'admin';
   const selection = useBookingSelection(admin ? '' : (user?.id ?? ''));
   const resources = useBookingResources(selection, admin);
-  const submission = useBookingSubmit(selection, admin, resources.availability.refresh);
-  return { ...selection, ...resources, ...submission, admin };
+  const ready = canBook(
+    resources.availability.data,
+    selection.slot,
+    resources.availability.loading,
+    resources.availability.error,
+  );
+  const submission = useBookingSubmit(selection, admin, resources.availability.refresh, ready);
+  return {
+    ...selection,
+    ...resources,
+    ...submission,
+    admin,
+    canSubmit: ready && !resources.optionsLoading && !resources.loadError,
+  };
 }

@@ -7,6 +7,8 @@ import { BookingServicesField } from '../../components/organisms/BookingServices
 import { BookingVehicleField } from '../../components/organisms/BookingVehicleField';
 import { ScheduleSelector } from '../../components/organisms/ScheduleSelector';
 import { Screen } from '../../components/organisms/Screen';
+import { Text } from '../../components/atoms/Text';
+import { bookingDateMessage } from '../../utils/bookingAvailability';
 import { useBooking } from '../../hooks/useBooking';
 /** Selección de vehículo, servicios, fecha y horario con total antes de confirmar.
  * @returns Vista de BookingScreen con el contrato de propiedades declarado.
@@ -14,12 +16,12 @@ import { useBooking } from '../../hooks/useBooking';
 export function BookingScreen() {
   const b = useBooking();
   return (
-    <Screen>
+    <Screen refreshing={b.optionsLoading} onRefresh={b.refresh}>
       <SectionHeader
         title="Reservá tu lavado"
         subtitle="Elegí los detalles. Nosotros nos ocupamos del resto."
       />
-      <Notice error={b.error || b.loadError} />
+      <Notice error={b.error || b.loadError} onRetry={b.refresh} />
       {b.admin && <BookingClientField b={b} />}
       <BookingVehicleField b={b} />
       <BookingServicesField b={b} />
@@ -28,11 +30,12 @@ export function BookingScreen() {
         value={b.date}
         onChange={b.setDate}
       />
+      <Text>{bookingDateMessage(b.date, b.settings)}</Text>
       <ScheduleSelector booking={b} />
       <Button
         label="Confirmar reserva"
         loading={b.busy}
-        disabled={!b.slot || b.availability.loading}
+        disabled={!b.canSubmit}
         onPress={() => {
           void b.submit();
         }}

@@ -1,18 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { restoreSession } from '../api/services/restoreSession';
-/** Publica la fase de arranque y cancela lógicamente respuestas tardías.
- * @returns true durante la restauración y false al finalizar, exista sesión o no.
+import { errorMessage } from '../utils/errorMessage';
+/** Conserva credenciales ante una caída de conexión y permite reintentar el arranque.
+ * @returns Estado de arranque, error recuperable y retryRestore.
  */
 export function useSessionRestore() {
   const [restoring, setRestoring] = useState(true);
+  const [restoreError, setError] = useState('');
+  const [attempt, setAttempt] = useState(0);
+  const retryRestore = useCallback(() => setAttempt((value) => value + 1), []);
   useEffect(() => {
     let active = true;
-    void restoreSession(() => active).finally(() => {
-      if (active) setRestoring(false);
-    });
+    setRestoring(true);
+    setError('');
+    void restoreSession(() => active)
+      .catch((error) => {
+        if (active) setError(errorMessage(error));
+      })
+      .finally(() => {
+        if (active) setRestoring(false);
+      });
     return () => {
       active = false;
     };
-  }, []);
-  return restoring;
+  }, [attempt]);
+  return { restoring: restoring || Boolean(restoreError), restoreError, retryRestore };
 }

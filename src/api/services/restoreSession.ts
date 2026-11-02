@@ -1,3 +1,4 @@
+import { isSessionRejected } from '../../utils/sessionFailure';
 import { deleteRefresh, readRefresh, storeRefresh } from '../sessionStorage';
 import { setSession } from '../sessionStore';
 import * as auth from './authService';
@@ -15,7 +16,8 @@ export async function restoreSession(isActive: () => boolean) {
         setSession(next);
       }
     }
-  } catch {
+  } catch (error) {
+    if (!isSessionRejected(error)) throw error;
     await deleteRefresh();
     if (isActive()) setSession(null);
   }

@@ -1,4 +1,4 @@
-import { Input } from '../../components/atoms/Input';
+import { DateInput } from '../../components/molecules/DateInput';
 import { ChoiceGroup } from '../../components/molecules/ChoiceGroup';
 import { Notice } from '../../components/molecules/Notice';
 import { SectionHeader } from '../../components/molecules/SectionHeader';
@@ -25,12 +25,7 @@ export function ReportsScreen() {
           { value: 'month', label: 'Mes' },
         ]}
       />
-      <Input
-        accessibilityLabel="Fecha de referencia del reporte"
-        value={r.date}
-        onChangeText={r.setDate}
-        placeholder="AAAA-MM-DD"
-      />
+      <DateInput label="Fecha de referencia del reporte" value={r.date} onChange={r.setDate} />
       <Notice error={r.error} onRetry={r.refresh} />
       {r.data && <ReportSummary report={r.data} />}
     </Screen>

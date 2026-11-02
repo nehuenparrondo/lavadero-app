@@ -32,6 +32,7 @@ export const reloadUser = async () => {
   const current = getSession();
   if (current) {
     const user = await readResource<User>('/users/me');
-    setSession({ ...current, user });
+    const latest = getSession();
+    if (latest?.user.id === current.user.id) setSession({ ...latest, user });
   }
 };

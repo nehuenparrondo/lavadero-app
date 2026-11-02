@@ -1,36 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import type { Query } from '../api/services/resourceService';
 import { readOptions } from '../api/services/resourceService';
-import { errorMessage } from '../utils/errorMessage';
-/** Lee todas las páginas de un selector, solo cuando el rol lo permite.
- * @param path - Ruta relativa del recurso dentro de la API versionada.
- * @param query - Filtros y paginación enviados como parámetros de consulta.
- * @param enabled - false evita consultar, por ejemplo antes de completar una selección.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+import { useQuery } from './useQuery';
+/** Carga todas las páginas de un selector y permite actualizarlo al volver a la pantalla.
+ * @param path Recurso paginado de la API.
+ * @param query Filtros serializables.
+ * @param enabled false evita solicitar opciones ajenas al rol.
+ * @returns Opciones actuales, loading, error y refresh.
  */
 export function useOptions<T>(path: string, query: Query = {}, enabled = true) {
-  const key = JSON.stringify(query);
-  const [items, setItems] = useState<T[]>([]);
-  const [error, setError] = useState('');
-  useEffect(() => {
-    let active = true;
-    if (!enabled) {
-      setItems([]);
-      return;
-    }
-    void readOptions<T>(path, JSON.parse(key) as Query)
-      .then((data) => {
-        if (active) {
-          setItems(data);
-          setError('');
-        }
-      })
-      .catch((e) => {
-        if (active) setError(errorMessage(e));
-      });
-    return () => {
-      active = false;
-    };
-  }, [path, key, enabled]);
-  return { items, error };
+  const filters = JSON.stringify(query);
+  const load = useCallback(
+    () => readOptions<T>(path, JSON.parse(filters) as Query),
+    [path, filters],
+  );
+  const result = useQuery(`${path}:${filters}`, enabled, load);
+  return { ...result, items: result.data ?? [] };
 }

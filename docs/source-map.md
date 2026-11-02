@@ -4,16 +4,71 @@ Guía de navegación de todos los archivos TypeScript de producción. Los contra
 
 Este mapa no ejecuta módulos ni lee variables de entorno. Revisión: 01/11/2026.
 
+## src/api/backendConnection.ts
+
+Espera al servidor antes de enviar credenciales o una operación de escritura.
+
+[Abrir fuente](../src/api/backendConnection.ts)
+
+| Exportación        | Responsabilidad                                                               |
+| ------------------ | ----------------------------------------------------------------------------- |
+| ensureBackendReady | Espera al servidor antes de enviar credenciales o una operación de escritura. |
+| markBackendReady   | Renueva la ventana de disponibilidad con una respuesta JSON válida.           |
+
 ## src/api/client.ts
 
-Cliente autenticado; solo api/services envía solicitudes.
+Transporte autenticado; espera disponibilidad antes de enviar una escritura.
 
 [Abrir fuente](../src/api/client.ts)
 
-| Exportación | Responsabilidad                                           |
-| ----------- | --------------------------------------------------------- |
-| apiUrl      | Contrato tipado declarado en la fuente.                   |
-| apiClient   | Cliente autenticado; solo api/services envía solicitudes. |
+| Exportación | Responsabilidad                                                              |
+| ----------- | ---------------------------------------------------------------------------- |
+| apiUrl      | Contrato tipado declarado en la fuente.                                      |
+| apiClient   | Transporte autenticado; espera disponibilidad antes de enviar una escritura. |
+
+## src/api/config.ts
+
+Origen público validado; no contiene credenciales.
+
+[Abrir fuente](../src/api/config.ts)
+
+| Exportación | Responsabilidad                                    |
+| ----------- | -------------------------------------------------- |
+| apiUrl      | Origen público validado; no contiene credenciales. |
+| requireApi  | Verifica configuración antes de conectar.          |
+
+## src/api/connectionState.ts
+
+Estado externo de la conexión inicial compartida.
+
+[Abrir fuente](../src/api/connectionState.ts)
+
+| Exportación         | Responsabilidad                                             |
+| ------------------- | ----------------------------------------------------------- |
+| getConnecting       | Estado externo de la conexión inicial compartida.           |
+| subscribeConnection | Suscribe el aviso global sin iniciar tráfico de red.        |
+| setConnecting       | Publica transiciones, sin exponer URLs ni errores internos. |
+
+## src/api/readinessGate.ts
+
+Agrupa el despertar del servidor para evitar una solicitud por cada selector.
+
+[Abrir fuente](../src/api/readinessGate.ts)
+
+| Exportación         | Responsabilidad                                                               |
+| ------------------- | ----------------------------------------------------------------------------- |
+| createReadinessGate | Agrupa el despertar del servidor para evitar una solicitud por cada selector. |
+
+## src/api/renewRequest.ts
+
+Marca la identidad de origen para no repetir peticiones de otra cuenta.
+
+[Abrir fuente](../src/api/renewRequest.ts)
+
+| Exportación       | Responsabilidad                                                                 |
+| ----------------- | ------------------------------------------------------------------------------- |
+| AuthRequestConfig | Marca la identidad de origen para no repetir peticiones de otra cuenta.         |
+| renewRequest      | Reintenta solo un rechazo 401, conservando sesión en errores de red y servidor. |
 
 ## src/api/services/authService.ts
 
@@ -40,6 +95,16 @@ Comprueba conectividad.
 | Exportación  | Responsabilidad         |
 | ------------ | ----------------------- |
 | getApiHealth | Comprueba conectividad. |
+
+## src/api/services/oauthStartService.ts
+
+Prepara una autorización PKCE por JSON y verifica el destino antes de salir de la app.
+
+[Abrir fuente](../src/api/services/oauthStartService.ts)
+
+| Exportación        | Responsabilidad                                                                        |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| prepareSocialLogin | Prepara una autorización PKCE por JSON y verifica el destino antes de salir de la app. |
 
 ## src/api/services/resourceService.ts
 
@@ -112,15 +177,25 @@ Lee sesión solo en memoria; componentes consumen AuthContext.
 
 ## src/api/transport.ts
 
-El origen siempre viene de entorno y exige HTTPS público.
+Transporte público; la preparación de conexión nunca reenvía una mutación.
 
 [Abrir fuente](../src/api/transport.ts)
 
-| Exportación     | Responsabilidad                                                       |
-| --------------- | --------------------------------------------------------------------- |
-| apiUrl          | El origen siempre viene de entorno y exige HTTPS público.             |
-| publicTransport | Transporte sin interceptor para evitar recursión al renovar sesiones. |
-| requireApi      | Exige configuración antes de enviar cualquier petición.               |
+| Exportación     | Responsabilidad                                                            |
+| --------------- | -------------------------------------------------------------------------- |
+| apiUrl          | Contrato tipado declarado en la fuente.                                    |
+| requireApi      | Contrato tipado declarado en la fuente.                                    |
+| publicTransport | Transporte público; la preparación de conexión nunca reenvía una mutación. |
+
+## src/api/validateResponse.ts
+
+Impide interpretar HTML de arranque o proxy como datos de negocio.
+
+[Abrir fuente](../src/api/validateResponse.ts)
+
+| Exportación      | Responsabilidad                                                    |
+| ---------------- | ------------------------------------------------------------------ |
+| validateResponse | Impide interpretar HTML de arranque o proxy como datos de negocio. |
 
 ## src/app/(admin)/_layout.tsx
 
@@ -534,6 +609,36 @@ Firma de marca compacta para acceso, menú y cabecera.
 | ----------- | ----------------------------------------------------- |
 | BrandLockup | Firma de marca compacta para acceso, menú y cabecera. |
 
+## src/components/molecules/CalendarDay.tsx
+
+Celda táctil del calendario o espacio vacío de la semana.
+
+[Abrir fuente](../src/components/molecules/CalendarDay.tsx)
+
+| Exportación | Responsabilidad                                           |
+| ----------- | --------------------------------------------------------- |
+| CalendarDay | Celda táctil del calendario o espacio vacío de la semana. |
+
+## src/components/molecules/CalendarGrid.tsx
+
+Seis semanas de calendario, compartidas por web y dispositivos nativos.
+
+[Abrir fuente](../src/components/molecules/CalendarGrid.tsx)
+
+| Exportación  | Responsabilidad                                                         |
+| ------------ | ----------------------------------------------------------------------- |
+| CalendarGrid | Seis semanas de calendario, compartidas por web y dispositivos nativos. |
+
+## src/components/molecules/CalendarNavigation.tsx
+
+Cambia el mes visible sin modificar la fecha del formulario.
+
+[Abrir fuente](../src/components/molecules/CalendarNavigation.tsx)
+
+| Exportación        | Responsabilidad                                              |
+| ------------------ | ------------------------------------------------------------ |
+| CalendarNavigation | Cambia el mes visible sin modificar la fecha del formulario. |
+
 ## src/components/molecules/Card.tsx
 
 Superficie neutra para agrupar información; el estilo permite componer grids sin duplicarla.
@@ -575,6 +680,16 @@ Selector simple o múltiple; delega apariencia y transformación en piezas indep
 | Choice      | Contrato tipado declarado en la fuente.                                                  |
 | ChoiceGroup | Selector simple o múltiple; delega apariencia y transformación en piezas independientes. |
 
+## src/components/molecules/ConnectionNotice.tsx
+
+Aviso global durante el arranque, sin sacar al usuario de su pantalla.
+
+[Abrir fuente](../src/components/molecules/ConnectionNotice.tsx)
+
+| Exportación      | Responsabilidad                                                        |
+| ---------------- | ---------------------------------------------------------------------- |
+| ConnectionNotice | Aviso global durante el arranque, sin sacar al usuario de su pantalla. |
+
 ## src/components/molecules/ConnectionStatus.tsx
 
 Estado real de red.
@@ -604,6 +719,16 @@ Adapta un campo RHF a la molécula de entrada, incluyendo errores y blur.
 | Exportación     | Responsabilidad                                                          |
 | --------------- | ------------------------------------------------------------------------ |
 | ControlledField | Adapta un campo RHF a la molécula de entrada, incluyendo errores y blur. |
+
+## src/components/molecules/DateInput.tsx
+
+Selección de fecha mediante calendario, con valor ISO separado de su presentación.
+
+[Abrir fuente](../src/components/molecules/DateInput.tsx)
+
+| Exportación | Responsabilidad                                                                    |
+| ----------- | ---------------------------------------------------------------------------------- |
+| DateInput   | Selección de fecha mediante calendario, con valor ISO separado de su presentación. |
 
 ## src/components/molecules/EmptyState.tsx
 
@@ -1076,15 +1201,25 @@ Ofrece servicios activos con tarifa para el vehículo elegido.
 | -------------------- | ------------------------------------------------------------- |
 | BookingServicesField | Ofrece servicios activos con tarifa para el vehículo elegido. |
 
+## src/components/organisms/BookingVehicleEmpty.tsx
+
+Próximo paso de una reserva sin vehículos registrados.
+
+[Abrir fuente](../src/components/organisms/BookingVehicleEmpty.tsx)
+
+| Exportación         | Responsabilidad                                        |
+| ------------------- | ------------------------------------------------------ |
+| BookingVehicleEmpty | Próximo paso de una reserva sin vehículos registrados. |
+
 ## src/components/organisms/BookingVehicleField.tsx
 
-Selecciona un vehículo del titular y orienta cuando aún no tiene ninguno.
+Orienta al titular sin vehículos y ofrece registrar uno antes de reservar.
 
 [Abrir fuente](../src/components/organisms/BookingVehicleField.tsx)
 
-| Exportación         | Responsabilidad                                                           |
-| ------------------- | ------------------------------------------------------------------------- |
-| BookingVehicleField | Selecciona un vehículo del titular y orienta cuando aún no tiene ninguno. |
+| Exportación         | Responsabilidad                                                            |
+| ------------------- | -------------------------------------------------------------------------- |
+| BookingVehicleField | Orienta al titular sin vehículos y ofrece registrar uno antes de reservar. |
 
 ## src/components/organisms/ClientQuickActions.tsx
 
@@ -1845,15 +1980,25 @@ Compone selección, consulta y confirmación sin lógica de negocio dentro de la
 | ----------- | --------------------------------------------------------------------------------------- |
 | useBooking  | Compone selección, consulta y confirmación sin lógica de negocio dentro de la pantalla. |
 
+## src/hooks/useBookingOptions.ts
+
+Recursos y recarga de los selectores, separados de la cotización dependiente.
+
+[Abrir fuente](../src/hooks/useBookingOptions.ts)
+
+| Exportación       | Responsabilidad                                                               |
+| ----------------- | ----------------------------------------------------------------------------- |
+| useBookingOptions | Recursos y recarga de los selectores, separados de la cotización dependiente. |
+
 ## src/hooks/useBookingResources.ts
 
-Carga opciones autorizadas y cotiza una selección con forma válida.
+Cotiza solo selecciones compatibles y recarga opciones al volver de registrar un auto.
 
 [Abrir fuente](../src/hooks/useBookingResources.ts)
 
-| Exportación         | Responsabilidad                                                     |
-| ------------------- | ------------------------------------------------------------------- |
-| useBookingResources | Carga opciones autorizadas y cotiza una selección con forma válida. |
+| Exportación         | Responsabilidad                                                                        |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| useBookingResources | Cotiza solo selecciones compatibles y recarga opciones al volver de registrar un auto. |
 
 ## src/hooks/useBookingSelection.ts
 
@@ -1884,6 +2029,16 @@ Compone consulta, edición de servicio y edición de tarifa como responsabilidad
 | Exportación | Responsabilidad                                                                             |
 | ----------- | ------------------------------------------------------------------------------------------- |
 | useCatalog  | Compone consulta, edición de servicio y edición de tarifa como responsabilidades separadas. |
+
+## src/hooks/useConnectionNotice.ts
+
+Evita parpadeos en conexiones rápidas y explica esperas prolongadas en la app.
+
+[Abrir fuente](../src/hooks/useConnectionNotice.ts)
+
+| Exportación         | Responsabilidad                                                                |
+| ------------------- | ------------------------------------------------------------------------------ |
+| useConnectionNotice | Evita parpadeos en conexiones rápidas y explica esperas prolongadas en la app. |
 
 ## src/hooks/useDashboard.ts
 
@@ -1937,13 +2092,13 @@ Próximas tres visitas propias, ordenadas cronológicamente.
 
 ## src/hooks/useOptions.ts
 
-Lee todas las páginas de un selector, solo cuando el rol lo permite.
+Carga todas las páginas de un selector y permite actualizarlo al volver a la pantalla.
 
 [Abrir fuente](../src/hooks/useOptions.ts)
 
-| Exportación | Responsabilidad                                                      |
-| ----------- | -------------------------------------------------------------------- |
-| useOptions  | Lee todas las páginas de un selector, solo cuando el rol lo permite. |
+| Exportación | Responsabilidad                                                                        |
+| ----------- | -------------------------------------------------------------------------------------- |
+| useOptions  | Carga todas las páginas de un selector y permite actualizarlo al volver a la pantalla. |
 
 ## src/hooks/usePagedList.ts
 
@@ -1965,15 +2120,35 @@ Perfil propio con formularios, sesión y comandos separados por responsabilidad.
 | ----------- | ------------------------------------------------------------------------------- |
 | useProfile  | Perfil propio con formularios, sesión y comandos separados por responsabilidad. |
 
+## src/hooks/useQuery.ts
+
+Coordina carga, recarga y respuestas fuera de orden sin mostrar datos de otra selección.
+
+[Abrir fuente](../src/hooks/useQuery.ts)
+
+| Exportación | Responsabilidad                                                                          |
+| ----------- | ---------------------------------------------------------------------------------------- |
+| useQuery    | Coordina carga, recarga y respuestas fuera de orden sin mostrar datos de otra selección. |
+
+## src/hooks/useRefreshOnReturn.ts
+
+Recarga al regresar de otra ruta sin duplicar la carga inicial ni cada cambio de filtro.
+
+[Abrir fuente](../src/hooks/useRefreshOnReturn.ts)
+
+| Exportación        | Responsabilidad                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------- |
+| useRefreshOnReturn | Recarga al regresar de otra ruta sin duplicar la carga inicial ni cada cambio de filtro. |
+
 ## src/hooks/useRemoteData.ts
 
-Consulta un recurso y descarta respuestas de filtros anteriores o de un consumidor desmontado.
+Consulta un recurso sin conservar resultados de filtros anteriores.
 
 [Abrir fuente](../src/hooks/useRemoteData.ts)
 
-| Exportación   | Responsabilidad                                                                                |
-| ------------- | ---------------------------------------------------------------------------------------------- |
-| useRemoteData | Consulta un recurso y descarta respuestas de filtros anteriores o de un consumidor desmontado. |
+| Exportación   | Responsabilidad                                                     |
+| ------------- | ------------------------------------------------------------------- |
+| useRemoteData | Consulta un recurso sin conservar resultados de filtros anteriores. |
 
 ## src/hooks/useReports.ts
 
@@ -2007,13 +2182,13 @@ Administra la tarifa por tipo de vehículo, independientemente del formulario de
 
 ## src/hooks/useSessionRestore.ts
 
-Publica la fase de arranque y cancela lógicamente respuestas tardías.
+Conserva credenciales ante una caída de conexión y permite reintentar el arranque.
 
 [Abrir fuente](../src/hooks/useSessionRestore.ts)
 
-| Exportación       | Responsabilidad                                                       |
-| ----------------- | --------------------------------------------------------------------- |
-| useSessionRestore | Publica la fase de arranque y cancela lógicamente respuestas tardías. |
+| Exportación       | Responsabilidad                                                                    |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| useSessionRestore | Conserva credenciales ante una caída de conexión y permite reintentar el arranque. |
 
 ## src/hooks/useSettings.ts
 
@@ -2461,6 +2636,28 @@ Título de la colección según rol e historial, sin reglas de acceso dentro del
 | -------------------- | ---------------------------------------------------------------------------------- |
 | appointmentListTitle | Título de la colección según rol e historial, sin reglas de acceso dentro del JSX. |
 
+## src/utils/bookingAvailability.ts
+
+Explica por qué una fecha no puede ofrecer turnos antes de consultar un horario.
+
+[Abrir fuente](../src/utils/bookingAvailability.ts)
+
+| Exportación        | Responsabilidad                                                                                 |
+| ------------------ | ----------------------------------------------------------------------------------------------- |
+| bookingDateMessage | Explica por qué una fecha no puede ofrecer turnos antes de consultar un horario.                |
+| canBook            | Solo permite confirmar un horario de la cotización vigente y todavía futuro.                    |
+| emptyAvailability  | Mensaje específico para un día sin horarios; mantiene compatibilidad con servidores anteriores. |
+
+## src/utils/bookingSelection.ts
+
+Deriva opciones y validez sin confiar en identificadores que ya no están disponibles.
+
+[Abrir fuente](../src/utils/bookingSelection.ts)
+
+| Exportación    | Responsabilidad                                                                       |
+| -------------- | ------------------------------------------------------------------------------------- |
+| bookingOptions | Deriva opciones y validez sin confiar en identificadores que ya no están disponibles. |
+
 ## src/utils/buildFormSchema.ts
 
 Genera validación por campo sobre valores de texto del formulario móvil.
@@ -2480,6 +2677,19 @@ Resuelve contraste y superficie de variantes sin repetir colores en los botones.
 | Exportación  | Responsabilidad                                                                  |
 | ------------ | -------------------------------------------------------------------------------- |
 | buttonColors | Resuelve contraste y superficie de variantes sin repetir colores en los botones. |
+
+## src/utils/calendar.ts
+
+Valida fecha real de calendario sin normalizar 31 de febrero a otro mes.
+
+[Abrir fuente](../src/utils/calendar.ts)
+
+| Exportación   | Responsabilidad                                                                         |
+| ------------- | --------------------------------------------------------------------------------------- |
+| validDate     | Valida fecha real de calendario sin normalizar 31 de febrero a otro mes.                |
+| shiftMonth    | Cambia de mes conservando el día uno para evitar saltos por meses de distinta duración. |
+| calendarDays  | Genera seis semanas de lunes a domingo; las celdas ajenas al mes quedan vacías.         |
+| calendarLabel | Presenta una fecha sin que la zona del dispositivo la cambie al día anterior.           |
 
 ## src/utils/catalogFields.ts
 
@@ -2578,6 +2788,28 @@ Convierte un importe validado en pesos a centavos, sin multiplicación decimal i
 | ------------ | --------------------------------------------------------------------------------------- |
 | pesosToCents | Convierte un importe validado en pesos a centavos, sin multiplicación decimal inexacta. |
 
+## src/utils/queryState.ts
+
+Una respuesta siempre conserva la identidad de los filtros que la produjeron.
+
+[Abrir fuente](../src/utils/queryState.ts)
+
+| Exportación  | Responsabilidad                                                                        |
+| ------------ | -------------------------------------------------------------------------------------- |
+| QueryState   | Una respuesta siempre conserva la identidad de los filtros que la produjeron.          |
+| currentQuery | Oculta datos obsoletos inmediatamente, incluso antes de ejecutarse el efecto de React. |
+| readLatest   | Publica únicamente la última petición de un consumidor todavía activo.                 |
+
+## src/utils/refreshResources.ts
+
+Recarga consultas relacionadas después de una acción o regreso a la pantalla.
+
+[Abrir fuente](../src/utils/refreshResources.ts)
+
+| Exportación      | Responsabilidad                                                               |
+| ---------------- | ----------------------------------------------------------------------------- |
+| refreshResources | Recarga consultas relacionadas después de una acción o regreso a la pantalla. |
+
 ## src/utils/routeAccess.ts
 
 Resuelve guardas con el rol verificado; durante restauración solo deja rutas públicas.
@@ -2598,6 +2830,16 @@ Serializa campos de servicio; el código permanece estable durante una edición.
 | -------------------- | ------------------------------------------------------------------------------ |
 | servicePayload       | Serializa campos de servicio; el código permanece estable durante una edición. |
 | serviceInitialValues | Valores de edición sin convertir null en texto visible.                        |
+
+## src/utils/sessionFailure.ts
+
+Solo un rechazo definitivo de credenciales invalida la sesión local.
+
+[Abrir fuente](../src/utils/sessionFailure.ts)
+
+| Exportación       | Responsabilidad                                                      |
+| ----------------- | -------------------------------------------------------------------- |
+| isSessionRejected | Solo un rechazo definitivo de credenciales invalida la sesión local. |
 
 ## src/utils/settingsForm.ts
 

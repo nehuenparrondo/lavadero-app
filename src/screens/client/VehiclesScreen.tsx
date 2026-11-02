@@ -15,7 +15,7 @@ export function VehiclesScreen() {
   return (
     <Screen refreshing={m.loading} onRefresh={m.refresh}>
       <SectionHeader
-        title="Mis vehículos"
+        title={m.admin ? 'Vehículos' : 'Mis vehículos'}
         subtitle="Todos los datos de tus vehículos, en un solo lugar."
       />
       <Button label="+ Agregar vehículo" onPress={m.create} />
