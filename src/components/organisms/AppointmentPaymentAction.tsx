@@ -9,6 +9,13 @@ export function AppointmentPaymentAction({
 }: {
   m: ReturnType<typeof useAppointmentDetail>;
 }) {
+  const appointment = m.detail.data;
+  if (
+    !appointment ||
+    appointment.totalCents === undefined ||
+    (appointment.paidCents ?? 0) >= appointment.totalCents
+  )
+    return null;
   return (
     <Button
       label="Registrar cobro"
