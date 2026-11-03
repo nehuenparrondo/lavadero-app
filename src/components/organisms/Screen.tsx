@@ -1,61 +1,38 @@
 import type { PropsWithChildren } from 'react';
-import { RefreshControl, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRefreshOnReturn } from '../../hooks/useRefreshOnReturn';
 import { useTheme } from '../../hooks/useTheme';
-import { useWorkspaceLayout } from '../../hooks/useWorkspaceLayout';
-import { tokens } from '../../theme/tokens';
 import { WorkspaceFrame } from './WorkspaceFrame';
-/** Superficie de pantalla con una única región desplazable y actualización opcional.
- * @param props Contenido, estado de carga y operación de recarga; no ejecuta consultas propias.
- * @returns Marco adaptable con áreas seguras, ancho legible y soporte de teclado/formularios.
+import { ScreenContent } from './ScreenContent';
+/** Marco de todos los roles con controles flotantes y actualización al regresar.
+ * @param props Contenido, recarga manual y sondeo visible opcional de agendas.
+ * @returns Pantalla segura con ancho legible y una sola región desplazable.
  */
 export function Screen({
   children,
   refreshing = false,
   onRefresh,
+  refreshInterval = 0,
+  onRevalidate,
 }: {
   children: PropsWithChildren['children'];
   refreshing?: boolean;
-  onRefresh?: () => void;
+  onRefresh?: () => void | Promise<void>;
+  refreshInterval?: number;
+  onRevalidate?: () => void | Promise<void>;
 }) {
-  useRefreshOnReturn(onRefresh);
+  useRefreshOnReturn(onRefresh, refreshing, refreshInterval, onRevalidate);
   const { colors } = useTheme();
-  const { wide } = useWorkspaceLayout();
   return (
     <SafeAreaView
       edges={['top', 'left', 'right', 'bottom']}
       style={{ flex: 1, backgroundColor: colors.background }}
     >
       <WorkspaceFrame>
-        <ScrollView
-          keyboardShouldPersistTaps="handled"
-          contentContainerStyle={[styles.content, wide && styles.wide]}
-          refreshControl={
-            onRefresh ? (
-              <RefreshControl
-                refreshing={refreshing}
-                onRefresh={onRefresh}
-                tintColor={colors.primary}
-              />
-            ) : undefined
-          }
-        >
+        <ScreenContent refreshing={refreshing} onRefresh={onRefresh}>
           {children}
-        </ScrollView>
+        </ScreenContent>
       </WorkspaceFrame>
     </SafeAreaView>
   );
 }
-const styles = StyleSheet.create({
-  content: {
-    width: '100%',
-    maxWidth: tokens.maxContentWidth,
-    alignSelf: 'center',
-    padding: 20,
-    paddingBottom: 40,
-    gap: 24,
-    flexGrow: 1,
-  },
-  wide: { padding: 36, gap: 28 },
-});

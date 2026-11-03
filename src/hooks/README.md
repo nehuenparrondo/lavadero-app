@@ -9,6 +9,7 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 | [appointmentCommands.ts](appointmentCommands.ts)               | Acciones operativas; el permiso y la transición se vuelven a validar en el backend.            |
 | [profileCommands.ts](profileCommands.ts)                       | Operaciones propias; cambiar contraseña revoca sesiones e inicia nuevamente el acceso.         |
 | [useAction.ts](useAction.ts)                                   | Ejecuta una acción y publica carga/error/resultado sin propagar errores a la vista.            |
+| [useAgendaList.ts](useAgendaList.ts)                           | Traduce filtros visuales a la consulta; el servidor decide la visibilidad efectiva.            |
 | [useAgendaResources.ts](useAgendaResources.ts)                 | Recursos auxiliares de agenda, habilitados únicamente para la experiencia correspondiente.     |
 | [useApiHealth.ts](useApiHealth.ts)                             | Consulta el backend y cancela la solicitud al desmontar.                                       |
 | [useAppointmentDetail.ts](useAppointmentDetail.ts)             | Compone datos, selección y acciones del detalle de turno con ownership en la API.              |
@@ -35,11 +36,12 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 | [usePagedList.ts](usePagedList.ts)                             | Lista paginada con filtro y navegación entre páginas para no truncar datos.                    |
 | [useProfile.ts](useProfile.ts)                                 | Perfil propio con formularios, sesión y comandos separados por responsabilidad.                |
 | [useQuery.ts](useQuery.ts)                                     | Coordina carga, recarga y respuestas fuera de orden sin mostrar datos de otra selección.       |
-| [useRefreshOnReturn.ts](useRefreshOnReturn.ts)                 | Recarga al regresar de otra ruta sin duplicar la carga inicial ni cada cambio de filtro.       |
+| [useRefreshOnReturn.ts](useRefreshOnReturn.ts)                 | Actualiza al regresar a la ruta/app y, opcionalmente, mientras se usa una agenda.              |
 | [useRemoteData.ts](useRemoteData.ts)                           | Consulta un recurso sin conservar resultados de filtros anteriores.                            |
 | [useReports.ts](useReports.ts)                                 | Reporte por período calendario local y fecha elegida.                                          |
 | [useResourceEditor.ts](useResourceEditor.ts)                   | Compone selección, confirmaciones y persistencia para editores sin duplicar el ABML.           |
 | [useRestoreDestination.ts](useRestoreDestination.ts)           | Conserva el enlace solicitado mientras las guardas esperan la sesión.                          |
+| [useScrollControls.ts](useScrollControls.ts)                   | Vincula los botones a su propia región; no desplaza la ventana ni otros diálogos.              |
 | [useServicePrice.ts](useServicePrice.ts)                       | Administra la tarifa por tipo de vehículo, independientemente del formulario de servicio.      |
 | [useSessionRestore.ts](useSessionRestore.ts)                   | Conserva credenciales ante una caída de conexión y permite reintentar el arranque.             |
 | [useSettings.ts](useSettings.ts)                               | Configuración operativa con horario local y capacidad simultánea.                              |

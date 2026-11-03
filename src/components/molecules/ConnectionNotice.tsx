@@ -15,7 +15,7 @@ export function ConnectionNotice() {
       pointerEvents="none"
       style={{
         position: 'absolute',
-        bottom: 24,
+        bottom: 160,
         left: 20,
         right: 20,
         padding: 18,

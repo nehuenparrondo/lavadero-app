@@ -22,4 +22,7 @@ export const iconPaths: Record<IconName, string> = {
   chevron: 'm9 5 7 7-7 7',
   drop: 'M12 2S5 10 5 15a7 7 0 0 0 14 0c0-5-7-13-7-13Zm-3 13a3 3 0 0 0 3 3',
   close: 'm6 6 12 12M6 18 18 6',
+  sun: 'M8 12a4 4 0 1 0 8 0 4 4 0 1 0-8 0M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5',
+  moon: 'M20.5 14A9 9 0 0 1 10 3a9 9 0 1 0 10.5 11Z',
+  arrowUp: 'M12 20V4m-6 6 6-6 6 6',
 };

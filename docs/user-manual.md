@@ -76,7 +76,7 @@ También podés consultar las observaciones del trabajo y el saldo.
 ## Empleado
 
 **Mi agenda** abre la fecha actual; cambiá el filtro para otra jornada.
-Solo aparecen turnos asignados a tu cuenta, con vehículo, color, servicios y horario.
+Aparecen todos los turnos de la agenda compartida, con vehículo, color, servicios y horario. Elegí la fecha reservada o quitá el filtro.
 El resumen de jornada distingue finalizados y pendientes. **Historial** muestra trabajos
 cerrados. No se ofrecen usuarios, configuración ni reportes de ingresos del negocio.
 
@@ -157,3 +157,5 @@ es ficticio. Esos registros permiten evaluar los flujos; no son operaciones del 
 ## Si usás iPhone
 
 Abrí la versión web en Safari. El APK entregado es para Android; Expo Go no valida el retorno OAuth con scheme propio. Ver PROBAR-EN-IPHONE.md en la entrega o docs/iphone-expo-go.md en el repositorio.
+
+> Actualización: la decisión posterior del usuario establece agenda compartida. Consultar [shared-agenda.md](shared-agenda.md) para la regla vigente; capturas anteriores documentan su versión original.

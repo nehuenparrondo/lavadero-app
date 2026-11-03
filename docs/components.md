@@ -138,6 +138,34 @@ Uso:
 <ButtonContent label="Guardar" color={color} loading={loading} />
 ```
 
+### FloatingAction
+
+Acción circular con nombre accesible y contraste adaptado al tema.
+
+[Fuente](../src/components/atoms/FloatingAction.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  icon: IconName;
+  label: string;
+  onPress: () => void;
+}
+```
+
+| Prop    | Obligatoria | Tipo         |
+| ------- | ----------- | ------------ |
+| icon    | Sí          | `IconName`   |
+| label   | Sí          | `string`     |
+| onPress | Sí          | `() => void` |
+
+Uso:
+
+```tsx
+<FloatingAction icon={icon} label="Guardar" onPress={handleAction} />
+```
+
 ### Icon
 
 Símbolo decorativo; el control que lo contiene aporta la etiqueta accesible.
@@ -593,6 +621,30 @@ Uso:
 <ControlledField field={field} control={control} />
 ```
 
+### ControlledScrollView
+
+Asocia medidas y referencia con un controlador sin introducir otra región desplazable.
+
+[Fuente](../src/components/molecules/ControlledScrollView.tsx)
+
+Tipo del parámetro:
+
+```ts
+ComponentProps<typeof ScrollView> & {
+  controls: ReturnType<typeof useScrollControls>;
+}
+```
+
+| Prop     | Obligatoria | Tipo                                   |
+| -------- | ----------- | -------------------------------------- |
+| controls | Sí          | `ReturnType<typeof useScrollControls>` |
+
+Uso:
+
+```tsx
+<ControlledScrollView controls={controls} />
+```
+
 ### DateInput
 
 Selección de fecha mediante calendario, con valor ISO separado de su presentación.
@@ -674,6 +726,34 @@ Uso:
 
 ```tsx
 <FieldInput field={field} value={value} onChange={handleAction} />
+```
+
+### FloatingControls
+
+Controles persistentes abajo a la derecha; volver arriba aparece solo cuando es útil.
+
+[Fuente](../src/components/molecules/FloatingControls.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  showTop: boolean;
+  toTop: () => void;
+  bottom?: number;
+}
+```
+
+| Prop    | Obligatoria | Tipo         |
+| ------- | ----------- | ------------ |
+| showTop | Sí          | `boolean`    |
+| toTop   | Sí          | `() => void` |
+| bottom  | No          | `number`     |
+
+Uso:
+
+```tsx
+<FloatingControls showTop={showTop} toTop={toTop} />
 ```
 
 ### FormField
@@ -1189,21 +1269,51 @@ Uso:
 <WorkdayGuide />
 ```
 
+### WorkspaceIdentity
+
+Nombre y rol de la sesión propia sobre fondos claros u oscuros.
+
+[Fuente](../src/components/molecules/WorkspaceIdentity.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  user: User;
+  inverse: boolean;
+}
+```
+
+| Prop    | Obligatoria | Tipo      |
+| ------- | ----------- | --------- |
+| user    | Sí          | `User`    |
+| inverse | Sí          | `boolean` |
+
+Uso:
+
+```tsx
+<WorkspaceIdentity user={user} inverse={inverse} />
+```
+
 ### WorkspaceUser
 
-Identidad de la sesión actual; no consulta ni copia información de otros usuarios.
+Acceso al perfil desde toda la identidad, tanto en cabecera como en barra lateral.
 
 [Fuente](../src/components/molecules/WorkspaceUser.tsx)
 
 Tipo del parámetro:
 
 ```ts
-{ inverse?: boolean }
+{
+  inverse?: boolean;
+  compact?: boolean;
+}
 ```
 
 | Prop    | Obligatoria | Tipo      |
 | ------- | ----------- | --------- |
 | inverse | No          | `boolean` |
+| compact | No          | `boolean` |
 
 Uso:
 
@@ -1636,6 +1746,30 @@ Uso:
 <AppointmentReceiptDialog m={manager} />
 ```
 
+### AppointmentResults
+
+Contenido de listado separado del ciclo de actualización de la pantalla.
+
+[Fuente](../src/components/organisms/AppointmentResults.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  manager: ReturnType<typeof useAppointments>;
+}
+```
+
+| Prop    | Obligatoria | Tipo                                 |
+| ------- | ----------- | ------------------------------------ |
+| manager | Sí          | `ReturnType<typeof useAppointments>` |
+
+Uso:
+
+```tsx
+<AppointmentResults manager={manager} />
+```
+
 ### AppointmentStatusEditor
 
 Expone las transiciones administrativas que el servidor vuelve a validar.
@@ -1926,7 +2060,7 @@ Uso:
 
 ### DashboardPending
 
-Solicitudes pendientes del negocio; un fallo de consulta no se anuncia como lista vacía.
+Turnos por atender del negocio; un fallo de consulta no se anuncia como lista vacía.
 
 [Fuente](../src/components/organisms/DashboardPending.tsx)
 
@@ -1974,7 +2108,7 @@ Uso:
 
 ### EmployeeDaySummary
 
-Resumen de la fecha consultada, limitado por la API al empleado actual.
+Resumen de la fecha consultada, compartido por el equipo, sin información financiera.
 
 [Fuente](../src/components/organisms/EmployeeDaySummary.tsx)
 
@@ -2076,16 +2210,48 @@ Uso:
 <EntityForm fields={fields} onSubmit={handleAction} />
 ```
 
+### ModalContent
+
+Panel desplazable; los controles flotantes quedan fuera para no tapar el formulario.
+
+[Fuente](../src/components/organisms/ModalContent.tsx)
+
+Tipo del parámetro:
+
+```ts
+PropsWithChildren<{
+  controls: ReturnType<typeof useScrollControls>;
+  title: string;
+  onClose: () => void;
+}>;
+```
+
+| Prop     | Obligatoria | Tipo                                   |
+| -------- | ----------- | -------------------------------------- |
+| controls | Sí          | `ReturnType<typeof useScrollControls>` |
+| title    | Sí          | `string`                               |
+| onClose  | Sí          | `() => void`                           |
+
+Uso:
+
+```tsx
+<ModalContent controls={controls} title="Guardar" onClose={handleAction} />
+```
+
 ### ModalPanel
 
-Panel accesible para formularios y confirmaciones sin ventanas nativas bloqueantes.
+Diálogo nativo con tema y volver arriba disponibles sin salir del formulario.
 
 [Fuente](../src/components/organisms/ModalPanel.tsx)
 
 Tipo del parámetro:
 
 ```ts
-PropsWithChildren<{ visible: boolean; title: string; onClose: () => void }>;
+PropsWithChildren<{
+  visible: boolean;
+  title: string;
+  onClose: () => void;
+}>;
 ```
 
 | Prop    | Obligatoria | Tipo         |
@@ -2300,7 +2466,7 @@ Uso:
 
 ### Screen
 
-Superficie de pantalla con una única región desplazable y actualización opcional.
+Marco de todos los roles con controles flotantes y actualización al regresar.
 
 [Fuente](../src/components/organisms/Screen.tsx)
 
@@ -2310,20 +2476,68 @@ Tipo del parámetro:
 {
   children: PropsWithChildren['children'];
   refreshing?: boolean;
-  onRefresh?: () => void;
+  onRefresh?: () => void | Promise<void>;
+  refreshInterval?: number;
+  onRevalidate?: () => void | Promise<void>;
 }
 ```
 
-| Prop       | Obligatoria | Tipo                            |
-| ---------- | ----------- | ------------------------------- |
-| children   | Sí          | `PropsWithChildren['children']` |
-| refreshing | No          | `boolean`                       |
-| onRefresh  | No          | `() => void`                    |
+| Prop            | Obligatoria | Tipo                            |
+| --------------- | ----------- | ------------------------------- |
+| children        | Sí          | `PropsWithChildren['children']` |
+| refreshing      | No          | `boolean`                       |
+| onRefresh       | No          | `() => void \| Promise<void>`   |
+| refreshInterval | No          | `number`                        |
+| onRevalidate    | No          | `() => void \| Promise<void>`   |
 
 Uso:
 
 ```tsx
 <Screen />
+```
+
+### ScreenContent
+
+Contenido común con espacio reservado para los controles flotantes.
+
+[Fuente](../src/components/organisms/ScreenContent.tsx)
+
+Tipo del parámetro:
+
+```ts
+PropsWithChildren<{
+  refreshing: boolean;
+  onRefresh?: (() => void | Promise<void>) | undefined;
+}>;
+```
+
+| Prop       | Obligatoria | Tipo                                         |
+| ---------- | ----------- | -------------------------------------------- |
+| refreshing | Sí          | `boolean`                                    |
+| onRefresh  | No          | `(() => void \| Promise<void>) \| undefined` |
+
+Uso:
+
+```tsx
+<ScreenContent refreshing={refreshing} />
+```
+
+### ScrollSurface
+
+Superficie acotada que mantiene los controles fuera del contenido desplazable.
+
+[Fuente](../src/components/organisms/ScrollSurface.tsx)
+
+Tipo del parámetro:
+
+```ts
+ComponentProps<typeof ScrollView>;
+```
+
+Uso:
+
+```tsx
+<ScrollSurface />
 ```
 
 ### ServiceCollection
@@ -2540,7 +2754,7 @@ Uso:
 
 ### ThemeSelector
 
-Edita la preferencia local de apariencia sin cambiar datos del negocio.
+Conserva la preferencia automática; los cambios claro/oscuro usan el botón flotante.
 
 [Fuente](../src/components/organisms/ThemeSelector.tsx)
 

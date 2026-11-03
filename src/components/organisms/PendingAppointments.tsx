@@ -24,7 +24,7 @@ export function PendingAppointments({
           onPress={() => router.push(`/appointment/${a.id}`)}
         />
       ))}
-      {!loading && !items.length && <Text>No hay reservas esperando confirmación.</Text>}
+      {!loading && !items.length && <Text>No hay turnos por atender.</Text>}
       <Button
         label="Ver todos los turnos"
         variant="secondary"

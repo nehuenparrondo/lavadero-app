@@ -12,17 +12,22 @@ import { useAppointments } from '../../hooks/useAppointments';
 export function EmployeeAgendaScreen({ history = false }: { history?: boolean }) {
   const m = useAppointments('employee', history);
   return (
-    <Screen refreshing={m.loading} onRefresh={m.refresh}>
+    <Screen
+      refreshing={m.loading}
+      onRefresh={m.refresh}
+      refreshInterval={30000}
+      onRevalidate={m.revalidate}
+    >
       <PageHeading
         eyebrow={history ? 'Tu recorrido' : 'Equipo de trabajo'}
         title={history ? 'El trabajo bien hecho.' : 'Tu jornada, bien organizada.'}
         detail={
           history
-            ? 'Consultá tus trabajos anteriores y cada detalle registrado.'
-            : 'Tus asignaciones, los servicios y el estado de cada lavado.'
+            ? 'Consultá los trabajos anteriores del equipo y cada detalle registrado.'
+            : 'Todos los turnos del equipo, los servicios y el estado de cada lavado.'
         }
       />
-      {!history && <EmployeeDaySummary summary={m.summary} />}
+      {!history && m.date && <EmployeeDaySummary summary={m.summary} />}
       <OverviewColumns
         primary={<EmployeeAppointmentResults manager={m} />}
         secondary={<WorkdayGuide />}

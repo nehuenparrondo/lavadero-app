@@ -1,36 +1,36 @@
-import { View } from 'react-native';
+import { Pressable } from 'react-native';
+import { useRouter } from 'expo-router';
+import { profileDestination } from '../../utils/profileDestination';
 import { useAuth } from '../../hooks/useAuth';
-import { useTheme } from '../../hooks/useTheme';
-import { roleLabels } from '../../constants/roleNavigation';
 import { workspaceStyles as s } from '../../theme/workspace.styles';
 import { Avatar } from '../atoms/Avatar';
-import { Text } from '../atoms/Text';
-/** Identidad de la sesión actual; no consulta ni copia información de otros usuarios.
- * @param props Variante sobre fondo oscuro para la barra lateral.
- * @returns Nombre, rol y avatar; omite el bloque mientras no exista sesión.
+import { WorkspaceIdentity } from './WorkspaceIdentity';
+/** Acceso al perfil desde toda la identidad, tanto en cabecera como en barra lateral.
+ * @param props Variante inversa de la barra lateral o compacta para teléfonos.
+ * @returns Botón de perfil del rol actual; no consulta datos ajenos.
  */
-export function WorkspaceUser({ inverse = false }: { inverse?: boolean }) {
+export function WorkspaceUser({
+  inverse = false,
+  compact = false,
+}: {
+  inverse?: boolean;
+  compact?: boolean;
+}) {
   const { user } = useAuth();
-  const { colors } = useTheme();
+  const router = useRouter();
   if (!user) return null;
+  const label = inverse
+    ? 'Abrir mi perfil desde la barra lateral'
+    : 'Abrir mi perfil desde el encabezado';
   return (
-    <View style={s.user}>
+    <Pressable
+      style={s.user}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      onPress={() => router.navigate(profileDestination(user.role))}
+    >
       <Avatar name={user.firstName} url={user.avatarUrl} />
-      <View style={{ flex: 1, minWidth: 0, gap: 4 }}>
-        <Text
-          numberOfLines={1}
-          style={{
-            fontSize: 13,
-            fontWeight: '700',
-            color: inverse ? colors.onNavy : colors.text,
-          }}
-        >
-          {user.firstName} {user.lastName}
-        </Text>
-        <Text style={{ fontSize: 11, color: inverse ? colors.navMuted : colors.muted }}>
-          {roleLabels[user.role]}
-        </Text>
-      </View>
-    </View>
+      {!compact && <WorkspaceIdentity user={user} inverse={inverse} />}
+    </Pressable>
   );
 }

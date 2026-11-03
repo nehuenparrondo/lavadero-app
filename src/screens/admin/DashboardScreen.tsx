@@ -16,6 +16,8 @@ export function DashboardScreen() {
     <Screen
       refreshing={d.report.loading || d.pending.loading || d.week.loading}
       onRefresh={d.refresh}
+      refreshInterval={30000}
+      onRevalidate={d.revalidate}
     >
       <DashboardHeading />
       <DashboardIndicators report={d.report} pending={d.pending} />

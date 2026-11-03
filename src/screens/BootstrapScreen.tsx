@@ -1,4 +1,4 @@
-import { ScrollView } from 'react-native';
+import { ScrollSurface } from '../components/organisms/ScrollSurface';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { WelcomePanel } from '../components/organisms/WelcomePanel';
 import { useApiHealth } from '../hooks/useApiHealth';
@@ -13,9 +13,9 @@ export function BootstrapScreen() {
   const { state, retry } = useApiHealth();
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: colors.background }]}>
-      <ScrollView contentContainerStyle={styles.content}>
+      <ScrollSurface contentContainerStyle={styles.content}>
         <WelcomePanel state={state} onRetry={retry} />
-      </ScrollView>
+      </ScrollSurface>
     </SafeAreaView>
   );
 }

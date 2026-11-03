@@ -1,46 +1,45 @@
 import type { PropsWithChildren } from 'react';
-import { Modal, ScrollView, StyleSheet, View } from 'react-native';
-import { useTheme } from '../../hooks/useTheme';
-import { Button } from '../atoms/Button';
-import { Text } from '../atoms/Text';
-/** Panel accesible para formularios y confirmaciones sin ventanas nativas bloqueantes.
- * @param props - Propiedades tipadas: visible, title, onClose, children.
- * @returns Vista de ModalPanel con el contrato de propiedades declarado.
+import { Modal, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useScrollControls } from '../../hooks/useScrollControls';
+import { FloatingControls } from '../molecules/FloatingControls';
+import { ModalContent } from './ModalContent';
+/** Diálogo nativo con tema y volver arriba disponibles sin salir del formulario.
+ * @param props Visibilidad, título, contenido y cierre accesible.
+ * @returns Modal con acciones en el borde inferior seguro de la pantalla.
  */
 export function ModalPanel({
   visible,
   title,
   onClose,
   children,
-}: PropsWithChildren<{ visible: boolean; title: string; onClose: () => void }>) {
-  const { colors } = useTheme();
+}: PropsWithChildren<{
+  visible: boolean;
+  title: string;
+  onClose: () => void;
+}>) {
+  const controls = useScrollControls();
+  const insets = useSafeAreaInsets();
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      <View style={styles.backdrop}>
-        <View style={[styles.panel, { backgroundColor: colors.surface }]}>
-          <ScrollView
-            keyboardShouldPersistTaps="handled"
-            contentContainerStyle={{ padding: 24, gap: 18 }}
-          >
-            <Text accessibilityRole="header" style={{ fontSize: 24, fontWeight: '800' }}>
-              {title}
-            </Text>
-            {children}
-            <Button label="Cerrar" onPress={onClose} variant="quiet" />
-          </ScrollView>
-        </View>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#00000088',
+          justifyContent: 'center',
+          padding: 16,
+          paddingBottom: 88 + insets.bottom,
+        }}
+      >
+        <ModalContent controls={controls} title={title} onClose={onClose}>
+          {children}
+        </ModalContent>
+        <FloatingControls
+          showTop={controls.showTop}
+          toTop={controls.toTop}
+          bottom={16 + insets.bottom}
+        />
       </View>
     </Modal>
   );
 }
-
-const styles = StyleSheet.create({
-  backdrop: { flex: 1, backgroundColor: '#00000088', justifyContent: 'center', padding: 16 },
-  panel: {
-    maxHeight: '90%',
-    width: '100%',
-    maxWidth: 620,
-    alignSelf: 'center',
-    borderRadius: 24,
-  },
-});

@@ -17,9 +17,10 @@ export function WorkspaceHeaderActions({ wide }: { wide: boolean }) {
         <WorkspaceUser />
       </View>
     );
-  if (user?.role !== 'admin') return null;
+  if (user?.role !== 'admin') return <WorkspaceUser compact />;
   return (
-    <>
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+      <WorkspaceUser compact />
       <Pressable
         accessibilityRole="button"
         accessibilityLabel="Abrir menú de administración"
@@ -29,6 +30,6 @@ export function WorkspaceHeaderActions({ wide }: { wide: boolean }) {
         <AppIcon name="menu" />
       </Pressable>
       <AdminMenu open={open} onClose={() => setOpen(false)} />
-    </>
+    </View>
   );
 }

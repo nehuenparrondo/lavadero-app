@@ -19,4 +19,7 @@ export type IconName =
   | 'shield'
   | 'chevron'
   | 'drop'
-  | 'close';
+  | 'close'
+  | 'sun'
+  | 'moon'
+  | 'arrowUp';

@@ -13,9 +13,7 @@ export function appointmentCommands(
   mutate: ReturnType<typeof useAppointmentMutation>['mutate'],
 ) {
   const assign = async () => {
-    const result = await mutate('patch', '/assignment', { employeeId: flags.employeeId });
-    if (result !== undefined && a?.status === 'pending')
-      await mutate('patch', '/status', { status: 'confirmed' });
+    await mutate('patch', '/assignment', { employeeId: flags.employeeId });
   };
   const cancel = async (v: Record<string, string>) => {
     if ((await mutate('post', '/cancel', { reason: v.reason ?? '' })) !== undefined)
@@ -23,7 +21,7 @@ export function appointmentCommands(
   };
   const advance = async () => {
     await mutate('patch', '/status', {
-      status: a?.status === 'confirmed' ? 'in_progress' : 'completed',
+      status: a?.status === 'in_progress' ? 'completed' : 'in_progress',
     });
   };
   const setAdminStatus = async () => {

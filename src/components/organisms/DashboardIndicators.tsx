@@ -29,9 +29,9 @@ export function DashboardIndicators({
         icon="wallet"
       />
       <MetricTile
-        label="Por confirmar"
+        label="Por atender"
         value={pending.data ? String(pending.data.total) : '—'}
-        detail="Solicitudes pendientes de revisión"
+        detail="Turnos activos del equipo"
         icon="calendar"
       />
     </View>

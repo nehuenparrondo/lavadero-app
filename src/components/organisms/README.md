@@ -24,6 +24,7 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [AppointmentPaymentDialog.tsx](AppointmentPaymentDialog.tsx)           | Recoge importe, medio y referencia para registrar un cobro idempotente.                           |
 | [AppointmentPayments.tsx](AppointmentPayments.tsx)                     | Muestra cobros registrados y saldo de la proyección autorizada.                                   |
 | [AppointmentReceiptDialog.tsx](AppointmentReceiptDialog.tsx)           | Presenta el comprobante histórico; no constituye factura fiscal.                                  |
+| [AppointmentResults.tsx](AppointmentResults.tsx)                       | Contenido de listado separado del ciclo de actualización de la pantalla.                          |
 | [AppointmentStatusEditor.tsx](AppointmentStatusEditor.tsx)             | Expone las transiciones administrativas que el servidor vuelve a validar.                         |
 | [AppointmentStatusFilter.tsx](AppointmentStatusFilter.tsx)             | Filtra la consulta por estado sin cambiar ningún turno.                                           |
 | [BookingClientField.tsx](BookingClientField.tsx)                       | Selecciona titular para una reserva asistida por administración.                                  |
@@ -37,13 +38,14 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [CollectionState.tsx](CollectionState.tsx)                             | Estados consistentes de lista: carga inicial, error recuperable y vacío.                          |
 | [DashboardHeading.tsx](DashboardHeading.tsx)                           | Presentación del tablero y su acción prioritaria de reserva asistida.                             |
 | [DashboardIndicators.tsx](DashboardIndicators.tsx)                     | Métricas diarias y pendientes globales; un recurso no disponible muestra un guion.                |
-| [DashboardPending.tsx](DashboardPending.tsx)                           | Solicitudes pendientes del negocio; un fallo de consulta no se anuncia como lista vacía.          |
+| [DashboardPending.tsx](DashboardPending.tsx)                           | Turnos por atender del negocio; un fallo de consulta no se anuncia como lista vacía.              |
 | [EmployeeAppointmentResults.tsx](EmployeeAppointmentResults.tsx)       | Filtros y resultados compartidos por agenda e historial del equipo.                               |
-| [EmployeeDaySummary.tsx](EmployeeDaySummary.tsx)                       | Resumen de la fecha consultada, limitado por la API al empleado actual.                           |
+| [EmployeeDaySummary.tsx](EmployeeDaySummary.tsx)                       | Resumen de la fecha consultada, compartido por el equipo, sin información financiera.             |
 | [EmployeePerformance.tsx](EmployeePerformance.tsx)                     | Presenta trabajos completados por empleado en el período.                                         |
 | [EmployeeWorkAction.tsx](EmployeeWorkAction.tsx)                       | Ofrece iniciar o finalizar el lavado según el estado del turno.                                   |
 | [EntityForm.tsx](EntityForm.tsx)                                       | Formulario RHF + Zod con errores por campo y callback sin HTTP propio.                            |
-| [ModalPanel.tsx](ModalPanel.tsx)                                       | Panel accesible para formularios y confirmaciones sin ventanas nativas bloqueantes.               |
+| [ModalContent.tsx](ModalContent.tsx)                                   | Panel desplazable; los controles flotantes quedan fuera para no tapar el formulario.              |
+| [ModalPanel.tsx](ModalPanel.tsx)                                       | Diálogo nativo con tema y volver arriba disponibles sin salir del formulario.                     |
 | [OAuthLinkForm.tsx](OAuthLinkForm.tsx)                                 | Confirma la contraseña local una sola vez antes de unir ambas formas de ingreso.                  |
 | [PendingAppointments.tsx](PendingAppointments.tsx)                     | Solicitudes pendientes del tablero y acceso a la gestión completa.                                |
 | [PopularServices.tsx](PopularServices.tsx)                             | Presenta frecuencias reales de servicios en el período consultado.                                |
@@ -52,7 +54,9 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [ReportSummary.tsx](ReportSummary.tsx)                                 | Compone indicadores, ingresos, servicios y rendimiento desde un único reporte.                    |
 | [RevenueByDay.tsx](RevenueByDay.tsx)                                   | Visualiza ingresos reales por día con las mismas barras accesibles del tablero.                   |
 | [ScheduleSelector.tsx](ScheduleSelector.tsx)                           | Horarios y total provienen del backend; no calcula precios en el cliente.                         |
-| [Screen.tsx](Screen.tsx)                                               | Superficie de pantalla con una única región desplazable y actualización opcional.                 |
+| [Screen.tsx](Screen.tsx)                                               | Marco de todos los roles con controles flotantes y actualización al regresar.                     |
+| [ScreenContent.tsx](ScreenContent.tsx)                                 | Contenido común con espacio reservado para los controles flotantes.                               |
+| [ScrollSurface.tsx](ScrollSurface.tsx)                                 | Superficie acotada que mantiene los controles fuera del contenido desplazable.                    |
 | [ServiceCollection.tsx](ServiceCollection.tsx)                         | Cuadrícula de catálogo con acciones administrativas cuando están habilitadas.                     |
 | [ServiceDeleteDialog.tsx](ServiceDeleteDialog.tsx)                     | Confirma la baja lógica del servicio preservando contratos anteriores.                            |
 | [ServiceEditDialog.tsx](ServiceEditDialog.tsx)                         | Edita descripción y duración del servicio, separadas de sus precios.                              |
@@ -63,7 +67,7 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [SignInPresentation.tsx](SignInPresentation.tsx)                       | Presentación de acceso que comparte la identidad del resto de la aplicación.                      |
 | [SocialLoginButton.tsx](SocialLoginButton.tsx)                         | Botón OAuth de un proveedor configurado, con su propia solicitud PKCE.                            |
 | [SocialLogins.tsx](SocialLogins.tsx)                                   | Muestra proveedores y deshabilita los que el negocio todavía no configuró.                        |
-| [ThemeSelector.tsx](ThemeSelector.tsx)                                 | Edita la preferencia local de apariencia sin cambiar datos del negocio.                           |
+| [ThemeSelector.tsx](ThemeSelector.tsx)                                 | Conserva la preferencia automática; los cambios claro/oscuro usan el botón flotante.              |
 | [UserCollection.tsx](UserCollection.tsx)                               | Presenta la página autorizada de usuarios y los estados de consulta.                              |
 | [UserDeleteDialog.tsx](UserDeleteDialog.tsx)                           | Confirma la baja lógica de una cuenta conservando su historial.                                   |
 | [UserEditDialog.tsx](UserEditDialog.tsx)                               | Comparte campos de creación y edición de cuentas administradas.                                   |

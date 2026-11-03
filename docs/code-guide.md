@@ -43,7 +43,7 @@ El servidor vuelve a comprobar rol, propiedad y asignación en todas las operaci
 Cliente: HomeScreen compone saludo, BookingInvitation, ClientQuickActions y ClientVisitList.
 useHome ordena las próximas tres visitas de la lista autorizada.
 Empleado: EmployeeAgendaScreen tiene composición propia, resumen por fecha, filtros,
-trabajos asignados e historial. useAgendaResources consulta el resumen solo en la agenda.
+agenda compartida e historial. useAgendaResources consulta el resumen solo en la agenda.
 Administrador: DashboardScreen reúne reporte diario, solicitudes globales pendientes y
 actividad semanal. Los recursos y su recarga se coordinan en useDashboard.
 
@@ -137,3 +137,5 @@ npm run docs:source regenera el mapa y las tablas por carpeta a partir del TSDoc
 npm run docs:components regenera props y ejemplos. Corregir primero los comentarios
 en su fuente y luego regenerar. La explicación de invariantes y decisiones de esta
 guía se mantiene a mano cuando cambia un caso de uso.
+
+> Actualización: la decisión posterior del usuario establece agenda compartida. Consultar [shared-agenda.md](shared-agenda.md) para la regla vigente; capturas anteriores documentan su versión original.

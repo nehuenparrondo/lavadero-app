@@ -529,6 +529,16 @@ Contenido visual del botón, independiente de Pressable y de su política de int
 | ------------- | --------------------------------------------------------------------------------------- |
 | ButtonContent | Contenido visual del botón, independiente de Pressable y de su política de interacción. |
 
+## src/components/atoms/FloatingAction.tsx
+
+Acción circular con nombre accesible y contraste adaptado al tema.
+
+[Abrir fuente](../src/components/atoms/FloatingAction.tsx)
+
+| Exportación    | Responsabilidad                                                    |
+| -------------- | ------------------------------------------------------------------ |
+| FloatingAction | Acción circular con nombre accesible y contraste adaptado al tema. |
+
 ## src/components/atoms/Icon.tsx
 
 Símbolo decorativo; el control que lo contiene aporta la etiqueta accesible.
@@ -720,6 +730,16 @@ Adapta un campo RHF a la molécula de entrada, incluyendo errores y blur.
 | --------------- | ------------------------------------------------------------------------ |
 | ControlledField | Adapta un campo RHF a la molécula de entrada, incluyendo errores y blur. |
 
+## src/components/molecules/ControlledScrollView.tsx
+
+Asocia medidas y referencia con un controlador sin introducir otra región desplazable.
+
+[Abrir fuente](../src/components/molecules/ControlledScrollView.tsx)
+
+| Exportación          | Responsabilidad                                                                        |
+| -------------------- | -------------------------------------------------------------------------------------- |
+| ControlledScrollView | Asocia medidas y referencia con un controlador sin introducir otra región desplazable. |
+
 ## src/components/molecules/DateInput.tsx
 
 Selección de fecha mediante calendario, con valor ISO separado de su presentación.
@@ -749,6 +769,16 @@ Ajusta teclado y privacidad según el tipo semántico del campo.
 | Exportación | Responsabilidad                                                |
 | ----------- | -------------------------------------------------------------- |
 | FieldInput  | Ajusta teclado y privacidad según el tipo semántico del campo. |
+
+## src/components/molecules/FloatingControls.tsx
+
+Controles persistentes abajo a la derecha; volver arriba aparece solo cuando es útil.
+
+[Abrir fuente](../src/components/molecules/FloatingControls.tsx)
+
+| Exportación      | Responsabilidad                                                                       |
+| ---------------- | ------------------------------------------------------------------------------------- |
+| FloatingControls | Controles persistentes abajo a la derecha; volver arriba aparece solo cuando es útil. |
 
 ## src/components/molecules/FormField.tsx
 
@@ -951,15 +981,25 @@ Ayuda operacional; las acciones reales siguen en el detalle del turno.
 | ------------ | ---------------------------------------------------------------------- |
 | WorkdayGuide | Ayuda operacional; las acciones reales siguen en el detalle del turno. |
 
+## src/components/molecules/WorkspaceIdentity.tsx
+
+Nombre y rol de la sesión propia sobre fondos claros u oscuros.
+
+[Abrir fuente](../src/components/molecules/WorkspaceIdentity.tsx)
+
+| Exportación       | Responsabilidad                                                 |
+| ----------------- | --------------------------------------------------------------- |
+| WorkspaceIdentity | Nombre y rol de la sesión propia sobre fondos claros u oscuros. |
+
 ## src/components/molecules/WorkspaceUser.tsx
 
-Identidad de la sesión actual; no consulta ni copia información de otros usuarios.
+Acceso al perfil desde toda la identidad, tanto en cabecera como en barra lateral.
 
 [Abrir fuente](../src/components/molecules/WorkspaceUser.tsx)
 
 | Exportación   | Responsabilidad                                                                    |
 | ------------- | ---------------------------------------------------------------------------------- |
-| WorkspaceUser | Identidad de la sesión actual; no consulta ni copia información de otros usuarios. |
+| WorkspaceUser | Acceso al perfil desde toda la identidad, tanto en cabecera como en barra lateral. |
 
 ## src/components/organisms/AdminMenu.tsx
 
@@ -1141,6 +1181,16 @@ Presenta el comprobante histórico; no constituye factura fiscal.
 | ------------------------ | ---------------------------------------------------------------- |
 | AppointmentReceiptDialog | Presenta el comprobante histórico; no constituye factura fiscal. |
 
+## src/components/organisms/AppointmentResults.tsx
+
+Contenido de listado separado del ciclo de actualización de la pantalla.
+
+[Abrir fuente](../src/components/organisms/AppointmentResults.tsx)
+
+| Exportación        | Responsabilidad                                                          |
+| ------------------ | ------------------------------------------------------------------------ |
+| AppointmentResults | Contenido de listado separado del ciclo de actualización de la pantalla. |
+
 ## src/components/organisms/AppointmentStatusEditor.tsx
 
 Expone las transiciones administrativas que el servidor vuelve a validar.
@@ -1273,13 +1323,13 @@ Métricas diarias y pendientes globales; un recurso no disponible muestra un gui
 
 ## src/components/organisms/DashboardPending.tsx
 
-Solicitudes pendientes del negocio; un fallo de consulta no se anuncia como lista vacía.
+Turnos por atender del negocio; un fallo de consulta no se anuncia como lista vacía.
 
 [Abrir fuente](../src/components/organisms/DashboardPending.tsx)
 
-| Exportación      | Responsabilidad                                                                          |
-| ---------------- | ---------------------------------------------------------------------------------------- |
-| DashboardPending | Solicitudes pendientes del negocio; un fallo de consulta no se anuncia como lista vacía. |
+| Exportación      | Responsabilidad                                                                      |
+| ---------------- | ------------------------------------------------------------------------------------ |
+| DashboardPending | Turnos por atender del negocio; un fallo de consulta no se anuncia como lista vacía. |
 
 ## src/components/organisms/EmployeeAppointmentResults.tsx
 
@@ -1293,13 +1343,13 @@ Filtros y resultados compartidos por agenda e historial del equipo.
 
 ## src/components/organisms/EmployeeDaySummary.tsx
 
-Resumen de la fecha consultada, limitado por la API al empleado actual.
+Resumen de la fecha consultada, compartido por el equipo, sin información financiera.
 
 [Abrir fuente](../src/components/organisms/EmployeeDaySummary.tsx)
 
-| Exportación        | Responsabilidad                                                         |
-| ------------------ | ----------------------------------------------------------------------- |
-| EmployeeDaySummary | Resumen de la fecha consultada, limitado por la API al empleado actual. |
+| Exportación        | Responsabilidad                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------- |
+| EmployeeDaySummary | Resumen de la fecha consultada, compartido por el equipo, sin información financiera. |
 
 ## src/components/organisms/EmployeePerformance.tsx
 
@@ -1331,15 +1381,25 @@ Formulario RHF + Zod con errores por campo y callback sin HTTP propio.
 | ----------- | ---------------------------------------------------------------------- |
 | EntityForm  | Formulario RHF + Zod con errores por campo y callback sin HTTP propio. |
 
+## src/components/organisms/ModalContent.tsx
+
+Panel desplazable; los controles flotantes quedan fuera para no tapar el formulario.
+
+[Abrir fuente](../src/components/organisms/ModalContent.tsx)
+
+| Exportación  | Responsabilidad                                                                      |
+| ------------ | ------------------------------------------------------------------------------------ |
+| ModalContent | Panel desplazable; los controles flotantes quedan fuera para no tapar el formulario. |
+
 ## src/components/organisms/ModalPanel.tsx
 
-Panel accesible para formularios y confirmaciones sin ventanas nativas bloqueantes.
+Diálogo nativo con tema y volver arriba disponibles sin salir del formulario.
 
 [Abrir fuente](../src/components/organisms/ModalPanel.tsx)
 
-| Exportación | Responsabilidad                                                                     |
-| ----------- | ----------------------------------------------------------------------------------- |
-| ModalPanel  | Panel accesible para formularios y confirmaciones sin ventanas nativas bloqueantes. |
+| Exportación | Responsabilidad                                                               |
+| ----------- | ----------------------------------------------------------------------------- |
+| ModalPanel  | Diálogo nativo con tema y volver arriba disponibles sin salir del formulario. |
 
 ## src/components/organisms/OAuthLinkForm.tsx
 
@@ -1423,13 +1483,33 @@ Horarios y total provienen del backend; no calcula precios en el cliente.
 
 ## src/components/organisms/Screen.tsx
 
-Superficie de pantalla con una única región desplazable y actualización opcional.
+Marco de todos los roles con controles flotantes y actualización al regresar.
 
 [Abrir fuente](../src/components/organisms/Screen.tsx)
 
-| Exportación | Responsabilidad                                                                   |
-| ----------- | --------------------------------------------------------------------------------- |
-| Screen      | Superficie de pantalla con una única región desplazable y actualización opcional. |
+| Exportación | Responsabilidad                                                               |
+| ----------- | ----------------------------------------------------------------------------- |
+| Screen      | Marco de todos los roles con controles flotantes y actualización al regresar. |
+
+## src/components/organisms/ScreenContent.tsx
+
+Contenido común con espacio reservado para los controles flotantes.
+
+[Abrir fuente](../src/components/organisms/ScreenContent.tsx)
+
+| Exportación   | Responsabilidad                                                     |
+| ------------- | ------------------------------------------------------------------- |
+| ScreenContent | Contenido común con espacio reservado para los controles flotantes. |
+
+## src/components/organisms/ScrollSurface.tsx
+
+Superficie acotada que mantiene los controles fuera del contenido desplazable.
+
+[Abrir fuente](../src/components/organisms/ScrollSurface.tsx)
+
+| Exportación   | Responsabilidad                                                                |
+| ------------- | ------------------------------------------------------------------------------ |
+| ScrollSurface | Superficie acotada que mantiene los controles fuera del contenido desplazable. |
 
 ## src/components/organisms/ServiceCollection.tsx
 
@@ -1533,13 +1613,13 @@ Muestra proveedores y deshabilita los que el negocio todavía no configuró.
 
 ## src/components/organisms/ThemeSelector.tsx
 
-Edita la preferencia local de apariencia sin cambiar datos del negocio.
+Conserva la preferencia automática; los cambios claro/oscuro usan el botón flotante.
 
 [Abrir fuente](../src/components/organisms/ThemeSelector.tsx)
 
-| Exportación   | Responsabilidad                                                         |
-| ------------- | ----------------------------------------------------------------------- |
-| ThemeSelector | Edita la preferencia local de apariencia sin cambiar datos del negocio. |
+| Exportación   | Responsabilidad                                                                      |
+| ------------- | ------------------------------------------------------------------------------------ |
+| ThemeSelector | Conserva la preferencia automática; los cambios claro/oscuro usan el botón flotante. |
 
 ## src/components/organisms/UserCollection.tsx
 
@@ -1870,6 +1950,16 @@ Ejecuta una acción y publica carga/error/resultado sin propagar errores a la vi
 | ----------- | ----------------------------------------------------------------------------------- |
 | useAction   | Ejecuta una acción y publica carga/error/resultado sin propagar errores a la vista. |
 
+## src/hooks/useAgendaList.ts
+
+Traduce filtros visuales a la consulta; el servidor decide la visibilidad efectiva.
+
+[Abrir fuente](../src/hooks/useAgendaList.ts)
+
+| Exportación   | Responsabilidad                                                                     |
+| ------------- | ----------------------------------------------------------------------------------- |
+| useAgendaList | Traduce filtros visuales a la consulta; el servidor decide la visibilidad efectiva. |
+
 ## src/hooks/useAgendaResources.ts
 
 Recursos auxiliares de agenda, habilitados únicamente para la experiencia correspondiente.
@@ -2132,13 +2222,13 @@ Coordina carga, recarga y respuestas fuera de orden sin mostrar datos de otra se
 
 ## src/hooks/useRefreshOnReturn.ts
 
-Recarga al regresar de otra ruta sin duplicar la carga inicial ni cada cambio de filtro.
+Actualiza al regresar a la ruta/app y, opcionalmente, mientras se usa una agenda.
 
 [Abrir fuente](../src/hooks/useRefreshOnReturn.ts)
 
-| Exportación        | Responsabilidad                                                                          |
-| ------------------ | ---------------------------------------------------------------------------------------- |
-| useRefreshOnReturn | Recarga al regresar de otra ruta sin duplicar la carga inicial ni cada cambio de filtro. |
+| Exportación        | Responsabilidad                                                                   |
+| ------------------ | --------------------------------------------------------------------------------- |
+| useRefreshOnReturn | Actualiza al regresar a la ruta/app y, opcionalmente, mientras se usa una agenda. |
 
 ## src/hooks/useRemoteData.ts
 
@@ -2179,6 +2269,16 @@ Conserva el enlace solicitado mientras las guardas esperan la sesión.
 | Exportación           | Responsabilidad                                                       |
 | --------------------- | --------------------------------------------------------------------- |
 | useRestoreDestination | Conserva el enlace solicitado mientras las guardas esperan la sesión. |
+
+## src/hooks/useScrollControls.ts
+
+Vincula los botones a su propia región; no desplaza la ventana ni otros diálogos.
+
+[Abrir fuente](../src/hooks/useScrollControls.ts)
+
+| Exportación       | Responsabilidad                                                                   |
+| ----------------- | --------------------------------------------------------------------------------- |
+| useScrollControls | Vincula los botones a su propia región; no desplaza la ventana ni otros diálogos. |
 
 ## src/hooks/useServicePrice.ts
 
@@ -2733,6 +2833,28 @@ Traduce fallas de red y errores REST a mensajes presentables.
 | ------------ | ------------------------------------------------------------- |
 | errorMessage | Traduce fallas de red y errores REST a mensajes presentables. |
 
+## src/utils/foreground.ts
+
+Indica si se puede actualizar sin actividad en segundo plano.
+
+[Abrir fuente](../src/utils/foreground.ts)
+
+| Exportación         | Responsabilidad                                                           |
+| ------------------- | ------------------------------------------------------------------------- |
+| isForeground        | Indica si se puede actualizar sin actividad en segundo plano.             |
+| subscribeForeground | Escucha la vuelta al primer plano; el llamador controla la ruta enfocada. |
+
+## src/utils/foreground.web.ts
+
+Respeta pestañas ocultas; no mantiene despierto el servidor en segundo plano.
+
+[Abrir fuente](../src/utils/foreground.web.ts)
+
+| Exportación         | Responsabilidad                                                               |
+| ------------------- | ----------------------------------------------------------------------------- |
+| isForeground        | Respeta pestañas ocultas; no mantiene despierto el servidor en segundo plano. |
+| subscribeForeground | Atiende el regreso a la pestaña o ventana sin depender del cambio de ruta.    |
+
 ## src/utils/format.ts
 
 Presenta centavos como pesos argentinos sin alterar el valor persistido.
@@ -2798,6 +2920,26 @@ Convierte un importe validado en pesos a centavos, sin multiplicación decimal i
 | ------------ | --------------------------------------------------------------------------------------- |
 | pesosToCents | Convierte un importe validado en pesos a centavos, sin multiplicación decimal inexacta. |
 
+## src/utils/profileDestination.ts
+
+Selecciona la ruta protegida del perfil de la sesión actual.
+
+[Abrir fuente](../src/utils/profileDestination.ts)
+
+| Exportación        | Responsabilidad                                              |
+| ------------------ | ------------------------------------------------------------ |
+| profileDestination | Selecciona la ruta protegida del perfil de la sesión actual. |
+
+## src/utils/queryRequest.ts
+
+Construye una consulta con generaciones; solo conserva datos del mismo filtro en recarga silenciosa.
+
+[Abrir fuente](../src/utils/queryRequest.ts)
+
+| Exportación        | Responsabilidad                                                                                      |
+| ------------------ | ---------------------------------------------------------------------------------------------------- |
+| createQueryRequest | Construye una consulta con generaciones; solo conserva datos del mismo filtro en recarga silenciosa. |
+
 ## src/utils/queryState.ts
 
 Una respuesta siempre conserva la identidad de los filtros que la produjeron.
@@ -2809,6 +2951,16 @@ Una respuesta siempre conserva la identidad de los filtros que la produjeron.
 | QueryState   | Una respuesta siempre conserva la identidad de los filtros que la produjeron.          |
 | currentQuery | Oculta datos obsoletos inmediatamente, incluso antes de ejecutarse el efecto de React. |
 | readLatest   | Publica únicamente la última petición de un consumidor todavía activo.                 |
+
+## src/utils/refreshGate.ts
+
+Evita recargas solapadas y eventos duplicados de foco/visibilidad.
+
+[Abrir fuente](../src/utils/refreshGate.ts)
+
+| Exportación       | Responsabilidad                                                    |
+| ----------------- | ------------------------------------------------------------------ |
+| createRefreshGate | Evita recargas solapadas y eventos duplicados de foco/visibilidad. |
 
 ## src/utils/refreshResources.ts
 
@@ -2839,6 +2991,17 @@ Resuelve guardas con el rol verificado; durante restauración solo deja rutas p�
 | Exportación    | Responsabilidad                                                                        |
 | -------------- | -------------------------------------------------------------------------------------- |
 | hasRouteAccess | Resuelve guardas con el rol verificado; durante restauración solo deja rutas públicas. |
+
+## src/utils/scrollVisibility.ts
+
+Medidas de la región desplazable; los valores se mantienen fuera del estado visual.
+
+[Abrir fuente](../src/utils/scrollVisibility.ts)
+
+| Exportación          | Responsabilidad                                                                     |
+| -------------------- | ----------------------------------------------------------------------------------- |
+| ScrollMetrics        | Medidas de la región desplazable; los valores se mantienen fuera del estado visual. |
+| shouldOfferScrollTop | Evita ofrecer volver arriba en páginas cortas, al inicio o tras reducir contenido.  |
 
 ## src/utils/serviceForm.ts
 

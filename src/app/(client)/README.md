@@ -4,14 +4,14 @@ Composición de rutas de Expo Router. Cada archivo delega su contenido y el layo
 
 ## Archivos y responsabilidades
 
-| Archivo                              | Responsabilidad                                                   |
-| ------------------------------------ | ----------------------------------------------------------------- |
-| [_layout.tsx](_layout.tsx)           | Cinco destinos del cliente, protegidos por el layout raíz.        |
+| Archivo | Responsabilidad |
+| --- | --- |
+| [_layout.tsx](_layout.tsx) | Cinco destinos del cliente, protegidos por el layout raíz. |
 | [appointments.tsx](appointments.tsx) | Composición interna del módulo; consultar sus contratos de tipos. |
-| [home.tsx](home.tsx)                 | Composición interna del módulo; consultar sus contratos de tipos. |
-| [profile.tsx](profile.tsx)           | Composición interna del módulo; consultar sus contratos de tipos. |
-| [services.tsx](services.tsx)         | Composición interna del módulo; consultar sus contratos de tipos. |
-| [vehicles.tsx](vehicles.tsx)         | Composición interna del módulo; consultar sus contratos de tipos. |
+| [home.tsx](home.tsx) | Composición interna del módulo; consultar sus contratos de tipos. |
+| [profile.tsx](profile.tsx) | Composición interna del módulo; consultar sus contratos de tipos. |
+| [services.tsx](services.tsx) | Composición interna del módulo; consultar sus contratos de tipos. |
+| [vehicles.tsx](vehicles.tsx) | Composición interna del módulo; consultar sus contratos de tipos. |
 
 ## Mantenimiento
 

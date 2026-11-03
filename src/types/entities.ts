@@ -77,7 +77,7 @@ export interface Appointment {
   color: string;
   clientName: string;
   clientPhone: string | null;
-  employeeName: string | null;
+  employeeName?: string | null;
   /** Total histórico del contrato, expresado en centavos ARS. */
   totalCents?: number;
   /** Suma registrada de cobros en centavos; no ejecuta transferencias. */

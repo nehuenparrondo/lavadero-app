@@ -70,3 +70,5 @@ de la pestaña; cerrar la pestaña elimina esa persistencia. El access token que
 ## Correcciones de acceso y reservas
 
 Ver [comportamiento, módulos y pruebas de la versión 1.1.1](docs/reliability.md).
+
+La regla vigente de agenda compartida y los controles de pantalla están documentados en [docs/shared-agenda.md](docs/shared-agenda.md).

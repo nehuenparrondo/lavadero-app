@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { errorMessage } from '../utils/errorMessage';
-import { currentQuery, readLatest } from '../utils/queryState';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { createQueryRequest } from '../utils/queryRequest';
+import { currentQuery } from '../utils/queryState';
 import type { QueryState } from '../utils/queryState';
 /** Coordina carga, recarga y respuestas fuera de orden sin mostrar datos de otra selección.
  * @param key Identidad estable del recurso y sus filtros.
@@ -16,24 +16,17 @@ export function useQuery<T>(key: string, enabled: boolean, load: () => Promise<T
     error: '',
   });
   const sequence = useRef(0);
-  const refresh = useCallback(async () => {
-    if (!enabled) return;
-    const id = ++sequence.current;
-    const active = () => id === sequence.current;
-    setState({ key, data: null, loading: true, error: '' });
-    try {
-      await readLatest(load, active, (data) =>
-        setState({ key, data, loading: false, error: '' }),
-      );
-    } catch (error) {
-      if (active()) setState({ key, data: null, loading: false, error: errorMessage(error) });
-    }
-  }, [enabled, key, load]);
+  const request = useMemo(
+    () => createQueryRequest({ key, enabled, load, sequence, publish: setState }),
+    [key, enabled, load],
+  );
+  const refresh = useCallback(() => request(), [request]);
+  const revalidate = useCallback(() => request(true), [request]);
   useEffect(() => {
     void refresh();
     return () => {
       sequence.current++;
     };
   }, [refresh]);
-  return { ...currentQuery(state, key, enabled), refresh };
+  return { ...currentQuery(state, key, enabled), refresh, revalidate };
 }

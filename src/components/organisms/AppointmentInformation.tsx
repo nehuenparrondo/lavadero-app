@@ -18,7 +18,9 @@ export function AppointmentInformation({ m }: { m: ReturnType<typeof useAppointm
         {a.color} · {a.clientName}
       </Text>
       {a.clientPhone && <Text>Contacto: {a.clientPhone}</Text>}
-      <Text>Empleado: {a.employeeName ?? 'Aún no asignado'}</Text>
+      {m.user?.role === 'admin' && (
+        <Text>Responsable interno: {a.employeeName ?? 'Se registra al comenzar'}</Text>
+      )}
       <ContractServiceLines items={a.services ?? []} showDuration />
       {a.totalCents !== undefined && (
         <>

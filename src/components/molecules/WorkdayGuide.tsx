@@ -18,7 +18,8 @@ export function WorkdayGuide() {
         y marcarlo como finalizado.
       </Text>
       <Text style={{ fontSize: 12, color: colors.muted, lineHeight: 19 }}>
-        Acá ves únicamente los trabajos que tenés asignados.
+        La agenda es compartida por todo el equipo. Elegí la fecha de la reserva para verla.
+        Los cambios se actualizan automáticamente mientras usás esta pantalla.
       </Text>
     </Card>
   );

@@ -8,6 +8,7 @@ export const bootstrapStyles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     padding: tokens.spacing.lg,
+    paddingBottom: 112,
     width: '100%',
     maxWidth: tokens.maxContentWidth,
     alignSelf: 'center',

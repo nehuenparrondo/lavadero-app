@@ -22,7 +22,7 @@ export function AppointmentActions({
       {m.user?.role === 'admin' && !closed && <AppointmentAssignment m={m} />}
       {m.user?.role === 'admin' && <AppointmentStatusEditor m={m} />}
       {m.user?.role === 'employee' &&
-        ['confirmed', 'in_progress'].includes(appointment.status) && (
+        ['pending', 'confirmed', 'in_progress'].includes(appointment.status) && (
           <EmployeeWorkAction m={m} />
         )}
       {m.canCancel && !closed && (

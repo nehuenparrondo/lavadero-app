@@ -21,9 +21,11 @@ Composiciones reutilizables: tarjetas, campos, indicadores y distribución adapt
 | [ConnectionStatus.tsx](ConnectionStatus.tsx)           | Estado real de red.                                                                            |
 | [ContractServiceLines.tsx](ContractServiceLines.tsx)   | Servicios históricos; solo muestra importes que el servidor incluyó en la proyección del rol.  |
 | [ControlledField.tsx](ControlledField.tsx)             | Adapta un campo RHF a la molécula de entrada, incluyendo errores y blur.                       |
+| [ControlledScrollView.tsx](ControlledScrollView.tsx)   | Asocia medidas y referencia con un controlador sin introducir otra región desplazable.         |
 | [DateInput.tsx](DateInput.tsx)                         | Selección de fecha mediante calendario, con valor ISO separado de su presentación.             |
 | [EmptyState.tsx](EmptyState.tsx)                       | Explica una colección vacía sin confundirla con carga o error de red.                          |
 | [FieldInput.tsx](FieldInput.tsx)                       | Ajusta teclado y privacidad según el tipo semántico del campo.                                 |
+| [FloatingControls.tsx](FloatingControls.tsx)           | Controles persistentes abajo a la derecha; volver arriba aparece solo cuando es útil.          |
 | [FormField.tsx](FormField.tsx)                         | Label, entrada y error, con selectors legibles para campos enumerados.                         |
 | [LoadingState.tsx](LoadingState.tsx)                   | Estado visible mientras se verifica sesión o se carga una lista.                               |
 | [MetricTile.tsx](MetricTile.tsx)                       | Indicador de solo lectura; recibe valores reales o un guion mientras no hay respuesta.         |
@@ -44,7 +46,8 @@ Composiciones reutilizables: tarjetas, campos, indicadores y distribución adapt
 | [VehicleTypeItem.tsx](VehicleTypeItem.tsx)             | Categoría y acciones del catálogo; una baja lógica conserva el nombre visible en el historial. |
 | [WashIllustration.tsx](WashIllustration.tsx)           | Ilustración vectorial decorativa del servicio; no representa un vehículo del cliente.          |
 | [WorkdayGuide.tsx](WorkdayGuide.tsx)                   | Ayuda operacional; las acciones reales siguen en el detalle del turno.                         |
-| [WorkspaceUser.tsx](WorkspaceUser.tsx)                 | Identidad de la sesión actual; no consulta ni copia información de otros usuarios.             |
+| [WorkspaceIdentity.tsx](WorkspaceIdentity.tsx)         | Nombre y rol de la sesión propia sobre fondos claros u oscuros.                                |
+| [WorkspaceUser.tsx](WorkspaceUser.tsx)                 | Acceso al perfil desde toda la identidad, tanto en cabecera como en barra lateral.             |
 
 ## Mantenimiento
 

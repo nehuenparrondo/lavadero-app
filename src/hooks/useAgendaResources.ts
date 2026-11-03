@@ -16,7 +16,7 @@ export function useAgendaResources(
   const summary = useRemoteData<{ completed: number; pending: number }>(
     '/reports/me',
     { date: date || today() },
-    mode === 'employee' && !history,
+    mode === 'employee' && !history && Boolean(date),
   );
   const clients = useOptions<User>('/users', { role: 'client' }, mode === 'admin');
   const employees = useOptions<User>('/users', { role: 'employee' }, mode === 'admin');
