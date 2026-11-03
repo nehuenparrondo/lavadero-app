@@ -12,7 +12,9 @@ import { restoreDestination } from '../src/utils/restoreDestination';
 test('recargar conserva enlaces de reserva/detalle, sin redirecciones externas ni acceso de otro rol', () => {
   assert.equal(restoreDestination('/booking', 'client'), '/booking');
   assert.equal(restoreDestination('/appointment/123', 'employee'), '/appointment/123');
-  assert.equal(restoreDestination('/reports', 'admin'), '/reports');
+  assert.equal(restoreDestination('/reports', 'admin'), '/(admin)/reports');
+  for (const role of ['client', 'employee', 'admin'] as const)
+    assert.equal(restoreDestination('/profile', role), `/(${role})/profile`);
   for (const destination of [
     'https://evil.example',
     '//evil.example',

@@ -22,10 +22,10 @@ const routes: Record<Role, string[]> = {
  */
 export function restoreDestination(destination: unknown, role: Role) {
   if (typeof destination !== 'string') return '/';
-  if (
-    routes[role].includes(destination) ||
-    /^\/appointment\/[1-9]\d{0,18}$/u.test(destination)
-  )
-    return destination;
+  if (/^\/appointment\/[1-9]\d{0,18}$/u.test(destination)) return destination;
+  if (routes[role].includes(destination))
+    return destination === '/' || destination === '/booking'
+      ? destination
+      : `/(${role})${destination}`;
   return '/';
 }
