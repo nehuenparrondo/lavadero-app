@@ -17,9 +17,9 @@ export function AppointmentDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const m = useAppointmentDetail(typeof id === 'string' ? id : '');
   const a = m.detail.data;
-  if (!a && m.detail.loading) return <LoadingState />;
   return (
     <Screen refreshing={m.detail.loading} onRefresh={m.refresh}>
+      {!a && m.detail.loading && <LoadingState />}
       <Notice
         error={m.detail.error || m.payments.error || m.optionsError || m.action.error}
         message={m.action.message}

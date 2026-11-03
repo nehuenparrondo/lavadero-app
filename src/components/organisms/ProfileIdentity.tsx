@@ -12,11 +12,13 @@ export function ProfileIdentity({ p }: { p: ReturnType<typeof useProfile> }) {
     <Card>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
         <Avatar name={p.user?.firstName ?? ''} url={p.user?.avatarUrl ?? null} />
-        <View>
+        <View style={{ flex: 1, minWidth: 0 }}>
           <Text style={{ fontWeight: '800', fontSize: 20 }}>
             {p.user?.firstName} {p.user?.lastName}
           </Text>
-          <Text style={{ fontSize: 13 }}>{p.user?.email}</Text>
+          <Text style={{ fontSize: 13 }} numberOfLines={2}>
+            {p.user?.email}
+          </Text>
         </View>
       </View>
     </Card>
