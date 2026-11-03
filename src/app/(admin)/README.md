@@ -4,17 +4,17 @@ Composición de rutas de Expo Router. Cada archivo delega su contenido y el layo
 
 ## Archivos y responsabilidades
 
-| Archivo | Responsabilidad |
-| --- | --- |
-| [_layout.tsx](_layout.tsx) | Mantiene rutas administrativas separadas; Screen aporta el marco visual adaptable. |
-| [appointments.tsx](appointments.tsx) | Vista administrativa de todos los turnos. |
-| [dashboard.tsx](dashboard.tsx) | Composición interna del módulo; consultar sus contratos de tipos. |
-| [profile.tsx](profile.tsx) | Composición interna del módulo; consultar sus contratos de tipos. |
-| [reports.tsx](reports.tsx) | Composición interna del módulo; consultar sus contratos de tipos. |
-| [services.tsx](services.tsx) | Administración del catálogo y precios. |
-| [settings.tsx](settings.tsx) | Composición interna del módulo; consultar sus contratos de tipos. |
-| [users.tsx](users.tsx) | Composición interna del módulo; consultar sus contratos de tipos. |
-| [vehicles.tsx](vehicles.tsx) | Composición interna del módulo; consultar sus contratos de tipos. |
+| Archivo                              | Responsabilidad                                                                    |
+| ------------------------------------ | ---------------------------------------------------------------------------------- |
+| [_layout.tsx](_layout.tsx)           | Mantiene rutas administrativas separadas; Screen aporta el marco visual adaptable. |
+| [appointments.tsx](appointments.tsx) | Vista administrativa de todos los turnos.                                          |
+| [dashboard.tsx](dashboard.tsx)       | Composición interna del módulo; consultar sus contratos de tipos.                  |
+| [profile.tsx](profile.tsx)           | Composición interna del módulo; consultar sus contratos de tipos.                  |
+| [reports.tsx](reports.tsx)           | Composición interna del módulo; consultar sus contratos de tipos.                  |
+| [services.tsx](services.tsx)         | Administración del catálogo y precios.                                             |
+| [settings.tsx](settings.tsx)         | Composición interna del módulo; consultar sus contratos de tipos.                  |
+| [users.tsx](users.tsx)               | Composición interna del módulo; consultar sus contratos de tipos.                  |
+| [vehicles.tsx](vehicles.tsx)         | Composición interna del módulo; consultar sus contratos de tipos.                  |
 
 ## Mantenimiento
 

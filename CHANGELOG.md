@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0 — Agenda compartida y controles universales
+
+- Confirmación automática y agenda para todo el equipo; datos de asignación ocultos al cliente.
+- Revalidación visible por fecha, controles flotantes y accesos al perfil en los tres roles.
+- Corrección del retorno al perfil al recargar y ajuste del nombre en pantallas pequeñas.
+- 54 pruebas aprobadas; detalle en docs/shared-verification.md.
+
 ## 1.1.1 — 02/11/2026
 
 - Conexión inicial compartida, preparación social por JSON y conservación de sesión ante fallas transitorias.

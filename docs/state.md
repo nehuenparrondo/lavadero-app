@@ -20,3 +20,7 @@ La restauración se separa en `useSessionRestore`/`restoreSession`; `AuthProvide
 `readinessGate` comparte la conexión inicial dentro de un plazo acotado. Solo reintenta GET /ready, nunca escrituras. `ConnectionNotice` explica la espera después de dos segundos; no hay sondeos periódicos mientras la app está inactiva. El tiempo de arranque de Render Free sigue existiendo.
 
 La restauración conserva refresh ante errores de red, 429 y 5xx y ofrece reintentar. Solo 401/403 definitivos invalidan la sesión. `renewRequest` conserva una rotación compartida y comprueba la cuenta de origen. `/loading` guarda un destino interno; `restoreDestination` lo valida según el rol antes de volver al enlace solicitado.
+
+Las agendas usan revalidate para conservar únicamente la lista del mismo filtro mientras llega una nueva respuesta. `useRefreshOnReturn` suscribe foco/visibilidad en web y AppState en nativo, limpia sus listeners al salir y evita solapar peticiones. El intervalo de 30 segundos se habilita solo en agendas y tablero administrativo visibles. Las pantallas de edición no tienen sondeo periódico.
+
+`useScrollControls` mantiene medidas y referencia de la región propietaria, mientras `shouldOfferScrollTop` decide la visibilidad. `ScrollSurface` compone el contenido y `FloatingControls` fuera del scroll; `ModalPanel` mantiene su controlador independiente. `WorkspaceUser` usa `profileDestination` para ambos accesos al perfil.

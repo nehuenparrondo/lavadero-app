@@ -14,4 +14,6 @@ La decisión del usuario del 2 de noviembre de 2026 reemplaza la asignación exc
 
 ## Verificación reproducible
 
-`npm run check` en ambos proyectos. La aceptación contra MySQL real incorpora `tests/team-agenda.integration.ts` junto con seguridad, reservas, OAuth y vinculación. Verifica agenda compartida por fecha, privacidad del cliente, roles sin permiso de cobro, concurrencia de inicio, colaboración y compatibilidad con turnos pendientes anteriores. Las pruebas destructivas usan exclusivamente una base local descartable.
+`npm run check` en ambos proyectos. La aceptación contra MySQL real incorpora `tests/team-agenda.integration.ts` junto con `tests/management.integration.ts`, seguridad, reservas, OAuth y vinculación. Verifica agenda compartida por fecha, privacidad del cliente, roles sin permiso de cobro, concurrencia de inicio, colaboración y compatibilidad con turnos pendientes anteriores. Las pruebas destructivas usan exclusivamente una base local descartable.
+
+La recarga de enlaces compartidos entre roles usa un destino con grupo explícito para conservar Perfil, Reportes y otras pantallas autorizadas. Ver [shared-verification.md](shared-verification.md).

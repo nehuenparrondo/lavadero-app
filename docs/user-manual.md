@@ -18,7 +18,7 @@ pestañas inferiores y Administración usa el botón de menú de la cabecera.
 
 Las capturas funcionales de los recorridos siguientes provienen también de las
 pruebas anteriores. Sus controles conservan la función; la apariencia vigente
-se muestra en estas portadas. Ver redesign-review.md para la revisión actual.
+se muestra en estas portadas. Ver REDISENO-Y-DOCUMENTACION.md para la revisión actual.
 
 ## Acceso e instalación
 
@@ -59,7 +59,7 @@ La grilla propone inicios cada 5 minutos; no implica que cada lavado dure 5 minu
 
 ![Cotización y horarios](images/cliente-reserva.png)
 
-El turno queda Pendiente hasta que un Administrador asigne empleado y lo confirme.
+El turno queda Confirmado automáticamente y entra en la agenda compartida del equipo. El cliente no ve información de asignación.
 En **Mis turnos** consultá Próximos/Pasados y abrí una tarjeta para ver su detalle.
 La cancelación propia está disponible en Pendiente/Confirmado con más de 120 minutos
 de anticipación, salvo que el Administrador cambie esa política.
@@ -76,15 +76,14 @@ También podés consultar las observaciones del trabajo y el saldo.
 ## Empleado
 
 **Mi agenda** abre la fecha actual; cambiá el filtro para otra jornada.
-Aparecen todos los turnos de la agenda compartida, con vehículo, color, servicios y horario. Elegí la fecha reservada o quitá el filtro.
+Aparecen todos los turnos del equipo, con vehículo, color, servicios y horario. Elegí la fecha reservada o quitá el filtro para consultar otras jornadas. La agenda se actualiza automáticamente mientras está visible y dispone de Actualizar agenda.
 El resumen de jornada distingue finalizados y pendientes. **Historial** muestra trabajos
 cerrados. No se ofrecen usuarios, configuración ni reportes de ingresos del negocio.
 
-![Agenda asignada](images/empleado-agenda.png)
+![Agenda compartida](images/agenda-compartida-1.2.png)
 
 Abrí el detalle. Agregá observaciones de la revisión previa y pulsá **Comenzar lavado**
-cuando esté Confirmado. Después elegí **Finalizar lavado**. No se puede saltar desde
-Confirmado a Finalizado ni cambiar trabajos de otro empleado.
+cuando esté Confirmado (también admite turnos Pendientes de la versión anterior). Después elegí **Finalizar lavado**. No se puede saltar directamente a Finalizado. El equipo puede colaborar; el historial conserva quién realizó cada cambio.
 
 ![Trabajo y observaciones](images/empleado-trabajo.png)
 
@@ -118,8 +117,7 @@ contratadas. Los tipos se gestionan desde Configuración.
 ### Turnos, pagos y reportes
 
 En **Turnos** filtrá fecha, estado, cliente y empleado. Podés crear una reserva para
-un cliente que llama por teléfono. En el detalle elegí empleado y **Asignar y confirmar**;
-las siguientes reasignaciones conservan el estado. La agenda rechaza solapamientos.
+un cliente que llama por teléfono. La reserva se confirma automáticamente para todo el equipo. El responsable interno es opcional y se registra al comenzar; Guardar responsable no cambia el estado ni limita quién puede ver el turno. La agenda valida la capacidad física.
 Podés corregir estados, rechazar/cancelar y registrar observaciones o pagos.
 
 ![Asignación de empleado](images/admin-asignacion.png)
@@ -138,7 +136,7 @@ las existentes conservan su fecha y valores contratados.
 
 Cada rol dispone de Perfil para nombre, apellido, teléfono y foto mediante enlace HTTPS.
 Las cuentas con contraseña local pueden cambiarla indicando la actual. Apariencia permite
-Sistema, Claro u Oscuro y guarda la elección. Cerrar sesión revoca la sesión del dispositivo.
+seguir el sistema; el botón flotante permite alternar Claro/Oscuro y guarda la elección. Cerrar sesión revoca la sesión del dispositivo.
 
 ![Perfil y tema claro](images/perfil-claro.png)
 
@@ -158,4 +156,12 @@ es ficticio. Esos registros permiten evaluar los flujos; no son operaciones del 
 
 Abrí la versión web en Safari. El APK entregado es para Android; Expo Go no valida el retorno OAuth con scheme propio. Ver PROBAR-EN-IPHONE.md en la entrega o docs/iphone-expo-go.md en el repositorio.
 
-> Actualización: la decisión posterior del usuario establece agenda compartida. Consultar [shared-agenda.md](shared-agenda.md) para la regla vigente; capturas anteriores documentan su versión original.
+## Controles comunes — versión 1.2.0
+
+El botón de tema flota abajo a la derecha en todas las vistas y diálogos. A su lado aparece Volver arriba solo después de desplazarse en páginas largas. La preferencia se conserva y Perfil permite seguir el sistema.
+
+Tocá tu nombre/avatar arriba a la derecha o abajo a la izquierda en la barra lateral para abrir tu perfil. En teléfono se muestra un avatar compacto en el encabezado.
+
+![Controles flotantes](images/controles-flotantes-1.2.png)
+
+![Perfil móvil](images/perfil-movil-1.2.png)

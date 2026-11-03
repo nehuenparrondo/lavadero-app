@@ -4,15 +4,15 @@ Frontera HTTP: serialización de entradas y extracción del contrato REST. No co
 
 ## Archivos y responsabilidades
 
-| Archivo | Responsabilidad |
-| --- | --- |
-| [authService.ts](authService.ts) | Registro siempre Cliente; rol no forma parte de este contrato. |
-| [healthService.ts](healthService.ts) | Comprueba conectividad. |
+| Archivo                                      | Responsabilidad                                                                        |
+| -------------------------------------------- | -------------------------------------------------------------------------------------- |
+| [authService.ts](authService.ts)             | Registro siempre Cliente; rol no forma parte de este contrato.                         |
+| [healthService.ts](healthService.ts)         | Comprueba conectividad.                                                                |
 | [oauthStartService.ts](oauthStartService.ts) | Prepara una autorización PKCE por JSON y verifica el destino antes de salir de la app. |
-| [resourceService.ts](resourceService.ts) | Parámetros de filtros de listas, nunca URLs arbitrarias de terceros. |
-| [restoreSession.ts](restoreSession.ts) | Restaura la sesión segura sin publicar resultados de un proveedor desmontado. |
-| [sessionActions.ts](sessionActions.ts) | Persiste el refresh antes de publicar la sesión para sus consumidores. |
-| [userService.ts](userService.ts) | Alta o edición administrativa; los cambios de rol tienen endpoint independiente. |
+| [resourceService.ts](resourceService.ts)     | Parámetros de filtros de listas, nunca URLs arbitrarias de terceros.                   |
+| [restoreSession.ts](restoreSession.ts)       | Restaura la sesión segura sin publicar resultados de un proveedor desmontado.          |
+| [sessionActions.ts](sessionActions.ts)       | Persiste el refresh antes de publicar la sesión para sus consumidores.                 |
+| [userService.ts](userService.ts)             | Alta o edición administrativa; los cambios de rol tienen endpoint independiente.       |
 
 ## Mantenimiento
 

@@ -4,10 +4,10 @@ Acceso y registro público. No se acepta un rol solicitado por el formulario.
 
 ## Archivos y responsabilidades
 
-| Archivo | Responsabilidad |
-| --- | --- |
+| Archivo                              | Responsabilidad                                                                            |
+| ------------------------------------ | ------------------------------------------------------------------------------------------ |
 | [SignInScreen.tsx](SignInScreen.tsx) | Acceso común a los tres roles; el servidor determina la experiencia después de autenticar. |
-| [SignUpScreen.tsx](SignUpScreen.tsx) | Registro de clientes con validación por campo. |
+| [SignUpScreen.tsx](SignUpScreen.tsx) | Registro de clientes con validación por campo.                                             |
 
 ## Mantenimiento
 

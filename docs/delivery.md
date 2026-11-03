@@ -1,49 +1,42 @@
-# Entrega Lavadero 1.1.1
-
-Revisión: 2 de noviembre de 2026.
+# Entrega Lavadero 1.2.0
 
 | Entregable                | Dirección                                                                                                  |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| App web                   | https://lavadero-app-2558.onrender.com                                                                     |
+| Web actualizada           | https://lavadero-app-2558.onrender.com/?release=1.2.0                                                      |
 | API HTTPS                 | https://lavadero-api-48m4.onrender.com                                                                     |
 | Swagger                   | https://lavadero-api-48m4.onrender.com/api/docs/                                                           |
 | OpenAPI                   | https://lavadero-api-48m4.onrender.com/api/openapi.json                                                    |
 | Backend privado           | https://github.com/nehuenparrondo/lavadero-api                                                             |
 | Frontend privado          | https://github.com/nehuenparrondo/lavadero-app                                                             |
-| Compilación EAS           | https://expo.dev/accounts/elpepoestangod/projects/lavadero-app/builds/153f4480-dc62-4af9-8e27-492b75209c41 |
-| Descarga temporal del APK | https://expo.dev/artifacts/eas/yEJIHeOfocUDvAGhqLqNILrHG7aykT3SYqk_xhUHCWA.apk                             |
+| Compilación Android       | https://expo.dev/accounts/elpepoestangod/projects/lavadero-app/builds/d6e333de-82be-4a26-97d1-984d036ccf27 |
+| Descarga temporal del APK | https://expo.dev/artifacts/eas/2dlnfP5MvU-Ozl1ByUiyg6EuS8-FojQu1084J3Xe0LM.apk                             |
 
-## Correcciones verificadas
+## Resultado
 
-La web prepara el acceso social sin navegar a la pantalla de arranque de Render. Comparte una espera inicial con aviso propio, conserva la sesión ante caídas de red y permite reintentar. Los ingresos reales con Google, GitHub y Discord se completaron otra vez.
+Reservas confirmadas automáticamente en la agenda compartida de todos los empleados, sin datos de asignación para el cliente. Actualización visible por fecha, tablero de turnos por atender, botones flotantes universales de tema/volver arriba y acceso al perfil desde la identidad del encabezado y barra lateral. La recarga conserva la pantalla del rol correcto.
 
-La reserva guía a quien todavía no registró un auto; actualiza los selectores al volver, ofrece calendario y explica días cerrados o sin horarios. Cambiar la fecha invalida el horario anterior. Solo confirma una opción futura de la cotización vigente. Una recarga conserva el enlace autorizado. Los turnos ya pagados no ofrecen otro cobro.
+docs/shared-verification.md describe la decisión posterior del usuario, que reemplaza la asignación exclusiva del enunciado inicial. verificacion-1.2.0.json registra las pruebas y fuentes concretas. En los repositorios, ver docs/shared-agenda.md y docs/shared-verification.md.
 
-Se creó una cuenta y un auto ficticios para comprobar alta de vehículo, reserva y cancelación desde la interfaz publicada. El turno 3 del 3 de noviembre a las 09:30 quedó cancelado con motivo de QA y no registra pagos. Se revisaron también la agenda e historial del empleado, los filtros administrativos, reportes y el comprobante LAV-1 de demostración. No se agregaron movimientos reales de dinero.
+## Verificación
 
-Detalles: reliability.md en la entrega, o docs/reliability.md en cada repositorio.
+54 pruebas aprobadas: 16 backend, 23 de aceptación con MySQL local descartable y 15 frontend. Tipos estrictos, lint, formato, auditoría de fuente, contrato OpenAPI y Expo Doctor 20/20 aprobados. Fuente: 114 archivos/319 funciones-callbacks backend, 300/587 frontend y 131 componentes documentados. La auditoría conserva el límite de 149 líneas por archivo de src y 30 por cuerpo, TSDoc público y ausencia de ciclos.
 
-## Verificación del código
+Prueba web publicada: los tres roles, perfiles de cabecera/barra lateral, tema persistente, volver arriba, diálogos y adaptación a 390 × 844. La reserva ficticia 5 del 7 de noviembre a las 09:30 quedó confirmada y apareció sola en la agenda del empleado; después se canceló sin pagos. El turno existente 4 se conservó. Se verificaron además 23 consultas productivas y los tres proveedores OAuth configurados. Los consentimientos reales conservan la evidencia de 1.1.1, ya que ese flujo no cambió.
 
-46 pruebas aprobadas: 16 backend, 18 de aceptación contra MySQL local descartable y 12 frontend. TypeScript estricto, ESLint sin advertencias, exportaciones web/Android y Expo Doctor 20/20 aprobados. Fuente: 113 archivos/318 funciones-callbacks backend y 284/545 frontend; catálogo de 123 componentes. La auditoría mantiene 149 líneas por archivo de src, 30 por cuerpo de función/callback, TSDoc público, ausencia de ciclos y ausencia de HTTP en pantallas/componentes.
+## APK exacto de esta versión
 
-## APK y prueba desde iPhone
+Archivo local: **lavadero-1.2.0.apk**. Android package: `com.nehuenparrondo.lavadero`, versionCode **8**.
 
-El archivo `lavadero-1.1.1.apk` corresponde a Android, package `com.nehuenparrondo.lavadero`, versionCode 7. EAS lo generó con el keystore del propietario. Se comprobaron el CRC del archivo ZIP, package/versión del manifiesto binario y presencia del bloque de firma; no se ejecutó en un dispositivo Android ni emulador.
+Fuente de ejecución: `abf679f80bf06ba486fa905db9236c608fa3baf0`. Las modificaciones posteriores del repositorio son documentación; se comprobó que la fuente de ejecución coincide con la enviada a Expo.
 
-- Fuente del APK: `2c7af527f68514e055c81723d3b25876a31173b2`.
-- Tamaño: 98582839 bytes.
-- SHA-256: `1eee30b8a74f4e414e980cfe2a85b137dbbc8a3c04442010e137297f74ae92da`.
-- Vencimiento informado del enlace EAS: 2026-11-16T21:18:43.882Z. Conservar la copia local.
+Tamaño: **98593299 bytes**. SHA-256: `83d1fad1e9e8930db1a1ef182e6cb88b91a9f0627f58e27deda13ad08da334de`.
 
-El propietario dispone de iPhone y Expo Go. Puede usar ahora la web en Safari. El APK no se instala en iOS; OAuth nativo requiere un build propio, porque Expo Go no admite el scheme de Lavadero. No se generó ni ejecutó un binario iOS. Ver PROBAR-EN-IPHONE.md o docs/iphone-expo-go.md.
+Expo informa expiración del enlace remoto: 2026-11-17T02:22:30.121Z. La copia local queda incluida en el ZIP de entrega. Se verificaron CRC, identidad/versión del manifiesto y presencia de bloque de firma, junto con el build finalizado de Expo. No hubo ejecución instalada en Android o iPhone ni verificación criptográfica independiente de la firma.
 
-## Alojamiento y entrega
+## Uso y alojamiento
 
-Render Free sigue suspendiendo el backend después de inactividad: el primer acceso puede tardar cerca de un minuto. La app mantiene esa espera en su interfaz; no se contrató un plan pago ni se agregó un pinger periódico. La publicación estática revalida sus recursos mediante Cache-Control para recibir las correcciones al recargar.
+En iPhone se puede usar la web desde Safari; PROBAR-EN-IPHONE.md explica Expo Go y el acceso social nativo. El APK es Android.
 
-Aiven conserva las bases y credenciales separadas del proyecto y usa TLS con CA verificada. Los secretos del backend y las cuentas iniciales quedan fuera de Git y de los ZIP. ACCESO-PRIVADO.md se conserva como archivo separado. Los dos repositorios y los ZIP de fuente incluyen su propio historial Git; no incluyen node_modules ni archivos .env privados.
+Render Free puede suspender la API por inactividad. La app conserva el aviso y la conexión inicial compartida de 1.1.1. La agenda consulta cambios solo mientras está visible; no se agregó un mantenimiento periódico en segundo plano ni se contrató un plan pago. Aiven conserva bases separadas y TLS con CA verificada.
 
-Los documentos de la versión 1.1 se conservan como antecedentes de diseño. Esta entrega 1.1.1 agrega las correcciones funcionales y sus capturas. No se publicaron tiendas, EAS Update ni video, que eran opcionales.
-
-Fuente sobre reposo: https://render.com/docs/free
+Las cuentas iniciales están en ACCESO-PRIVADO.md, fuera de Git y de los ZIP. Los ZIP de código conservan sus propios historiales Git y excluyen dependencias, exportaciones generadas y .env privados. Los documentos de versiones anteriores se conservan como evidencia histórica. No se publicaron tiendas, EAS Update ni video.
