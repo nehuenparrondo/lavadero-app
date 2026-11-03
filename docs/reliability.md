@@ -44,3 +44,9 @@ La publicación estática tiene una regla `/*` → `Cache-Control: no-cache, max
 La auditoría final del código comprende 113 archivos/318 funciones y callbacks en la API y 284/545 en la app; 123 componentes tienen catálogo generado. El conjunto automatizado suma 46 pruebas aprobadas: 16 backend, 18 de aceptación MySQL y 12 frontend. Expo Doctor aprobó 20 de 20 comprobaciones y se exportaron web y Android.
 
 Las capturas `correccion-*.png` se conservan en la entrega y en `docs/images` del frontend. Las pruebas de web no acreditan ejecución instalada en Android ni en un iPhone físico.
+
+Se comprobó en web móvil de 390 × 844 que el calendario cabe en pantalla y que cambiar la fecha deshabilita la confirmación hasta elegir un horario nuevo. Un turno ya abonado no ofrece registrar otro cobro. El comprobante histórico LAV-1 se consultó desde administración.
+
+## Prueba del servidor después de reposo
+
+Después de más de dieciséis minutos sin solicitudes de estas pruebas, se abrió una pestaña nueva. La web mostró «Conectando con el lavadero…» en su propia interfaz mientras se preparaba el servidor. Luego aparecieron los proveedores y se completó el ingreso real con Google. Las pausas entre inspecciones no permiten usar esta prueba como un benchmark de segundos de arranque. La espera de Render Free continúa existiendo; se verificó su tratamiento dentro de la app.

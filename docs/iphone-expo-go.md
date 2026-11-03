@@ -7,7 +7,7 @@ No se ejecutó ni firmó una compilación iOS durante esta entrega.
 ## Recorrido disponible ahora
 
 1. Abrir Safari en el iPhone y entrar a https://lavadero-app-2558.onrender.com.
-2. Esperar el arranque de la API Free. Si un acceso falla por demora, usar Reintentar.
+2. La app muestra un aviso mientras prepara la primera conexión. Esperar en esa pantalla; si informa un error, usar Reintentar.
 3. Ingresar con una cuenta del archivo privado o con Google/Discord/GitHub.
 4. Probar perfil, vehículos, reserva y detalle. Girar el teléfono para revisar la adaptación.
 5. Para revisar Empleado/Admin, cerrar sesión y usar la cuenta del rol correspondiente.

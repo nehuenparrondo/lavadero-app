@@ -67,15 +67,15 @@ la misma paleta. Mantener nombres accesibles, foco y áreas táctiles al modific
 
 ## Lecturas, errores y actualización
 
-useRemoteData serializa filtros para identificar la consulta. sequence impide que
+useRemoteData delega en useQuery y serializa filtros para identificar la consulta. sequence impide que
 una respuesta de un filtro anterior o de un consumidor desmontado publique su resultado.
-Es cancelación lógica: no aborta necesariamente HTTP. Conserva datos previos durante
-actualización; no mostrar esos datos como un resultado confirmado de la nueva consulta.
+Es cancelación lógica: no aborta necesariamente HTTP. Al actualizar se ocultan los datos
+anteriores; cada resultado está vinculado a su recurso/filtros y nunca habilita una reserva de otra selección.
 enabled impide pedir disponibilidad antes de contar con la selección mínima.
 
 usePagedList reinicia página al cambiar filtros. CollectionState distingue carga
 inicial, error con reintento y lista vacía. No usar un array vacío como sustituto de
-un error de red. useAppointments recarga lista y resumen personal juntos.
+un error de red. useAppointments recarga lista, resumen personal y selectores juntos.
 El resumen se oculta mientras carga o falla para no atribuir cifras a otra fecha.
 
 useAction captura errores y devuelve undefined al fallar. Solo navegar, cerrar

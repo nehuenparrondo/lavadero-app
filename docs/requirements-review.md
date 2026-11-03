@@ -1,6 +1,6 @@
 # Revisión del archivo de requisitos
 
-Fuente: `prompt_lavadero_autos.txt`, entregado por el usuario. Revisión: 01/11/2026.
+Fuente: `prompt_lavadero_autos.txt`, entregado por el usuario. Revisión inicial: 01/11/2026; actualización funcional: 02/11/2026.
 SHA-256 del archivo original: `7a176054435faeb46ab0a65e8225cd33916cd297051fb8930c9a92f1be64ac44`.
 
 El archivo se usa como lista de aceptación. La columna de evidencia permite localizar cada requisito. Los caminos de backend/frontend se interpretan en su propio repositorio; no existe código compartido.
@@ -8,7 +8,7 @@ El archivo se usa como lista de aceptación. La columna de evidencia permite loc
 | Sección    | Requisito                                       | Resultado implementado                                                                                                                                    | Evidencia                                                                         |
 | ---------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | 1          | Proyectos autónomos, sin imports compartidos    | Dos Git privados, package/tsconfig/env/lint/CI propios; comunicación REST HTTPS.                                                                          | README.md; docs/architecture.md                                                   |
-| 1          | Contrato versionado y pruebas sin app           | 48 operaciones de negocio bajo /api/v1; Swagger, OpenAPI y colección Postman.                                                                             | API.md; docs/openapi.json; docs/postman.collection.json                           |
+| 1          | Contrato versionado y pruebas sin app           | 50 operaciones documentadas bajo /api/v1; Swagger, OpenAPI y colección Postman.                                                                           | API.md; docs/openapi.json; docs/postman.collection.json                           |
 | 1          | Diagrama de arquitectura y OAuth                | Mermaid en ambos repositorios.                                                                                                                            | docs/architecture.md                                                              |
 | 2          | Atomización y tamaño de fuente                  | Fuente TS: archivos de hasta 149 líneas y cuerpos de funciones/callbacks de hasta 30. Tipos, parámetros y TSDoc no se cuentan como cuerpo.                | scripts/auditSource.ts; npm run audit:source                                      |
 | 2          | Una tarea por pieza y lógica fuera de pantallas | Editores, formularios, selección, consultas y comandos separados; pantallas componen hooks/componentes.                                                   | src/hooks; src/components; docs/files.md                                          |
@@ -56,8 +56,8 @@ El archivo se usa como lista de aceptación. La columna de evidencia permite loc
 
 ## Alcance de la comprobación
 
-35 pruebas automatizadas aprobadas: 15 unitarias/HTTP de API, 17 de aceptación con MySQL real y 3 frontend. Además: tipos estrictos, lint, auditoría de fuente/dependencias, exportación web/Android y validación OpenAPI.
-La revisión funcional real cubrió los tres roles y el ciclo vehículo → reserva → asignación → atención → cobro ficticio → comprobante. Los tres proveedores completaron un ingreso real en la web. La vinculación de una cuenta local se comprobó mediante pruebas HTTP con MySQL y respuestas de proveedor simuladas.
+46 pruebas automatizadas aprobadas: 16 unitarias/HTTP de API, 18 de aceptación con MySQL local real y 12 frontend. Además: tipos estrictos, lint, auditoría de fuente/dependencias, exportación web/Android y validación OpenAPI.
+La revisión web actual comprobó los tres roles, vehículo, reserva/cancelación, reportes y comprobante, más ingresos reales con los tres proveedores y la conexión después del reposo. El ciclo de asignación, atención, observaciones, cobro y comprobante se verificó también en las 18 pruebas contra MySQL local. La vinculación local usa respuestas de proveedor simuladas en esas pruebas.
 **Prueba instalada pendiente:** no hubo Android ni emulador disponible. El propietario dispone de iPhone y Expo Go. Compilar/firmar el APK y probar la web no acredita que el APK haya sido ejecutado en un teléfono. Consultar `docs/iphone-expo-go.md`.
 La referencia de tamaño se aplica a fuente TS de `src`: hasta 149 líneas por archivo y hasta 30 por cuerpo de función/callback. Firmas, tipos y TSDoc quedan fuera del conteo del cuerpo. SQL completo, documentación, contratos generados y pruebas no se fragmentan artificialmente para cumplir ese contador.
 Pagos conserva un registro contable de altas/consulta, con idempotencia y sin borrado destructivo. La matriz de roles solicita ver/registrar pagos; no se ofrece alterar o borrar un cobro histórico. Se interpreta así el “CRUD de pagos” general de la sección 7.
@@ -70,7 +70,7 @@ La versión web está implementada y publicada. Recuperación automática de con
 
 ## Actualización de documentación e interfaz 1.1
 
-La revisión actual conserva los requisitos y agrega portadas profesionales por rol,
+La revisión del 1 de noviembre conservó los requisitos y agregó portadas profesionales por rol,
 layout adaptable, íconos vectoriales locales, 117 componentes catalogados y guías
 de mantenimiento. Se verificaron 111 archivos backend y 259 frontend con el límite
 de tamaño y TSDoc público. Esta actualización repitió 18 pruebas unitarias/HTTP/frontend;
