@@ -48,7 +48,7 @@ El borrado conserva el historial. La patente sigue reservada por trazabilidad.
 
 En **Servicios** elegí el tipo de vehículo y consultá descripción, duración y precio.
 Los ejemplos duran 30, 35 o 40 minutos; contratar varios suma sus duraciones.
-Los precios iniciales son ejemplos académicos y el Administrador puede cambiarlos.
+Las tarifas vigentes se consultan por servicio y tipo de vehículo. El administrador las puede cambiar en **Servicios y precios**. Las reservas existentes conservan el precio pactado.
 
 ### Reserva y cancelación
 
@@ -83,7 +83,7 @@ cerrados. No se ofrecen usuarios, configuración ni reportes de ingresos del neg
 ![Agenda compartida](images/agenda-compartida-1.2.png)
 
 Abrí el detalle. Agregá observaciones de la revisión previa y pulsá **Comenzar lavado**
-cuando esté Confirmado (también admite turnos Pendientes de la versión anterior). Después elegí **Finalizar lavado**. No se puede saltar directamente a Finalizado. El equipo puede colaborar; el historial conserva quién realizó cada cambio.
+cuando esté Confirmado (también admite turnos Pendientes de la versión anterior). Durante el horario de atención, elegí **Finalizar lavado**. A partir de la hora de cierre, el servidor impide la finalización. No se puede saltar directamente a Finalizado. El equipo puede colaborar; el historial conserva quién realizó cada cambio.
 
 ![Trabajo y observaciones](images/empleado-trabajo.png)
 
