@@ -1,6 +1,7 @@
 import { View } from 'react-native';
 import { useSocialLogin } from '../../hooks/useSocialLogin';
 import { Button } from '../atoms/Button';
+import { Text } from '../atoms/Text';
 import { Notice } from '../molecules/Notice';
 import { ModalPanel } from './ModalPanel';
 import { OAuthLinkForm } from './OAuthLinkForm';
@@ -18,10 +19,13 @@ export function SocialLoginButton({ provider }: { provider: keyof typeof labels 
         variant="secondary"
         disabled={!login.ready}
         loading={login.busy}
-        onPress={() => {
-          void login.start();
-        }}
+        onPress={login.start}
       />
+      {provider === 'discord' && (
+        <Text style={{ fontSize: 12 }}>
+          Para cambiar de cuenta, tocá «¿No eres tú?» en Discord antes de autorizar.
+        </Text>
+      )}
       <Notice error={login.error} />
       <ModalPanel
         visible={login.linkRequired}
