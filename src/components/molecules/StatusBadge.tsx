@@ -5,6 +5,7 @@ export const statusLabels: Record<AppointmentStatus, string> = {
   pending: 'Pendiente',
   confirmed: 'Confirmado',
   in_progress: 'En proceso',
+  awaiting_review: 'Por verificar',
   completed: 'Finalizado',
   cancelled: 'Cancelado',
 };

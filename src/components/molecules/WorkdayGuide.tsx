@@ -15,7 +15,7 @@ export function WorkdayGuide() {
       </Text>
       <Text style={{ fontSize: 14, color: colors.muted, lineHeight: 23 }}>
         Revisá el vehículo y los servicios. Abrí cada turno para iniciar el lavado, sumar notas
-        y marcarlo como finalizado.
+        y enviar a Administración una descripción del trabajo para que lo verifique.
       </Text>
       <Text style={{ fontSize: 12, color: colors.muted, lineHeight: 19 }}>
         La agenda es compartida por todo el equipo. Elegí la fecha de la reserva para verla.

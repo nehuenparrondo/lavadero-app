@@ -17,11 +17,17 @@ export function bookingOptions(
     (item) =>
       item.isActive && item.prices.some((p) => p.vehicleTypeId === vehicle?.vehicleTypeId),
   );
+  const selectedIds = selection.serviceIds.split(',');
+  const selected = offered.filter((s) => selectedIds.includes(s.id));
+  const needsWash =
+    selected.some((s) => s.code === 'wax') &&
+    !selected.some((s) => s.code === 'exterior' || s.code === 'complete');
   const ready = Boolean(
     vehicle &&
     selection.serviceIds &&
+    !needsWash &&
     validDate(selection.date) &&
-    selection.serviceIds.split(',').every((id) => offered.some((item) => item.id === id)),
+    selectedIds.every((id) => offered.some((item) => item.id === id)),
   );
-  return { vehicles: ownVehicles, offered, ready };
+  return { vehicles: ownVehicles, offered, ready, needsWash };
 }

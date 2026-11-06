@@ -12,7 +12,7 @@ export function AppointmentAssignment({ m }: { m: ReturnType<typeof useAppointme
   if (!appointment) return null;
   return (
     <Card>
-      <Text style={{ fontWeight: '700' }}>Responsable interno (opcional)</Text>
+      <Text style={{ fontWeight: '700' }}>Empleado responsable</Text>
       <ChoiceGroup
         options={m.employees.map((e) => ({
           value: e.id,
@@ -23,7 +23,7 @@ export function AppointmentAssignment({ m }: { m: ReturnType<typeof useAppointme
       />
       <Button
         label="Guardar responsable"
-        disabled={!m.employeeId}
+        disabled={!m.employeeId || m.employeeId === appointment.employeeId}
         loading={m.action.busy}
         onPress={() => {
           void m.assign();

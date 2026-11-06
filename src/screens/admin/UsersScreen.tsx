@@ -1,4 +1,3 @@
-import { Button } from '../../components/atoms/Button';
 import { Notice } from '../../components/molecules/Notice';
 import { Pagination } from '../../components/molecules/Pagination';
 import { SearchBar } from '../../components/molecules/SearchBar';
@@ -17,7 +16,7 @@ export function UsersScreen() {
   return (
     <Screen refreshing={m.loading} onRefresh={m.refresh}>
       <SectionHeader title="Usuarios" subtitle="Clientes, equipo y permisos del lavadero." />
-      <Button label="+ Crear usuario" onPress={m.create} />
+      <Notice message="Cada persona crea su cuenta en el ingreso. Buscá una cuenta registrada y editá su rol para incorporarla al equipo." />
       <SearchBar label="Buscar por nombre o email" value={m.search} onChange={m.setSearch} />
       <UserRoleFilter m={m} />
       <Notice message={m.message} error={!m.open ? m.error : ''} />

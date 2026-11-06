@@ -1,7 +1,15 @@
 import type { Role } from '../types/entities';
 const shared = ['/', '/profile'];
 const routes: Record<Role, string[]> = {
-  client: [...shared, '/home', '/vehicles', '/services', '/appointments', '/booking'],
+  client: [
+    ...shared,
+    '/home',
+    '/vehicles',
+    '/services',
+    '/appointments',
+    '/booking',
+    '/support',
+  ],
   employee: [...shared, '/agenda', '/history'],
   admin: [
     ...shared,
@@ -11,6 +19,8 @@ const routes: Record<Role, string[]> = {
     '/appointments',
     '/booking',
     '/users',
+    '/attendance',
+    '/customer-messages',
     '/reports',
     '/settings',
   ],
@@ -24,7 +34,7 @@ export function restoreDestination(destination: unknown, role: Role) {
   if (typeof destination !== 'string') return '/';
   if (/^\/appointment\/[1-9]\d{0,18}$/u.test(destination)) return destination;
   if (routes[role].includes(destination))
-    return destination === '/' || destination === '/booking'
+    return ['/', '/booking', '/support'].includes(destination)
       ? destination
       : `/(${role})${destination}`;
   return '/';

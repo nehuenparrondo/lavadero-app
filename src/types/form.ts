@@ -10,6 +10,7 @@ export interface FormFieldDefinition {
   placeholder?: string;
   kind?:
     | 'text'
+    | 'textarea'
     | 'email'
     | 'password'
     | 'number'

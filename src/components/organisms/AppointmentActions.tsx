@@ -16,25 +16,26 @@ export function AppointmentActions({
 }) {
   const appointment = m.detail.data;
   if (!appointment) return null;
-  const closed = ['completed', 'cancelled'].includes(appointment.status);
   return (
     <View style={{ gap: 16 }}>
-      {m.user?.role === 'admin' && !closed && <AppointmentAssignment m={m} />}
-      {m.user?.role === 'admin' && <AppointmentStatusEditor m={m} />}
+      {m.user?.role === 'admin' && appointment.canReassign && <AppointmentAssignment m={m} />}
+      {m.user?.role === 'admin' && appointment.status === 'pending' && (
+        <AppointmentStatusEditor m={m} />
+      )}
       {m.user?.role === 'employee' &&
-        ['pending', 'confirmed', 'in_progress'].includes(appointment.status) && (
-          <EmployeeWorkAction m={m} />
-        )}
-      {m.canCancel && !closed && (
+        appointment.canWork &&
+        ['pending', 'confirmed'].includes(appointment.status) && <EmployeeWorkAction m={m} />}
+      {m.canCancel && (
         <Button
           label="Cancelar turno"
           variant="danger"
           onPress={() => m.setCancelOpen(true)}
         />
       )}
-      {m.canPay && ['in_progress', 'completed'].includes(appointment.status) && (
-        <AppointmentPaymentAction m={m} />
-      )}
+      {m.canPay &&
+        ['in_progress', 'awaiting_review', 'completed'].includes(appointment.status) && (
+          <AppointmentPaymentAction m={m} />
+        )}
       {m.user?.role !== 'employee' && appointment.status === 'completed' && (
         <Button label="Ver comprobante" onPress={() => m.setReceiptOpen(true)} />
       )}

@@ -55,11 +55,13 @@ Las tarifas vigentes se consultan por servicio y tipo de vehículo. El administr
 En Inicio elegí **Reservar mi lavado**. Seleccioná vehículo, uno o más servicios,
 fecha y horario. La app muestra el total en pesos argentinos y la duración estimada
 antes de confirmar. Atención inicial: lunes a sábado 09:30–16:30, un auto a la vez.
+El encerado cuesta $15.000 y se combina con exterior o completo. Tapizados cuesta $20.000 y se puede pedir por separado. La duración y el precio se suman a los demás servicios seleccionados.
+
 La grilla propone inicios cada 5 minutos; no implica que cada lavado dure 5 minutos.
 
 ![Cotización y horarios](images/cliente-reserva.png)
 
-El turno queda Confirmado automáticamente y entra en la agenda compartida del equipo. El cliente no ve información de asignación.
+El turno queda **Confirmado** automáticamente y entra en la agenda compartida. Abrí el detalle para ver el empleado asignado y guardar una descripción del vehículo antes de que comience el trabajo. Si todavía no hay un empleado libre, el turno aparece **Por asignar**.
 En **Mis turnos** consultá Próximos/Pasados y abrí una tarjeta para ver su detalle.
 La cancelación propia está disponible en Pendiente/Confirmado con más de 120 minutos
 de anticipación, salvo que el Administrador cambie esa política.
@@ -67,7 +69,7 @@ Si un horario acaba de ocuparse, elegí otro: no se crea una reserva duplicada.
 
 ### Comprobante
 
-Al finalizar el trabajo aparece **Ver comprobante**. Muestra servicios contratados,
+Cuando Administración verifica el trabajo aparecen **Ver comprobante** y el formulario de devolución. En **Reclamos y respuestas** podés mandar un reclamo general y consultar la respuesta. Muestra servicios contratados,
 precio histórico y cobros registrados. Es comprobante del servicio, no factura fiscal.
 También podés consultar las observaciones del trabajo y el saldo.
 
@@ -76,14 +78,13 @@ También podés consultar las observaciones del trabajo y el saldo.
 ## Empleado
 
 **Mi agenda** abre la fecha actual; cambiá el filtro para otra jornada.
-Aparecen todos los turnos del equipo, con vehículo, color, servicios y horario. Elegí la fecha reservada o quitá el filtro para consultar otras jornadas. La agenda se actualiza automáticamente mientras está visible y dispone de Actualizar agenda.
+Aparecen todos los turnos del equipo, con vehículo, color, servicios y horario. Buscá por patente para consultar cualquier fecha, o elegí un día para ver la jornada. La agenda se actualiza automáticamente mientras está visible y dispone de Actualizar agenda.
 El resumen de jornada distingue finalizados y pendientes. **Historial** muestra trabajos
 cerrados. No se ofrecen usuarios, configuración ni reportes de ingresos del negocio.
 
 ![Agenda compartida](images/agenda-compartida-1.2.png)
 
-Abrí el detalle. Agregá observaciones de la revisión previa y pulsá **Comenzar lavado**
-cuando esté Confirmado (también admite turnos Pendientes de la versión anterior). Durante el horario de atención, elegí **Finalizar lavado**. A partir de la hora de cierre, el servidor impide la finalización. No se puede saltar directamente a Finalizado. El equipo puede colaborar; el historial conserva quién realizó cada cambio.
+El responsable abre el detalle, pulsa **Comenzar lavado** y carga una descripción de lo que hizo. Durante el horario de atención puede pulsar **Enviar a verificación**. Si Administración lo devuelve, el empleado ve la observación y puede volver a enviarlo después de corregirlo.
 
 ![Trabajo y observaciones](images/empleado-trabajo.png)
 
@@ -117,7 +118,7 @@ contratadas. Los tipos se gestionan desde Configuración.
 ### Turnos, pagos y reportes
 
 En **Turnos** filtrá fecha, estado, cliente y empleado. Podés crear una reserva para
-un cliente que llama por teléfono. La reserva se confirma automáticamente para todo el equipo. El responsable interno es opcional y se registra al comenzar; Guardar responsable no cambia el estado ni limita quién puede ver el turno. La agenda valida la capacidad física.
+un cliente que llama por teléfono. La reserva se confirma automáticamente para todo el equipo. La app asigna automáticamente a un empleado activo disponible. Podés reasignar antes del inicio. En **Turnos → Lavados por verificar** revisá el parte, inspeccioná el auto y confirmá el trabajo en horario de atención o devolvelo con un motivo.
 Podés corregir estados, rechazar/cancelar y registrar observaciones o pagos.
 
 ![Asignación de empleado](images/admin-asignacion.png)
@@ -165,3 +166,9 @@ Tocá tu nombre/avatar arriba a la derecha o abajo a la izquierda en la barra la
 ![Controles flotantes](images/controles-flotantes-1.2.png)
 
 ![Perfil móvil](images/perfil-movil-1.2.png)
+
+## Atención y asistencia
+
+- En **Reclamos y devoluciones** ves el mensaje, el turno, el responsable y lo que hizo cuando corresponda. **Responder** envía la respuesta al cliente y cierra el caso.
+- En **Asistencia** pulsá **Fichar llegada** cuando veas llegar al empleado. Se guarda la primera hora del día y quién hizo el fichaje. Usá la fecha para consultar el historial.
+- El personal se registra desde el ingreso. En **Usuarios** buscá su cuenta y editá el rol a **Empleado**. El empleado vuelve a iniciar sesión para entrar a su agenda.

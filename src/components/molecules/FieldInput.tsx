@@ -25,6 +25,11 @@ export function FieldInput({
       onChangeText={onChange}
       onBlur={onBlur}
       placeholder={field.placeholder ?? ''}
+      multiline={field.kind === 'textarea'}
+      maxLength={field.maxLength}
+      style={
+        field.kind === 'textarea' ? { minHeight: 105, textAlignVertical: 'top' } : undefined
+      }
       secureTextEntry={field.kind === 'password'}
       autoCapitalize={
         field.kind === 'email' || field.kind === 'password' ? 'none' : 'sentences'

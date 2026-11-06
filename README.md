@@ -28,7 +28,7 @@ MySQL en variables EXPO_PUBLIC. En móvil, localhost identifica al teléfono.
 - Cliente: cuenta, perfil, vehículos, tarifas, cotización, reserva, historial,
   cancelación según anticipación y comprobante del trabajo finalizado.
 - Empleado: agenda e historial propios, detalle del vehículo/cliente, observaciones,
-  inicio/finalización y cobro cuando un administrador lo habilita.
+  búsqueda por patente, inicio y envío a verificación del responsable, y cobro cuando un administrador lo habilita.
 - Administrador: usuarios/roles, catálogo/tarifas/tipos, agenda/asignación, horarios,
   capacidad, políticas y reportes por día/semana/mes.
 - Formularios React Hook Form + Zod, listas paginadas, búsqueda, estados de carga,
@@ -71,4 +71,4 @@ de la pestaña; cerrar la pestaña elimina esa persistencia. El access token que
 
 Ver [comportamiento, módulos y pruebas de la versión 1.1.1](docs/reliability.md).
 
-La regla vigente de agenda compartida y los controles de pantalla están documentados en [docs/shared-agenda.md](docs/shared-agenda.md).
+La agenda compartida, la asignación, la verificación del trabajo, los reclamos y el fichaje se explican en el [manual de uso](docs/user-manual.md).

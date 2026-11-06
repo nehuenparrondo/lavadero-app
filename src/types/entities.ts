@@ -78,6 +78,11 @@ export interface Appointment {
   clientName: string;
   clientPhone: string | null;
   employeeName?: string | null;
+  canWork?: boolean;
+  canReassign?: boolean;
+  vehicleType?: string;
+  vehicleDescription?: string | null;
+  wash?: import('./operations').WashSubmission | null;
   /** Total histórico del contrato, expresado en centavos ARS. */
   totalCents?: number;
   /** Suma registrada de cobros en centavos; no ejecuta transferencias. */

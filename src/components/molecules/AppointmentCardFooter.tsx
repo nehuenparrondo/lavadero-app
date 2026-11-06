@@ -25,7 +25,7 @@ export function AppointmentCardFooter({ appointment: a }: { appointment: Appoint
     >
       <Text style={{ fontSize: 12, color: colors.muted, flex: 1 }}>
         {a.clientName}
-        {a.employeeName ? ' · ' + a.employeeName : ''}
+        {a.employeeName ? ' · ' + a.employeeName : ' · Por asignar'}
       </Text>
       {a.totalCents !== undefined && (
         <Text style={{ fontWeight: '700', fontSize: 16 }}>{money(a.totalCents)}</Text>

@@ -21,6 +21,12 @@ export function ClientQuickActions() {
         icon="sparkles"
         onPress={() => router.push('/(client)/services')}
       />
+      <QuickAction
+        title="Reclamos y respuestas"
+        detail="Mandá un reclamo y seguí la respuesta del lavadero."
+        icon="history"
+        onPress={() => router.push('/support')}
+      />
     </View>
   );
 }

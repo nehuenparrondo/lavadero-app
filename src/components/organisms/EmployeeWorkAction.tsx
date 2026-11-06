@@ -9,7 +9,7 @@ export function EmployeeWorkAction({ m }: { m: ReturnType<typeof useAppointmentD
   if (!appointment) return null;
   return (
     <Button
-      label={appointment.status === 'in_progress' ? 'Finalizar lavado' : 'Comenzar lavado'}
+      label="Comenzar lavado"
       loading={m.action.busy}
       onPress={() => {
         void m.advance();

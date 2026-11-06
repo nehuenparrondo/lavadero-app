@@ -12,6 +12,7 @@ export const roleNavigation: Record<Role, NavigationItem[]> = {
     },
     { label: 'Mis vehículos', href: '/(client)/vehicles', path: '/vehicles', icon: 'car' },
     { label: 'Servicios', href: '/(client)/services', path: '/services', icon: 'sparkles' },
+    { label: 'Reclamos', href: '/support', path: '/support', icon: 'history' },
     { label: 'Mi perfil', href: '/(client)/profile', path: '/profile', icon: 'user' },
   ],
   employee: [
@@ -29,6 +30,18 @@ export const roleNavigation: Record<Role, NavigationItem[]> = {
     },
     { label: 'Vehículos', href: '/(admin)/vehicles', path: '/vehicles', icon: 'car' },
     { label: 'Usuarios', href: '/(admin)/users', path: '/users', icon: 'users' },
+    {
+      label: 'Asistencia',
+      href: '/(admin)/attendance',
+      path: '/attendance',
+      icon: 'calendar',
+    },
+    {
+      label: 'Reclamos y devoluciones',
+      href: '/(admin)/customer-messages',
+      path: '/customer-messages',
+      icon: 'history',
+    },
     {
       label: 'Servicios y precios',
       href: '/(admin)/services',

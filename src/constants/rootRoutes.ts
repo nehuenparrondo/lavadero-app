@@ -13,6 +13,7 @@ export const rootRoutes = [
     options: { title: 'Detalle del turno' },
   },
   { name: 'oauth', access: 'public', options: { headerShown: false } },
+  { name: 'support', access: 'client', options: { title: 'Atención al cliente' } },
   { name: '(client)', access: 'client', options: { headerShown: false } },
   { name: '(employee)', access: 'employee', options: { headerShown: false } },
   { name: '(admin)', access: 'admin', options: { headerShown: false } },

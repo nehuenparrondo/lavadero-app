@@ -18,7 +18,7 @@ export function EmployeeAppointmentResults({
     <>
       <SectionHeader
         title={m.history ? 'Trabajos anteriores' : 'Agenda del equipo'}
-        subtitle="Seleccioná la fecha de la reserva o quitá el filtro para ver todos los turnos del equipo."
+        subtitle="Buscá por patente en toda la agenda o filtrá los turnos por fecha."
       />
       <AppointmentFilters manager={m} />
       <Button

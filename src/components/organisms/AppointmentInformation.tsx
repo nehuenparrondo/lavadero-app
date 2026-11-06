@@ -14,13 +14,9 @@ export function AppointmentInformation({ m }: { m: ReturnType<typeof useAppointm
   return (
     <Card>
       <StatusBadge status={a.status} />
-      <Text>
-        {a.color} · {a.clientName}
-      </Text>
+      <Text>{[a.vehicleType, a.color, a.clientName].filter(Boolean).join(' · ')}</Text>
       {a.clientPhone && <Text>Contacto: {a.clientPhone}</Text>}
-      {m.user?.role === 'admin' && (
-        <Text>Responsable interno: {a.employeeName ?? 'Se registra al comenzar'}</Text>
-      )}
+      <Text>Empleado asignado: {a.employeeName ?? 'Por asignar'}</Text>
       <ContractServiceLines items={a.services ?? []} showDuration />
       {a.totalCents !== undefined && (
         <>

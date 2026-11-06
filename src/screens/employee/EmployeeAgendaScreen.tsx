@@ -27,7 +27,7 @@ export function EmployeeAgendaScreen({ history = false }: { history?: boolean })
             : 'Todos los turnos del equipo, los servicios y el estado de cada lavado.'
         }
       />
-      {!history && m.date && <EmployeeDaySummary summary={m.summary} />}
+      {!history && m.date && !m.plate && <EmployeeDaySummary summary={m.summary} />}
       <OverviewColumns
         primary={<EmployeeAppointmentResults manager={m} />}
         secondary={<WorkdayGuide />}

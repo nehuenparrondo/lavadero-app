@@ -5,6 +5,7 @@ export const APPOINTMENT_STATUS = [
   'pending',
   'confirmed',
   'in_progress',
+  'awaiting_review',
   'completed',
   'cancelled',
 ] as const;
