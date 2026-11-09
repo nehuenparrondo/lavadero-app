@@ -20,6 +20,8 @@ export function useBookingSubmit(
   const action = useAction();
   const router = useRouter();
   const sending = useRef(false);
+  const refreshCurrent = useRef(refresh);
+  refreshCurrent.current = refresh;
   const submit = async () => {
     if (!ready || sending.current) return;
     sending.current = true;
@@ -36,8 +38,8 @@ export function useBookingSubmit(
     sending.current = false;
     if (result) router.replace(`/appointment/${result.id}`);
     else {
-      s.setSlot('');
-      void refresh();
+      s.clearRejectedSlot(s.slot);
+      void refreshCurrent.current();
     }
   };
   return { ...action, submit };

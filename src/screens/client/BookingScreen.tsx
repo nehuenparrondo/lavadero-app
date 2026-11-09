@@ -16,7 +16,12 @@ import { useBooking } from '../../hooks/useBooking';
 export function BookingScreen() {
   const b = useBooking();
   return (
-    <Screen refreshing={b.optionsLoading} onRefresh={b.refresh}>
+    <Screen
+      refreshing={b.optionsLoading}
+      onRefresh={b.refresh}
+      refreshInterval={10_000}
+      onRevalidate={b.revalidateAvailability}
+    >
       <SectionHeader
         title="Reservá tu lavado"
         subtitle="Elegí los detalles. Nosotros nos ocupamos del resto."
@@ -25,12 +30,7 @@ export function BookingScreen() {
       {b.admin && <BookingClientField b={b} />}
       <BookingVehicleField b={b} />
       <BookingServicesField b={b} />
-      <FormField
-        field={{ name: 'date', label: 'Fecha', kind: 'date', placeholder: 'AAAA-MM-DD' }}
-        value={b.date}
-        onChange={b.setDate}
-      />
-      <Text>{bookingDateMessage(b.date, b.settings)}</Text>
+      <BookingDateField b={b} />
       <ScheduleSelector booking={b} />
       <Button
         label="Confirmar reserva"
@@ -41,5 +41,19 @@ export function BookingScreen() {
         }}
       />
     </Screen>
+  );
+}
+
+/** Agrupa la fecha con la orientación de atención para el día seleccionado. */
+function BookingDateField({ b }: { b: ReturnType<typeof useBooking> }) {
+  return (
+    <>
+      <FormField
+        field={{ name: 'date', label: 'Fecha', kind: 'date', placeholder: 'AAAA-MM-DD' }}
+        value={b.date}
+        onChange={b.setDate}
+      />
+      <Text>{bookingDateMessage(b.date, b.settings)}</Text>
+    </>
   );
 }

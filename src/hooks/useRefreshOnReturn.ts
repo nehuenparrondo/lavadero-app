@@ -2,6 +2,8 @@ import { useFocusEffect } from 'expo-router';
 import { useCallback, useRef } from 'react';
 import { isForeground, subscribeForeground } from '../utils/foreground';
 import { createRefreshGate } from '../utils/refreshGate';
+import type { RefreshTrigger } from '../utils/refreshGate';
+
 /** Actualiza al regresar a la ruta/app y, opcionalmente, mientras se usa una agenda.
  * @param refresh Recarga vigente; las vistas estáticas no instalan listeners.
  * @param busy Evita solapar la carga o mutación de la pantalla.
@@ -13,7 +15,7 @@ export function useRefreshOnReturn(
   refresh?: () => void | Promise<void>,
   busy = false,
   interval = 0,
-  revalidate?: () => void | Promise<void>,
+  revalidate?: (trigger: RefreshTrigger) => void | Promise<void>,
 ) {
   const current = useRef({ refresh, revalidate, busy });
   current.current = { refresh, revalidate, busy };
@@ -24,16 +26,17 @@ export function useRefreshOnReturn(
       if (!enabled) return;
       let active = true;
       const update = createRefreshGate(
-        () => (current.current.revalidate ?? current.current.refresh)?.(),
+        (trigger: RefreshTrigger) =>
+          (current.current.revalidate ?? current.current.refresh)?.(trigger),
         () => active && !current.current.busy && isForeground(),
       );
-      const run = () => {
-        void update().catch(() => undefined);
+      const run = (trigger: RefreshTrigger) => {
+        void update(trigger).catch(() => undefined);
       };
-      if (visited.current) run();
+      if (visited.current) run('resume');
       visited.current = true;
-      const unsubscribe = subscribeForeground(run);
-      const timer = interval > 0 ? setInterval(run, interval) : undefined;
+      const unsubscribe = subscribeForeground(() => run('resume'));
+      const timer = interval > 0 ? setInterval(() => run('interval'), interval) : undefined;
       return () => {
         active = false;
         unsubscribe();

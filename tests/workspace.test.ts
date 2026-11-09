@@ -47,3 +47,25 @@ test('recarga visible sin duplicados, solapamientos ni actividad en segundo plan
   release();
   await next;
 });
+
+test('volver durante el sondeo actualiza una sola vez después de que termina', async () => {
+  const calls: string[] = [];
+  let finishPoll = () => {};
+  const refresh = createRefreshGate(
+    async (trigger) => {
+      calls.push(trigger);
+      if (trigger === 'interval')
+        await new Promise<void>((resolve) => {
+          finishPoll = resolve;
+        });
+    },
+    () => true,
+    () => 0,
+  );
+  const poll = refresh('interval');
+  const resumed = [refresh('resume'), refresh('resume')];
+  assert.deepEqual(calls, ['interval']);
+  finishPoll();
+  await Promise.all([poll, ...resumed]);
+  assert.deepEqual(calls, ['interval', 'resume']);
+});

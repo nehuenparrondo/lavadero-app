@@ -20,8 +20,7 @@ export function useBookingResources(
     selection.ready,
   );
   const refresh = async () => {
-    await options.refresh();
-    await availability.refresh();
+    await Promise.all([options.refresh(), availability.refresh()]);
   };
   return {
     ...selection,

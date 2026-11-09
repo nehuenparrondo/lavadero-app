@@ -12,7 +12,7 @@ export function ScheduleSelector({ booking: b }: { booking: ReturnType<typeof us
   if (!b.vehicleId || !b.serviceIds) return null;
   return (
     <View style={{ gap: 16 }}>
-      {b.availability.loading ? (
+      {b.availability.loading && !b.availability.data ? (
         <LoadingState label="Buscando horarios…" />
       ) : (
         <>
@@ -20,6 +20,9 @@ export function ScheduleSelector({ booking: b }: { booking: ReturnType<typeof us
           {b.availability.data && (
             <>
               <QuotedTotal quote={b.availability.data} />
+              {b.slot && !b.availability.data.slots.includes(b.slot) && (
+                <Notice error="El horario que elegiste ya no está disponible. Elegí otro." />
+              )}
               <AvailableSlots
                 quote={b.availability.data}
                 value={b.slot}

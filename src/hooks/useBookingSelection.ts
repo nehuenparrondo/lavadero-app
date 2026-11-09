@@ -27,5 +27,9 @@ export function useBookingSelection(clientId: string) {
     setServiceIds: (v: string) => choose('serviceIds', v),
     setDate: (v: string) => choose('date', v),
     setSlot: (v: string) => choose('slot', v),
+    clearRejectedSlot: (attempted: string) =>
+      setSelection((current) =>
+        current.slot === attempted ? { ...current, slot: '' } : current,
+      ),
   };
 }

@@ -2,6 +2,7 @@ import type { PropsWithChildren } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRefreshOnReturn } from '../../hooks/useRefreshOnReturn';
 import { useTheme } from '../../hooks/useTheme';
+import type { RefreshTrigger } from '../../utils/refreshGate';
 import { WorkspaceFrame } from './WorkspaceFrame';
 import { ScreenContent } from './ScreenContent';
 /** Marco de todos los roles con controles flotantes y actualización al regresar.
@@ -19,7 +20,7 @@ export function Screen({
   refreshing?: boolean;
   onRefresh?: () => void | Promise<void>;
   refreshInterval?: number;
-  onRevalidate?: () => void | Promise<void>;
+  onRevalidate?: (trigger: RefreshTrigger) => void | Promise<void>;
 }) {
   useRefreshOnReturn(onRefresh, refreshing, refreshInterval, onRevalidate);
   const { colors } = useTheme();

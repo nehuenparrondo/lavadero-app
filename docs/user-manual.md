@@ -65,7 +65,7 @@ El turno queda **Confirmado** automáticamente y entra en la agenda compartida. 
 En **Mis turnos** consultá Próximos/Pasados y abrí una tarjeta para ver su detalle.
 La cancelación propia está disponible en Pendiente/Confirmado con más de 120 minutos
 de anticipación, salvo que el Administrador cambie esa política.
-Si un horario acaba de ocuparse, elegí otro: no se crea una reserva duplicada.
+La app actualiza los horarios cada 10 segundos mientras la pantalla de reserva está visible y al volver a ella. Si alguien confirma el mismo horario antes que vos, la app te avisa y vuelve a consultar las opciones. Solo se acepta una reserva para cada hora de inicio.
 
 ### Comprobante
 
