@@ -67,20 +67,22 @@ export interface Appointment {
   id: string;
   clientId?: string;
   employeeId?: string | null;
-  vehicleId?: string;
+  vehicleId?: string | null;
+  vehicleTypeId?: string;
   status: AppointmentStatus;
   startsAt: string;
   endsAt: string;
-  plate: string;
-  brand: string;
-  model: string;
-  color: string;
+  plate: string | null;
+  brand: string | null;
+  model: string | null;
+  color: string | null;
   clientName: string;
   clientPhone: string | null;
   employeeName?: string | null;
   canWork?: boolean;
   canReassign?: boolean;
   vehicleType?: string;
+  vehiclePending?: boolean;
   vehicleDescription?: string | null;
   wash?: import('./operations').WashSubmission | null;
   /** Total histórico del contrato, expresado en centavos ARS. */

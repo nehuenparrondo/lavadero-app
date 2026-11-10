@@ -15,7 +15,10 @@ export function buildFormSchema(fields: FormFieldDefinition[]) {
     if (field.kind === 'email') rule = rule.email('Ingresá un email válido.');
     if (field.kind === 'number') rule = rule.regex(/^\d+$/u, 'Ingresá un número entero.');
     if (field.kind === 'money')
-      rule = rule.regex(/^\d+([.,]\d{1,2})?$/u, 'Ingresá pesos, con hasta dos decimales.');
+      rule = rule.regex(
+        field.required === false ? /^(?:\d+(?:[.,]\d{1,2})?)?$/u : /^\d+(?:[.,]\d{1,2})?$/u,
+        'Ingresá pesos, con hasta dos decimales.',
+      );
     if (field.kind === 'date')
       rule = rule.regex(/^\d{4}-\d{2}-\d{2}$/u, 'Usá el formato AAAA-MM-DD.');
     if (field.kind === 'time')

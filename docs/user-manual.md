@@ -52,16 +52,14 @@ Las tarifas vigentes se consultan por servicio y tipo de vehículo. El administr
 
 ### Reserva y cancelación
 
-En Inicio elegí **Reservar mi lavado**. Seleccioná vehículo, uno o más servicios,
-fecha y horario. La app muestra el total en pesos argentinos y la duración estimada
-antes de confirmar. Atención inicial: lunes a sábado 09:30–16:30, un auto a la vez.
-El encerado cuesta $15.000 y se combina con exterior o completo. Tapizados cuesta $20.000 y se puede pedir por separado. La duración y el precio se suman a los demás servicios seleccionados.
+En Inicio elegí **Reservar mi lavado**. Seleccioná el tipo de vehículo, el lavado y los extras que quieras, y luego la fecha y el horario. La app muestra el total en pesos argentinos y la duración estimada antes de confirmar. Atención inicial: lunes a sábado 09:30–16:30, un auto a la vez.
+Elegí un solo lavado base. El encerado cuesta $15.000 y se combina con exterior o completo. La limpieza de tapizados cuesta $20.000 y también se puede pedir por separado. Para moto solo se ofrece **Lavado** por $15.000, con una duración inicial de 35 minutos.
 
 La grilla propone inicios cada 5 minutos; no implica que cada lavado dure 5 minutos.
 
 ![Cotización y horarios](images/cliente-reserva.png)
 
-El turno queda **Confirmado** automáticamente y entra en la agenda compartida. Abrí el detalle para ver el empleado asignado y guardar una descripción del vehículo antes de que comience el trabajo. Si todavía no hay un empleado libre, el turno aparece **Por asignar**.
+El turno queda **Confirmado** automáticamente y ocupa el horario desde ese momento. En el detalle pulsá **Agregar vehículo al turno** y cargá los datos, o vinculá uno ya registrado del mismo tipo. La agenda muestra la reserva aunque falte vincular el vehículo. Abrí el detalle para ver el empleado asignado y guardar una descripción del vehículo antes de que comience el trabajo. Si todavía no hay un empleado libre, el turno aparece **Por asignar**.
 En **Mis turnos** consultá Próximos/Pasados y abrí una tarjeta para ver su detalle.
 La cancelación propia está disponible en Pendiente/Confirmado con más de 120 minutos
 de anticipación, salvo que el Administrador cambie esa política.
@@ -172,3 +170,7 @@ Tocá tu nombre/avatar arriba a la derecha o abajo a la izquierda en la barra la
 - En **Reclamos y devoluciones** ves el mensaje, el turno, el responsable y lo que hizo cuando corresponda. **Responder** envía la respuesta al cliente y cierra el caso.
 - En **Asistencia** pulsá **Fichar llegada** cuando veas llegar al empleado. Se guarda la primera hora del día y quién hizo el fichaje. Usá la fecha para consultar el historial.
 - El personal se registra desde el ingreso. En **Usuarios** buscá su cuenta y editá el rol a **Empleado**. El empleado vuelve a iniciar sesión para entrar a su agenda.
+
+### Tipos de vehículo y tarifas
+
+En **Vehículos**, Administración puede registrar un vehículo para un cliente y crear un tipo con sus tarifas por servicio desde **Agregar tipo y tarifas**. Las tarifas se aplican a los próximos turnos de ese tipo. En **Editar** se pueden ajustar los importes.

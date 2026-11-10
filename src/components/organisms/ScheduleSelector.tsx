@@ -9,7 +9,7 @@ import { QuotedTotal } from '../molecules/QuotedTotal';
  * @returns Vista de ScheduleSelector con el contrato de propiedades declarado.
  */
 export function ScheduleSelector({ booking: b }: { booking: ReturnType<typeof useBooking> }) {
-  if (!b.vehicleId || !b.serviceIds) return null;
+  if (!b.vehicleTypeId || !b.serviceIds) return null;
   return (
     <View style={{ gap: 16 }}>
       {b.availability.loading && !b.availability.data ? (

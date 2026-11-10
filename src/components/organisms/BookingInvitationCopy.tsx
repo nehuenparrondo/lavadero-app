@@ -17,7 +17,8 @@ export function BookingInvitationCopy() {
         Impecable por fuera.{'\n'}Simple para vos.
       </Text>
       <Text style={[s.heroDetail, { color: colors.navMuted }]}>
-        Elegí tu vehículo, el servicio y tu horario. El próximo lavado empieza con una reserva.
+        Elegí el tipo de vehículo, el servicio y tu horario. Cargá la patente después de
+        reservar.
       </Text>
     </>
   );

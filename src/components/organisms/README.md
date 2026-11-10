@@ -17,6 +17,7 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [AppointmentEmployeeFilter.tsx](AppointmentEmployeeFilter.tsx)         | Selector administrativo de empleado para restringir la consulta de turnos.                        |
 | [AppointmentFilters.tsx](AppointmentFilters.tsx)                       | Filtros por experiencia; cliente no puede seleccionar titulares ajenos.                           |
 | [AppointmentInformation.tsx](AppointmentInformation.tsx)               | Presenta el contrato del lavado sin modificar la reserva.                                         |
+| [AppointmentVehicleAttachment.tsx](AppointmentVehicleAttachment.tsx)   | Registra o vincula el vehículo después de confirmar el turno.                                     |
 | [AppointmentList.tsx](AppointmentList.tsx)                             | Compone la página actual y distingue carga, error y ausencia de turnos.                           |
 | [AppointmentNotes.tsx](AppointmentNotes.tsx)                           | Lista observaciones de trabajo y conecta la carga de una nueva nota.                              |
 | [AppointmentPagination.tsx](AppointmentPagination.tsx)                 | Adapta la paginación del recurso sin repetirla entre experiencias.                                |
@@ -31,8 +32,7 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [BookingInvitation.tsx](BookingInvitation.tsx)                         | Composición de la acción principal del cliente, sin información comercial fija.                   |
 | [BookingInvitationCopy.tsx](BookingInvitationCopy.tsx)                 | Contenido editorial de la portada de reserva, independiente de navegación e ilustración.          |
 | [BookingServicesField.tsx](BookingServicesField.tsx)                   | Ofrece servicios activos con tarifa para el vehículo elegido.                                     |
-| [BookingVehicleEmpty.tsx](BookingVehicleEmpty.tsx)                     | Próximo paso de una reserva sin vehículos registrados.                                            |
-| [BookingVehicleField.tsx](BookingVehicleField.tsx)                     | Orienta al titular sin vehículos y ofrece registrar uno antes de reservar.                        |
+| [BookingTypeField.tsx](BookingTypeField.tsx)                           | Selecciona la categoría antes de registrar el vehículo.                                           |
 | [ClientQuickActions.tsx](ClientQuickActions.tsx)                       | Tareas de preparación antes de reservar; no duplica consultas del catálogo.                       |
 | [ClientVisitList.tsx](ClientVisitList.tsx)                             | Visitas autorizadas, con carga/error separados del estado vacío.                                  |
 | [CollectionState.tsx](CollectionState.tsx)                             | Estados consistentes de lista: carga inicial, error recuperable y vacío.                          |

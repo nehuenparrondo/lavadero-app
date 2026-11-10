@@ -1894,54 +1894,6 @@ Uso:
 <BookingServicesField b={b} />
 ```
 
-### BookingVehicleEmpty
-
-Próximo paso de una reserva sin vehículos registrados.
-
-[Fuente](../src/components/organisms/BookingVehicleEmpty.tsx)
-
-Tipo del parámetro:
-
-```ts
-{
-  admin: boolean;
-}
-```
-
-| Prop  | Obligatoria | Tipo      |
-| ----- | ----------- | --------- |
-| admin | Sí          | `boolean` |
-
-Uso:
-
-```tsx
-<BookingVehicleEmpty admin={admin} />
-```
-
-### BookingVehicleField
-
-Orienta al titular sin vehículos y ofrece registrar uno antes de reservar.
-
-[Fuente](../src/components/organisms/BookingVehicleField.tsx)
-
-Tipo del parámetro:
-
-```ts
-{
-  b: ReturnType<typeof useBooking>;
-}
-```
-
-| Prop | Obligatoria | Tipo                            |
-| ---- | ----------- | ------------------------------- |
-| b    | Sí          | `ReturnType<typeof useBooking>` |
-
-Uso:
-
-```tsx
-<BookingVehicleField b={b} />
-```
-
 ### ClientQuickActions
 
 Tareas de preparación antes de reservar; no duplica consultas del catálogo.
@@ -3160,3 +3112,7 @@ Uso:
 ```tsx
 <WorkspaceSidebar />
 ```
+
+## Reserva por tipo y carga posterior
+
+El selector de categoría permite confirmar el horario antes de registrar un vehículo. El formulario del detalle completa la patente o permite vincular un vehículo existente. [Selector](../src/components/organisms/BookingTypeField.tsx) · [Vinculación](../src/components/organisms/AppointmentVehicleAttachment.tsx)

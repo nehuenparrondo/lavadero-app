@@ -1,5 +1,6 @@
 import type { useCatalog } from '../../hooks/useCatalog';
 import { priceFields } from '../../utils/catalogFields';
+import { supportsVehicleType } from '../../utils/vehicleTypePricing';
 import { Notice } from '../molecules/Notice';
 import { EntityForm } from './EntityForm';
 import { ModalPanel } from './ModalPanel';
@@ -17,7 +18,11 @@ export function ServicePriceDialog({ c }: { c: ReturnType<typeof useCatalog> }) 
       <Notice error={c.action.error} />
       <EntityForm
         key={c.pricing?.id ?? 'price'}
-        fields={priceFields(c.types.data ?? [])}
+        fields={priceFields(
+          (c.types.data ?? []).filter(
+            (t) => !c.pricing || supportsVehicleType(t.code, c.pricing),
+          ),
+        )}
         onSubmit={c.savePrice}
         busy={c.action.busy}
       />

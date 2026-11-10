@@ -139,24 +139,13 @@ test('calendario valida bisiestos, límites de mes y domingo sin cambiar por zon
   assert.equal(new Set(days.filter(Boolean)).size, 30);
 });
 
-test('una baja de vehículo/tarifa o cambio de titular invalida la selección de reserva', () => {
-  const selection = { clientId: '1', vehicleId: '1', serviceIds: '1', date: '2026-11-02' };
-  const vehicles = [
-    {
-      id: '1',
-      ownerId: '1',
-      vehicleTypeId: '1',
-      plate: 'QA123AA',
-      brand: 'QA',
-      model: 'Demo',
-      color: 'Azul',
-      typeName: 'Auto',
-    },
-  ];
+test('la reserva cotiza por tipo sin vehículo y rechaza más de un lavado base', () => {
+  const selection = { clientId: '1', vehicleTypeId: '1', serviceIds: '1', date: '2026-11-02' };
+  const types = [{ id: '1', code: 'car', name: 'Auto', isActive: true }];
   const services = [
     {
       id: '1',
-      code: 'QA',
+      code: 'exterior',
       name: 'Demo',
       description: '',
       durationMinutes: 35,
@@ -164,15 +153,26 @@ test('una baja de vehículo/tarifa o cambio de titular invalida la selección de
       prices: [{ vehicleTypeId: '1', priceCents: 100 }],
     },
   ];
-  assert.equal(bookingOptions(selection, vehicles, services).ready, true);
-  assert.equal(
-    bookingOptions({ ...selection, clientId: '2' }, vehicles, services).ready,
-    false,
-  );
+  const complete = { ...services[0]!, id: '2', code: 'complete' };
+  const wax = { ...services[0]!, id: '3', code: 'wax' };
+  assert.equal(bookingOptions(selection, types, services).ready, true);
+  assert.equal(bookingOptions({ ...selection, clientId: '' }, types, services).ready, false);
   assert.equal(bookingOptions(selection, [], services).ready, false);
   assert.equal(
-    bookingOptions(selection, vehicles, [{ ...services[0]!, prices: [] }]).ready,
+    bookingOptions(selection, types, [{ ...services[0]!, prices: [] }]).ready,
     false,
+  );
+  assert.equal(
+    bookingOptions({ ...selection, serviceIds: '1,2' }, types, [...services, complete]).ready,
+    false,
+  );
+  assert.equal(
+    bookingOptions({ ...selection, serviceIds: '1,3' }, types, [...services, wax]).ready,
+    true,
+  );
+  assert.equal(
+    bookingOptions({ ...selection, serviceIds: '3' }, types, [...services, wax]).needsWash,
+    true,
   );
 });
 

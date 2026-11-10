@@ -19,10 +19,12 @@ export function AppointmentCard({
   onPress: () => void;
 }) {
   const { colors } = useTheme();
+  const name = a.plate ?? a.vehicleType ?? 'vehículo pendiente';
+  const date = appointmentDate(a.startsAt);
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={'Ver turno de ' + a.plate + ', ' + appointmentDate(a.startsAt)}
+      accessibilityLabel={`Ver turno de ${name}, ${date}`}
       onPress={onPress}
       style={({ pressed }) => ({ opacity: pressed ? 0.75 : 1 })}
     >
@@ -36,9 +38,7 @@ export function AppointmentCard({
             alignItems: 'center',
           }}
         >
-          <Text style={{ fontSize: 12, color: colors.muted, fontWeight: '600' }}>
-            {appointmentDate(a.startsAt)}
-          </Text>
+          <Text style={{ fontSize: 12, color: colors.muted, fontWeight: '600' }}>{date}</Text>
           <StatusBadge status={a.status} />
         </View>
         <AppointmentVehicle appointment={a} />

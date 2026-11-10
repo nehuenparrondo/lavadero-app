@@ -1251,26 +1251,6 @@ Ofrece servicios activos con tarifa para el vehículo elegido.
 | -------------------- | ------------------------------------------------------------- |
 | BookingServicesField | Ofrece servicios activos con tarifa para el vehículo elegido. |
 
-## src/components/organisms/BookingVehicleEmpty.tsx
-
-Próximo paso de una reserva sin vehículos registrados.
-
-[Abrir fuente](../src/components/organisms/BookingVehicleEmpty.tsx)
-
-| Exportación         | Responsabilidad                                        |
-| ------------------- | ------------------------------------------------------ |
-| BookingVehicleEmpty | Próximo paso de una reserva sin vehículos registrados. |
-
-## src/components/organisms/BookingVehicleField.tsx
-
-Orienta al titular sin vehículos y ofrece registrar uno antes de reservar.
-
-[Abrir fuente](../src/components/organisms/BookingVehicleField.tsx)
-
-| Exportación         | Responsabilidad                                                            |
-| ------------------- | -------------------------------------------------------------------------- |
-| BookingVehicleField | Orienta al titular sin vehículos y ofrece registrar uno antes de reservar. |
-
 ## src/components/organisms/ClientQuickActions.tsx
 
 Tareas de preparación antes de reservar; no duplica consultas del catálogo.
@@ -3076,3 +3056,7 @@ Construye el formulario sin ofrecer selección de titulares a un cliente.
 | vehicleFields        | Construye el formulario sin ofrecer selección de titulares a un cliente.         |
 | vehicleInitialValues | Valores de edición del vehículo; el backend impide cambiar su titular histórico. |
 | vehiclePayload       | Serializa únicamente atributos permitidos de un vehículo.                        |
+
+## Reserva por tipo y carga posterior
+
+El selector de categoría permite confirmar el horario antes de registrar un vehículo. El formulario del detalle completa la patente o permite vincular un vehículo existente. [Selector](../src/components/organisms/BookingTypeField.tsx) · [Vinculación](../src/components/organisms/AppointmentVehicleAttachment.tsx)

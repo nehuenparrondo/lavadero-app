@@ -4,7 +4,7 @@ import { Notice } from '../../components/molecules/Notice';
 import { SectionHeader } from '../../components/molecules/SectionHeader';
 import { BookingClientField } from '../../components/organisms/BookingClientField';
 import { BookingServicesField } from '../../components/organisms/BookingServicesField';
-import { BookingVehicleField } from '../../components/organisms/BookingVehicleField';
+import { BookingTypeField } from '../../components/organisms/BookingTypeField';
 import { ScheduleSelector } from '../../components/organisms/ScheduleSelector';
 import { Screen } from '../../components/organisms/Screen';
 import { Text } from '../../components/atoms/Text';
@@ -24,11 +24,11 @@ export function BookingScreen() {
     >
       <SectionHeader
         title="Reservá tu lavado"
-        subtitle="Elegí los detalles. Nosotros nos ocupamos del resto."
+        subtitle="Elegí el tipo y el servicio. Cargá los datos del vehículo después de confirmar."
       />
       <Notice error={b.error || b.loadError} onRetry={b.refresh} />
       {b.admin && <BookingClientField b={b} />}
-      <BookingVehicleField b={b} />
+      <BookingTypeField b={b} />
       <BookingServicesField b={b} />
       <BookingDateField b={b} />
       <ScheduleSelector booking={b} />

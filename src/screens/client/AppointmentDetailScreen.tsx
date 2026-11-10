@@ -8,6 +8,7 @@ import { AppointmentInformation } from '../../components/organisms/AppointmentIn
 import { AppointmentNotes } from '../../components/organisms/AppointmentNotes';
 import { AppointmentPayments } from '../../components/organisms/AppointmentPayments';
 import { AppointmentVehicleDetail } from '../../components/organisms/AppointmentVehicleDetail';
+import { AppointmentVehicleAttachment } from '../../components/organisms/AppointmentVehicleAttachment';
 import { AppointmentWashReport } from '../../components/organisms/AppointmentWashReport';
 import { Screen } from '../../components/organisms/Screen';
 import { useAppointmentDetail } from '../../hooks/useAppointmentDetail';
@@ -43,12 +44,9 @@ function AppointmentContent({ m }: { m: ReturnType<typeof useAppointmentDetail> 
   if (!a) return null;
   return (
     <>
-      <SectionHeader
-        title={`${a.plate} · ${a.brand} ${a.model}`}
-        subtitle={appointmentDate(a.startsAt)}
-      />
+      <SectionHeader title={appointmentTitle(a)} subtitle={appointmentDate(a.startsAt)} />
       <AppointmentInformation m={m} />
-      <AppointmentVehicleDetail m={m} />
+      {a.vehiclePending ? <PendingVehicle m={m} /> : <AppointmentVehicleDetail m={m} />}
       <AppointmentWashReport m={m} />
       <AppointmentActions manager={m} />
       {m.user?.role !== 'employee' && Boolean(m.payments.data?.length) && (
@@ -57,5 +55,29 @@ function AppointmentContent({ m }: { m: ReturnType<typeof useAppointmentDetail> 
       <AppointmentNotes m={m} />
       <AppointmentDialogs manager={m} />
     </>
+  );
+}
+
+/** Los turnos sin patente usan su estado como encabezado. */
+function appointmentTitle(
+  a: NonNullable<ReturnType<typeof useAppointmentDetail>['detail']['data']>,
+) {
+  if (a.vehiclePending)
+    return a.status === 'confirmed' ? 'Turno confirmado' : 'Detalle del turno';
+  return `${a.plate} · ${a.brand} ${a.model}`;
+}
+
+/** La agenda muestra el turno aunque todavía no tenga patente. */
+function PendingVehicle({ m }: { m: ReturnType<typeof useAppointmentDetail> }) {
+  const a = m.detail.data;
+  if (a?.status !== 'confirmed') return null;
+  if (m.user?.role === 'employee')
+    return <Notice message="Falta cargar el vehículo para comenzar el lavado." />;
+  return (
+    <AppointmentVehicleAttachment
+      appointment={a}
+      admin={m.user?.role === 'admin'}
+      refresh={m.refresh}
+    />
   );
 }

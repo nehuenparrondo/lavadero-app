@@ -15,9 +15,11 @@ export function AppointmentVehicle({ appointment: a }: { appointment: Appointmen
         <AppIcon name="car" size={25} color={colors.primary} />
       </View>
       <View style={{ flex: 1, minWidth: 0, gap: 5 }}>
-        <Text style={{ fontSize: 20, fontWeight: '700', letterSpacing: 0.5 }}>{a.plate}</Text>
+        <Text style={{ fontSize: 20, fontWeight: '700', letterSpacing: 0.5 }}>
+          {a.plate ?? a.vehicleType}
+        </Text>
         <Text style={{ fontSize: 13, color: colors.muted }}>
-          {a.brand} {a.model} · {a.color}
+          {a.plate ? `${a.brand} ${a.model} · ${a.color}` : 'Vehículo pendiente de cargar'}
         </Text>
         {a.serviceSummary && (
           <Text style={{ fontSize: 13, color: colors.muted }}>{a.serviceSummary}</Text>

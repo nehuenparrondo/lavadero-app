@@ -28,7 +28,7 @@ export function useBookingSubmit(
     const result = await action.run(
       () =>
         writeResource<Appointment>('post', '/appointments', {
-          vehicleId: s.vehicleId,
+          vehicleTypeId: s.vehicleTypeId,
           serviceIds: s.serviceIds.split(','),
           startsAt: s.slot,
           ...(admin ? { clientId: s.clientId } : {}),

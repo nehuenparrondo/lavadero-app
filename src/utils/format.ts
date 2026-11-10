@@ -6,7 +6,8 @@ export function money(cents: number | undefined) {
   return new Intl.NumberFormat('es-AR', {
     style: 'currency',
     currency: 'ARS',
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
   }).format((cents ?? 0) / 100);
 }
 /** Fecha legible en la zona horaria operativa confirmada.

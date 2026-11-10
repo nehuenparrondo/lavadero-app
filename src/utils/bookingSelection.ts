@@ -1,33 +1,47 @@
-import type { Service, Vehicle } from '../types/entities';
+import type { Service, VehicleType } from '../types/entities';
 import { validDate } from './calendar';
-/** Deriva opciones y validez sin confiar en identificadores que ya no están disponibles.
- * @param selection Titular, vehículo, servicios y fecha elegidos.
- * @param vehicles Opciones autorizadas actuales del servidor.
+
+/** Separa los adicionales del único lavado base elegible.
+ * @param service Servicio del catálogo.
+ * @returns Si se puede combinar como extra.
+ */
+export function isWashExtra(service: Service) {
+  return service.code === 'wax' || service.code === 'upholstery';
+}
+
+/** Deriva opciones cotizables para la categoría, aunque el titular todavía no tenga vehículo.
+ * @param selection Titular, tipo, servicios y fecha elegidos.
+ * @param types Tipos autorizados.
  * @param services Catálogo actual con tarifas por categoría.
- * @returns Vehículos del titular, servicios compatibles y estado de cotización.
+ * @returns Lavados base, extras y estado de cotización.
  */
 export function bookingOptions(
-  selection: { clientId: string; vehicleId: string; serviceIds: string; date: string },
-  vehicles: Vehicle[],
+  selection: { clientId: string; vehicleTypeId: string; serviceIds: string; date: string },
+  types: VehicleType[],
   services: Service[],
 ) {
-  const ownVehicles = vehicles.filter((v) => v.ownerId === selection.clientId);
-  const vehicle = ownVehicles.find((v) => v.id === selection.vehicleId);
+  const type = types.find((v) => v.id === selection.vehicleTypeId && v.isActive);
   const offered = services.filter(
-    (item) =>
-      item.isActive && item.prices.some((p) => p.vehicleTypeId === vehicle?.vehicleTypeId),
+    (s) => s.isActive && s.prices.some((p) => p.vehicleTypeId === type?.id),
   );
-  const selectedIds = selection.serviceIds.split(',');
+  const selectedIds = selection.serviceIds.split(',').filter(Boolean);
   const selected = offered.filter((s) => selectedIds.includes(s.id));
   const needsWash =
     selected.some((s) => s.code === 'wax') &&
     !selected.some((s) => s.code === 'exterior' || s.code === 'complete');
   const ready = Boolean(
-    vehicle &&
-    selection.serviceIds &&
+    selection.clientId &&
+    type &&
+    selected.length &&
+    selected.length === selectedIds.length &&
+    selected.filter((s) => !isWashExtra(s)).length <= 1 &&
     !needsWash &&
-    validDate(selection.date) &&
-    selectedIds.every((id) => offered.some((item) => item.id === id)),
+    validDate(selection.date),
   );
-  return { vehicles: ownVehicles, offered, ready, needsWash };
+  return {
+    washes: offered.filter((s) => !isWashExtra(s)),
+    extras: offered.filter(isWashExtra),
+    ready,
+    needsWash,
+  };
 }

@@ -1,6 +1,7 @@
 import type { User, Vehicle, VehicleType } from '../types/entities';
 import type { FormFieldDefinition } from '../types/form';
-const identityFields: FormFieldDefinition[] = [
+/** Datos propios del vehículo, reutilizados al vincular un turno confirmado. */
+export const vehicleIdentityFields: FormFieldDefinition[] = [
   { name: 'plate', label: 'Patente', placeholder: 'AB123CD', maxLength: 16 },
   { name: 'brand', label: 'Marca', maxLength: 80 },
   { name: 'model', label: 'Modelo', maxLength: 80 },
@@ -29,7 +30,7 @@ export function vehicleFields(
     kind: 'choice',
     options: clients.map((c) => ({ value: c.id, label: `${c.firstName} ${c.lastName}` })),
   };
-  return [...identityFields, type, ...(admin ? [owner] : [])];
+  return [...vehicleIdentityFields, type, ...(admin ? [owner] : [])];
 }
 /** Valores de edición del vehículo; el backend impide cambiar su titular histórico.
  * @param current - Identidad o entidad actual usada para conservar sus invariantes.
