@@ -3,7 +3,7 @@ import { writeResource } from '../api/services/resourceService';
 import { serviceFields } from '../constants/serviceFields';
 import type { Service, VehicleType } from '../types/entities';
 import { serviceInitialValues, servicePayload } from '../utils/serviceForm';
-import { refreshResources } from '../utils/refreshResources';
+import { refreshResources, revalidateResources } from '../utils/refreshResources';
 import { useRemoteData } from './useRemoteData';
 import { useResourceEditor } from './useResourceEditor';
 import { useServicePrice } from './useServicePrice';
@@ -26,17 +26,17 @@ export function useCatalog() {
       ),
   );
   const prices = useServicePrice(list.refresh);
-  const priceActive = Boolean(prices.pricing);
   return {
     ...editor,
     ...prices,
     refresh: () => refreshResources(list, types),
+    revalidate: () => revalidateResources(list, types),
     list,
     types,
     typeId,
     setTypeId,
     fields: serviceFields,
-    action: priceActive ? prices.priceAction : editor.action,
+    action: prices.pricing ? prices.priceAction : editor.action,
     initialValues: serviceInitialValues(editor.editing),
   };
 }

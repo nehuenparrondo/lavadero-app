@@ -13,7 +13,7 @@ export function Screen({
   children,
   refreshing = false,
   onRefresh,
-  refreshInterval = 0,
+  refreshInterval = 15_000,
   onRevalidate,
 }: {
   children: PropsWithChildren['children'];

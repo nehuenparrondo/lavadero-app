@@ -27,8 +27,8 @@ export function useBooking() {
     canSubmit: ready && !resources.optionsLoading && !resources.loadError,
     revalidateAvailability: (trigger: RefreshTrigger) => {
       if (submission.busy) return;
-      if (trigger === 'resume') return resources.refresh();
-      if (!resources.availability.loading) return resources.availability.revalidate();
+      if (trigger === 'resume') return resources.revalidate();
+      if (!resources.availability.loading) return resources.revalidate();
     },
   };
 }

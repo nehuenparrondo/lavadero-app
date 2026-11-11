@@ -2,6 +2,7 @@
 export interface Choice {
   value: string;
   label: string;
+  description?: string;
 }
 /** Descripción de un campo de formulario; validación adicional en backend. */
 export interface FormFieldDefinition {

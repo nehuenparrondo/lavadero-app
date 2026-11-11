@@ -26,9 +26,11 @@ export function PendingAppointments({
       ))}
       {!loading && !items.length && <Text>No hay turnos por atender.</Text>}
       <Button
-        label="Ver todos los turnos"
+        label="Ver solicitudes pendientes"
         variant="secondary"
-        onPress={() => router.push('/(admin)/appointments')}
+        onPress={() =>
+          router.push({ pathname: '/(admin)/appointments', params: { view: 'new' } })
+        }
       />
     </>
   );

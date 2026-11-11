@@ -11,7 +11,7 @@ export function useAgendaList(
   mode: 'client' | 'employee' | 'admin',
   filters: ReturnType<typeof useAppointmentFiltersState>,
 ) {
-  const { history, date, status, clientId, employeeId } = filters;
+  const { history, date, status, clientId, employeeId, queue } = filters;
   const plate = useDebouncedValue(filters.plate.replace(/[^a-z0-9]/giu, '').slice(0, 16));
   return usePagedList<Appointment>('/appointments', {
     history: mode === 'admin' || plate ? undefined : String(history),
@@ -20,5 +20,6 @@ export function useAgendaList(
     status: status || undefined,
     clientId: clientId || undefined,
     employeeId: employeeId || undefined,
+    queue: mode === 'admin' && queue ? queue : undefined,
   });
 }

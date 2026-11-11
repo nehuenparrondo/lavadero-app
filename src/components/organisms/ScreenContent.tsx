@@ -1,6 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import { RefreshControl, StyleSheet } from 'react-native';
-import { useTheme } from '../../hooks/useTheme';
+import { StyleSheet } from 'react-native';
 import { useWorkspaceLayout } from '../../hooks/useWorkspaceLayout';
 import { tokens } from '../../theme/tokens';
 import { ScrollSurface } from './ScrollSurface';
@@ -10,22 +9,15 @@ import { ScrollSurface } from './ScrollSurface';
  */
 export function ScreenContent({
   children,
-  refreshing,
-  onRefresh,
 }: PropsWithChildren<{
   refreshing: boolean;
   onRefresh?: (() => void | Promise<void>) | undefined;
 }>) {
-  const { colors } = useTheme();
   const { wide } = useWorkspaceLayout();
-  const refreshControl = onRefresh ? (
-    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={colors.primary} />
-  ) : undefined;
   return (
     <ScrollSurface
       keyboardShouldPersistTaps="handled"
       contentContainerStyle={[styles.content, wide && styles.wide]}
-      refreshControl={refreshControl}
     >
       {children}
     </ScrollSurface>

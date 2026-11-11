@@ -20,11 +20,11 @@ Tipo del parámetro:
 }
 ```
 
-| Prop  | Obligatoria | Tipo       |
-| ----- | ----------- | ---------- |
-| name  | Sí          | `IconName` |
-| size  | No          | `number`   |
-| color | No          | `string`   |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| name | Sí | `IconName` |
+| size | No | `number` |
+| color | No | `string` |
 
 Uso:
 
@@ -44,10 +44,10 @@ Tipo del parámetro:
 { name: string; url?: string | null }
 ```
 
-| Prop | Obligatoria | Tipo             |
-| ---- | ----------- | ---------------- |
-| name | Sí          | `string`         |
-| url  | No          | `string \| null` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| name | Sí | `string` |
+| url | No | `string \| null` |
 
 Uso:
 
@@ -70,10 +70,10 @@ Tipo del parámetro:
 }
 ```
 
-| Prop  | Obligatoria | Tipo                                              |
-| ----- | ----------- | ------------------------------------------------- |
-| label | Sí          | `string`                                          |
-| tone  | No          | `'primary' \| 'success' \| 'danger' \| 'warning'` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| label | Sí | `string` |
+| tone | No | `'primary' \| 'success' \| 'danger' \| 'warning'` |
 
 Uso:
 
@@ -90,17 +90,17 @@ Acción de 48 puntos con texto, ícono opcional y estado ocupado accesible.
 Tipo del parámetro:
 
 ```ts
-ButtonProps;
+ButtonProps
 ```
 
-| Prop     | Obligatoria | Tipo                                              |
-| -------- | ----------- | ------------------------------------------------- |
-| label    | Sí          | `string`                                          |
-| onPress  | Sí          | `() => void`                                      |
-| disabled | No          | `boolean`                                         |
-| loading  | No          | `boolean`                                         |
-| variant  | No          | `'primary' \| 'secondary' \| 'danger' \| 'quiet'` |
-| icon     | No          | `IconName`                                        |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| label | Sí | `string` |
+| onPress | Sí | `() => void` |
+| disabled | No | `boolean` |
+| loading | No | `boolean` |
+| variant | No | `'primary' \| 'secondary' \| 'danger' \| 'quiet'` |
+| icon | No | `IconName` |
 
 Uso:
 
@@ -125,12 +125,12 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo                    |
-| ------- | ----------- | ----------------------- |
-| label   | Sí          | `string`                |
-| color   | Sí          | `string`                |
-| icon    | No          | `IconName \| undefined` |
-| loading | Sí          | `boolean`               |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| label | Sí | `string` |
+| color | Sí | `string` |
+| icon | No | `IconName \| undefined` |
+| loading | Sí | `boolean` |
 
 Uso:
 
@@ -154,11 +154,11 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo         |
-| ------- | ----------- | ------------ |
-| icon    | Sí          | `IconName`   |
-| label   | Sí          | `string`     |
-| onPress | Sí          | `() => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| icon | Sí | `IconName` |
+| label | Sí | `string` |
+| onPress | Sí | `() => void` |
 
 Uso:
 
@@ -182,11 +182,11 @@ Tipo del parámetro:
 }
 ```
 
-| Prop   | Obligatoria | Tipo                 |
-| ------ | ----------- | -------------------- |
-| symbol | Sí          | `string`             |
-| color  | No          | `TextStyle['color']` |
-| size   | No          | `number`             |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| symbol | Sí | `string` |
+| color | No | `TextStyle['color']` |
+| size | No | `number` |
 
 Uso:
 
@@ -203,7 +203,7 @@ Entrada controlada accesible, con tema y altura táctil suficiente.
 Tipo del parámetro:
 
 ```ts
-TextInputProps;
+TextInputProps
 ```
 
 Uso:
@@ -224,10 +224,10 @@ Tipo del parámetro:
 { color?: string; label?: string }
 ```
 
-| Prop  | Obligatoria | Tipo     |
-| ----- | ----------- | -------- |
-| color | No          | `string` |
-| label | No          | `string` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| color | No | `string` |
+| label | No | `string` |
 
 Uso:
 
@@ -244,7 +244,7 @@ Texto con color semántico y tamaño consistente.
 Tipo del parámetro:
 
 ```ts
-TextProps;
+TextProps
 ```
 
 Uso:
@@ -264,14 +264,12 @@ La ausencia de importe significa falta de permiso, nunca un total cero.
 Tipo del parámetro:
 
 ```ts
-{
-  appointment: Appointment;
-}
+{ appointment: Appointment }
 ```
 
-| Prop        | Obligatoria | Tipo          |
-| ----------- | ----------- | ------------- |
-| appointment | Sí          | `Appointment` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| appointment | Sí | `Appointment` |
 
 Uso:
 
@@ -288,14 +286,12 @@ Datos operativos presentes en la proyección de todos los roles.
 Tipo del parámetro:
 
 ```ts
-{
-  appointment: Appointment;
-}
+{ appointment: Appointment }
 ```
 
-| Prop        | Obligatoria | Tipo          |
-| ----------- | ----------- | ------------- |
-| appointment | Sí          | `Appointment` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| appointment | Sí | `Appointment` |
 
 Uso:
 
@@ -319,16 +315,39 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo                      |
-| -------- | ----------- | ------------------------- |
-| quote    | Sí          | `Availability`            |
-| value    | Sí          | `string`                  |
-| onChange | Sí          | `(value: string) => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| quote | Sí | `Availability` |
+| value | Sí | `string` |
+| onChange | Sí | `(value: string) => void` |
 
 Uso:
 
 ```tsx
 <AvailableSlots quote={quote} value={value} onChange={handleAction} />
+```
+
+### BookingSection
+
+Agrupa un paso de la reserva con una jerarquía visual consistente.
+
+[Fuente](../src/components/molecules/BookingSection.tsx)
+
+Tipo del parámetro:
+
+```ts
+PropsWithChildren<{ number: string; title: string }>
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| number | Sí | `string` |
+| title | Sí | `string` |
+
+Uso:
+
+```tsx
+<BookingSection number={number} title="Guardar" />
 ```
 
 ### BrandLockup
@@ -343,9 +362,9 @@ Tipo del parámetro:
 { inverse?: boolean }
 ```
 
-| Prop    | Obligatoria | Tipo      |
-| ------- | ----------- | --------- |
-| inverse | No          | `boolean` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| inverse | No | `boolean` |
 
 Uso:
 
@@ -369,11 +388,11 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo                    |
-| -------- | ----------- | ----------------------- |
-| day      | Sí          | `string`                |
-| selected | Sí          | `boolean`               |
-| onChange | Sí          | `(day: string) => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| day | Sí | `string` |
+| selected | Sí | `boolean` |
+| onChange | Sí | `(day: string) => void` |
 
 Uso:
 
@@ -397,11 +416,11 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo                      |
-| -------- | ----------- | ------------------------- |
-| month    | Sí          | `string`                  |
-| value    | Sí          | `string`                  |
-| onChange | Sí          | `(value: string) => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| month | Sí | `string` |
+| value | Sí | `string` |
+| onChange | Sí | `(value: string) => void` |
 
 Uso:
 
@@ -424,10 +443,10 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo                      |
-| -------- | ----------- | ------------------------- |
-| month    | Sí          | `string`                  |
-| onChange | Sí          | `(month: string) => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| month | Sí | `string` |
+| onChange | Sí | `(month: string) => void` |
 
 Uso:
 
@@ -444,12 +463,12 @@ Superficie neutra para agrupar información; el estilo permite componer grids si
 Tipo del parámetro:
 
 ```ts
-PropsWithChildren<{ style?: StyleProp<ViewStyle> }>;
+PropsWithChildren<{ style?: StyleProp<ViewStyle> }>
 ```
 
-| Prop  | Obligatoria | Tipo                   |
-| ----- | ----------- | ---------------------- |
-| style | No          | `StyleProp<ViewStyle>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| style | No | `StyleProp<ViewStyle>` |
 
 Uso:
 
@@ -487,11 +506,11 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo         |
-| -------- | ----------- | ------------ |
-| option   | Sí          | `Choice`     |
-| selected | Sí          | `boolean`    |
-| onPress  | Sí          | `() => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| option | Sí | `Choice` |
+| selected | Sí | `boolean` |
+| onPress | Sí | `() => void` |
 
 Uso:
 
@@ -516,12 +535,12 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo                      |
-| -------- | ----------- | ------------------------- |
-| options  | Sí          | `Choice[]`                |
-| value    | Sí          | `string`                  |
-| onChange | Sí          | `(value: string) => void` |
-| multiple | No          | `boolean`                 |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| options | Sí | `Choice[]` |
+| value | Sí | `string` |
+| onChange | Sí | `(value: string) => void` |
+| multiple | No | `boolean` |
 
 Uso:
 
@@ -558,10 +577,10 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo          |
-| ------- | ----------- | ------------- |
-| state   | Sí          | `HealthState` |
-| onRetry | Sí          | `() => void`  |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| state | Sí | `HealthState` |
+| onRetry | Sí | `() => void` |
 
 Uso:
 
@@ -584,10 +603,10 @@ Tipo del parámetro:
 }
 ```
 
-| Prop         | Obligatoria | Tipo                                   |
-| ------------ | ----------- | -------------------------------------- |
-| items        | Sí          | `NonNullable<Appointment['services']>` |
-| showDuration | No          | `boolean`                              |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| items | Sí | `NonNullable<Appointment['services']>` |
+| showDuration | No | `boolean` |
 
 Uso:
 
@@ -610,10 +629,10 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo                              |
-| ------- | ----------- | --------------------------------- |
-| field   | Sí          | `FormFieldDefinition`             |
-| control | Sí          | `Control<Record<string, string>>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| field | Sí | `FormFieldDefinition` |
+| control | Sí | `Control<Record<string, string>>` |
 
 Uso:
 
@@ -635,9 +654,9 @@ ComponentProps<typeof ScrollView> & {
 }
 ```
 
-| Prop     | Obligatoria | Tipo                                   |
-| -------- | ----------- | -------------------------------------- |
-| controls | Sí          | `ReturnType<typeof useScrollControls>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| controls | Sí | `ReturnType<typeof useScrollControls>` |
 
 Uso:
 
@@ -662,12 +681,12 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo                        |
-| -------- | ----------- | --------------------------- |
-| label    | Sí          | `string`                    |
-| value    | Sí          | `string`                    |
-| onChange | Sí          | `(value: string) => void`   |
-| onBlur   | No          | `(() => void) \| undefined` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| label | Sí | `string` |
+| value | Sí | `string` |
+| onChange | Sí | `(value: string) => void` |
+| onBlur | No | `(() => void) \| undefined` |
 
 Uso:
 
@@ -687,10 +706,10 @@ Tipo del parámetro:
 { title: string; detail?: string }
 ```
 
-| Prop   | Obligatoria | Tipo     |
-| ------ | ----------- | -------- |
-| title  | Sí          | `string` |
-| detail | No          | `string` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| title | Sí | `string` |
+| detail | No | `string` |
 
 Uso:
 
@@ -715,12 +734,12 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo                        |
-| -------- | ----------- | --------------------------- |
-| field    | Sí          | `FormFieldDefinition`       |
-| value    | Sí          | `string`                    |
-| onChange | Sí          | `(value: string) => void`   |
-| onBlur   | No          | `(() => void) \| undefined` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| field | Sí | `FormFieldDefinition` |
+| value | Sí | `string` |
+| onChange | Sí | `(value: string) => void` |
+| onBlur | No | `(() => void) \| undefined` |
 
 Uso:
 
@@ -744,11 +763,11 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo         |
-| ------- | ----------- | ------------ |
-| showTop | Sí          | `boolean`    |
-| toTop   | Sí          | `() => void` |
-| bottom  | No          | `number`     |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| showTop | Sí | `boolean` |
+| toTop | Sí | `() => void` |
+| bottom | No | `number` |
 
 Uso:
 
@@ -774,13 +793,13 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo                      |
-| -------- | ----------- | ------------------------- |
-| field    | Sí          | `FormFieldDefinition`     |
-| value    | Sí          | `string`                  |
-| onChange | Sí          | `(value: string) => void` |
-| onBlur   | No          | `() => void`              |
-| error    | No          | `string \| undefined`     |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| field | Sí | `FormFieldDefinition` |
+| value | Sí | `string` |
+| onChange | Sí | `(value: string) => void` |
+| onBlur | No | `() => void` |
+| error | No | `string \| undefined` |
 
 Uso:
 
@@ -800,9 +819,9 @@ Tipo del parámetro:
 { label?: string }
 ```
 
-| Prop  | Obligatoria | Tipo     |
-| ----- | ----------- | -------- |
-| label | No          | `string` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| label | No | `string` |
 
 Uso:
 
@@ -827,12 +846,12 @@ Tipo del parámetro:
 }
 ```
 
-| Prop   | Obligatoria | Tipo       |
-| ------ | ----------- | ---------- |
-| label  | Sí          | `string`   |
-| value  | Sí          | `string`   |
-| detail | Sí          | `string`   |
-| icon   | Sí          | `IconName` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| label | Sí | `string` |
+| value | Sí | `string` |
+| detail | Sí | `string` |
+| icon | Sí | `IconName` |
 
 Uso:
 
@@ -856,11 +875,11 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo                  |
-| ------- | ----------- | --------------------- |
-| error   | No          | `string \| undefined` |
-| message | No          | `string \| undefined` |
-| onRetry | No          | `() => void`          |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| error | No | `string \| undefined` |
+| message | No | `string \| undefined` |
+| onRetry | No | `() => void` |
 
 Uso:
 
@@ -883,10 +902,10 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo          |
-| ------- | ----------- | ------------- |
-| state   | Sí          | `HealthState` |
-| onRetry | Sí          | `() => void`  |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| state | Sí | `HealthState` |
+| onRetry | Sí | `() => void` |
 
 Uso:
 
@@ -909,10 +928,10 @@ Tipo del parámetro:
 }
 ```
 
-| Prop      | Obligatoria | Tipo        |
-| --------- | ----------- | ----------- |
-| primary   | Sí          | `ReactNode` |
-| secondary | Sí          | `ReactNode` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| primary | Sí | `ReactNode` |
+| secondary | Sí | `ReactNode` |
 
 Uso:
 
@@ -937,12 +956,12 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo        |
-| ------- | ----------- | ----------- |
-| eyebrow | Sí          | `string`    |
-| title   | Sí          | `string`    |
-| detail  | Sí          | `string`    |
-| action  | No          | `ReactNode` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| eyebrow | Sí | `string` |
+| title | Sí | `string` |
+| detail | Sí | `string` |
+| action | No | `ReactNode` |
 
 Uso:
 
@@ -967,12 +986,12 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo                     |
-| -------- | ----------- | ------------------------ |
-| page     | Sí          | `number`                 |
-| total    | Sí          | `number`                 |
-| limit    | Sí          | `number`                 |
-| onChange | Sí          | `(page: number) => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| page | Sí | `number` |
+| total | Sí | `number` |
+| limit | Sí | `number` |
+| onChange | Sí | `(page: number) => void` |
 
 Uso:
 
@@ -997,12 +1016,12 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo         |
-| ------- | ----------- | ------------ |
-| title   | Sí          | `string`     |
-| detail  | Sí          | `string`     |
-| icon    | Sí          | `IconName`   |
-| onPress | Sí          | `() => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| title | Sí | `string` |
+| detail | Sí | `string` |
+| icon | Sí | `IconName` |
+| onPress | Sí | `() => void` |
 
 Uso:
 
@@ -1019,14 +1038,12 @@ Total y duración estimados exactamente como los devuelve la cotización del ser
 Tipo del parámetro:
 
 ```ts
-{
-  quote: Availability;
-}
+{ quote: Availability }
 ```
 
-| Prop  | Obligatoria | Tipo           |
-| ----- | ----------- | -------------- |
-| quote | Sí          | `Availability` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| quote | Sí | `Availability` |
 
 Uso:
 
@@ -1043,7 +1060,7 @@ Cuadrícula de dos columnas que conserva las claves y el orden de los elementos.
 Tipo del parámetro:
 
 ```ts
-PropsWithChildren;
+PropsWithChildren
 ```
 
 Uso:
@@ -1068,11 +1085,11 @@ Tipo del parámetro:
 }
 ```
 
-| Prop  | Obligatoria | Tipo     |
-| ----- | ----------- | -------- |
-| date  | Sí          | `string` |
-| cents | Sí          | `number` |
-| max   | Sí          | `number` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| date | Sí | `string` |
+| cents | Sí | `number` |
+| max | Sí | `number` |
 
 Uso:
 
@@ -1096,16 +1113,76 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo                      |
-| -------- | ----------- | ------------------------- |
-| label    | Sí          | `string`                  |
-| value    | Sí          | `string`                  |
-| onChange | Sí          | `(value: string) => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| label | Sí | `string` |
+| value | Sí | `string` |
+| onChange | Sí | `(value: string) => void` |
 
 Uso:
 
 ```tsx
 <SearchBar label="Guardar" value={value} onChange={handleAction} />
+```
+
+### SearchSelect
+
+Selecciona una opción en un diálogo buscable sin ocupar toda la agenda.
+
+[Fuente](../src/components/molecules/SearchSelect.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  label: string;
+  options: Choice[];
+  value: string;
+  onChange: (value: string) => void;
+}
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| label | Sí | `string` |
+| options | Sí | `Choice[]` |
+| value | Sí | `string` |
+| onChange | Sí | `(value: string) => void` |
+
+Uso:
+
+```tsx
+<SearchSelect label="Guardar" options={options} value={value} onChange={handleAction} />
+```
+
+### SearchSelectResults
+
+Busca en todas las opciones, limitando las filas dibujadas para mantener fluidez.
+
+[Fuente](../src/components/molecules/SearchSelectResults.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  options: Choice[];
+  search: string;
+  value: string;
+  onChange: (value: string) => void;
+}
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| options | Sí | `Choice[]` |
+| search | Sí | `string` |
+| value | Sí | `string` |
+| onChange | Sí | `(value: string) => void` |
+
+Uso:
+
+```tsx
+<SearchSelectResults options={options} search={search} value={value} onChange={handleAction} />
 ```
 
 ### SectionHeader
@@ -1120,10 +1197,10 @@ Tipo del parámetro:
 { title: string; subtitle?: string }
 ```
 
-| Prop     | Obligatoria | Tipo     |
-| -------- | ----------- | -------- |
-| title    | Sí          | `string` |
-| subtitle | No          | `string` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| title | Sí | `string` |
+| subtitle | No | `string` |
 
 Uso:
 
@@ -1149,13 +1226,13 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo         |
-| -------- | ----------- | ------------ |
-| service  | Sí          | `Service`    |
-| typeId   | Sí          | `string`     |
-| onEdit   | No          | `() => void` |
-| onPrice  | No          | `() => void` |
-| onDelete | No          | `() => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| service | Sí | `Service` |
+| typeId | Sí | `string` |
+| onEdit | No | `() => void` |
+| onPrice | No | `() => void` |
+| onDelete | No | `() => void` |
 
 Uso:
 
@@ -1172,16 +1249,13 @@ Destino lateral con selección persistente y respuesta de hover/teclado del Pres
 Tipo del parámetro:
 
 ```ts
-{
-  item: NavigationItem;
-  active: boolean;
-}
+{ item: NavigationItem; active: boolean }
 ```
 
-| Prop   | Obligatoria | Tipo             |
-| ------ | ----------- | ---------------- |
-| item   | Sí          | `NavigationItem` |
-| active | Sí          | `boolean`        |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| item | Sí | `NavigationItem` |
+| active | Sí | `boolean` |
 
 Uso:
 
@@ -1198,19 +1272,67 @@ Estado de turno con color y texto, sin depender solamente del color.
 Tipo del parámetro:
 
 ```ts
-{
-  status: AppointmentStatus;
-}
+{ status: AppointmentStatus }
 ```
 
-| Prop   | Obligatoria | Tipo                |
-| ------ | ----------- | ------------------- |
-| status | Sí          | `AppointmentStatus` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| status | Sí | `AppointmentStatus` |
 
 Uso:
 
 ```tsx
 <StatusBadge status={status} />
+```
+
+### TimeWheel
+
+Rueda de cinco filas con una hora central, operable por tacto, mouse y teclado.
+
+[Fuente](../src/components/molecules/TimeWheel.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  slots: string[];
+  value: string;
+  onChange: (value: string) => void;
+}
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| slots | Sí | `string[]` |
+| value | Sí | `string` |
+| onChange | Sí | `(value: string) => void` |
+
+Uso:
+
+```tsx
+<TimeWheel slots={slots} value={value} onChange={handleAction} />
+```
+
+### TimeWheelActions
+
+Alternativa al gesto para lectores de pantalla y navegación con teclado.
+
+[Fuente](../src/components/molecules/TimeWheelActions.tsx)
+
+Tipo del parámetro:
+
+```ts
+{ w: ReturnType<typeof useTimeWheel> }
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| w | Sí | `ReturnType<typeof useTimeWheel>` |
+
+Uso:
+
+```tsx
+<TimeWheelActions w={w} />
 ```
 
 ### VehicleTypeItem
@@ -1229,11 +1351,11 @@ Tipo del parámetro:
 }
 ```
 
-| Prop         | Obligatoria | Tipo          |
-| ------------ | ----------- | ------------- |
-| type         | Sí          | `VehicleType` |
-| onEdit       | Sí          | `() => void`  |
-| onDeactivate | Sí          | `() => void`  |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| type | Sí | `VehicleType` |
+| onEdit | Sí | `() => void` |
+| onDeactivate | Sí | `() => void` |
 
 Uso:
 
@@ -1253,6 +1375,36 @@ Uso:
 
 ```tsx
 <WashIllustration />
+```
+
+### WheelRow
+
+Una fila mantiene el tamaño táctil aunque la letra periférica se atenúe.
+
+[Fuente](../src/components/molecules/WheelRow.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  value: string;
+  selected: boolean;
+  distance: number;
+  onPress: () => void;
+}
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| value | Sí | `string` |
+| selected | Sí | `boolean` |
+| distance | Sí | `number` |
+| onPress | Sí | `() => void` |
+
+Uso:
+
+```tsx
+<WheelRow value={value} selected={selected} distance={distance} onPress={handleAction} />
 ```
 
 ### WorkdayGuide
@@ -1278,16 +1430,13 @@ Nombre y rol de la sesión propia sobre fondos claros u oscuros.
 Tipo del parámetro:
 
 ```ts
-{
-  user: User;
-  inverse: boolean;
-}
+{ user: User; inverse: boolean }
 ```
 
-| Prop    | Obligatoria | Tipo      |
-| ------- | ----------- | --------- |
-| user    | Sí          | `User`    |
-| inverse | Sí          | `boolean` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| user | Sí | `User` |
+| inverse | Sí | `boolean` |
 
 Uso:
 
@@ -1310,10 +1459,10 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo      |
-| ------- | ----------- | --------- |
-| inverse | No          | `boolean` |
-| compact | No          | `boolean` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| inverse | No | `boolean` |
+| compact | No | `boolean` |
 
 Uso:
 
@@ -1335,15 +1484,37 @@ Tipo del parámetro:
 { open: boolean; onClose: () => void }
 ```
 
-| Prop    | Obligatoria | Tipo         |
-| ------- | ----------- | ------------ |
-| open    | Sí          | `boolean`    |
-| onClose | Sí          | `() => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| open | Sí | `boolean` |
+| onClose | Sí | `() => void` |
 
 Uso:
 
 ```tsx
 <AdminMenu open={open} onClose={handleAction} />
+```
+
+### AdminQueueLinks
+
+Lleva directamente a las dos bandejas que requieren atención administrativa.
+
+[Fuente](../src/components/organisms/AdminQueueLinks.tsx)
+
+Tipo del parámetro:
+
+```ts
+{ pending: number | undefined }
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| pending | Sí | `number \| undefined` |
+
+Uso:
+
+```tsx
+<AdminQueueLinks pending={pending} />
 ```
 
 ### AdminQuickActions
@@ -1374,14 +1545,58 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo                                      |
-| ------- | ----------- | ----------------------------------------- |
-| manager | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| manager | Sí | `ReturnType<typeof useAppointmentDetail>` |
 
 Uso:
 
 ```tsx
 <AppointmentActions manager={manager} />
+```
+
+### AppointmentAdvancedFilters
+
+Mantiene los filtros de administración disponibles sin ocultar los resultados.
+
+[Fuente](../src/components/organisms/AppointmentAdvancedFilters.tsx)
+
+Tipo del parámetro:
+
+```ts
+{ m: ReturnType<typeof useAppointments> }
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointments>` |
+
+Uso:
+
+```tsx
+<AppointmentAdvancedFilters m={manager} />
+```
+
+### AppointmentAgendaPresets
+
+Accesos de una pulsación que aplican un conjunto coherente de filtros.
+
+[Fuente](../src/components/organisms/AppointmentAgendaPresets.tsx)
+
+Tipo del parámetro:
+
+```ts
+{ m: ReturnType<typeof useAppointments> }
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointments>` |
+
+Uso:
+
+```tsx
+<AppointmentAgendaPresets m={manager} />
 ```
 
 ### AppointmentAssignment
@@ -1393,14 +1608,12 @@ Asigna un empleado activo sin mezclar esa acción con confirmar el turno.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useAppointmentDetail>;
-}
+{ m: ReturnType<typeof useAppointmentDetail> }
 ```
 
-| Prop | Obligatoria | Tipo                                      |
-| ---- | ----------- | ----------------------------------------- |
-| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
 
 Uso:
 
@@ -1422,9 +1635,9 @@ Tipo del parámetro:
 }
 ```
 
-| Prop | Obligatoria | Tipo                                      |
-| ---- | ----------- | ----------------------------------------- |
-| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
 
 Uso:
 
@@ -1447,10 +1660,10 @@ Tipo del parámetro:
 }
 ```
 
-| Prop        | Obligatoria | Tipo          |
-| ----------- | ----------- | ------------- |
-| appointment | Sí          | `Appointment` |
-| onPress     | Sí          | `() => void`  |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| appointment | Sí | `Appointment` |
+| onPress | Sí | `() => void` |
 
 Uso:
 
@@ -1467,14 +1680,12 @@ Selector administrativo de titular; no se ofrece a otros roles.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useAppointments>;
-}
+{ m: ReturnType<typeof useAppointments> }
 ```
 
-| Prop | Obligatoria | Tipo                                 |
-| ---- | ----------- | ------------------------------------ |
-| m    | Sí          | `ReturnType<typeof useAppointments>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointments>` |
 
 Uso:
 
@@ -1496,9 +1707,9 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo                                      |
-| ------- | ----------- | ----------------------------------------- |
-| manager | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| manager | Sí | `ReturnType<typeof useAppointmentDetail>` |
 
 Uso:
 
@@ -1515,14 +1726,12 @@ Selector administrativo de empleado para restringir la consulta de turnos.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useAppointments>;
-}
+{ m: ReturnType<typeof useAppointments> }
 ```
 
-| Prop | Obligatoria | Tipo                                 |
-| ---- | ----------- | ------------------------------------ |
-| m    | Sí          | `ReturnType<typeof useAppointments>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointments>` |
 
 Uso:
 
@@ -1544,9 +1753,9 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo                                 |
-| ------- | ----------- | ------------------------------------ |
-| manager | Sí          | `ReturnType<typeof useAppointments>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| manager | Sí | `ReturnType<typeof useAppointments>` |
 
 Uso:
 
@@ -1563,14 +1772,12 @@ Presenta el contrato del lavado sin modificar la reserva.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useAppointmentDetail>;
-}
+{ m: ReturnType<typeof useAppointmentDetail> }
 ```
 
-| Prop | Obligatoria | Tipo                                      |
-| ---- | ----------- | ----------------------------------------- |
-| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
 
 Uso:
 
@@ -1587,14 +1794,12 @@ Compone la página actual y distingue carga, error y ausencia de turnos.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useAppointments>;
-}
+{ m: ReturnType<typeof useAppointments> }
 ```
 
-| Prop | Obligatoria | Tipo                                 |
-| ---- | ----------- | ------------------------------------ |
-| m    | Sí          | `ReturnType<typeof useAppointments>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointments>` |
 
 Uso:
 
@@ -1611,14 +1816,12 @@ Lista observaciones de trabajo y conecta la carga de una nueva nota.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useAppointmentDetail>;
-}
+{ m: ReturnType<typeof useAppointmentDetail> }
 ```
 
-| Prop | Obligatoria | Tipo                                      |
-| ---- | ----------- | ----------------------------------------- |
-| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
 
 Uso:
 
@@ -1640,9 +1843,9 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo                                 |
-| ------- | ----------- | ------------------------------------ |
-| manager | Sí          | `ReturnType<typeof useAppointments>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| manager | Sí | `ReturnType<typeof useAppointments>` |
 
 Uso:
 
@@ -1664,9 +1867,9 @@ Tipo del parámetro:
 }
 ```
 
-| Prop | Obligatoria | Tipo                                      |
-| ---- | ----------- | ----------------------------------------- |
-| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
 
 Uso:
 
@@ -1688,9 +1891,9 @@ Tipo del parámetro:
 }
 ```
 
-| Prop | Obligatoria | Tipo                                      |
-| ---- | ----------- | ----------------------------------------- |
-| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
 
 Uso:
 
@@ -1707,14 +1910,12 @@ Muestra cobros registrados y saldo de la proyección autorizada.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useAppointmentDetail>;
-}
+{ m: ReturnType<typeof useAppointmentDetail> }
 ```
 
-| Prop | Obligatoria | Tipo                                      |
-| ---- | ----------- | ----------------------------------------- |
-| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
 
 Uso:
 
@@ -1736,9 +1937,9 @@ Tipo del parámetro:
 }
 ```
 
-| Prop | Obligatoria | Tipo                                      |
-| ---- | ----------- | ----------------------------------------- |
-| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
 
 Uso:
 
@@ -1760,9 +1961,9 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo                                 |
-| ------- | ----------- | ------------------------------------ |
-| manager | Sí          | `ReturnType<typeof useAppointments>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| manager | Sí | `ReturnType<typeof useAppointments>` |
 
 Uso:
 
@@ -1772,7 +1973,7 @@ Uso:
 
 ### AppointmentStatusEditor
 
-Expone las transiciones administrativas que el servidor vuelve a validar.
+Confirma reservas antiguas que quedaron pendientes antes de la confirmación automática.
 
 [Fuente](../src/components/organisms/AppointmentStatusEditor.tsx)
 
@@ -1784,9 +1985,9 @@ Tipo del parámetro:
 }
 ```
 
-| Prop | Obligatoria | Tipo                                      |
-| ---- | ----------- | ----------------------------------------- |
-| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
 
 Uso:
 
@@ -1803,19 +2004,139 @@ Filtra la consulta por estado sin cambiar ningún turno.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useAppointments>;
-}
+{ m: ReturnType<typeof useAppointments> }
 ```
 
-| Prop | Obligatoria | Tipo                                 |
-| ---- | ----------- | ------------------------------------ |
-| m    | Sí          | `ReturnType<typeof useAppointments>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointments>` |
 
 Uso:
 
 ```tsx
 <AppointmentStatusFilter m={manager} />
+```
+
+### AppointmentVehicleAttachment
+
+Completa el vehículo de un turno ya confirmado.
+
+[Fuente](../src/components/organisms/AppointmentVehicleAttachment.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  appointment: Appointment;
+  admin: boolean;
+  refresh: () => Promise<void>;
+}
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| appointment | Sí | `Appointment` |
+| admin | Sí | `boolean` |
+| refresh | Sí | `() => Promise<void>` |
+
+Uso:
+
+```tsx
+<AppointmentVehicleAttachment appointment={appointment} admin={admin} refresh={refresh} />
+```
+
+### AppointmentVehicleDetail
+
+Conserva la descripción del cliente junto al turno, separada de los servicios cotizados.
+
+[Fuente](../src/components/organisms/AppointmentVehicleDetail.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  m: ReturnType<typeof useAppointmentDetail>;
+}
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
+
+Uso:
+
+```tsx
+<AppointmentVehicleDetail m={manager} />
+```
+
+### AppointmentWashReport
+
+Detalle del parte con acciones para el responsable, la administración o el titular.
+
+[Fuente](../src/components/organisms/AppointmentWashReport.tsx)
+
+Tipo del parámetro:
+
+```ts
+{ m: ReturnType<typeof useAppointmentDetail> }
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
+
+Uso:
+
+```tsx
+<AppointmentWashReport m={manager} />
+```
+
+### AppointmentWashReview
+
+La decisión siempre identifica el parte revisado para evitar aprobar un envío posterior.
+
+[Fuente](../src/components/organisms/AppointmentWashReview.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  m: ReturnType<typeof useAppointmentDetail>;
+  submissionId: string;
+}
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
+| submissionId | Sí | `string` |
+
+Uso:
+
+```tsx
+<AppointmentWashReview m={manager} submissionId={submissionId} />
+```
+
+### AppointmentWashSubmit
+
+El responsable explica qué hizo y deja el turno listo para una inspección.
+
+[Fuente](../src/components/organisms/AppointmentWashSubmit.tsx)
+
+Tipo del parámetro:
+
+```ts
+{ m: ReturnType<typeof useAppointmentDetail> }
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
+
+Uso:
+
+```tsx
+<AppointmentWashSubmit m={manager} />
 ```
 
 ### BookingClientField
@@ -1827,14 +2148,12 @@ Selecciona titular para una reserva asistida por administración.
 Tipo del parámetro:
 
 ```ts
-{
-  b: ReturnType<typeof useBooking>;
-}
+{ b: ReturnType<typeof useBooking> }
 ```
 
-| Prop | Obligatoria | Tipo                            |
-| ---- | ----------- | ------------------------------- |
-| b    | Sí          | `ReturnType<typeof useBooking>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| b | Sí | `ReturnType<typeof useBooking>` |
 
 Uso:
 
@@ -1870,28 +2189,92 @@ Uso:
 <BookingInvitationCopy />
 ```
 
+### BookingSchedule
+
+Ofrece calendario y rueda sobre una sola cotización vigente.
+
+[Fuente](../src/components/organisms/BookingSchedule.tsx)
+
+Tipo del parámetro:
+
+```ts
+{ b: ReturnType<typeof useBooking> }
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| b | Sí | `ReturnType<typeof useBooking>` |
+
+Uso:
+
+```tsx
+<BookingSchedule b={b} />
+```
+
 ### BookingServicesField
 
-Ofrece servicios activos con tarifa para el vehículo elegido.
+Ofrece un lavado base y adicionales separados para el tipo cotizado.
 
 [Fuente](../src/components/organisms/BookingServicesField.tsx)
 
 Tipo del parámetro:
 
 ```ts
-{
-  b: ReturnType<typeof useBooking>;
-}
+{ b: Booking }
 ```
 
-| Prop | Obligatoria | Tipo                            |
-| ---- | ----------- | ------------------------------- |
-| b    | Sí          | `ReturnType<typeof useBooking>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| b | Sí | `Booking` |
 
 Uso:
 
 ```tsx
 <BookingServicesField b={b} />
+```
+
+### BookingSummary
+
+Confirma únicamente una cotización y un horario que siguen vigentes.
+
+[Fuente](../src/components/organisms/BookingSummary.tsx)
+
+Tipo del parámetro:
+
+```ts
+{ b: ReturnType<typeof useBooking> }
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| b | Sí | `ReturnType<typeof useBooking>` |
+
+Uso:
+
+```tsx
+<BookingSummary b={b} />
+```
+
+### BookingTypeField
+
+Solicita solo la categoría que determina la cotización.
+
+[Fuente](../src/components/organisms/BookingTypeField.tsx)
+
+Tipo del parámetro:
+
+```ts
+{ b: ReturnType<typeof useBooking> }
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| b | Sí | `ReturnType<typeof useBooking>` |
+
+Uso:
+
+```tsx
+<BookingTypeField b={b} />
 ```
 
 ### ClientQuickActions
@@ -1917,14 +2300,12 @@ Visitas autorizadas, con carga/error separados del estado vacío.
 Tipo del parámetro:
 
 ```ts
-{
-  home: ReturnType<typeof useHome>;
-}
+{ home: ReturnType<typeof useHome> }
 ```
 
-| Prop | Obligatoria | Tipo                         |
-| ---- | ----------- | ---------------------------- |
-| home | Sí          | `ReturnType<typeof useHome>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| home | Sí | `ReturnType<typeof useHome>` |
 
 Uso:
 
@@ -1947,27 +2328,51 @@ PropsWithChildren<{
   empty: boolean;
   emptyTitle: string;
   onRetry: () => void;
-}>;
+}>
 ```
 
-| Prop       | Obligatoria | Tipo         |
-| ---------- | ----------- | ------------ |
-| loading    | Sí          | `boolean`    |
-| error      | Sí          | `string`     |
-| empty      | Sí          | `boolean`    |
-| emptyTitle | Sí          | `string`     |
-| onRetry    | Sí          | `() => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| loading | Sí | `boolean` |
+| error | Sí | `string` |
+| empty | Sí | `boolean` |
+| emptyTitle | Sí | `string` |
+| onRetry | Sí | `() => void` |
 
 Uso:
 
 ```tsx
-<CollectionState
-  loading={loading}
-  error={error}
-  empty={empty}
-  emptyTitle={emptyTitle}
-  onRetry={handleAction}
-/>
+<CollectionState loading={loading} error={error} empty={empty} emptyTitle={emptyTitle} onRetry={handleAction} />
+```
+
+### CustomerMessageCard
+
+Muestra la conversación y, en devoluciones, el responsable y su descripción histórica.
+
+[Fuente](../src/components/organisms/CustomerMessageCard.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  item: CustomerMessage;
+  admin: boolean;
+  busy: boolean;
+  reply: (id: string, text: string) => Promise<void>;
+}
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| item | Sí | `CustomerMessage` |
+| admin | Sí | `boolean` |
+| busy | Sí | `boolean` |
+| reply | Sí | `(id: string, text: string) => Promise<void>` |
+
+Uso:
+
+```tsx
+<CustomerMessageCard item={item} admin={admin} busy={busy} reply={reply} />
 ```
 
 ### DashboardHeading
@@ -1994,15 +2399,15 @@ Tipo del parámetro:
 
 ```ts
 {
-  report: ReturnType < typeof useDashboard > ['report'];
-  pending: ReturnType < typeof useDashboard > ['pending'];
+  report: ReturnType<typeof useDashboard>['report'];
+  pending: ReturnType<typeof useDashboard>['pending'];
 }
 ```
 
-| Prop    | Obligatoria | Tipo                                         |
-| ------- | ----------- | -------------------------------------------- |
-| report  | Sí          | `ReturnType<typeof useDashboard>['report']`  |
-| pending | Sí          | `ReturnType<typeof useDashboard>['pending']` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| report | Sí | `ReturnType<typeof useDashboard>['report']` |
+| pending | Sí | `ReturnType<typeof useDashboard>['pending']` |
 
 Uso:
 
@@ -2020,13 +2425,13 @@ Tipo del parámetro:
 
 ```ts
 {
-  resource: ReturnType < typeof useDashboard > ['pending'];
+  resource: ReturnType<typeof useDashboard>['pending'];
 }
 ```
 
-| Prop     | Obligatoria | Tipo                                         |
-| -------- | ----------- | -------------------------------------------- |
-| resource | Sí          | `ReturnType<typeof useDashboard>['pending']` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| resource | Sí | `ReturnType<typeof useDashboard>['pending']` |
 
 Uso:
 
@@ -2048,9 +2453,9 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo                                 |
-| ------- | ----------- | ------------------------------------ |
-| manager | Sí          | `ReturnType<typeof useAppointments>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| manager | Sí | `ReturnType<typeof useAppointments>` |
 
 Uso:
 
@@ -2068,13 +2473,13 @@ Tipo del parámetro:
 
 ```ts
 {
-  summary: ReturnType < typeof useAppointments > ['summary'];
+  summary: ReturnType<typeof useAppointments>['summary'];
 }
 ```
 
-| Prop    | Obligatoria | Tipo                                            |
-| ------- | ----------- | ----------------------------------------------- |
-| summary | Sí          | `ReturnType<typeof useAppointments>['summary']` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| summary | Sí | `ReturnType<typeof useAppointments>['summary']` |
 
 Uso:
 
@@ -2091,14 +2496,12 @@ Presenta trabajos completados por empleado en el período.
 Tipo del parámetro:
 
 ```ts
-{
-  report: Report;
-}
+{ report: Report }
 ```
 
-| Prop   | Obligatoria | Tipo     |
-| ------ | ----------- | -------- |
-| report | Sí          | `Report` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| report | Sí | `Report` |
 
 Uso:
 
@@ -2115,14 +2518,12 @@ Ofrece iniciar o finalizar el lavado según el estado del turno.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useAppointmentDetail>;
-}
+{ m: ReturnType<typeof useAppointmentDetail> }
 ```
 
-| Prop | Obligatoria | Tipo                                      |
-| ---- | ----------- | ----------------------------------------- |
-| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useAppointmentDetail>` |
 
 Uso:
 
@@ -2148,13 +2549,13 @@ Tipo del parámetro:
 }
 ```
 
-| Prop          | Obligatoria | Tipo                                                |
-| ------------- | ----------- | --------------------------------------------------- |
-| fields        | Sí          | `FormFieldDefinition[]`                             |
-| initialValues | No          | `Record<string, string>`                            |
-| onSubmit      | Sí          | `(values: Record<string, string>) => Promise<void>` |
-| busy          | No          | `boolean`                                           |
-| submitLabel   | No          | `string`                                            |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| fields | Sí | `FormFieldDefinition[]` |
+| initialValues | No | `Record<string, string>` |
+| onSubmit | Sí | `(values: Record<string, string>) => Promise<void>` |
+| busy | No | `boolean` |
+| submitLabel | No | `string` |
 
 Uso:
 
@@ -2175,14 +2576,14 @@ PropsWithChildren<{
   controls: ReturnType<typeof useScrollControls>;
   title: string;
   onClose: () => void;
-}>;
+}>
 ```
 
-| Prop     | Obligatoria | Tipo                                   |
-| -------- | ----------- | -------------------------------------- |
-| controls | Sí          | `ReturnType<typeof useScrollControls>` |
-| title    | Sí          | `string`                               |
-| onClose  | Sí          | `() => void`                           |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| controls | Sí | `ReturnType<typeof useScrollControls>` |
+| title | Sí | `string` |
+| onClose | Sí | `() => void` |
 
 Uso:
 
@@ -2203,14 +2604,14 @@ PropsWithChildren<{
   visible: boolean;
   title: string;
   onClose: () => void;
-}>;
+}>
 ```
 
-| Prop    | Obligatoria | Tipo         |
-| ------- | ----------- | ------------ |
-| visible | Sí          | `boolean`    |
-| title   | Sí          | `string`     |
-| onClose | Sí          | `() => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| visible | Sí | `boolean` |
+| title | Sí | `string` |
+| onClose | Sí | `() => void` |
 
 Uso:
 
@@ -2234,11 +2635,11 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo                                           |
-| -------- | ----------- | ---------------------------------------------- |
-| onSubmit | Sí          | `(v: Record<string, string>) => Promise<void>` |
-| busy     | Sí          | `boolean`                                      |
-| error    | Sí          | `string`                                       |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| onSubmit | Sí | `(v: Record<string, string>) => Promise<void>` |
+| busy | Sí | `boolean` |
+| error | Sí | `string` |
 
 Uso:
 
@@ -2261,10 +2662,10 @@ Tipo del parámetro:
 }
 ```
 
-| Prop    | Obligatoria | Tipo            |
-| ------- | ----------- | --------------- |
-| items   | Sí          | `Appointment[]` |
-| loading | Sí          | `boolean`       |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| items | Sí | `Appointment[]` |
+| loading | Sí | `boolean` |
 
 Uso:
 
@@ -2281,14 +2682,12 @@ Presenta frecuencias reales de servicios en el período consultado.
 Tipo del parámetro:
 
 ```ts
-{
-  report: Report;
-}
+{ report: Report }
 ```
 
-| Prop   | Obligatoria | Tipo     |
-| ------ | ----------- | -------- |
-| report | Sí          | `Report` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| report | Sí | `Report` |
 
 Uso:
 
@@ -2305,14 +2704,12 @@ Identifica la sesión propia con nombre, email y avatar opcional.
 Tipo del parámetro:
 
 ```ts
-{
-  p: ReturnType<typeof useProfile>;
-}
+{ p: ReturnType<typeof useProfile> }
 ```
 
-| Prop | Obligatoria | Tipo                            |
-| ---- | ----------- | ------------------------------- |
-| p    | Sí          | `ReturnType<typeof useProfile>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| p | Sí | `ReturnType<typeof useProfile>` |
 
 Uso:
 
@@ -2329,14 +2726,12 @@ Confirma la contraseña actual y solicita la nueva al servidor.
 Tipo del parámetro:
 
 ```ts
-{
-  p: ReturnType<typeof useProfile>;
-}
+{ p: ReturnType<typeof useProfile> }
 ```
 
-| Prop | Obligatoria | Tipo                            |
-| ---- | ----------- | ------------------------------- |
-| p    | Sí          | `ReturnType<typeof useProfile>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| p | Sí | `ReturnType<typeof useProfile>` |
 
 Uso:
 
@@ -2353,14 +2748,12 @@ Compone indicadores, ingresos, servicios y rendimiento desde un único reporte.
 Tipo del parámetro:
 
 ```ts
-{
-  report: Report;
-}
+{ report: Report }
 ```
 
-| Prop   | Obligatoria | Tipo     |
-| ------ | ----------- | -------- |
-| report | Sí          | `Report` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| report | Sí | `Report` |
 
 Uso:
 
@@ -2377,14 +2770,12 @@ Visualiza ingresos reales por día con las mismas barras accesibles del tablero.
 Tipo del parámetro:
 
 ```ts
-{
-  report: Report;
-}
+{ report: Report }
 ```
 
-| Prop   | Obligatoria | Tipo     |
-| ------ | ----------- | -------- |
-| report | Sí          | `Report` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| report | Sí | `Report` |
 
 Uso:
 
@@ -2401,14 +2792,12 @@ Horarios y total provienen del backend; no calcula precios en el cliente.
 Tipo del parámetro:
 
 ```ts
-{
-  booking: ReturnType<typeof useBooking>;
-}
+{ booking: ReturnType<typeof useBooking> }
 ```
 
-| Prop    | Obligatoria | Tipo                            |
-| ------- | ----------- | ------------------------------- |
-| booking | Sí          | `ReturnType<typeof useBooking>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| booking | Sí | `ReturnType<typeof useBooking>` |
 
 Uso:
 
@@ -2430,17 +2819,17 @@ Tipo del parámetro:
   refreshing?: boolean;
   onRefresh?: () => void | Promise<void>;
   refreshInterval?: number;
-  onRevalidate?: () => void | Promise<void>;
+  onRevalidate?: (trigger: RefreshTrigger) => void | Promise<void>;
 }
 ```
 
-| Prop            | Obligatoria | Tipo                            |
-| --------------- | ----------- | ------------------------------- |
-| children        | Sí          | `PropsWithChildren['children']` |
-| refreshing      | No          | `boolean`                       |
-| onRefresh       | No          | `() => void \| Promise<void>`   |
-| refreshInterval | No          | `number`                        |
-| onRevalidate    | No          | `() => void \| Promise<void>`   |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| children | Sí | `PropsWithChildren['children']` |
+| refreshing | No | `boolean` |
+| onRefresh | No | `() => void \| Promise<void>` |
+| refreshInterval | No | `number` |
+| onRevalidate | No | `(trigger: RefreshTrigger) => void \| Promise<void>` |
 
 Uso:
 
@@ -2460,13 +2849,13 @@ Tipo del parámetro:
 PropsWithChildren<{
   refreshing: boolean;
   onRefresh?: (() => void | Promise<void>) | undefined;
-}>;
+}>
 ```
 
-| Prop       | Obligatoria | Tipo                                         |
-| ---------- | ----------- | -------------------------------------------- |
-| refreshing | Sí          | `boolean`                                    |
-| onRefresh  | No          | `(() => void \| Promise<void>) \| undefined` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| refreshing | Sí | `boolean` |
+| onRefresh | No | `(() => void \| Promise<void>) \| undefined` |
 
 Uso:
 
@@ -2483,7 +2872,7 @@ Superficie acotada que mantiene los controles fuera del contenido desplazable.
 Tipo del parámetro:
 
 ```ts
-ComponentProps<typeof ScrollView>;
+ComponentProps<typeof ScrollView>
 ```
 
 Uso:
@@ -2508,11 +2897,11 @@ Tipo del parámetro:
 }
 ```
 
-| Prop   | Obligatoria | Tipo                            |
-| ------ | ----------- | ------------------------------- |
-| c      | Sí          | `ReturnType<typeof useCatalog>` |
-| admin  | Sí          | `boolean`                       |
-| typeId | Sí          | `string`                        |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| c | Sí | `ReturnType<typeof useCatalog>` |
+| admin | Sí | `boolean` |
+| typeId | Sí | `string` |
 
 Uso:
 
@@ -2529,14 +2918,12 @@ Confirma la baja lógica del servicio preservando contratos anteriores.
 Tipo del parámetro:
 
 ```ts
-{
-  c: ReturnType<typeof useCatalog>;
-}
+{ c: ReturnType<typeof useCatalog> }
 ```
 
-| Prop | Obligatoria | Tipo                            |
-| ---- | ----------- | ------------------------------- |
-| c    | Sí          | `ReturnType<typeof useCatalog>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| c | Sí | `ReturnType<typeof useCatalog>` |
 
 Uso:
 
@@ -2553,14 +2940,12 @@ Edita descripción y duración del servicio, separadas de sus precios.
 Tipo del parámetro:
 
 ```ts
-{
-  c: ReturnType<typeof useCatalog>;
-}
+{ c: ReturnType<typeof useCatalog> }
 ```
 
-| Prop | Obligatoria | Tipo                            |
-| ---- | ----------- | ------------------------------- |
-| c    | Sí          | `ReturnType<typeof useCatalog>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| c | Sí | `ReturnType<typeof useCatalog>` |
 
 Uso:
 
@@ -2577,14 +2962,12 @@ Edición de servicio, tarifa por tipo y confirmación de baja lógica.
 Tipo del parámetro:
 
 ```ts
-{
-  catalog: ReturnType<typeof useCatalog>;
-}
+{ catalog: ReturnType<typeof useCatalog> }
 ```
 
-| Prop    | Obligatoria | Tipo                            |
-| ------- | ----------- | ------------------------------- |
-| catalog | Sí          | `ReturnType<typeof useCatalog>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| catalog | Sí | `ReturnType<typeof useCatalog>` |
 
 Uso:
 
@@ -2601,14 +2984,12 @@ Edita una tarifa para la pareja servicio/tipo de vehículo.
 Tipo del parámetro:
 
 ```ts
-{
-  c: ReturnType<typeof useCatalog>;
-}
+{ c: ReturnType<typeof useCatalog> }
 ```
 
-| Prop | Obligatoria | Tipo                            |
-| ---- | ----------- | ------------------------------- |
-| c    | Sí          | `ReturnType<typeof useCatalog>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| c | Sí | `ReturnType<typeof useCatalog>` |
 
 Uso:
 
@@ -2639,14 +3020,12 @@ Valida email y contraseña y delega el acceso en useSignIn.
 Tipo del parámetro:
 
 ```ts
-{
-  login: ReturnType<typeof useSignIn>;
-}
+{ login: ReturnType<typeof useSignIn> }
 ```
 
-| Prop  | Obligatoria | Tipo                           |
-| ----- | ----------- | ------------------------------ |
-| login | Sí          | `ReturnType<typeof useSignIn>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| login | Sí | `ReturnType<typeof useSignIn>` |
 
 Uso:
 
@@ -2680,9 +3059,9 @@ Tipo del parámetro:
 { provider: keyof typeof labels }
 ```
 
-| Prop     | Obligatoria | Tipo                  |
-| -------- | ----------- | --------------------- |
-| provider | Sí          | `keyof typeof labels` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| provider | Sí | `keyof typeof labels` |
 
 Uso:
 
@@ -2713,14 +3092,12 @@ Conserva la preferencia automática; los cambios claro/oscuro usan el botón flo
 Tipo del parámetro:
 
 ```ts
-{
-  theme: ReturnType<typeof useTheme>;
-}
+{ theme: ReturnType<typeof useTheme> }
 ```
 
-| Prop  | Obligatoria | Tipo                          |
-| ----- | ----------- | ----------------------------- |
-| theme | Sí          | `ReturnType<typeof useTheme>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| theme | Sí | `ReturnType<typeof useTheme>` |
 
 Uso:
 
@@ -2737,14 +3114,12 @@ Presenta la página autorizada de usuarios y los estados de consulta.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useUsers>;
-}
+{ m: ReturnType<typeof useUsers> }
 ```
 
-| Prop | Obligatoria | Tipo                          |
-| ---- | ----------- | ----------------------------- |
-| m    | Sí          | `ReturnType<typeof useUsers>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useUsers>` |
 
 Uso:
 
@@ -2761,14 +3136,12 @@ Confirma la baja lógica de una cuenta conservando su historial.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useUsers>;
-}
+{ m: ReturnType<typeof useUsers> }
 ```
 
-| Prop | Obligatoria | Tipo                          |
-| ---- | ----------- | ----------------------------- |
-| m    | Sí          | `ReturnType<typeof useUsers>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useUsers>` |
 
 Uso:
 
@@ -2785,14 +3158,12 @@ Comparte campos de creación y edición de cuentas administradas.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useUsers>;
-}
+{ m: ReturnType<typeof useUsers> }
 ```
 
-| Prop | Obligatoria | Tipo                          |
-| ---- | ----------- | ----------------------------- |
-| m    | Sí          | `ReturnType<typeof useUsers>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useUsers>` |
 
 Uso:
 
@@ -2809,14 +3180,12 @@ Filtra cuentas por rol sin modificar sus permisos.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useUsers>;
-}
+{ m: ReturnType<typeof useUsers> }
 ```
 
-| Prop | Obligatoria | Tipo                          |
-| ---- | ----------- | ----------------------------- |
-| m    | Sí          | `ReturnType<typeof useUsers>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useUsers>` |
 
 Uso:
 
@@ -2840,11 +3209,11 @@ Tipo del parámetro:
 }
 ```
 
-| Prop     | Obligatoria | Tipo                   |
-| -------- | ----------- | ---------------------- |
-| users    | Sí          | `User[]`               |
-| onEdit   | Sí          | `(user: User) => void` |
-| onDelete | Sí          | `(user: User) => void` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| users | Sí | `User[]` |
+| onEdit | Sí | `(user: User) => void` |
+| onDelete | Sí | `(user: User) => void` |
 
 Uso:
 
@@ -2861,14 +3230,12 @@ Cuadrícula de vehículos autorizados con edición y baja confirmada.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useVehicles>;
-}
+{ m: ReturnType<typeof useVehicles> }
 ```
 
-| Prop | Obligatoria | Tipo                             |
-| ---- | ----------- | -------------------------------- |
-| m    | Sí          | `ReturnType<typeof useVehicles>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useVehicles>` |
 
 Uso:
 
@@ -2885,14 +3252,12 @@ Confirma la baja lógica; el servidor rechaza trabajos pendientes.
 Tipo del parámetro:
 
 ```ts
-{
-  manager: ReturnType<typeof useVehicles>;
-}
+{ manager: ReturnType<typeof useVehicles> }
 ```
 
-| Prop    | Obligatoria | Tipo                             |
-| ------- | ----------- | -------------------------------- |
-| manager | Sí          | `ReturnType<typeof useVehicles>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| manager | Sí | `ReturnType<typeof useVehicles>` |
 
 Uso:
 
@@ -2909,14 +3274,12 @@ Formulario del vehículo con titular controlado por rol y servidor.
 Tipo del parámetro:
 
 ```ts
-{
-  manager: ReturnType<typeof useVehicles>;
-}
+{ manager: ReturnType<typeof useVehicles> }
 ```
 
-| Prop    | Obligatoria | Tipo                             |
-| ------- | ----------- | -------------------------------- |
-| manager | Sí          | `ReturnType<typeof useVehicles>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| manager | Sí | `ReturnType<typeof useVehicles>` |
 
 Uso:
 
@@ -2933,14 +3296,12 @@ Formularios y confirmación de baja con datos del vehículo seleccionado.
 Tipo del parámetro:
 
 ```ts
-{
-  manager: ReturnType<typeof useVehicles>;
-}
+{ manager: ReturnType<typeof useVehicles> }
 ```
 
-| Prop    | Obligatoria | Tipo                             |
-| ------- | ----------- | -------------------------------- |
-| manager | Sí          | `ReturnType<typeof useVehicles>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| manager | Sí | `ReturnType<typeof useVehicles>` |
 
 Uso:
 
@@ -2957,14 +3318,12 @@ Formulario administrativo de categorías utilizadas por las tarifas.
 Tipo del parámetro:
 
 ```ts
-{
-  m: ReturnType<typeof useVehicleTypes>;
-}
+{ m: ReturnType<typeof useVehicleTypes> }
 ```
 
-| Prop | Obligatoria | Tipo                                 |
-| ---- | ----------- | ------------------------------------ |
-| m    | Sí          | `ReturnType<typeof useVehicleTypes>` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| m | Sí | `ReturnType<typeof useVehicleTypes>` |
 
 Uso:
 
@@ -2978,12 +3337,48 @@ Categorías registradas y formularios administrativos sin exponer SQL ni identif
 
 [Fuente](../src/components/organisms/VehicleTypeManager.tsx)
 
-No recibe propiedades.
+Tipo del parámetro:
+
+```ts
+{ onChanged?: () => Promise<void> }
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| onChanged | No | `() => Promise<void>` |
 
 Uso:
 
 ```tsx
 <VehicleTypeManager />
+```
+
+### WashFeedbackForm
+
+Captura una devolución del titular después de que se confirma el trabajo.
+
+[Fuente](../src/components/organisms/WashFeedbackForm.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  appointmentId: string;
+  sent: boolean;
+  refresh: () => Promise<void>;
+}
+```
+
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| appointmentId | Sí | `string` |
+| sent | Sí | `boolean` |
+| refresh | Sí | `() => Promise<void>` |
+
+Uso:
+
+```tsx
+<WashFeedbackForm appointmentId={appointmentId} sent={sent} refresh={refresh} />
 ```
 
 ### WeeklyActivity
@@ -2996,13 +3391,13 @@ Tipo del parámetro:
 
 ```ts
 {
-  resource: ReturnType < typeof useDashboard > ['week'];
+  resource: ReturnType<typeof useDashboard>['week'];
 }
 ```
 
-| Prop     | Obligatoria | Tipo                                      |
-| -------- | ----------- | ----------------------------------------- |
-| resource | Sí          | `ReturnType<typeof useDashboard>['week']` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| resource | Sí | `ReturnType<typeof useDashboard>['week']` |
 
 Uso:
 
@@ -3022,10 +3417,10 @@ Tipo del parámetro:
 { state: HealthState; onRetry: () => void }
 ```
 
-| Prop    | Obligatoria | Tipo          |
-| ------- | ----------- | ------------- |
-| state   | Sí          | `HealthState` |
-| onRetry | Sí          | `() => void`  |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| state | Sí | `HealthState` |
+| onRetry | Sí | `() => void` |
 
 Uso:
 
@@ -3042,7 +3437,7 @@ Estructura común independiente del contenido y de las consultas de cada pantall
 Tipo del parámetro:
 
 ```ts
-PropsWithChildren;
+PropsWithChildren
 ```
 
 Uso:
@@ -3060,14 +3455,12 @@ Cabecera visual común; su área interactiva conserva su propio estado de menú.
 Tipo del parámetro:
 
 ```ts
-{
-  wide: boolean;
-}
+{ wide: boolean }
 ```
 
-| Prop | Obligatoria | Tipo      |
-| ---- | ----------- | --------- |
-| wide | Sí          | `boolean` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| wide | Sí | `boolean` |
 
 Uso:
 
@@ -3084,14 +3477,12 @@ Uso:
 Tipo del parámetro:
 
 ```ts
-{
-  wide: boolean;
-}
+{ wide: boolean }
 ```
 
-| Prop | Obligatoria | Tipo      |
-| ---- | ----------- | --------- |
-| wide | Sí          | `boolean` |
+| Prop | Obligatoria | Tipo |
+|---|---|---|
+| wide | Sí | `boolean` |
 
 Uso:
 
@@ -3112,7 +3503,3 @@ Uso:
 ```tsx
 <WorkspaceSidebar />
 ```
-
-## Reserva por tipo y carga posterior
-
-El selector de categoría permite confirmar el horario antes de registrar un vehículo. El formulario del detalle completa la patente o permite vincular un vehículo existente. [Selector](../src/components/organisms/BookingTypeField.tsx) · [Vinculación](../src/components/organisms/AppointmentVehicleAttachment.tsx)

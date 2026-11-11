@@ -3,7 +3,6 @@ import type { useBooking } from '../../hooks/useBooking';
 import { AvailableSlots } from '../molecules/AvailableSlots';
 import { LoadingState } from '../molecules/LoadingState';
 import { Notice } from '../molecules/Notice';
-import { QuotedTotal } from '../molecules/QuotedTotal';
 /** Horarios y total provienen del backend; no calcula precios en el cliente.
  * @param props - Propiedades tipadas: booking.
  * @returns Vista de ScheduleSelector con el contrato de propiedades declarado.
@@ -19,7 +18,6 @@ export function ScheduleSelector({ booking: b }: { booking: ReturnType<typeof us
           <Notice error={b.availability.error} onRetry={b.availability.refresh} />
           {b.availability.data && (
             <>
-              <QuotedTotal quote={b.availability.data} />
               {b.slot && !b.availability.data.slots.includes(b.slot) && (
                 <Notice error="El horario que elegiste ya no está disponible. Elegí otro." />
               )}

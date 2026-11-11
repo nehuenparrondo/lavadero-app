@@ -1,3 +1,4 @@
+import { refreshResources, revalidateResources } from '../utils/refreshResources';
 import type { Service, Settings, User, VehicleType } from '../types/entities';
 import { useOptions } from './useOptions';
 import { useRemoteData } from './useRemoteData';
@@ -10,20 +11,13 @@ export function useBookingOptions(admin: boolean) {
   const clients = useOptions<User>('/users', { role: 'client' }, admin);
   const services = useRemoteData<Service[]>('/services');
   const settings = useRemoteData<Settings>('/business');
-  const refresh = async () => {
-    await Promise.all([
-      types.refresh(),
-      clients.refresh(),
-      services.refresh(),
-      settings.refresh(),
-    ]);
-  };
   return {
     types,
     clients,
     services,
     settings,
-    refresh,
+    refresh: () => refreshResources(types, clients, services, settings),
+    revalidate: () => revalidateResources(types, clients, services, settings),
     optionsLoading: types.loading || clients.loading || services.loading || settings.loading,
     loadError: types.error || clients.error || services.error || settings.error,
   };

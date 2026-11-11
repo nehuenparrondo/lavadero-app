@@ -4,12 +4,12 @@ Composición de rutas de Expo Router. Cada archivo delega su contenido y el layo
 
 ## Archivos y responsabilidades
 
-| Archivo                    | Responsabilidad                                                    |
-| -------------------------- | ------------------------------------------------------------------ |
-| [_layout.tsx](_layout.tsx) | Agenda, historial y perfil del empleado.                           |
-| [agenda.tsx](agenda.tsx)   | Ruta del equipo, restringida por la guarda de grupo y el servidor. |
+| Archivo | Responsabilidad |
+| --- | --- |
+| [_layout.tsx](_layout.tsx) | Agenda, historial y perfil del empleado. |
+| [agenda.tsx](agenda.tsx) | Ruta del equipo, restringida por la guarda de grupo y el servidor. |
 | [history.tsx](history.tsx) | Ruta del equipo, restringida por la guarda de grupo y el servidor. |
-| [profile.tsx](profile.tsx) | Composición interna del módulo; consultar sus contratos de tipos.  |
+| [profile.tsx](profile.tsx) | Composición interna del módulo; consultar sus contratos de tipos. |
 
 ## Mantenimiento
 

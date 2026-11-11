@@ -14,7 +14,7 @@ import { useVehicles } from '../../hooks/useVehicles';
 export function VehiclesScreen() {
   const m = useVehicles();
   return (
-    <Screen refreshing={m.loading} onRefresh={m.refresh}>
+    <Screen refreshing={m.loading} onRefresh={m.refresh} onRevalidate={m.revalidate}>
       <SectionHeader
         title={m.admin ? 'Vehículos' : 'Mis vehículos'}
         subtitle="Todos los datos de tus vehículos, en un solo lugar."

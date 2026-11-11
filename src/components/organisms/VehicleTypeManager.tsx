@@ -1,4 +1,6 @@
 import { useVehicleTypes } from '../../hooks/useVehicleTypes';
+import { useRefreshOnReturn } from '../../hooks/useRefreshOnReturn';
+import { revalidateResources } from '../../utils/refreshResources';
 import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
 import { Card } from '../molecules/Card';
@@ -11,6 +13,9 @@ import { VehicleTypeDialog } from './VehicleTypeDialog';
  */
 export function VehicleTypeManager({ onChanged }: { onChanged?: () => Promise<void> }) {
   const m = useVehicleTypes(onChanged);
+  useRefreshOnReturn(m.state.refresh, m.action.busy, 15_000, () =>
+    revalidateResources(m.state, m.catalog),
+  );
   return (
     <>
       <Card>

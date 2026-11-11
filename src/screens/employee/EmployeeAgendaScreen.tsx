@@ -1,6 +1,4 @@
-import { OverviewColumns } from '../../components/molecules/OverviewColumns';
 import { PageHeading } from '../../components/molecules/PageHeading';
-import { WorkdayGuide } from '../../components/molecules/WorkdayGuide';
 import { EmployeeAppointmentResults } from '../../components/organisms/EmployeeAppointmentResults';
 import { EmployeeDaySummary } from '../../components/organisms/EmployeeDaySummary';
 import { Screen } from '../../components/organisms/Screen';
@@ -15,7 +13,7 @@ export function EmployeeAgendaScreen({ history = false }: { history?: boolean })
     <Screen
       refreshing={m.loading}
       onRefresh={m.refresh}
-      refreshInterval={30000}
+      refreshInterval={15_000}
       onRevalidate={m.revalidate}
     >
       <PageHeading
@@ -24,14 +22,11 @@ export function EmployeeAgendaScreen({ history = false }: { history?: boolean })
         detail={
           history
             ? 'Consultá los trabajos anteriores del equipo y cada detalle registrado.'
-            : 'Todos los turnos del equipo, los servicios y el estado de cada lavado.'
+            : 'Encontrá cada vehículo, consultá sus servicios y registrá tu trabajo.'
         }
       />
       {!history && m.date && !m.plate && <EmployeeDaySummary summary={m.summary} />}
-      <OverviewColumns
-        primary={<EmployeeAppointmentResults manager={m} />}
-        secondary={<WorkdayGuide />}
-      />
+      <EmployeeAppointmentResults manager={m} />
     </Screen>
   );
 }

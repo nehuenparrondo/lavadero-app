@@ -12,11 +12,15 @@ import { useHome } from '../../hooks/useHome';
 export function HomeScreen() {
   const home = useHome();
   return (
-    <Screen refreshing={home.list.loading} onRefresh={home.list.refresh}>
+    <Screen
+      refreshing={home.list.loading}
+      onRefresh={home.list.refresh}
+      onRevalidate={home.list.revalidate}
+    >
       <PageHeading
         eyebrow="Tu espacio"
         title={'Hola, ' + (home.user?.firstName ?? '') + '.'}
-        detail="Qué bueno verte. Tu auto está en buenas manos."
+        detail="Reservá una visita y seguí el estado de tu lavado desde acá."
       />
       <BookingInvitation />
       <ClientQuickActions />

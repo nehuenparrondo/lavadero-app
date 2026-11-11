@@ -30,6 +30,9 @@ export function useBookingResources(
     settings: options.settings.data,
     clients: options.clients.items.filter((c) => c.isActive),
     refresh,
+    revalidate: async () => {
+      await Promise.all([options.revalidate(), availability.revalidate()]);
+    },
     optionsLoading: options.optionsLoading,
     loadError: options.loadError,
   };

@@ -13,8 +13,8 @@ export function DashboardPending({
   return (
     <>
       <SectionHeader
-        title="Turnos por atender"
-        subtitle="Revisá los detalles y organizá las próximas visitas."
+        title="Lavados pendientes"
+        subtitle="Las nuevas solicitudes aparecen primero, aunque sean para otro día."
       />
       <PendingAppointments
         items={r.data?.items ?? []}

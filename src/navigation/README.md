@@ -4,10 +4,10 @@ Composición de stacks/tabs y guardas. El catálogo de destinos por rol vive en 
 
 ## Archivos y responsabilidades
 
-| Archivo                                  | Responsabilidad                                                                 |
-| ---------------------------------------- | ------------------------------------------------------------------------------- |
-| [RoleTabs.tsx](RoleTabs.tsx)             | Destino de la barra móvil. El nombre coincide con un archivo de ruta del grupo. |
-| [RootNavigation.tsx](RootNavigation.tsx) | Mantiene el stack montado mientras restaura sesión y aplica guardas por ruta.   |
+| Archivo | Responsabilidad |
+| --- | --- |
+| [RoleTabs.tsx](RoleTabs.tsx) | Destino de la barra móvil. El nombre coincide con un archivo de ruta del grupo. |
+| [RootNavigation.tsx](RootNavigation.tsx) | Mantiene el stack montado mientras restaura sesión y aplica guardas por ruta. |
 
 ## Mantenimiento
 

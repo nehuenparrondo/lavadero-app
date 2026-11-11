@@ -26,6 +26,9 @@ export function useVehicles() {
     refresh: async () => {
       await Promise.all([manager.refresh(), types.refresh(), clients.refresh()]);
     },
+    revalidate: async () => {
+      await Promise.all([manager.revalidate(), types.revalidate(), clients.revalidate()]);
+    },
     optionsError: types.error || clients.error,
   };
 }

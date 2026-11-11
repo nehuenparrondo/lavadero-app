@@ -11,7 +11,7 @@ import { useReports } from '../../hooks/useReports';
 export function ReportsScreen() {
   const r = useReports();
   return (
-    <Screen refreshing={r.loading} onRefresh={r.refresh}>
+    <Screen refreshing={r.loading} onRefresh={r.refresh} onRevalidate={r.revalidate}>
       <SectionHeader
         title="Reportes"
         subtitle="Actividad e ingresos del lavadero, con datos de cobros registrados."

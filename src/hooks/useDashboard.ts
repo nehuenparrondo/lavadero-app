@@ -9,8 +9,8 @@ export function useDashboard() {
   const report = useRemoteData<Report>('/reports', { period: 'day' });
   const week = useRemoteData<Report>('/reports', { period: 'week' });
   const pending = useRemoteData<Page<Appointment>>('/appointments', {
-    history: 'false',
-    limit: 3,
+    queue: 'requested',
+    limit: 5,
   });
   const refresh = async () => {
     await Promise.all([report.refresh(), pending.refresh(), week.refresh()]);

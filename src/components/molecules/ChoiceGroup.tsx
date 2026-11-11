@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { View } from 'react-native';
 import type { Choice } from '../../types/form';
 import { toggleChoice } from '../../utils/toggleChoice';
@@ -18,17 +19,24 @@ export function ChoiceGroup({
   onChange: (value: string) => void;
   multiple?: boolean;
 }) {
+  const [width, setWidth] = useState(0);
+  const columns = Math.min(options.length || 1, width >= 600 ? 3 : 2);
+  const itemWidth = width ? (width - (columns - 1) * 8) / columns : '100%';
   return (
-    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+    <View
+      onLayout={(event) => setWidth(event.nativeEvent.layout.width)}
+      style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'stretch' }}
+    >
       {options.map((option) => (
-        <ChoiceButton
-          key={option.value}
-          option={option}
-          selected={
-            multiple ? value.split(',').includes(option.value) : value === option.value
-          }
-          onPress={() => onChange(toggleChoice(value, option.value, multiple))}
-        />
+        <View key={option.value} style={{ width: itemWidth }}>
+          <ChoiceButton
+            option={option}
+            selected={
+              multiple ? value.split(',').includes(option.value) : value === option.value
+            }
+            onPress={() => onChange(toggleChoice(value, option.value, multiple))}
+          />
+        </View>
       ))}
     </View>
   );

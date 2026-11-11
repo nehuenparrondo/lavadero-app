@@ -4,9 +4,9 @@ import { Button } from '../atoms/Button';
 import { DateInput } from '../molecules/DateInput';
 import { ChoiceGroup } from '../molecules/ChoiceGroup';
 import { SearchBar } from '../molecules/SearchBar';
-import { AppointmentClientFilter } from './AppointmentClientFilter';
-import { AppointmentEmployeeFilter } from './AppointmentEmployeeFilter';
-import { AppointmentStatusFilter } from './AppointmentStatusFilter';
+import { Card } from '../molecules/Card';
+import { AppointmentAdvancedFilters } from './AppointmentAdvancedFilters';
+import { AppointmentAgendaPresets } from './AppointmentAgendaPresets';
 /** Filtros por experiencia; cliente no puede seleccionar titulares ajenos.
  * @param props - Propiedades tipadas: manager.
  * @returns Vista de AppointmentFilters con el contrato de propiedades declarado.
@@ -17,7 +17,7 @@ export function AppointmentFilters({
   manager: ReturnType<typeof useAppointments>;
 }) {
   return (
-    <View style={{ gap: 12 }}>
+    <Card>
       {m.mode === 'client' && (
         <ChoiceGroup
           value={String(m.history)}
@@ -28,34 +28,27 @@ export function AppointmentFilters({
           ]}
         />
       )}
+      {m.mode !== 'client' && <AppointmentAgendaPresets m={m} />}
       <AgendaSearch m={m} />
-      {m.mode === 'admin' && (
-        <>
-          <Button label="Lavados por verificar" variant="secondary" onPress={m.showReviews} />
-          <AppointmentStatusFilter m={m} />
-          <AppointmentClientFilter m={m} />
-          <AppointmentEmployeeFilter m={m} />
-        </>
-      )}
-    </View>
+      {m.mode === 'admin' && <AppointmentAdvancedFilters m={m} />}
+    </Card>
   );
 }
 
 /** Al buscar una patente la agenda ignora la fecha seleccionada. */
 function AgendaSearch({ m }: { m: ReturnType<typeof useAppointments> }) {
   return (
-    <>
+    <View style={{ gap: 12 }}>
       {m.mode !== 'client' && (
-        <SearchBar
-          label="Buscar patente en todas las fechas"
-          value={m.plate}
-          onChange={m.setPlate}
-        />
+        <SearchBar label="Buscar por patente" value={m.plate} onChange={m.setPlate} />
       )}
-      {!m.plate && <DateInput label="Filtrar fecha" value={m.date} onChange={m.setDate} />}
-      {!m.plate && m.date && (
-        <Button label="Quitar filtro de fecha" variant="quiet" onPress={() => m.setDate('')} />
+      {!m.plate && <DateInput label="Elegir día" value={m.date} onChange={m.setDate} />}
+      {m.mode === 'client' && m.date && (
+        <Button label="Todas las fechas" variant="quiet" onPress={() => m.setDate('')} />
       )}
-    </>
+      {m.plate && (
+        <Button label="Limpiar búsqueda" variant="quiet" onPress={() => m.setPlate('')} />
+      )}
+    </View>
   );
 }

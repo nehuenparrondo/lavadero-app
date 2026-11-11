@@ -1,3 +1,4 @@
+import { refreshResources, revalidateResources } from '../utils/refreshResources';
 import { useAgendaResources } from './useAgendaResources';
 import { useAppointmentFiltersState } from './useAppointmentFiltersState';
 import { useAgendaList } from './useAgendaList';
@@ -16,19 +17,10 @@ export function useAppointments(
   const { summary, clients, employees } = useAgendaResources(mode, history, date);
   return {
     ...list,
-    revalidate: async () => {
-      await Promise.all([list.revalidate(), summary.revalidate()]);
-    },
+    revalidate: () => revalidateResources(list, summary, clients, employees),
     mode,
     ...filters,
-    refresh: async () => {
-      await Promise.all([
-        list.refresh(),
-        summary.refresh(),
-        clients.refresh(),
-        employees.refresh(),
-      ]);
-    },
+    refresh: () => refreshResources(list, summary, clients, employees),
     clients: clients.items,
     employees: employees.items,
     summary: summary.error ? null : summary.data,

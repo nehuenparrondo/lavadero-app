@@ -17,7 +17,7 @@ export function AppointmentsScreen({
     <Screen
       refreshing={m.loading}
       onRefresh={m.refresh}
-      refreshInterval={30000}
+      refreshInterval={15_000}
       onRevalidate={m.revalidate}
     >
       <AppointmentResults manager={m} />

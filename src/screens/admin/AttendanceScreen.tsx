@@ -15,7 +15,7 @@ import { slotTime } from '../../utils/format';
 export function AttendanceScreen() {
   const m = useAttendance();
   return (
-    <Screen refreshing={m.loading} onRefresh={m.refresh}>
+    <Screen refreshing={m.loading} onRefresh={m.refresh} onRevalidate={m.revalidate}>
       <SectionHeader
         title="Asistencia del equipo"
         subtitle="Registrá la llegada cuando el empleado esté presente."

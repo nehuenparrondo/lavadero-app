@@ -19,6 +19,7 @@ export function ChoiceButton({
   return (
     <Pressable
       accessibilityRole="button"
+      accessibilityLabel={option.label}
       accessibilityState={{ selected }}
       onPress={onPress}
       style={[
@@ -29,21 +30,43 @@ export function ChoiceButton({
         },
       ]}
     >
+      <ChoiceCopy option={option} selected={selected} />
+    </Pressable>
+  );
+}
+/** Texto principal y tarifa mantienen la misma jerarquía en todas las opciones. */
+function ChoiceCopy({ option, selected }: { option: Choice; selected: boolean }) {
+  const { colors } = useTheme();
+  return (
+    <>
       <Text
         style={{
           fontSize: 14,
-          fontWeight: selected ? '700' : '400',
+          lineHeight: 20,
+          textAlign: 'center',
+          fontWeight: '700',
           color: selected ? colors.primary : colors.text,
         }}
       >
         {option.label}
       </Text>
-    </Pressable>
+      {option.description && (
+        <Text
+          style={{ fontSize: 12, lineHeight: 18, textAlign: 'center', color: colors.muted }}
+        >
+          {option.description}
+        </Text>
+      )}
+    </>
   );
 }
 const styles = StyleSheet.create({
   button: {
-    minHeight: 42,
+    minHeight: 68,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 4,
     paddingHorizontal: 14,
     paddingVertical: 10,
     borderRadius: 12,

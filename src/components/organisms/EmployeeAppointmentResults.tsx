@@ -1,4 +1,3 @@
-import { Button } from '../atoms/Button';
 import type { useAppointments } from '../../hooks/useAppointments';
 import { Notice } from '../molecules/Notice';
 import { SectionHeader } from '../molecules/SectionHeader';
@@ -21,14 +20,6 @@ export function EmployeeAppointmentResults({
         subtitle="Buscá por patente en toda la agenda o filtrá los turnos por fecha."
       />
       <AppointmentFilters manager={m} />
-      <Button
-        label="Actualizar agenda"
-        variant="quiet"
-        disabled={m.loading}
-        onPress={() => {
-          void m.refresh();
-        }}
-      />
       <Notice error={m.summaryError} onRetry={m.refresh} />
       <AppointmentList m={m} />
       <AppointmentPagination manager={m} />

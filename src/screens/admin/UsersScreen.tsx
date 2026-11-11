@@ -14,7 +14,7 @@ import { useUsers } from '../../hooks/useUsers';
 export function UsersScreen() {
   const m = useUsers();
   return (
-    <Screen refreshing={m.loading} onRefresh={m.refresh}>
+    <Screen refreshing={m.loading} onRefresh={m.refresh} onRevalidate={m.revalidate}>
       <SectionHeader title="Usuarios" subtitle="Clientes, equipo y permisos del lavadero." />
       <Notice message="Cada persona crea su cuenta en el ingreso. Buscá una cuenta registrada y editá su rol para incorporarla al equipo." />
       <SearchBar label="Buscar por nombre o email" value={m.search} onChange={m.setSearch} />

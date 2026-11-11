@@ -29,9 +29,9 @@ export function DashboardIndicators({
         icon="wallet"
       />
       <MetricTile
-        label="Por atender"
+        label="Lavados pendientes"
         value={pending.data ? String(pending.data.total) : '—'}
-        detail="Turnos activos del equipo"
+        detail="Solicitudes todavía sin iniciar"
         icon="calendar"
       />
     </View>

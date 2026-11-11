@@ -14,7 +14,7 @@ export function ServicesScreen({ admin = false }: { admin?: boolean }) {
   const c = useCatalog();
   const typeId = c.typeId || c.types.data?.[0]?.id || '';
   return (
-    <Screen refreshing={c.list.loading} onRefresh={c.refresh}>
+    <Screen refreshing={c.list.loading} onRefresh={c.refresh} onRevalidate={c.revalidate}>
       <SectionHeader
         title={admin ? 'Servicios y precios' : 'Elegí cómo cuidarlo'}
         subtitle="Precios en pesos argentinos, según tu vehículo."

@@ -1,6 +1,7 @@
 import { Notice } from '../../components/molecules/Notice';
 import { OverviewColumns } from '../../components/molecules/OverviewColumns';
 import { AdminQuickActions } from '../../components/organisms/AdminQuickActions';
+import { AdminQueueLinks } from '../../components/organisms/AdminQueueLinks';
 import { DashboardHeading } from '../../components/organisms/DashboardHeading';
 import { DashboardIndicators } from '../../components/organisms/DashboardIndicators';
 import { DashboardPending } from '../../components/organisms/DashboardPending';
@@ -16,17 +17,18 @@ export function DashboardScreen() {
     <Screen
       refreshing={d.report.loading || d.pending.loading || d.week.loading}
       onRefresh={d.refresh}
-      refreshInterval={30000}
+      refreshInterval={15_000}
       onRevalidate={d.revalidate}
     >
       <DashboardHeading />
       <DashboardIndicators report={d.report} pending={d.pending} />
-      <AdminQuickActions />
+      <AdminQueueLinks pending={d.pending.data?.total} />
       <Notice error={d.report.error || d.pending.error} onRetry={d.refresh} />
       <OverviewColumns
         primary={<DashboardPending resource={d.pending} />}
         secondary={<WeeklyActivity resource={d.week} />}
       />
+      <AdminQuickActions />
     </Screen>
   );
 }

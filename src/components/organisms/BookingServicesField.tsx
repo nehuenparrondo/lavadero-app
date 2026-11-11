@@ -37,16 +37,14 @@ export function BookingServicesField({ b }: { b: Booking }) {
   );
 }
 
-/** Los tapizados se pueden contratar por separado. */
+/** Una sola selección base; tocar la opción activa permite dejar solo tapizados. */
 function WashChoice({ b }: { b: Booking }) {
   const options = serviceOptions(b.washes, b.vehicleTypeId);
-  if (b.extras.some((s) => s.code === 'upholstery'))
-    options.push({ value: '', label: 'Sin lavado base' });
   return (
     <FormField
-      field={{ name: 'wash', label: 'Lavado base', kind: 'choice', options }}
+      field={{ name: 'wash', label: 'Tipo de lavado', kind: 'choice', options }}
       value={b.baseId}
-      onChange={b.setBaseId}
+      onChange={(value) => b.setBaseId(value === b.baseId ? '' : value)}
     />
   );
 }
@@ -55,6 +53,7 @@ function WashChoice({ b }: { b: Booking }) {
 function serviceOptions(services: Service[], typeId: string) {
   return services.map((s) => ({
     value: s.id,
-    label: `${s.name} · ${s.durationMinutes} min · ${money(s.prices.find((p) => p.vehicleTypeId === typeId)?.priceCents)}`,
+    label: s.name,
+    description: `${money(s.prices.find((p) => p.vehicleTypeId === typeId)?.priceCents)} · ${s.durationMinutes} min`,
   }));
 }

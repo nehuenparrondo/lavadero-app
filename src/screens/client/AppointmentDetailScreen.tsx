@@ -24,7 +24,7 @@ export function AppointmentDetailScreen() {
     <Screen
       refreshing={m.detail.loading}
       onRefresh={m.refresh}
-      refreshInterval={30000}
+      refreshInterval={15_000}
       onRevalidate={m.detail.revalidate}
     >
       {!a && m.detail.loading && <LoadingState />}

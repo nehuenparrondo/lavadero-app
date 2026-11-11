@@ -19,7 +19,7 @@ export function SupportScreen({ admin = false }: { admin?: boolean }) {
     <Screen
       refreshing={m.loading}
       onRefresh={m.refresh}
-      refreshInterval={30000}
+      refreshInterval={15_000}
       onRevalidate={m.revalidate}
     >
       <SectionHeader

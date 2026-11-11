@@ -12,7 +12,11 @@ import { useSettings } from '../../hooks/useSettings';
 export function SettingsScreen() {
   const m = useSettings();
   return (
-    <Screen refreshing={m.state.loading} onRefresh={m.state.refresh}>
+    <Screen
+      refreshing={m.state.loading}
+      onRefresh={m.state.refresh}
+      onRevalidate={m.state.revalidate}
+    >
       <SectionHeader title="Configuración" subtitle="Ajustá la atención del lavadero." />
       <Notice error={m.state.error || m.action.error} message={m.action.message} />
       {m.state.data && (
