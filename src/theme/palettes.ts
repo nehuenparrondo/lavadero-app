@@ -9,6 +9,7 @@ export interface Palette {
   border: string;
   success: string;
   danger: string;
+  dangerSoft: string;
   warning: string;
   soft: string;
   subtle: string;
@@ -20,19 +21,20 @@ export interface Palette {
 /** Azul editorial, superficies neutras y navegación oscura en ambos modos. */
 export const palettes: Record<'light' | 'dark', Palette> = {
   light: {
-    background: '#F4F6F8',
+    background: '#F3F6FB',
     surface: '#FFFFFF',
     text: '#172B3F',
     muted: '#607185',
     primary: '#285BE7',
     onPrimary: '#FFFFFF',
-    border: '#E2E8EE',
+    border: '#DCE4EF',
     success: '#157552',
     danger: '#B5364F',
+    dangerSoft: '#FFF2F4',
     warning: '#8A5C10',
     soft: '#EDF2FF',
     subtle: '#F8FAFC',
-    navy: '#12283F',
+    navy: '#10243C',
     onNavy: '#FFFFFF',
     navMuted: '#AEBFD0',
     accent: '#E1EDAB',
@@ -47,6 +49,7 @@ export const palettes: Record<'light' | 'dark', Palette> = {
     border: '#2A3C50',
     success: '#7ADDB2',
     danger: '#FFADBC',
+    dangerSoft: '#352332',
     warning: '#F3CE83',
     soft: '#223853',
     subtle: '#1B2D41',

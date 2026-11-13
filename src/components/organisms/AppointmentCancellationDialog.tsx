@@ -3,6 +3,7 @@ import { Text } from '../atoms/Text';
 import { Notice } from '../molecules/Notice';
 import { EntityForm } from './EntityForm';
 import { ModalPanel } from './ModalPanel';
+import { cancellationFields } from '../../constants/appointmentFields';
 /** Solicita motivo y confirma la cancelación mediante el comando del turno.
  * @param props - Propiedades tipadas: m.
  * @returns Vista de AppointmentCancellationDialog con el contrato de propiedades declarado.
@@ -18,12 +19,13 @@ export function AppointmentCancellationDialog({
       title="Cancelar turno"
       onClose={() => m.setCancelOpen(false)}
     >
-      <Text>La cancelación liberará este horario.</Text>
+      <Text>
+        Este horario quedará libre. El motivo se guardará en el turno y el cliente podrá
+        consultarlo.
+      </Text>
       <Notice error={m.action.error} />
       <EntityForm
-        fields={[
-          { name: 'reason', label: 'Motivo (opcional)', required: false, maxLength: 500 },
-        ]}
+        fields={cancellationFields}
         onSubmit={m.cancel}
         busy={m.action.busy}
         submitLabel="Confirmar cancelación"

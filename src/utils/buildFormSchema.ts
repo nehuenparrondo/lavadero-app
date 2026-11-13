@@ -7,7 +7,7 @@ import type { FormFieldDefinition } from '../types/form';
 export function buildFormSchema(fields: FormFieldDefinition[]) {
   const shape: Record<string, z.ZodString> = {};
   for (const field of fields) {
-    let rule = z.string();
+    let rule = field.kind === 'textarea' ? z.string().trim() : z.string();
     if (field.required !== false) rule = rule.min(1, 'Completá este campo.');
     if (field.minLength)
       rule = rule.min(field.minLength, `Usá al menos ${field.minLength} caracteres.`);

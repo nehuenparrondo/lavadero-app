@@ -13,6 +13,7 @@ import { AppointmentWashReport } from '../../components/organisms/AppointmentWas
 import { Screen } from '../../components/organisms/Screen';
 import { useAppointmentDetail } from '../../hooks/useAppointmentDetail';
 import { appointmentDate } from '../../utils/format';
+import { AppointmentCancellation } from '../../components/molecules/AppointmentCancellation';
 /** Detalle de reserva con controles del rol, notas y comprobante histórico.
  * @returns Vista de AppointmentDetailScreen con el contrato de propiedades declarado.
  */
@@ -46,6 +47,7 @@ function AppointmentContent({ m }: { m: ReturnType<typeof useAppointmentDetail> 
     <>
       <SectionHeader title={appointmentTitle(a)} subtitle={appointmentDate(a.startsAt)} />
       <AppointmentInformation m={m} />
+      <AppointmentCancellation appointment={a} />
       {a.vehiclePending ? <PendingVehicle m={m} /> : <AppointmentVehicleDetail m={m} />}
       <AppointmentWashReport m={m} />
       <AppointmentActions manager={m} />

@@ -24,5 +24,11 @@ export function Card({
   );
 }
 const styles = StyleSheet.create({
-  card: { padding: 22, borderRadius: 16, borderWidth: 1, gap: 16 },
+  card: {
+    padding: 22,
+    borderRadius: 20,
+    borderWidth: 1,
+    gap: 18,
+    boxShadow: '0 4px 20px rgba(12, 30, 53, 0.045)',
+  },
 });

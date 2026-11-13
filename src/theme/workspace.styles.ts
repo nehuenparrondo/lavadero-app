@@ -8,7 +8,7 @@ export const workspaceStyles = StyleSheet.create({
   nav: { gap: 6 },
   navItem: {
     minHeight: 46,
-    borderRadius: 10,
+    borderRadius: 14,
     paddingHorizontal: 13,
     gap: 12,
     flexDirection: 'row',

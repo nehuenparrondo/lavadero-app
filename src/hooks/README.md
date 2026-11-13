@@ -27,6 +27,7 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 | [useBookingResources.ts](useBookingResources.ts) | Cotiza por categoría y recarga las opciones vigentes cuando se vuelve al formulario. |
 | [useBookingSelection.ts](useBookingSelection.ts) | Cada cambio de titular, categoría, servicios o día invalida el inicio elegido. |
 | [useBookingSubmit.ts](useBookingSubmit.ts) | Envía la intención de reserva sin confiar en el precio de la interfaz. |
+| [useCancellationNotices.ts](useCancellationNotices.ts) | Consulta avisos propios y confirma su lectura en el servidor. |
 | [useCatalog.ts](useCatalog.ts) | Compone consulta, edición de servicio y edición de tarifa como responsabilidades separadas. |
 | [useConnectionNotice.ts](useConnectionNotice.ts) | Evita parpadeos en conexiones rápidas y explica esperas prolongadas en la app. |
 | [useCustomerMessages.ts](useCustomerMessages.ts) | Lista y mutaciones de atención; la API decide la bandeja permitida por rol. |
@@ -35,6 +36,7 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 | [useEditorState.ts](useEditorState.ts) | Mantiene exclusivamente la selección y apertura de un editor de entidad. |
 | [useEntityManager.ts](useEntityManager.ts) | Une una colección paginada con el editor reutilizable; preserva error de lectura separado. |
 | [useHome.ts](useHome.ts) | Próximas tres visitas propias, ordenadas cronológicamente. |
+| [useInputFocus.ts](useInputFocus.ts) | Mejora el foco sin reemplazar los eventos de React Hook Form ni del control nativo. |
 | [useOptions.ts](useOptions.ts) | Carga todas las páginas de un selector y permite actualizarlo al volver a la pantalla. |
 | [usePagedList.ts](usePagedList.ts) | Lista paginada con filtro y navegación entre páginas para no truncar datos. |
 | [useProfile.ts](useProfile.ts) | Perfil propio con formularios, sesión y comandos separados por responsabilidad. |

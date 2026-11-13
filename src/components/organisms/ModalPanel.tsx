@@ -25,7 +25,7 @@ export function ModalPanel({
       <View
         style={{
           flex: 1,
-          backgroundColor: '#00000088',
+          backgroundColor: '#071426A8',
           justifyContent: 'center',
           padding: 16,
           paddingBottom: 88 + insets.bottom,

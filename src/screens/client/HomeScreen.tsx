@@ -6,6 +6,7 @@ import { ClientQuickActions } from '../../components/organisms/ClientQuickAction
 import { ClientVisitList } from '../../components/organisms/ClientVisitList';
 import { Screen } from '../../components/organisms/Screen';
 import { useHome } from '../../hooks/useHome';
+import { ClientCancellationNotices } from '../../components/organisms/ClientCancellationNotices';
 /** Composición del cliente. useHome conserva la obtención y selección de visitas.
  * @returns Inicio personalizado, reserva principal y seguimiento de visitas reales.
  */
@@ -14,14 +15,15 @@ export function HomeScreen() {
   return (
     <Screen
       refreshing={home.list.loading}
-      onRefresh={home.list.refresh}
-      onRevalidate={home.list.revalidate}
+      onRefresh={home.refresh}
+      onRevalidate={home.revalidate}
     >
       <PageHeading
         eyebrow="Tu espacio"
         title={'Hola, ' + (home.user?.firstName ?? '') + '.'}
         detail="Reservá una visita y seguí el estado de tu lavado desde acá."
       />
+      <ClientCancellationNotices notices={home.notices} />
       <BookingInvitation />
       <ClientQuickActions />
       <OverviewColumns primary={<ClientVisitList home={home} />} secondary={<CareGuide />} />

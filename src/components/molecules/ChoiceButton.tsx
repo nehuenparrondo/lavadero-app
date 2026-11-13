@@ -22,11 +22,12 @@ export function ChoiceButton({
       accessibilityLabel={option.label}
       accessibilityState={{ selected }}
       onPress={onPress}
-      style={[
+      style={({ pressed }) => [
         styles.button,
         {
           borderColor: selected ? colors.primary : colors.border,
           backgroundColor: selected ? colors.soft : colors.surface,
+          opacity: pressed ? 0.8 : 1,
         },
       ]}
     >
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     gap: 4,
     paddingHorizontal: 14,
     paddingVertical: 10,
-    borderRadius: 12,
-    borderWidth: 1,
+    borderRadius: 14,
+    borderWidth: 1.5,
   },
 });

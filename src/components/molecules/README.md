@@ -6,7 +6,9 @@ Composiciones reutilizables: tarjetas, campos, indicadores y distribución adapt
 
 | Archivo | Responsabilidad |
 | --- | --- |
+| [AppointmentCancellation.tsx](AppointmentCancellation.tsx) | Conserva el motivo visible en el detalle, incluso después de leer el aviso de Inicio. |
 | [AppointmentCardFooter.tsx](AppointmentCardFooter.tsx) | La ausencia de importe significa falta de permiso, nunca un total cero. |
+| [AppointmentNote.tsx](AppointmentNote.tsx) | Observación guardada con autor y fecha, diferenciada del campo para escribir otra. |
 | [AppointmentVehicle.tsx](AppointmentVehicle.tsx) | Datos operativos presentes en la proyección de todos los roles. |
 | [AvailableSlots.tsx](AvailableSlots.tsx) | Horarios ya validados por el servidor y estado vacío cuando la fecha está completa. |
 | [BookingSection.tsx](BookingSection.tsx) | Agrupa un paso de la reserva con una jerarquía visual consistente. |
@@ -14,6 +16,7 @@ Composiciones reutilizables: tarjetas, campos, indicadores y distribución adapt
 | [CalendarDay.tsx](CalendarDay.tsx) | Celda táctil del calendario o espacio vacío de la semana. |
 | [CalendarGrid.tsx](CalendarGrid.tsx) | Seis semanas de calendario, compartidas por web y dispositivos nativos. |
 | [CalendarNavigation.tsx](CalendarNavigation.tsx) | Cambia el mes visible sin modificar la fecha del formulario. |
+| [CancellationNoticeMessage.tsx](CancellationNoticeMessage.tsx) | Explica qué reserva cambió y conserva el motivo completo, sin abreviarlo. |
 | [Card.tsx](Card.tsx) | Superficie neutra para agrupar información; el estilo permite componer grids sin duplicarla. |
 | [CareGuide.tsx](CareGuide.tsx) | Ayuda basada en funciones existentes, sin prometer servicios ni tiempos fijos. |
 | [ChoiceButton.tsx](ChoiceButton.tsx) | Opción táctil con estado seleccionado accesible y contraste del tema. |
@@ -28,6 +31,7 @@ Composiciones reutilizables: tarjetas, campos, indicadores y distribución adapt
 | [FieldInput.tsx](FieldInput.tsx) | Ajusta teclado y privacidad según el tipo semántico del campo. |
 | [FloatingControls.tsx](FloatingControls.tsx) | Controles persistentes abajo a la derecha; volver arriba aparece solo cuando es útil. |
 | [FormField.tsx](FormField.tsx) | Label, entrada y error, con selectors legibles para campos enumerados. |
+| [FormFieldFeedback.tsx](FormFieldFeedback.tsx) | Ayuda de escritura y validación sin anunciar cada carácter a lectores de pantalla. |
 | [LoadingState.tsx](LoadingState.tsx) | Estado visible mientras se verifica sesión o se carga una lista. |
 | [MetricTile.tsx](MetricTile.tsx) | Indicador de solo lectura; recibe valores reales o un guion mientras no hay respuesta. |
 | [Notice.tsx](Notice.tsx) | Mensaje de error/éxito anunciado a lectores de pantalla. |

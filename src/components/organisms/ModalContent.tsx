@@ -21,7 +21,9 @@ export function ModalContent({
 }>) {
   const { colors } = useTheme();
   return (
-    <View style={[styles.panel, { backgroundColor: colors.surface }]}>
+    <View
+      style={[styles.panel, { backgroundColor: colors.surface, borderColor: colors.border }]}
+    >
       <ControlledScrollView
         controls={controls}
         keyboardShouldPersistTaps="handled"
@@ -50,5 +52,7 @@ const styles = StyleSheet.create({
     maxWidth: 620,
     alignSelf: 'center',
     borderRadius: 24,
+    borderWidth: 1,
+    boxShadow: '0 24px 80px rgba(0, 0, 0, 0.22)',
   },
 });

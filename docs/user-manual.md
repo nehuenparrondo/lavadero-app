@@ -192,3 +192,11 @@ En **Vehículos**, Administración puede registrar un vehículo para un cliente 
 En Administración, **Lavados pendientes** muestra las solicitudes recién creadas en primer lugar, aunque sean para otro día. Abrí Nuevas solicitudes para ver la bandeja completa. Usá Hoy, Todas las fechas o Por verificar y la búsqueda por patente para cambiar de recorrido. Más filtros permite buscar cliente, empleado y estado sin listas enormes.
 
 Las pantallas con datos consultan automáticamente mientras están visibles y al volver a ellas; ya no hay botones Actualizar. Los formularios abiertos conservan lo que estás escribiendo. La reserva consulta cada 10 segundos y las agendas cada 15.
+
+## Cancelaciones y observaciones
+
+Si el lavadero cancela tu reserva, Inicio muestra **Tu turno fue cancelado**, la fecha, el vehículo y el motivo completo. El aviso aparece automáticamente mientras usás Inicio y al volver a la pantalla. **Ver turno** abre el detalle sin descartarlo; **Entendido** guarda que lo leíste. El motivo sigue disponible en el detalle aunque cierres sesión.
+
+Al cancelar, escribí un motivo concreto: es obligatorio y admite hasta 500 caracteres. Las observaciones del trabajo se escriben en un campo de varias líneas, con contador de hasta 2000 caracteres, y se muestran con autor y fecha después de guardarlas. La actualización automática no borra un borrador cuando otra persona agrega una observación.
+
+Se mantiene la estructura y navegación por rol. Se mejoraron las superficies, botones, campos de entrada y mensajes en los temas claro y oscuro.

@@ -35,7 +35,12 @@ export function Button({
       onPress={onPress}
       style={({ pressed }) => [
         styles.button,
-        { backgroundColor: background, opacity: disabled ? 0.45 : pressed ? 0.75 : 1 },
+        {
+          backgroundColor: background,
+          opacity: disabled ? 0.45 : pressed ? 0.88 : 1,
+          borderColor: variant === 'secondary' ? colors.border : 'transparent',
+          transform: [{ scale: pressed ? 0.985 : 1 }],
+        },
       ]}
     >
       <ButtonContent label={label} color={foreground} icon={icon} loading={loading} />
@@ -44,10 +49,11 @@ export function Button({
 }
 const styles = StyleSheet.create({
   button: {
-    minHeight: 48,
+    minHeight: 50,
     paddingHorizontal: 18,
     paddingVertical: 12,
-    borderRadius: 10,
+    borderRadius: 14,
+    borderWidth: 1,
     flexDirection: 'row',
     gap: 9,
     justifyContent: 'center',

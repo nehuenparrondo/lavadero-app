@@ -1,9 +1,9 @@
 import { View } from 'react-native';
-import { useTheme } from '../../hooks/useTheme';
 import type { FormFieldDefinition } from '../../types/form';
 import { Text } from '../atoms/Text';
 import { ChoiceGroup } from './ChoiceGroup';
 import { FieldInput } from './FieldInput';
+import { FormFieldFeedback } from './FormFieldFeedback';
 /** Label, entrada y error, con selectors legibles para campos enumerados.
  * @param props - Propiedades tipadas: field, value, onChange, onBlur, error.
  * @returns Vista de FormField con el contrato de propiedades declarado.
@@ -21,10 +21,12 @@ export function FormField({
   onBlur?: () => void;
   error?: string | undefined;
 }) {
-  const { colors } = useTheme();
   return (
     <View style={{ gap: 8 }}>
-      <Text style={{ fontWeight: '600', fontSize: 14 }}>{field.label}</Text>
+      <Text style={{ fontWeight: '700', fontSize: 13 }}>
+        {field.label}
+        {field.required === false ? '' : ' *'}
+      </Text>
       {field.kind === 'choice' || field.kind === 'multiple' ? (
         <ChoiceGroup
           options={field.options ?? []}
@@ -35,11 +37,7 @@ export function FormField({
       ) : (
         <FieldInput field={field} value={value} onChange={onChange} onBlur={onBlur} />
       )}
-      {error && (
-        <Text accessibilityLiveRegion="polite" style={{ fontSize: 13, color: colors.danger }}>
-          {error}
-        </Text>
-      )}
+      <FormFieldFeedback field={field} value={value} error={error} />
     </View>
   );
 }

@@ -84,6 +84,8 @@ export interface Appointment {
   vehicleType?: string;
   vehiclePending?: boolean;
   vehicleDescription?: string | null;
+  cancellationReason?: string | null;
+  cancelledByName?: string | null;
   wash?: import('./operations').WashSubmission | null;
   /** Total histórico del contrato, expresado en centavos ARS. */
   totalCents?: number;

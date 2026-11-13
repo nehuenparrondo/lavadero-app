@@ -6,6 +6,7 @@ DTOs del contrato y vocabulario visual. Son propios del frontend y no importan c
 
 | Archivo | Responsabilidad |
 | --- | --- |
+| [cancellation.ts](cancellation.ts) | Aviso de cancelación del equipo, pendiente de lectura por el titular. |
 | [entities.ts](entities.ts) | Roles enviados y verificados por la API, sin código importado desde el backend. |
 | [form.ts](form.ts) | Opción de catálogo o filtro sin dependencia del sistema visual. |
 | [health.ts](health.ts) | Contrato propio del frontend, documentado en OpenAPI v0.1.0 del backend. |

@@ -8,6 +8,7 @@ export function useAppointmentFlags(appointment: Appointment | null) {
   const [employeeId, setEmployeeId] = useState('');
   const [cancelOpen, setCancelOpen] = useState(false);
   const [paymentOpen, setPaymentOpen] = useState(false);
+  const [noteRevision, setNoteRevision] = useState(0);
   useEffect(() => {
     if (appointment) {
       setEmployeeId(appointment.employeeId ?? '');
@@ -20,5 +21,7 @@ export function useAppointmentFlags(appointment: Appointment | null) {
     setCancelOpen,
     paymentOpen,
     setPaymentOpen,
+    noteRevision,
+    setNoteRevision,
   };
 }

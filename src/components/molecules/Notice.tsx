@@ -20,9 +20,18 @@ export function Notice({
   return (
     <View
       accessibilityLiveRegion="polite"
-      style={{ padding: 14, borderRadius: 12, gap: 8, backgroundColor: colors.soft }}
+      style={{
+        padding: 16,
+        borderRadius: 14,
+        gap: 10,
+        backgroundColor: error ? colors.dangerSoft : colors.soft,
+        borderLeftWidth: 3,
+        borderColor: error ? colors.danger : colors.primary,
+      }}
     >
-      <Text style={{ color: error ? colors.danger : colors.success }}>{error || message}</Text>
+      <Text style={{ lineHeight: 22, color: error ? colors.danger : colors.text }}>
+        {error || message}
+      </Text>
       {error && onRetry && (
         <Button label="Volver a intentar" onPress={onRetry} variant="quiet" />
       )}

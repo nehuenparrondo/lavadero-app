@@ -20,7 +20,9 @@ export function Badge({
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderRadius: 20,
-        backgroundColor: colors.soft,
+        backgroundColor: tone === 'danger' ? colors.dangerSoft : colors.soft,
+        borderWidth: 1,
+        borderColor: colors[tone] + '30',
       }}
     >
       <Text style={{ fontSize: 12, fontWeight: '700', color: colors[tone] }}>{label}</Text>

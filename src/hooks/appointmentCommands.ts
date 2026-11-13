@@ -25,7 +25,8 @@ export function appointmentCommands(
     await mutate('patch', '/status', { status: 'confirmed' });
   };
   const addNote = async (v: Record<string, string>) => {
-    await mutate('post', '/notes', { body: v.body });
+    if ((await mutate('post', '/notes', { body: v.body })) !== undefined)
+      flags.setNoteRevision((revision) => revision + 1);
   };
   return { assign, cancel, advance, setAdminStatus, addNote };
 }

@@ -6,6 +6,7 @@ Catálogos de solo lectura y definiciones declarativas. No contienen secretos ni
 
 | Archivo | Responsabilidad |
 | --- | --- |
+| [appointmentFields.ts](appointmentFields.ts) | Motivo obligatorio visible al cliente y conservado con la cancelación. |
 | [authFields.ts](authFields.ts) | Campos de acceso sin selector de rol. |
 | [business.ts](business.ts) | Roles que puede emitir y validar el contrato del sistema. |
 | [iconPaths.ts](iconPaths.ts) | Trazos originales sobre una grilla de 24 unidades, compartidos por web y nativo. |

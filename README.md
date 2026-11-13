@@ -72,3 +72,5 @@ de la pestaña; cerrar la pestaña elimina esa persistencia. El access token que
 Ver [comportamiento, módulos y pruebas de la versión 1.1.1](docs/reliability.md).
 
 La agenda compartida, la asignación, la verificación del trabajo, los reclamos y el fichaje se explican en el [manual de uso](docs/user-manual.md).
+
+Ver [cancelaciones, observaciones y mejora de interfaz](docs/interface-polish.md).

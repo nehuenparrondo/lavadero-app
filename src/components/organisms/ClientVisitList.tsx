@@ -14,8 +14,8 @@ export function ClientVisitList({ home: h }: { home: ReturnType<typeof useHome> 
   return (
     <>
       <SectionHeader
-        title="Tus próximas visitas"
-        subtitle="Todo lo que necesitás saber antes de llegar."
+        title="Tus turnos activos"
+        subtitle="Horarios, servicios y estado de tus visitas pendientes."
       />
       <Notice error={h.list.error} onRetry={h.list.refresh} />
       {h.upcoming.map((a) => (

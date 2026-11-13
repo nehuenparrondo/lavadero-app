@@ -42,6 +42,8 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [BookingServicesField.tsx](BookingServicesField.tsx) | Ofrece un lavado base y adicionales separados para el tipo cotizado. |
 | [BookingSummary.tsx](BookingSummary.tsx) | Confirma únicamente una cotización y un horario que siguen vigentes. |
 | [BookingTypeField.tsx](BookingTypeField.tsx) | Solicita solo la categoría que determina la cotización. |
+| [CancellationNoticeCard.tsx](CancellationNoticeCard.tsx) | Cancelación del equipo con contexto, motivo completo y dos acciones inequívocas. |
+| [ClientCancellationNotices.tsx](ClientCancellationNotices.tsx) | Avisos visibles en Inicio hasta que el cliente confirme haberlos leído. |
 | [ClientQuickActions.tsx](ClientQuickActions.tsx) | Tareas de preparación antes de reservar; no duplica consultas del catálogo. |
 | [ClientVisitList.tsx](ClientVisitList.tsx) | Visitas autorizadas, con carga/error separados del estado vacío. |
 | [CollectionState.tsx](CollectionState.tsx) | Estados consistentes de lista: carga inicial, error recuperable y vacío. |
