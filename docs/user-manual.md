@@ -4,7 +4,17 @@ La misma app muestra una experiencia distinta según el rol asignado por el serv
 Las capturas provienen de la versión web conectada a la API publicada. Se revisaron
 anchos de teléfono y paisaje; no son capturas de un teléfono físico.
 
-## Interfaz actualizada 1.1
+## Reserva y administración actuales
+
+La disponibilidad se elige con una rueda de horarios libres. Las agendas y bandejas se actualizan automáticamente. Las capturas siguientes corresponden a los controles actuales; las imágenes posteriores se conservan como referencia de los recorridos anteriores.
+
+![Rueda de horarios disponibles](images/redesign-wheel-final.png)
+
+![Solicitudes nuevas en Administración](images/redesign-admin-final.png)
+
+![Filtros de turnos](images/redesign-filters-final.png)
+
+## Interfaz actual
 
 La portada de cada rol tiene una composición propia y comparte el mismo sistema
 visual. En escritorio se usa la barra lateral; en teléfono Cliente/Empleado usan
@@ -52,7 +62,7 @@ Las tarifas vigentes se consultan por servicio y tipo de vehículo. El administr
 
 ### Reserva y cancelación
 
-En Inicio elegí **Reservar mi lavado**. Seleccioná el tipo de vehículo, el lavado y los extras que quieras, y luego la fecha y el horario. La app muestra el total en pesos argentinos y la duración estimada antes de confirmar. Atención inicial: lunes a sábado 09:30–16:30, un auto a la vez.
+En Inicio elegí **Reservar mi lavado**. Seleccioná el tipo de vehículo, el lavado y los extras que quieras, y luego la fecha y el horario disponible con la rueda. Arrastrá la rueda o usá Anterior/Siguiente; la fila central indica la hora elegida. La app muestra el total en pesos argentinos y la duración estimada antes de confirmar. Atención inicial: lunes a sábado 09:30–16:30, un auto a la vez.
 Elegí un solo lavado base. El encerado cuesta $15.000 y se combina con exterior o completo. La limpieza de tapizados cuesta $20.000 y también se puede pedir por separado. Para moto solo se ofrece **Lavado** por $15.000, con una duración inicial de 35 minutos.
 
 La grilla propone inicios cada 5 minutos; no implica que cada lavado dure 5 minutos.
@@ -63,6 +73,8 @@ El turno queda **Confirmado** automáticamente y ocupa el horario desde ese mome
 En **Mis turnos** consultá Próximos/Pasados y abrí una tarjeta para ver su detalle.
 La cancelación propia está disponible en Pendiente/Confirmado con más de 120 minutos
 de anticipación, salvo que el Administrador cambie esa política.
+El lavado base y los extras tienen botones de tamaño uniforme. Para quitar un servicio seleccionado, tocá su botón otra vez. La cera y los tapizados son extras; no se pueden combinar dos lavados base.
+
 La app actualiza los horarios cada 10 segundos mientras la pantalla de reserva está visible y al volver a ella. Si alguien confirma el mismo horario antes que vos, la app te avisa y vuelve a consultar las opciones. Solo se acepta una reserva para cada hora de inicio.
 
 ### Comprobante
@@ -76,7 +88,7 @@ También podés consultar las observaciones del trabajo y el saldo.
 ## Empleado
 
 **Mi agenda** abre la fecha actual; cambiá el filtro para otra jornada.
-Aparecen todos los turnos del equipo, con vehículo, color, servicios y horario. Buscá por patente para consultar cualquier fecha, o elegí un día para ver la jornada. La agenda se actualiza automáticamente mientras está visible y dispone de Actualizar agenda.
+Aparecen todos los turnos del equipo, con vehículo, color, servicios y horario. Buscá por patente para consultar cualquier fecha, o elegí un día para ver la jornada. La agenda se actualiza automáticamente cada 15 segundos mientras está visible, sin pulsar botones.
 El resumen de jornada distingue finalizados y pendientes. **Historial** muestra trabajos
 cerrados. No se ofrecen usuarios, configuración ni reportes de ingresos del negocio.
 
@@ -174,3 +186,9 @@ Tocá tu nombre/avatar arriba a la derecha o abajo a la izquierda en la barra la
 ### Tipos de vehículo y tarifas
 
 En **Vehículos**, Administración puede registrar un vehículo para un cliente y crear un tipo con sus tarifas por servicio desde **Agregar tipo y tarifas**. Las tarifas se aplican a los próximos turnos de ese tipo. En **Editar** se pueden ajustar los importes.
+
+## Bandejas y actualización automática
+
+En Administración, **Lavados pendientes** muestra las solicitudes recién creadas en primer lugar, aunque sean para otro día. Abrí Nuevas solicitudes para ver la bandeja completa. Usá Hoy, Todas las fechas o Por verificar y la búsqueda por patente para cambiar de recorrido. Más filtros permite buscar cliente, empleado y estado sin listas enormes.
+
+Las pantallas con datos consultan automáticamente mientras están visibles y al volver a ellas; ya no hay botones Actualizar. Los formularios abiertos conservan lo que estás escribiendo. La reserva consulta cada 10 segundos y las agendas cada 15.

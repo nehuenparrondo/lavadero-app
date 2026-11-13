@@ -1,4 +1,14 @@
-# Entrega Lavadero 1.2.0
+# Entrega actual — web y MariaDB
+
+La versión vigente está publicada en [Render](https://lavadero-app-2558.onrender.com) y en la [copia de alwaysdata](https://nehuenlavadero.alwaysdata.net). La API utiliza MariaDB 11.8.9 con 24 tablas españolas, 34 relaciones y 14 migraciones. Se conservaron todos los datos copiados; Aiven quedó como respaldo anterior.
+
+Se incorporaron actualización automática, rueda de horarios disponibles, selección uniforme de servicios, nuevas bandejas y filtros administrativos y reorganización de las tres vistas. Se aprobaron 70 pruebas y recorridos de navegador para los tres roles. Ver [funcionamiento](https://github.com/nehuenparrondo/lavadero-api/blob/main/docs/functional-guide.md), [gestor SQL](https://github.com/nehuenparrondo/lavadero-api/blob/main/docs/mariadb.md) y [migración y verificación](https://github.com/nehuenparrondo/lavadero-api/blob/main/docs/mariadb.md).
+
+Los archivos APK y ZIP de la entrega 1.2.0 que siguen listados abajo son **históricos**. Los cambios actuales están en los repositorios y la web; no se recompiló un APK nuevo ni se probaron físicamente en iPhone.
+
+---
+
+# Registro histórico — Lavadero 1.2.0
 
 | Entregable                | Dirección                                                                                                  |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -15,7 +25,7 @@
 
 Reservas confirmadas automáticamente en la agenda compartida de todos los empleados, sin datos de asignación para el cliente. Actualización visible por fecha, tablero de turnos por atender, botones flotantes universales de tema/volver arriba y acceso al perfil desde la identidad del encabezado y barra lateral. La recarga conserva la pantalla del rol correcto.
 
-docs/shared-verification.md describe la decisión posterior del usuario, que reemplaza la asignación exclusiva del enunciado inicial. verificacion-1.2.0.json registra las pruebas y fuentes concretas. En los repositorios, ver docs/shared-agenda.md y docs/shared-verification.md.
+CORRECCIONES-AGENDA-Y-CONTROLES.md describe la decisión posterior del usuario, que reemplaza la asignación exclusiva del enunciado inicial. verificacion-1.2.0.json registra las pruebas y fuentes concretas. En los repositorios, ver docs/shared-agenda.md y docs/shared-verification.md.
 
 ## Verificación
 
