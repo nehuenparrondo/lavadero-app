@@ -1,6 +1,6 @@
 # Entrega actual — web y MariaDB
 
-La versión vigente está publicada en [Render](https://lavadero-app-2558.onrender.com) y en la [copia de alwaysdata](https://nehuenlavadero.alwaysdata.net). La API utiliza MariaDB 11.8.9 con 24 tablas españolas, 34 relaciones y 14 migraciones. Se conservaron todos los datos copiados; Aiven quedó como respaldo anterior.
+La versión vigente está publicada en [Render](https://lavadero-app-2558.onrender.com). Los archivos de la copia secundaria están alojados en alwaysdata, pero su dirección presenta un fallo de conexión pendiente. Usar la web principal de Render. La API utiliza MariaDB 11.8.9 con 24 tablas españolas, 34 relaciones y 14 migraciones. Se conservaron todos los datos copiados; Aiven quedó como respaldo anterior.
 
 Se incorporaron actualización automática, rueda de horarios disponibles, selección uniforme de servicios, nuevas bandejas y filtros administrativos y reorganización de las tres vistas. Se aprobaron 70 pruebas y recorridos de navegador para los tres roles. Ver [funcionamiento](https://github.com/nehuenparrondo/lavadero-api/blob/main/docs/functional-guide.md), [gestor SQL](https://github.com/nehuenparrondo/lavadero-api/blob/main/docs/mariadb.md) y [migración y verificación](https://github.com/nehuenparrondo/lavadero-api/blob/main/docs/mariadb.md).
 
