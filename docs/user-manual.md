@@ -115,8 +115,8 @@ Reportes, Configuración y Perfil. Desde el tablero también administrás vehíc
 ### Usuarios y catálogo
 
 En **Usuarios** buscá por nombre/email o filtrá por rol. Podés crear, editar,
-activar/desactivar, asignar rol y habilitar cobros a empleados. La eliminación es lógica.
-Cambiar datos administrativos, rol o contraseña puede cerrar sesiones del usuario.
+activar/desactivar y habilitar cobros a empleados. Al crear elegís Cliente o Empleado; al editar no se cambia el rol ni se ofrece Administrador. La eliminación es lógica.
+Cambiar datos administrativos o contraseña puede cerrar sesiones del usuario.
 No podés eliminarte, desactivarte ni quitarte el rol; siempre queda un admin activo.
 
 ![Administración de usuarios](images/admin-usuarios.png)
@@ -128,13 +128,13 @@ contratadas. Los tipos se gestionan desde Configuración.
 ### Turnos, pagos y reportes
 
 En **Turnos** filtrá fecha, estado, cliente y empleado. Podés crear una reserva para
-un cliente que llama por teléfono. La reserva se confirma automáticamente para todo el equipo. La app asigna automáticamente a un empleado activo disponible. Podés reasignar antes del inicio. En **Turnos → Lavados por verificar** revisá el parte, inspeccioná el auto y confirmá el trabajo en horario de atención o devolvelo con un motivo.
+un cliente que llama por teléfono. La reserva se confirma automáticamente para todo el equipo. La app asigna automáticamente a un empleado activo disponible. Podés reasignar antes del inicio. En **Resumen → Verificar lavados** revisá el parte, inspeccioná el auto y confirmá el trabajo en horario de atención o devolvelo con un motivo.
 Podés corregir estados, rechazar/cancelar y registrar observaciones o pagos.
 
 ![Asignación de empleado](images/admin-asignacion.png)
 
 En **Reportes** elegí día, semana o mes y fecha de referencia. Consultá lavados,
-ingresos, servicios pedidos y rendimiento. Los ingresos se cuentan por fecha real de
+ingresos por semana y servicios pedidos con barras de cantidad. Los ingresos se cuentan por fecha real de
 registro del pago; los trabajos por su fecha de atención, por eso pueden diferir.
 
 ### Configuración y perfil
@@ -146,8 +146,7 @@ las existentes conservan su fecha y valores contratados.
 ![Configuración del negocio](images/admin-configuracion.png)
 
 Cada rol dispone de Perfil para nombre, apellido, teléfono y foto mediante enlace HTTPS.
-Las cuentas con contraseña local pueden cambiarla indicando la actual. Apariencia permite
-seguir el sistema; el botón flotante permite alternar Claro/Oscuro y guarda la elección. Cerrar sesión revoca la sesión del dispositivo.
+Las cuentas con contraseña local pueden cambiarla indicando la actual. En el perfil administrativo se retiró Apariencia; el botón flotante permite alternar Claro/Oscuro y guarda la elección. Cerrar sesión revoca la sesión del dispositivo.
 
 ![Perfil y tema claro](images/perfil-claro.png)
 
@@ -189,7 +188,7 @@ En **Vehículos**, Administración puede registrar un vehículo para un cliente 
 
 ## Bandejas y actualización automática
 
-En Administración, **Lavados pendientes** muestra las solicitudes recién creadas en primer lugar, aunque sean para otro día. Abrí Nuevas solicitudes para ver la bandeja completa. Usá Hoy, Todas las fechas o Por verificar y la búsqueda por patente para cambiar de recorrido. Más filtros permite buscar cliente, empleado y estado sin listas enormes.
+En Administración, **Lavados pendientes** muestra las solicitudes recién creadas en primer lugar, aunque sean para otro día. Abrí Nuevas solicitudes para ver la bandeja completa. Usá Hoy o Todas las fechas y la búsqueda por patente para cambiar de recorrido. Más filtros permite buscar cliente, empleado y estado sin listas enormes.
 
 Las pantallas con datos consultan automáticamente mientras están visibles y al volver a ellas; ya no hay botones Actualizar. Los formularios abiertos conservan lo que estás escribiendo. La reserva consulta cada 10 segundos y las agendas cada 15.
 
@@ -200,3 +199,11 @@ Si el lavadero cancela tu reserva, Inicio muestra **Tu turno fue cancelado**, la
 Al cancelar, escribí un motivo concreto: es obligatorio y admite hasta 500 caracteres. Las observaciones del trabajo se escriben en un campo de varias líneas, con contador de hasta 2000 caracteres, y se muestran con autor y fecha después de guardarlas. La actualización automática no borra un borrador cuando otra persona agrega una observación.
 
 Se mantiene la estructura y navegación por rol. Se mejoraron las superficies, botones, campos de entrada y mensajes en los temas claro y oscuro.
+
+### Auto sin turno y asistencia laboral
+
+En el menú o el resumen administrativo abrí **Auto sin turno**. Cargá patente, tipo y servicios. Si hace falta, desplegá contacto y observaciones. Registrá la llegada: aparece la confirmación con horario y precio. No exige que el auto esté en el garaje ni que el cliente tenga cuenta; los datos se guardan y el equipo lo encuentra por patente. El sistema respeta las reservas existentes, evita duplicados y busca lugar para hoy dentro de la jornada. **Registrar otro auto** limpia los datos del cliente anterior.
+
+Para cancelar es obligatorio escribir un motivo; queda guardado y el cliente registrado recibe el aviso en Inicio. En **Asistencia**, fichá cuando veas llegar al empleado, solo en día y hora laboral. Fuera de horario los botones están deshabilitados y se muestra la explicación. Las fechas anteriores permiten consultar los fichajes.
+
+En cada servicio usá **Editar servicio**, **Editar precios** o **Eliminar servicio**. La baja conserva los datos de los turnos anteriores. Los gráficos del resumen comparan semanas del mes; en Reportes podés elegir otro período. El trabajo del empleado mantiene revisión administrativa desde su bandeja, aunque se haya retirado el filtro rápido Por verificar de Turnos.

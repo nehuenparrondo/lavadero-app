@@ -8,7 +8,7 @@ La reserva tiene dos pasos: categoría/servicios y fecha/horario. El resumen mue
 
 `Screen` consulta cambios cada 15 segundos mientras está visible y al regresar a la ruta o aplicación. La disponibilidad se consulta cada 10 segundos. Las pantallas usan `revalidate` para conservar los datos y formularios del mismo filtro mientras llega la respuesta. No hay botones de actualizar ni recarga al tirar del contenido. Las acciones de guardar vuelven a consultar inmediatamente. Las consultas se suspenden al salir o pasar a segundo plano y no se solapan.
 
-La agenda del equipo muestra búsqueda por patente y accesos a Hoy/Todas las fechas. Administración agrega Nuevas solicitudes/Por verificar y un panel de filtros avanzados con búsqueda de cliente y empleado. Un acceso rápido limpia los filtros incompatibles anteriores; cambiar un filtro reinicia la paginación.
+La agenda del equipo muestra búsqueda por patente y accesos a Hoy/Todas las fechas. Administración agrega Nuevas solicitudes y un panel de filtros avanzados con búsqueda de cliente y empleado. Un acceso rápido limpia los filtros incompatibles anteriores; cambiar un filtro reinicia la paginación.
 
 El tablero administrativo consulta `queue=requested`: turnos pendientes o confirmados, sin fecha implícita, ordenados por creación descendente. El enlace abre esa misma bandeja. Al comenzar un lavado deja de pertenecer a nuevas solicitudes y conserva su seguimiento en la agenda.
 
