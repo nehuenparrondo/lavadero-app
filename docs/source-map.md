@@ -569,6 +569,16 @@ Contenido visual del botón, independiente de Pressable y de su política de int
 | ------------- | --------------------------------------------------------------------------------------- |
 | ButtonContent | Contenido visual del botón, independiente de Pressable y de su política de interacción. |
 
+## src/components/atoms/CompactIconButton.tsx
+
+Acción visual pequeña con objetivo táctil amplio y etiqueta para lectores de pantalla.
+
+[Abrir fuente](../src/components/atoms/CompactIconButton.tsx)
+
+| Exportación       | Responsabilidad                                                                        |
+| ----------------- | -------------------------------------------------------------------------------------- |
+| CompactIconButton | Acción visual pequeña con objetivo táctil amplio y etiqueta para lectores de pantalla. |
+
 ## src/components/atoms/FloatingAction.tsx
 
 Acción circular con nombre accesible y contraste adaptado al tema.
@@ -1141,6 +1151,16 @@ Acceso al perfil desde toda la identidad, tanto en cabecera como en barra latera
 | ------------- | ---------------------------------------------------------------------------------- |
 | WorkspaceUser | Acceso al perfil desde toda la identidad, tanto en cabecera como en barra lateral. |
 
+## src/components/organisms/AdminComplaintShortcut.tsx
+
+Hace visibles los reclamos nuevos desde el resumen sin esperar una recarga manual.
+
+[Abrir fuente](../src/components/organisms/AdminComplaintShortcut.tsx)
+
+| Exportación            | Responsabilidad                                                                    |
+| ---------------------- | ---------------------------------------------------------------------------------- |
+| AdminComplaintShortcut | Hace visibles los reclamos nuevos desde el resumen sin esperar una recarga manual. |
+
 ## src/components/organisms/AdminMenu.tsx
 
 Menú administrativo móvil basado en el mismo catálogo que la barra lateral.
@@ -1531,6 +1551,16 @@ Tareas de preparación antes de reservar; no duplica consultas del catálogo.
 | ------------------ | --------------------------------------------------------------------------- |
 | ClientQuickActions | Tareas de preparación antes de reservar; no duplica consultas del catálogo. |
 
+## src/components/organisms/ClientVisitHeader.tsx
+
+Limpieza confirmada del inicio propio sin cancelar las visitas del cliente.
+
+[Abrir fuente](../src/components/organisms/ClientVisitHeader.tsx)
+
+| Exportación       | Responsabilidad                                                             |
+| ----------------- | --------------------------------------------------------------------------- |
+| ClientVisitHeader | Limpieza confirmada del inicio propio sin cancelar las visitas del cliente. |
+
 ## src/components/organisms/ClientVisitList.tsx
 
 Visitas autorizadas, con carga/error separados del estado vacío.
@@ -1601,15 +1631,15 @@ Filtros y resultados compartidos por agenda e historial del equipo.
 | -------------------------- | ------------------------------------------------------------------- |
 | EmployeeAppointmentResults | Filtros y resultados compartidos por agenda e historial del equipo. |
 
-## src/components/organisms/EmployeeDaySummary.tsx
+## src/components/organisms/EmployeePaidFinish.tsx
 
-Resumen de la fecha consultada, compartido por el equipo, sin información financiera.
+El cobro completo habilita el cierre directo, conservando descripción y responsable.
 
-[Abrir fuente](../src/components/organisms/EmployeeDaySummary.tsx)
+[Abrir fuente](../src/components/organisms/EmployeePaidFinish.tsx)
 
-| Exportación        | Responsabilidad                                                                       |
-| ------------------ | ------------------------------------------------------------------------------------- |
-| EmployeeDaySummary | Resumen de la fecha consultada, compartido por el equipo, sin información financiera. |
+| Exportación        | Responsabilidad                                                                      |
+| ------------------ | ------------------------------------------------------------------------------------ |
+| EmployeePaidFinish | El cobro completo habilita el cierre directo, conservando descripción y responsable. |
 
 ## src/components/organisms/EmployeeWorkAction.tsx
 
@@ -2363,13 +2393,13 @@ Carga los vehículos del titular y confirma el vínculo sin volver a reservar el
 
 ## src/hooks/useAppointments.ts
 
-Coordina filtros, página y resumen; el servidor aplica propiedad y asignaciones.
+Coordina filtros, página y opciones; el servidor aplica propiedad y asignaciones.
 
 [Abrir fuente](../src/hooks/useAppointments.ts)
 
-| Exportación     | Responsabilidad                                                                  |
-| --------------- | -------------------------------------------------------------------------------- |
-| useAppointments | Coordina filtros, página y resumen; el servidor aplica propiedad y asignaciones. |
+| Exportación     | Responsabilidad                                                                   |
+| --------------- | --------------------------------------------------------------------------------- |
+| useAppointments | Coordina filtros, página y opciones; el servidor aplica propiedad y asignaciones. |
 
 ## src/hooks/useAttendance.ts
 
@@ -2530,6 +2560,16 @@ Próximas tres visitas propias, ordenadas cronológicamente.
 | Exportación | Responsabilidad                                            |
 | ----------- | ---------------------------------------------------------- |
 | useHome     | Próximas tres visitas propias, ordenadas cronológicamente. |
+
+## src/hooks/useHomeClear.ts
+
+Limpia solo el inicio después de confirmar; Mis turnos y la operación conservan los datos.
+
+[Abrir fuente](../src/hooks/useHomeClear.ts)
+
+| Exportación  | Responsabilidad                                                                            |
+| ------------ | ------------------------------------------------------------------------------------------ |
+| useHomeClear | Limpia solo el inicio después de confirmar; Mis turnos y la operación conservan los datos. |
 
 ## src/hooks/useInputFocus.ts
 

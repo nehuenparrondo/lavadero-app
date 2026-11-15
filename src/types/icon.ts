@@ -22,4 +22,5 @@ export type IconName =
   | 'close'
   | 'sun'
   | 'moon'
-  | 'arrowUp';
+  | 'arrowUp'
+  | 'trash';

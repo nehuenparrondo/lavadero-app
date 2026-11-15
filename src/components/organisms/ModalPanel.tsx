@@ -13,10 +13,12 @@ export function ModalPanel({
   title,
   onClose,
   children,
+  compact = false,
 }: PropsWithChildren<{
   visible: boolean;
   title: string;
   onClose: () => void;
+  compact?: boolean;
 }>) {
   const controls = useScrollControls();
   const insets = useSafeAreaInsets();
@@ -27,11 +29,11 @@ export function ModalPanel({
           flex: 1,
           backgroundColor: '#071426A8',
           justifyContent: 'center',
-          padding: 16,
+          padding: compact ? 8 : 16,
           paddingBottom: 88 + insets.bottom,
         }}
       >
-        <ModalContent controls={controls} title={title} onClose={onClose}>
+        <ModalContent controls={controls} title={title} onClose={onClose} compact={compact}>
           {children}
         </ModalContent>
         <FloatingControls

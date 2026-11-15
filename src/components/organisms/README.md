@@ -6,6 +6,7 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 
 | Archivo                                                                | Responsabilidad                                                                                   |
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| [AdminComplaintShortcut.tsx](AdminComplaintShortcut.tsx)               | Hace visibles los reclamos nuevos desde el resumen sin esperar una recarga manual.                |
 | [AdminMenu.tsx](AdminMenu.tsx)                                         | Menú administrativo móvil basado en el mismo catálogo que la barra lateral.                       |
 | [AdminQueueLinks.tsx](AdminQueueLinks.tsx)                             | Lleva directamente a las dos bandejas que requieren atención administrativa.                      |
 | [AdminQuickActions.tsx](AdminQuickActions.tsx)                         | Accesos operativos que complementan la navegación administrativa.                                 |
@@ -45,6 +46,7 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [CancellationNoticeCard.tsx](CancellationNoticeCard.tsx)               | Cancelación del equipo con contexto, motivo completo y dos acciones inequívocas.                  |
 | [ClientCancellationNotices.tsx](ClientCancellationNotices.tsx)         | Avisos visibles en Inicio hasta que el cliente confirme haberlos leído.                           |
 | [ClientQuickActions.tsx](ClientQuickActions.tsx)                       | Tareas de preparación antes de reservar; no duplica consultas del catálogo.                       |
+| [ClientVisitHeader.tsx](ClientVisitHeader.tsx)                         | Limpieza confirmada del inicio propio sin cancelar las visitas del cliente.                       |
 | [ClientVisitList.tsx](ClientVisitList.tsx)                             | Visitas autorizadas, con carga/error separados del estado vacío.                                  |
 | [CollectionState.tsx](CollectionState.tsx)                             | Estados consistentes de lista: carga inicial, error recuperable y vacío.                          |
 | [CustomerMessageCard.tsx](CustomerMessageCard.tsx)                     | Muestra la conversación y, en devoluciones, el responsable y su descripción histórica.            |
@@ -52,7 +54,7 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [DashboardIndicators.tsx](DashboardIndicators.tsx)                     | Métricas diarias y pendientes globales; un recurso no disponible muestra un guion.                |
 | [DashboardPending.tsx](DashboardPending.tsx)                           | Turnos por atender del negocio; un fallo de consulta no se anuncia como lista vacía.              |
 | [EmployeeAppointmentResults.tsx](EmployeeAppointmentResults.tsx)       | Filtros y resultados compartidos por agenda e historial del equipo.                               |
-| [EmployeeDaySummary.tsx](EmployeeDaySummary.tsx)                       | Resumen de la fecha consultada, compartido por el equipo, sin información financiera.             |
+| [EmployeePaidFinish.tsx](EmployeePaidFinish.tsx)                       | El cobro completo habilita el cierre directo, conservando descripción y responsable.              |
 | [EmployeeWorkAction.tsx](EmployeeWorkAction.tsx)                       | Ofrece iniciar o finalizar el lavado según el estado del turno.                                   |
 | [EntityForm.tsx](EntityForm.tsx)                                       | Formulario RHF + Zod con errores por campo y callback sin HTTP propio.                            |
 | [ModalContent.tsx](ModalContent.tsx)                                   | Panel desplazable; los controles flotantes quedan fuera para no tapar el formulario.              |

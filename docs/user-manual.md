@@ -94,7 +94,7 @@ cerrados. No se ofrecen usuarios, configuración ni reportes de ingresos del neg
 
 ![Agenda compartida](images/agenda-compartida-1.2.png)
 
-El responsable abre el detalle, pulsa **Comenzar lavado** y carga una descripción de lo que hizo. Durante el horario de atención puede pulsar **Enviar a verificación**. Si Administración lo devuelve, el empleado ve la observación y puede volver a enviarlo después de corregirlo.
+El responsable abre el detalle y pulsa **Comenzar lavado**. Si está habilitado para cobrar, registra el total, describe qué hizo y pulsa **Finalizar lavado** durante el horario laboral: queda finalizado directamente. Los empleados sin permiso de cobros conservan **Enviar a verificación**, y Administración puede aprobar o devolver esos partes. Siempre queda registrado el responsable y su descripción.
 
 ![Trabajo y observaciones](images/empleado-trabajo.png)
 
@@ -207,3 +207,13 @@ En el menú o el resumen administrativo abrí **Auto sin turno**. Cargá patente
 Para cancelar es obligatorio escribir un motivo; queda guardado y el cliente registrado recibe el aviso en Inicio. En **Asistencia**, fichá cuando veas llegar al empleado, solo en día y hora laboral. Fuera de horario los botones están deshabilitados y se muestra la explicación. Las fechas anteriores permiten consultar los fichajes.
 
 En cada servicio usá **Editar servicio**, **Editar precios** o **Eliminar servicio**. La baja conserva los datos de los turnos anteriores. Los gráficos del resumen comparan semanas del mes; en Reportes podés elegir otro período. El trabajo del empleado mantiene revisión administrativa desde su bandeja, aunque se haya retirado el filtro rápido Por verificar de Turnos.
+
+## Cliente y empleado: agenda y cierre actualizados
+
+Para reservar, elegí una fecha en el calendario y una hora libre; no viene seleccionado el día de hoy. El calendario se adapta a pantallas chicas y horizontales y tiene el cierre arriba.
+
+El tacho junto a Tus turnos activos limpia las tarjetas del Inicio después de confirmar. Las reservas conservan su vigencia en Mis turnos. Próximos muestra solo confirmados de hoy o de días futuros; los anteriores se consultan en Pasados.
+
+Mi agenda del empleado muestra únicamente los pendientes de Hoy. Mi historial conserva todas las fechas y el buscador por patente. Tras cobrar el total, el responsable describe el trabajo y pulsa Finalizar lavado: queda Finalizado directamente y sale de Hoy, sin aprobación administrativa. El sistema comprueba el horario laboral y conserva quién hizo el trabajo.
+
+Al enviar un reclamo llega a Pendientes del administrador. El resumen muestra el contador de casos abiertos y un acceso directo; la bandeja se actualiza sola. La respuesta vuelve al cliente.

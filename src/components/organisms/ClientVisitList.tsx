@@ -3,7 +3,7 @@ import type { useHome } from '../../hooks/useHome';
 import { Button } from '../atoms/Button';
 import { EmptyState } from '../molecules/EmptyState';
 import { Notice } from '../molecules/Notice';
-import { SectionHeader } from '../molecules/SectionHeader';
+import { ClientVisitHeader } from './ClientVisitHeader';
 import { AppointmentCard } from './AppointmentCard';
 /** Visitas autorizadas, con carga/error separados del estado vacío.
  * @param props Recurso del inicio y selección cronológica de hasta tres turnos.
@@ -13,10 +13,7 @@ export function ClientVisitList({ home: h }: { home: ReturnType<typeof useHome> 
   const router = useRouter();
   return (
     <>
-      <SectionHeader
-        title="Tus turnos activos"
-        subtitle="Horarios, servicios y estado de tus visitas pendientes."
-      />
+      <ClientVisitHeader home={h} />
       <Notice error={h.list.error} onRetry={h.list.refresh} />
       {h.upcoming.map((a) => (
         <AppointmentCard

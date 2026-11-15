@@ -19,7 +19,7 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 | [useAppointmentPayment.ts](useAppointmentPayment.ts)           | Mantiene la misma clave al reintentar un pago y la renueva solo tras su confirmación.          |
 | [useAppointmentResources.ts](useAppointmentResources.ts)       | Consultas del detalle; los recursos administrativos no se solicitan para otros roles.          |
 | [useAppointmentVehicle.ts](useAppointmentVehicle.ts)           | Carga los vehículos del titular y confirma el vínculo sin volver a reservar el horario.        |
-| [useAppointments.ts](useAppointments.ts)                       | Coordina filtros, página y resumen; el servidor aplica propiedad y asignaciones.               |
+| [useAppointments.ts](useAppointments.ts)                       | Coordina filtros, página y opciones; el servidor aplica propiedad y asignaciones.              |
 | [useAttendance.ts](useAttendance.ts)                           | Usa la fecha oficial del servidor y recarga el fichaje tras cada llegada.                      |
 | [useAuth.ts](useAuth.ts)                                       | Accede a sesión verificada.                                                                    |
 | [useBooking.ts](useBooking.ts)                                 | Compone selección, consulta y confirmación sin lógica de negocio dentro de la pantalla.        |
@@ -36,6 +36,7 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 | [useEditorState.ts](useEditorState.ts)                         | Mantiene exclusivamente la selección y apertura de un editor de entidad.                       |
 | [useEntityManager.ts](useEntityManager.ts)                     | Une una colección paginada con el editor reutilizable; preserva error de lectura separado.     |
 | [useHome.ts](useHome.ts)                                       | Próximas tres visitas propias, ordenadas cronológicamente.                                     |
+| [useHomeClear.ts](useHomeClear.ts)                             | Limpia solo el inicio después de confirmar; Mis turnos y la operación conservan los datos.     |
 | [useInputFocus.ts](useInputFocus.ts)                           | Mejora el foco sin reemplazar los eventos de React Hook Form ni del control nativo.            |
 | [useOptions.ts](useOptions.ts)                                 | Carga todas las páginas de un selector y permite actualizarlo al volver a la pantalla.         |
 | [usePagedList.ts](usePagedList.ts)                             | Lista paginada con filtro y navegación entre páginas para no truncar datos.                    |

@@ -21,6 +21,33 @@ export function DateInput({
   onChange: (value: string) => void;
   onBlur?: (() => void) | undefined;
 }) {
+  const { open, month, setMonth, show, choose, close } = useCalendarInput(
+    value,
+    onChange,
+    onBlur,
+  );
+  return (
+    <View>
+      <Button
+        label={`${label}: ${validDate(value) ? calendarLabel(value) : 'Elegir fecha'}`}
+        variant="secondary"
+        onPress={show}
+      />
+      <ModalPanel
+        compact
+        visible={open}
+        title={`Elegir ${label.toLowerCase()}`}
+        onClose={close}
+      >
+        <CalendarNavigation month={month} onChange={setMonth} />
+        <CalendarGrid month={month} value={value} onChange={choose} />
+      </ModalPanel>
+    </View>
+  );
+}
+
+/** Abrir el mes no asigna una fecha al formulario. */
+function useCalendarInput(value: string, onChange: (v: string) => void, onBlur?: () => void) {
   const [open, setOpen] = useState(false);
   const [month, setMonth] = useState(today().slice(0, 7));
   const show = () => {
@@ -32,21 +59,5 @@ export function DateInput({
     onBlur?.();
     setOpen(false);
   };
-  return (
-    <View>
-      <Button
-        label={`${label}: ${validDate(value) ? calendarLabel(value) : 'Elegir fecha'}`}
-        variant="secondary"
-        onPress={show}
-      />
-      <ModalPanel
-        visible={open}
-        title={`Elegir ${label.toLowerCase()}`}
-        onClose={() => setOpen(false)}
-      >
-        <CalendarNavigation month={month} onChange={setMonth} />
-        <CalendarGrid month={month} value={value} onChange={choose} />
-      </ModalPanel>
-    </View>
-  );
+  return { open, month, setMonth, show, choose, close: () => setOpen(false) };
 }

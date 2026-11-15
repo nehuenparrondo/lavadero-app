@@ -9,6 +9,7 @@ export interface WashSubmission {
   reviewedAt: string | null;
   reviewerName?: string | null;
   feedbackId?: string | null;
+  completedByEmployee?: boolean;
 }
 
 /** Reclamo o devolución, con respuesta administrativa cuando se resuelve. */

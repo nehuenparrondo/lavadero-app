@@ -5,6 +5,7 @@ import type { useScrollControls } from '../../hooks/useScrollControls';
 import { ControlledScrollView } from '../molecules/ControlledScrollView';
 import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
+import { CompactIconButton } from '../atoms/CompactIconButton';
 /** Panel desplazable; los controles flotantes quedan fuera para no tapar el formulario.
  * @param props Controlador propietario, título, contenido y cierre.
  * @returns Superficie de diálogo limitada al espacio disponible.
@@ -14,10 +15,12 @@ export function ModalContent({
   title,
   children,
   onClose,
+  compact = false,
 }: PropsWithChildren<{
   controls: ReturnType<typeof useScrollControls>;
   title: string;
   onClose: () => void;
+  compact?: boolean;
 }>) {
   const { colors } = useTheme();
   return (
@@ -27,14 +30,34 @@ export function ModalContent({
       <ControlledScrollView
         controls={controls}
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{ padding: 24, gap: 18 }}
+        contentContainerStyle={{ padding: compact ? 12 : 24, gap: compact ? 12 : 18 }}
       >
-        <Text accessibilityRole="header" style={{ fontSize: 24, fontWeight: '800' }}>
-          {title}
-        </Text>
+        <ModalHeading title={title} compact={compact} onClose={onClose} />
         {children}
-        <Button label="Cerrar" onPress={onClose} variant="quiet" />
+        {!compact && <Button label="Cerrar" onPress={onClose} variant="quiet" />}
       </ControlledScrollView>
+    </View>
+  );
+}
+/** El calendario conserva un cierre visible sin desplazar hasta el final del mes. */
+function ModalHeading({
+  title,
+  compact,
+  onClose,
+}: {
+  title: string;
+  compact: boolean;
+  onClose: () => void;
+}) {
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+      <Text
+        accessibilityRole="header"
+        style={{ flex: 1, minWidth: 0, fontSize: 24, fontWeight: '800' }}
+      >
+        {title}
+      </Text>
+      {compact && <CompactIconButton icon="close" label="Cerrar" onPress={onClose} />}
     </View>
   );
 }
@@ -47,7 +70,9 @@ const styles = StyleSheet.create({
     paddingBottom: 88,
   },
   panel: {
-    maxHeight: '90%',
+    maxHeight: '100%',
+    flexShrink: 1,
+    minHeight: 0,
     width: '100%',
     maxWidth: 620,
     alignSelf: 'center',

@@ -2,6 +2,7 @@ import { Notice } from '../../components/molecules/Notice';
 import { OverviewColumns } from '../../components/molecules/OverviewColumns';
 import { AdminQuickActions } from '../../components/organisms/AdminQuickActions';
 import { AdminQueueLinks } from '../../components/organisms/AdminQueueLinks';
+import { AdminComplaintShortcut } from '../../components/organisms/AdminComplaintShortcut';
 import { DashboardHeading } from '../../components/organisms/DashboardHeading';
 import { DashboardIndicators } from '../../components/organisms/DashboardIndicators';
 import { DashboardPending } from '../../components/organisms/DashboardPending';
@@ -23,6 +24,7 @@ export function DashboardScreen() {
       <DashboardHeading />
       <DashboardIndicators report={d.report} pending={d.pending} />
       <AdminQueueLinks pending={d.pending.data?.total} />
+      <AdminComplaintShortcut resource={d.complaints} />
       <Notice error={d.report.error || d.pending.error} onRetry={d.refresh} />
       <OverviewColumns
         primary={<DashboardPending resource={d.pending} />}

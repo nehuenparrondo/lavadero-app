@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { Button } from '../atoms/Button';
+import { CompactIconButton } from '../atoms/CompactIconButton';
 import { Text } from '../atoms/Text';
 import { shiftMonth } from '../../utils/calendar';
 /** Cambia el mes visible sin modificar la fecha del formulario.
@@ -19,20 +19,24 @@ export function CalendarNavigation({
     timeZone: 'UTC',
   }).format(new Date(`${month}-01T12:00:00Z`));
   return (
-    <View style={{ gap: 12 }}>
-      <Text style={{ textAlign: 'center', fontWeight: '700', fontSize: 20 }}>{label}</Text>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8 }}>
-        <Button
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+      <View style={{ transform: [{ rotate: '180deg' }] }}>
+        <CompactIconButton
+          icon="chevron"
           label="Mes anterior"
-          variant="quiet"
           onPress={() => onChange(shiftMonth(month, -1))}
         />
-        <Button
-          label="Mes siguiente"
-          variant="quiet"
-          onPress={() => onChange(shiftMonth(month, 1))}
-        />
       </View>
+      <Text
+        style={{ flex: 1, minWidth: 0, textAlign: 'center', fontWeight: '700', fontSize: 18 }}
+      >
+        {label}
+      </Text>
+      <CompactIconButton
+        icon="chevron"
+        label="Mes siguiente"
+        onPress={() => onChange(shiftMonth(month, 1))}
+      />
     </View>
   );
 }

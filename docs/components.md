@@ -138,6 +138,36 @@ Uso:
 <ButtonContent label="Guardar" color={color} loading={loading} />
 ```
 
+### CompactIconButton
+
+Acción visual pequeña con objetivo táctil amplio y etiqueta para lectores de pantalla.
+
+[Fuente](../src/components/atoms/CompactIconButton.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  icon: IconName;
+  label: string;
+  onPress: () => void;
+  disabled?: boolean;
+}
+```
+
+| Prop     | Obligatoria | Tipo         |
+| -------- | ----------- | ------------ |
+| icon     | Sí          | `IconName`   |
+| label    | Sí          | `string`     |
+| onPress  | Sí          | `() => void` |
+| disabled | No          | `boolean`    |
+
+Uso:
+
+```tsx
+<CompactIconButton icon={icon} label="Guardar" onPress={handleAction} />
+```
+
 ### FloatingAction
 
 Acción circular con nombre accesible y contraste adaptado al tema.
@@ -1590,6 +1620,30 @@ Uso:
 
 ## organisms
 
+### AdminComplaintShortcut
+
+Hace visibles los reclamos nuevos desde el resumen sin esperar una recarga manual.
+
+[Fuente](../src/components/organisms/AdminComplaintShortcut.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  resource: ReturnType < typeof useDashboard > ['complaints'];
+}
+```
+
+| Prop     | Obligatoria | Tipo                                            |
+| -------- | ----------- | ----------------------------------------------- |
+| resource | Sí          | `ReturnType<typeof useDashboard>['complaints']` |
+
+Uso:
+
+```tsx
+<AdminComplaintShortcut resource={resource} />
+```
+
 ### AdminMenu
 
 Menú administrativo móvil basado en el mismo catálogo que la barra lateral.
@@ -2497,6 +2551,30 @@ Uso:
 <ClientQuickActions />
 ```
 
+### ClientVisitHeader
+
+Limpieza confirmada del inicio propio sin cancelar las visitas del cliente.
+
+[Fuente](../src/components/organisms/ClientVisitHeader.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  home: ReturnType<typeof useHome>;
+}
+```
+
+| Prop | Obligatoria | Tipo                         |
+| ---- | ----------- | ---------------------------- |
+| home | Sí          | `ReturnType<typeof useHome>` |
+
+Uso:
+
+```tsx
+<ClientVisitHeader home={home} />
+```
+
 ### ClientVisitList
 
 Visitas autorizadas, con carga/error separados del estado vacío.
@@ -2677,28 +2755,28 @@ Uso:
 <EmployeeAppointmentResults manager={manager} />
 ```
 
-### EmployeeDaySummary
+### EmployeePaidFinish
 
-Resumen de la fecha consultada, compartido por el equipo, sin información financiera.
+El cobro completo habilita el cierre directo, conservando descripción y responsable.
 
-[Fuente](../src/components/organisms/EmployeeDaySummary.tsx)
+[Fuente](../src/components/organisms/EmployeePaidFinish.tsx)
 
 Tipo del parámetro:
 
 ```ts
 {
-  summary: ReturnType < typeof useAppointments > ['summary'];
+  m: ReturnType<typeof useAppointmentDetail>;
 }
 ```
 
-| Prop    | Obligatoria | Tipo                                            |
-| ------- | ----------- | ----------------------------------------------- |
-| summary | Sí          | `ReturnType<typeof useAppointments>['summary']` |
+| Prop | Obligatoria | Tipo                                      |
+| ---- | ----------- | ----------------------------------------- |
+| m    | Sí          | `ReturnType<typeof useAppointmentDetail>` |
 
 Uso:
 
 ```tsx
-<EmployeeDaySummary summary={summary} />
+<EmployeePaidFinish m={manager} />
 ```
 
 ### EmployeeWorkAction
@@ -2770,6 +2848,7 @@ PropsWithChildren<{
   controls: ReturnType<typeof useScrollControls>;
   title: string;
   onClose: () => void;
+  compact?: boolean;
 }>;
 ```
 
@@ -2778,6 +2857,7 @@ PropsWithChildren<{
 | controls | Sí          | `ReturnType<typeof useScrollControls>` |
 | title    | Sí          | `string`                               |
 | onClose  | Sí          | `() => void`                           |
+| compact  | No          | `boolean`                              |
 
 Uso:
 
@@ -2798,6 +2878,7 @@ PropsWithChildren<{
   visible: boolean;
   title: string;
   onClose: () => void;
+  compact?: boolean;
 }>;
 ```
 
@@ -2806,6 +2887,7 @@ PropsWithChildren<{
 | visible | Sí          | `boolean`    |
 | title   | Sí          | `string`     |
 | onClose | Sí          | `() => void` |
+| compact | No          | `boolean`    |
 
 Uso:
 

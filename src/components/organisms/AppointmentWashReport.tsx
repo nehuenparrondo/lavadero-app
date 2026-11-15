@@ -6,6 +6,7 @@ import { Card } from '../molecules/Card';
 import { AppointmentWashReview } from './AppointmentWashReview';
 import { AppointmentWashSubmit } from './AppointmentWashSubmit';
 import { WashFeedbackForm } from './WashFeedbackForm';
+import { EmployeePaidFinish } from './EmployeePaidFinish';
 
 /** Detalle del parte con acciones para el responsable, la administración o el titular.
  * @param props - Detalle del turno y acciones según el rol.
@@ -15,7 +16,10 @@ export function AppointmentWashReport({ m }: { m: ReturnType<typeof useAppointme
   const a = m.detail.data;
   if (!a) return null;
   const wash = a.wash;
-  const canSend = m.user?.role === 'employee' && a.canWork && a.status === 'in_progress';
+  const canSend =
+    m.user?.role === 'employee' &&
+    a.canWork &&
+    (a.status === 'in_progress' || (a.status === 'awaiting_review' && m.canPay));
   if (!wash && !canSend && a.status !== 'awaiting_review') return null;
   return (
     <Card>
@@ -24,17 +28,7 @@ export function AppointmentWashReport({ m }: { m: ReturnType<typeof useAppointme
       {!wash && a.status === 'awaiting_review' && (
         <Text>El lavado está pendiente de verificación.</Text>
       )}
-      {canSend && <AppointmentWashSubmit key={wash?.id} m={m} />}
-      {m.user?.role === 'admin' && a.status === 'awaiting_review' && wash && (
-        <AppointmentWashReview key={wash.id} m={m} submissionId={wash.id} />
-      )}
-      {m.user?.role === 'client' && wash?.decision === 'approved' && (
-        <WashFeedbackForm
-          appointmentId={a.id}
-          sent={Boolean(wash.feedbackId)}
-          refresh={m.refresh}
-        />
-      )}
+      <WashActions m={m} wash={wash} canSend={Boolean(canSend)} />
     </Card>
   );
 }
@@ -47,8 +41,46 @@ function WashSummary({ wash }: { wash: WashSubmission }) {
         {wash.employeeName} · {appointmentDate(wash.submittedAt)}
       </Text>
       <Text>{wash.description}</Text>
+      {wash.completedByEmployee && (
+        <Text>Finalizado por el empleado tras registrar el cobro completo.</Text>
+      )}
       {wash.reviewerName && <Text>Revisado por {wash.reviewerName}</Text>}
       {wash.reviewNote && <Text>Observación de Administración: {wash.reviewNote}</Text>}
+    </>
+  );
+}
+
+/** Mantiene separadas la finalización cobrada, la revisión antigua y la devolución del cliente. */
+function WashActions({
+  m,
+  wash,
+  canSend,
+}: {
+  m: ReturnType<typeof useAppointmentDetail>;
+  wash: WashSubmission | null | undefined;
+  canSend: boolean;
+}) {
+  const a = m.detail.data!;
+  return (
+    <>
+      {canSend &&
+        (m.canPay ? (
+          <EmployeePaidFinish key={wash?.id} m={m} />
+        ) : (
+          <AppointmentWashSubmit key={wash?.id} m={m} />
+        ))}
+      {m.user?.role === 'admin' && a.status === 'awaiting_review' && wash && (
+        <AppointmentWashReview key={wash.id} m={m} submissionId={wash.id} />
+      )}
+      {m.user?.role === 'client' &&
+        wash &&
+        (wash.decision === 'approved' || wash.completedByEmployee) && (
+          <WashFeedbackForm
+            appointmentId={a.id}
+            sent={Boolean(wash.feedbackId)}
+            refresh={m.refresh}
+          />
+        )}
     </>
   );
 }

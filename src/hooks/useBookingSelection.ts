@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { today } from '../utils/format';
 
 /** Cada cambio de titular, categoría, servicios o día invalida el inicio elegido.
  * @param clientId Titular inicial. En una reserva asistida se elige en el formulario.
@@ -31,7 +30,7 @@ export function useBookingSelection(clientId: string) {
   };
 }
 
-/** Se inicia con la fecha local, sin un tipo ni servicios preseleccionados. */
+/** La fecha debe elegirse explícitamente antes de consultar o confirmar horarios. */
 function initialBooking(clientId: string) {
-  return { clientId, vehicleTypeId: '', baseId: '', extraIds: '', date: today(), slot: '' };
+  return { clientId, vehicleTypeId: '', baseId: '', extraIds: '', date: '', slot: '' };
 }

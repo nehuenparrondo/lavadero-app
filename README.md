@@ -76,3 +76,5 @@ La agenda compartida, la asignación, la verificación del trabajo, los reclamos
 Ver [cancelaciones, observaciones y mejora de interfaz](docs/interface-polish.md).
 
 [Panel administrativo: ingreso presencial, usuarios, servicios, asistencia y semanas](docs/admin-panel.md).
+
+[Cliente y empleado: calendario, agenda, limpieza, cobro y reclamos](docs/client-employee-flow.md).

@@ -13,10 +13,12 @@ export function useAgendaList(
 ) {
   const { history, date, status, clientId, employeeId, queue } = filters;
   const plate = useDebouncedValue(filters.plate.replace(/[^a-z0-9]/giu, '').slice(0, 16));
+  const todayOnly = mode === 'employee' && !history;
   return usePagedList<Appointment>('/appointments', {
-    history: mode === 'admin' || plate ? undefined : String(history),
-    date: !plate && /^\d{4}-\d{2}-\d{2}$/u.test(date) ? date : undefined,
-    plate: plate || undefined,
+    history: mode === 'admin' || mode === 'employee' || plate ? undefined : String(history),
+    scope: mode === 'employee' ? (todayOnly ? 'today' : 'all') : undefined,
+    date: !todayOnly && !plate && /^\d{4}-\d{2}-\d{2}$/u.test(date) ? date : undefined,
+    plate: !todayOnly && plate ? plate : undefined,
     status: status || undefined,
     clientId: clientId || undefined,
     employeeId: employeeId || undefined,

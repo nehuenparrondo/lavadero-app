@@ -16,10 +16,14 @@ export function EmployeeAppointmentResults({
   return (
     <>
       <SectionHeader
-        title={m.history ? 'Trabajos anteriores' : 'Agenda del equipo'}
-        subtitle="Buscá por patente en toda la agenda o filtrá los turnos por fecha."
+        title={m.history ? 'Todos los turnos' : 'Hoy'}
+        subtitle={
+          m.history
+            ? 'Elegí una fecha o buscá un vehículo por patente.'
+            : 'Al finalizar un lavado, sale de esta lista y queda en Mi historial.'
+        }
       />
-      <AppointmentFilters manager={m} />
+      {m.history && <AppointmentFilters manager={m} />}
       <Notice error={m.summaryError} onRetry={m.refresh} />
       <AppointmentList m={m} />
       <AppointmentPagination manager={m} />
