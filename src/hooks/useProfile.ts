@@ -13,7 +13,6 @@ export function useProfile() {
     firstName: user?.firstName ?? '',
     lastName: user?.lastName ?? '',
     phone: user?.phone ?? '',
-    avatarUrl: user?.avatarUrl ?? '',
   };
   return {
     ...action,

@@ -16,13 +16,13 @@ export function SocialLogins() {
     <View style={{ gap: 10 }}>
       <Text style={{ textAlign: 'center', fontSize: 13 }}>O continuá con tu cuenta</Text>
       <Notice error={p.error} onRetry={p.refresh} />
-      {(['google', 'discord', 'github'] as const).map((provider) =>
+      {(['google'] as const).map((provider) =>
         providers.find((p) => p.provider === provider)?.enabled ? (
           <SocialLoginButton key={provider} provider={provider} />
         ) : (
           <Button
             key={provider}
-            label={`${provider === 'google' ? 'Google' : provider === 'discord' ? 'Discord' : 'GitHub'} · no disponible`}
+            label={'Google · no disponible'}
             onPress={() => {}}
             disabled
             variant="secondary"

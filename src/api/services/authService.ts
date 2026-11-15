@@ -64,4 +64,4 @@ export async function getProviders() {
   ).data.data;
 }
 /** Tipo exportado para formularios de perfil. */
-export type PublicProfile = Pick<User, 'firstName' | 'lastName' | 'phone' | 'avatarUrl'>;
+export type PublicProfile = Pick<User, 'firstName' | 'lastName' | 'phone'>;

@@ -34,7 +34,7 @@ Uso:
 
 ### Avatar
 
-Foto opcional o iniciales del perfil, sin datos de otros clientes.
+Identidad con iniciales; no carga fotos ni recursos de terceros.
 
 [Fuente](../src/components/atoms/Avatar.tsx)
 
@@ -379,6 +379,20 @@ Uso:
 
 ```tsx
 <AppointmentVehicle appointment={appointment} />
+```
+
+### AuthReturnLink
+
+Regreso al ingreso desde registro o recuperación.
+
+[Fuente](../src/components/molecules/AuthReturnLink.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<AuthReturnLink />
 ```
 
 ### AvailableSlots
@@ -1215,6 +1229,20 @@ Uso:
 
 ```tsx
 <QuotedTotal quote={quote} />
+```
+
+### RecoveryRequestLink
+
+Alternativa explícita cuando el enlace de recuperación venció.
+
+[Fuente](../src/components/molecules/RecoveryRequestLink.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<RecoveryRequestLink />
 ```
 
 ### ResponsiveGrid
@@ -2923,6 +2951,32 @@ Uso:
 <OAuthLinkForm onSubmit={handleAction} busy={busy} error={error} />
 ```
 
+### PasswordResetForm
+
+Campos de confirmación separados de la navegación y del enlace privado.
+
+[Fuente](../src/components/organisms/PasswordResetForm.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  submit: (values: Record<string, string>) => Promise<void>;
+  busy: boolean;
+}
+```
+
+| Prop   | Obligatoria | Tipo                                                |
+| ------ | ----------- | --------------------------------------------------- |
+| submit | Sí          | `(values: Record<string, string>) => Promise<void>` |
+| busy   | Sí          | `boolean`                                           |
+
+Uso:
+
+```tsx
+<PasswordResetForm submit={submit} busy={busy} />
+```
+
 ### PendingAppointments
 
 Solicitudes pendientes del tablero y acceso a la gestión completa.
@@ -3019,6 +3073,24 @@ Uso:
 
 ```tsx
 <ProfilePasswordForm p={p} />
+```
+
+### RecoveryScreen
+
+Mantiene legibles los formularios de acceso en teléfono y escritorio.
+
+[Fuente](../src/components/organisms/RecoveryScreen.tsx)
+
+Tipo del parámetro:
+
+```ts
+PropsWithChildren;
+```
+
+Uso:
+
+```tsx
+<RecoveryScreen />
 ```
 
 ### ReportSummary

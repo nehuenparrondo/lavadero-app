@@ -7,7 +7,7 @@ Primitivas visuales con tema y accesibilidad. No hacen consultas ni conocen las 
 | Archivo                                        | Responsabilidad                                                                         |
 | ---------------------------------------------- | --------------------------------------------------------------------------------------- |
 | [AppIcon.tsx](AppIcon.tsx)                     | Ícono vectorial decorativo; la acción contenedora debe aportar su nombre accesible.     |
-| [Avatar.tsx](Avatar.tsx)                       | Foto opcional o iniciales del perfil, sin datos de otros clientes.                      |
+| [Avatar.tsx](Avatar.tsx)                       | Identidad con iniciales; no carga fotos ni recursos de terceros.                        |
 | [Badge.tsx](Badge.tsx)                         | Etiqueta compacta con tono semántico.                                                   |
 | [Button.tsx](Button.tsx)                       | Contrato de una acción. El callback no se ejecuta mientras carga o está deshabilitada.  |
 | [ButtonContent.tsx](ButtonContent.tsx)         | Contenido visual del botón, independiente de Pressable y de su política de interacción. |

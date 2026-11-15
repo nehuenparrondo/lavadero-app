@@ -30,6 +30,7 @@ Transformaciones puras o infraestructura puntual. Mantener unidades explícitas:
 | [queryState.ts](queryState.ts)                     | Una respuesta siempre conserva la identidad de los filtros que la produjeron.                        |
 | [refreshGate.ts](refreshGate.ts)                   | Diferencia el regreso a la vista del sondeo durante su uso.                                          |
 | [refreshResources.ts](refreshResources.ts)         | Recarga consultas relacionadas después de una acción o regreso a la pantalla.                        |
+| [resetLink.ts](resetLink.ts)                       | Lee un token exclusivamente del fragmento; nunca de la consulta enviada a servidores.                |
 | [restoreDestination.ts](restoreDestination.ts)     | Limita el retorno de arranque a pantallas internas permitidas para el rol actual.                    |
 | [routeAccess.ts](routeAccess.ts)                   | Resuelve guardas con el rol verificado; durante restauración solo deja rutas públicas.               |
 | [scrollVisibility.ts](scrollVisibility.ts)         | Medidas de la región desplazable; los valores se mantienen fuera del estado visual.                  |

@@ -12,6 +12,7 @@ Catálogos de solo lectura y definiciones declarativas. No contienen secretos ni
 | [iconPaths.ts](iconPaths.ts)                 | Trazos originales sobre una grilla de 24 unidades, compartidos por web y nativo.   |
 | [paymentFields.ts](paymentFields.ts)         | Un cobro se registra en centavos en la API; el formulario recibe pesos argentinos. |
 | [profileFields.ts](profileFields.ts)         | Campos editables del perfil; el rol y el correo no se incluyen.                    |
+| [recoveryFields.ts](recoveryFields.ts)       | Solicitud sin campos de rol, retorno ni información privada adicional.             |
 | [roleNavigation.ts](roleNavigation.ts)       | Un único catálogo alimenta el menú móvil y la barra lateral.                       |
 | [rootRoutes.ts](rootRoutes.ts)               | Acceso necesario para cada pantalla; el backend valida además cada recurso.        |
 | [serviceFields.ts](serviceFields.ts)         | Campos reutilizados por alta y edición de servicios.                               |

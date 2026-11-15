@@ -28,6 +28,12 @@ export function SignInForm({ login }: { login: ReturnType<typeof useSignIn> }) {
       >
         ¿Primera vez? Creá tu cuenta
       </Link>
+      <Link
+        href="/forgot-password"
+        style={{ color: colors.primary, textAlign: 'center', padding: 12 }}
+      >
+        ¿Olvidaste tu contraseña?
+      </Link>
     </Card>
   );
 }

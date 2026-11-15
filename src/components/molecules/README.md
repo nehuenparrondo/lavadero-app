@@ -10,6 +10,7 @@ Composiciones reutilizables: tarjetas, campos, indicadores y distribución adapt
 | [AppointmentCardFooter.tsx](AppointmentCardFooter.tsx)         | La ausencia de importe significa falta de permiso, nunca un total cero.                        |
 | [AppointmentNote.tsx](AppointmentNote.tsx)                     | Observación guardada con autor y fecha, diferenciada del campo para escribir otra.             |
 | [AppointmentVehicle.tsx](AppointmentVehicle.tsx)               | Datos operativos presentes en la proyección de todos los roles.                                |
+| [AuthReturnLink.tsx](AuthReturnLink.tsx)                       | Regreso al ingreso desde registro o recuperación.                                              |
 | [AvailableSlots.tsx](AvailableSlots.tsx)                       | Horarios ya validados por el servidor y estado vacío cuando la fecha está completa.            |
 | [BookingSection.tsx](BookingSection.tsx)                       | Agrupa un paso de la reserva con una jerarquía visual consistente.                             |
 | [BrandLockup.tsx](BrandLockup.tsx)                             | Firma de marca compacta para acceso, menú y cabecera.                                          |
@@ -42,6 +43,7 @@ Composiciones reutilizables: tarjetas, campos, indicadores y distribución adapt
 | [ProgressBar.tsx](ProgressBar.tsx)                             | Barra accesible para comparar importes o cantidades reales de una serie.                       |
 | [QuickAction.tsx](QuickAction.tsx)                             | Acceso a un recorrido existente; toda la tarjeta mantiene un único objetivo táctil.            |
 | [QuotedTotal.tsx](QuotedTotal.tsx)                             | Total y duración estimados exactamente como los devuelve la cotización del servidor.           |
+| [RecoveryRequestLink.tsx](RecoveryRequestLink.tsx)             | Alternativa explícita cuando el enlace de recuperación venció.                                 |
 | [ResponsiveGrid.tsx](ResponsiveGrid.tsx)                       | Cuadrícula de dos columnas que conserva las claves y el orden de los elementos.                |
 | [SearchBar.tsx](SearchBar.tsx)                                 | Búsqueda controlada, con etiqueta accesible y teclado de búsqueda.                             |
 | [SearchSelect.tsx](SearchSelect.tsx)                           | Selecciona una opción en un diálogo buscable sin ocupar toda la agenda.                        |

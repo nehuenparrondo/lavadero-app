@@ -60,10 +60,12 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [ModalContent.tsx](ModalContent.tsx)                                   | Panel desplazable; los controles flotantes quedan fuera para no tapar el formulario.              |
 | [ModalPanel.tsx](ModalPanel.tsx)                                       | Diálogo nativo con tema y volver arriba disponibles sin salir del formulario.                     |
 | [OAuthLinkForm.tsx](OAuthLinkForm.tsx)                                 | Confirma la contraseña local una sola vez antes de unir ambas formas de ingreso.                  |
+| [PasswordResetForm.tsx](PasswordResetForm.tsx)                         | Campos de confirmación separados de la navegación y del enlace privado.                           |
 | [PendingAppointments.tsx](PendingAppointments.tsx)                     | Solicitudes pendientes del tablero y acceso a la gestión completa.                                |
 | [PopularServices.tsx](PopularServices.tsx)                             | Presenta frecuencias reales de servicios en el período consultado.                                |
 | [ProfileIdentity.tsx](ProfileIdentity.tsx)                             | Identifica la sesión propia con nombre, email y avatar opcional.                                  |
 | [ProfilePasswordForm.tsx](ProfilePasswordForm.tsx)                     | Confirma la contraseña actual y solicita la nueva al servidor.                                    |
+| [RecoveryScreen.tsx](RecoveryScreen.tsx)                               | Mantiene legibles los formularios de acceso en teléfono y escritorio.                             |
 | [ReportSummary.tsx](ReportSummary.tsx)                                 | Compone indicadores, ingresos semanales y servicios desde un único reporte.                       |
 | [RevenueByWeek.tsx](RevenueByWeek.tsx)                                 | Compara semanas con cifras recalculadas por el servidor, sin metas ficticias.                     |
 | [ScheduleSelector.tsx](ScheduleSelector.tsx)                           | Horarios y total provienen del backend; no calcula precios en el cliente.                         |

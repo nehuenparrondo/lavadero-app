@@ -50,7 +50,7 @@
     "check": "npm run typecheck && npm run lint && npm test && npm run audit:source",
     "export:android": "expo export --platform android --output-dir dist",
     "web": "expo start --web",
-    "export:web": "expo export --platform web --output-dir web-dist",
+    "export:web": "expo export --platform web --output-dir web-dist && node scripts/secure-web.mjs",
     "audit:source": "tsx scripts/auditSource.ts",
     "docs:source": "node scripts/document-source.mjs",
     "docs:components": "node scripts/document-components.mjs"

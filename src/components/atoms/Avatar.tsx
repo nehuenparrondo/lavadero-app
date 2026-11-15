@@ -1,19 +1,13 @@
-import { Image, View } from 'react-native';
+import { View } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
 import { Text } from './Text';
-/** Foto opcional o iniciales del perfil, sin datos de otros clientes.
- * @param props - Propiedades tipadas: name, url.
- * @returns Vista de Avatar con el contrato de propiedades declarado.
+/** Identidad con iniciales; no carga fotos ni recursos de terceros.
+ * @param props - Nombre del perfil; url se conserva por compatibilidad del contrato.
+ * @returns Monograma accesible y consistente para todos los roles.
  */
-export function Avatar({ name, url }: { name: string; url?: string | null }) {
+export function Avatar({ name }: { name: string; url?: string | null }) {
   const { colors } = useTheme();
-  return url ? (
-    <Image
-      source={{ uri: url }}
-      style={{ width: 56, height: 56, borderRadius: 28 }}
-      accessibilityLabel={`Foto de ${name}`}
-    />
-  ) : (
+  return (
     <View
       style={{
         width: 56,
@@ -25,7 +19,13 @@ export function Avatar({ name, url }: { name: string; url?: string | null }) {
       }}
     >
       <Text style={{ color: colors.primary, fontSize: 22, fontWeight: '800' }}>
-        {name.trim().slice(0, 2).toUpperCase()}
+        {name
+          .trim()
+          .split(/\s+/u)
+          .slice(0, 2)
+          .map((part) => part[0])
+          .join('')
+          .toUpperCase()}
       </Text>
     </View>
   );

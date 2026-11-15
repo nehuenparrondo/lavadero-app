@@ -4,10 +4,4 @@ export const profileFields: FormFieldDefinition[] = [
   { name: 'firstName', label: 'Nombre', maxLength: 80 },
   { name: 'lastName', label: 'Apellido', maxLength: 80 },
   { name: 'phone', label: 'Teléfono', required: false, maxLength: 30 },
-  {
-    name: 'avatarUrl',
-    label: 'Foto (enlace HTTPS, opcional)',
-    required: false,
-    maxLength: 2048,
-  },
 ];

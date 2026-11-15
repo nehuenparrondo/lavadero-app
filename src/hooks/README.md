@@ -40,11 +40,14 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 | [useInputFocus.ts](useInputFocus.ts)                           | Mejora el foco sin reemplazar los eventos de React Hook Form ni del control nativo.            |
 | [useOptions.ts](useOptions.ts)                                 | Carga todas las páginas de un selector y permite actualizarlo al volver a la pantalla.         |
 | [usePagedList.ts](usePagedList.ts)                             | Lista paginada con filtro y navegación entre páginas para no truncar datos.                    |
+| [usePasswordRecovery.ts](usePasswordRecovery.ts)               | Coordina el formulario de solicitud sin revelar si el correo está registrado.                  |
 | [useProfile.ts](useProfile.ts)                                 | Perfil propio con formularios, sesión y comandos separados por responsabilidad.                |
 | [useQuery.ts](useQuery.ts)                                     | Coordina carga, recarga y respuestas fuera de orden sin mostrar datos de otra selección.       |
 | [useRefreshOnReturn.ts](useRefreshOnReturn.ts)                 | Actualiza al regresar a la ruta/app y, opcionalmente, mientras se usa una agenda.              |
 | [useRemoteData.ts](useRemoteData.ts)                           | Consulta un recurso sin conservar resultados de filtros anteriores.                            |
 | [useReports.ts](useReports.ts)                                 | Reporte por período calendario local y fecha elegida.                                          |
+| [useResetToken.ts](useResetToken.ts)                           | Variante nativa: un enlace web puede abrir la pantalla de recuperación.                        |
+| [useResetToken.web.ts](useResetToken.web.ts)                   | Retira el fragmento del historial después de capturarlo en memoria.                            |
 | [useResourceEditor.ts](useResourceEditor.ts)                   | Compone selección, confirmaciones y persistencia para editores sin duplicar el ABML.           |
 | [useRestoreDestination.ts](useRestoreDestination.ts)           | Conserva el enlace solicitado mientras las guardas esperan la sesión.                          |
 | [useScrollControls.ts](useScrollControls.ts)                   | Vincula los botones a su propia región; no desplaza la ventana ni otros diálogos.              |

@@ -106,6 +106,19 @@ Prepara una autorización PKCE por JSON y verifica el destino antes de salir de 
 | ------------------ | -------------------------------------------------------------------------------------- |
 | prepareSocialLogin | Prepara una autorización PKCE por JSON y verifica el destino antes de salir de la app. |
 
+## src/api/services/recoveryService.ts
+
+Estado público del canal, sin credenciales ni identidad de destinatarios.
+
+[Abrir fuente](../src/api/services/recoveryService.ts)
+
+| Exportación             | Responsabilidad                                                           |
+| ----------------------- | ------------------------------------------------------------------------- |
+| RecoveryStatus          | Estado público del canal, sin credenciales ni identidad de destinatarios. |
+| getRecoveryStatus       | Consulta si está conectado el correo de pruebas.                          |
+| requestPasswordRecovery | Solicita un enlace con la misma respuesta para cualquier correo.          |
+| resetPassword           | Consume el enlace de un solo uso, sin iniciar sesión automáticamente.     |
+
 ## src/api/services/resourceService.ts
 
 Parámetros de filtros de listas, nunca URLs arbitrarias de terceros.
@@ -448,6 +461,16 @@ Composición interna del módulo; consultar sus contratos de tipos.
 | ----------- | --------------------------------------- |
 | default     | Contrato tipado declarado en la fuente. |
 
+## src/app/forgot-password.tsx
+
+Composición interna del módulo; consultar sus contratos de tipos.
+
+[Abrir fuente](../src/app/forgot-password.tsx)
+
+| Exportación | Responsabilidad                         |
+| ----------- | --------------------------------------- |
+| default     | Contrato tipado declarado en la fuente. |
+
 ## src/app/index.tsx
 
 Entrada dirige al árbol del rol autorizado.
@@ -487,6 +510,16 @@ Retorno web en la misma pestaña; el APK usa oauth.tsx y AuthSession nativo.
 | Exportación    | Responsabilidad                                                             |
 | -------------- | --------------------------------------------------------------------------- |
 | WebOAuthReturn | Retorno web en la misma pestaña; el APK usa oauth.tsx y AuthSession nativo. |
+
+## src/app/reset-password.tsx
+
+Composición interna del módulo; consultar sus contratos de tipos.
+
+[Abrir fuente](../src/app/reset-password.tsx)
+
+| Exportación | Responsabilidad                         |
+| ----------- | --------------------------------------- |
+| default     | Contrato tipado declarado en la fuente. |
 
 ## src/app/sign-in.tsx
 
@@ -530,13 +563,13 @@ Composición interna del módulo; consultar sus contratos de tipos.
 
 ## src/components/atoms/Avatar.tsx
 
-Foto opcional o iniciales del perfil, sin datos de otros clientes.
+Identidad con iniciales; no carga fotos ni recursos de terceros.
 
 [Abrir fuente](../src/components/atoms/Avatar.tsx)
 
-| Exportación | Responsabilidad                                                    |
-| ----------- | ------------------------------------------------------------------ |
-| Avatar      | Foto opcional o iniciales del perfil, sin datos de otros clientes. |
+| Exportación | Responsabilidad                                                  |
+| ----------- | ---------------------------------------------------------------- |
+| Avatar      | Identidad con iniciales; no carga fotos ni recursos de terceros. |
 
 ## src/components/atoms/Badge.tsx
 
@@ -668,6 +701,16 @@ Datos operativos presentes en la proyección de todos los roles.
 | Exportación        | Responsabilidad                                                 |
 | ------------------ | --------------------------------------------------------------- |
 | AppointmentVehicle | Datos operativos presentes en la proyección de todos los roles. |
+
+## src/components/molecules/AuthReturnLink.tsx
+
+Regreso al ingreso desde registro o recuperación.
+
+[Abrir fuente](../src/components/molecules/AuthReturnLink.tsx)
+
+| Exportación    | Responsabilidad                                   |
+| -------------- | ------------------------------------------------- |
+| AuthReturnLink | Regreso al ingreso desde registro o recuperación. |
 
 ## src/components/molecules/AvailableSlots.tsx
 
@@ -989,6 +1032,16 @@ Total y duración estimados exactamente como los devuelve la cotización del ser
 | Exportación | Responsabilidad                                                                      |
 | ----------- | ------------------------------------------------------------------------------------ |
 | QuotedTotal | Total y duración estimados exactamente como los devuelve la cotización del servidor. |
+
+## src/components/molecules/RecoveryRequestLink.tsx
+
+Alternativa explícita cuando el enlace de recuperación venció.
+
+[Abrir fuente](../src/components/molecules/RecoveryRequestLink.tsx)
+
+| Exportación         | Responsabilidad                                                |
+| ------------------- | -------------------------------------------------------------- |
+| RecoveryRequestLink | Alternativa explícita cuando el enlace de recuperación venció. |
 
 ## src/components/molecules/ResponsiveGrid.tsx
 
@@ -1691,6 +1744,16 @@ Confirma la contraseña local una sola vez antes de unir ambas formas de ingreso
 | ------------- | -------------------------------------------------------------------------------- |
 | OAuthLinkForm | Confirma la contraseña local una sola vez antes de unir ambas formas de ingreso. |
 
+## src/components/organisms/PasswordResetForm.tsx
+
+Campos de confirmación separados de la navegación y del enlace privado.
+
+[Abrir fuente](../src/components/organisms/PasswordResetForm.tsx)
+
+| Exportación       | Responsabilidad                                                         |
+| ----------------- | ----------------------------------------------------------------------- |
+| PasswordResetForm | Campos de confirmación separados de la navegación y del enlace privado. |
+
 ## src/components/organisms/PendingAppointments.tsx
 
 Solicitudes pendientes del tablero y acceso a la gestión completa.
@@ -1730,6 +1793,16 @@ Confirma la contraseña actual y solicita la nueva al servidor.
 | Exportación         | Responsabilidad                                                |
 | ------------------- | -------------------------------------------------------------- |
 | ProfilePasswordForm | Confirma la contraseña actual y solicita la nueva al servidor. |
+
+## src/components/organisms/RecoveryScreen.tsx
+
+Mantiene legibles los formularios de acceso en teléfono y escritorio.
+
+[Abrir fuente](../src/components/organisms/RecoveryScreen.tsx)
+
+| Exportación    | Responsabilidad                                                       |
+| -------------- | --------------------------------------------------------------------- |
+| RecoveryScreen | Mantiene legibles los formularios de acceso en teléfono y escritorio. |
 
 ## src/components/organisms/ReportSummary.tsx
 
@@ -2174,6 +2247,17 @@ Campos editables del perfil; el rol y el correo no se incluyen.
 | ------------- | --------------------------------------------------------------- |
 | profileFields | Campos editables del perfil; el rol y el correo no se incluyen. |
 
+## src/constants/recoveryFields.ts
+
+Solicitud sin campos de rol, retorno ni información privada adicional.
+
+[Abrir fuente](../src/constants/recoveryFields.ts)
+
+| Exportación    | Responsabilidad                                                          |
+| -------------- | ------------------------------------------------------------------------ |
+| recoveryFields | Solicitud sin campos de rol, retorno ni información privada adicional.   |
+| resetFields    | El servidor valida también longitud por bytes y el token de un solo uso. |
+
 ## src/constants/roleNavigation.ts
 
 Un único catálogo alimenta el menú móvil y la barra lateral.
@@ -2601,6 +2685,17 @@ Lista paginada con filtro y navegación entre páginas para no truncar datos.
 | ------------ | --------------------------------------------------------------------------- |
 | usePagedList | Lista paginada con filtro y navegación entre páginas para no truncar datos. |
 
+## src/hooks/usePasswordRecovery.ts
+
+Coordina el formulario de solicitud sin revelar si el correo está registrado.
+
+[Abrir fuente](../src/hooks/usePasswordRecovery.ts)
+
+| Exportación         | Responsabilidad                                                                 |
+| ------------------- | ------------------------------------------------------------------------------- |
+| usePasswordRecovery | Coordina el formulario de solicitud sin revelar si el correo está registrado.   |
+| usePasswordReset    | Compara contraseñas y consume el enlace, conservando la respuesta ante errores. |
+
 ## src/hooks/useProfile.ts
 
 Perfil propio con formularios, sesión y comandos separados por responsabilidad.
@@ -2650,6 +2745,26 @@ Reporte por período calendario local y fecha elegida.
 | Exportación | Responsabilidad                                       |
 | ----------- | ----------------------------------------------------- |
 | useReports  | Reporte por período calendario local y fecha elegida. |
+
+## src/hooks/useResetToken.ts
+
+Variante nativa: un enlace web puede abrir la pantalla de recuperación.
+
+[Abrir fuente](../src/hooks/useResetToken.ts)
+
+| Exportación   | Responsabilidad                                                         |
+| ------------- | ----------------------------------------------------------------------- |
+| useResetToken | Variante nativa: un enlace web puede abrir la pantalla de recuperación. |
+
+## src/hooks/useResetToken.web.ts
+
+Retira el fragmento del historial después de capturarlo en memoria.
+
+[Abrir fuente](../src/hooks/useResetToken.web.ts)
+
+| Exportación   | Responsabilidad                                                     |
+| ------------- | ------------------------------------------------------------------- |
+| useResetToken | Retira el fragmento del historial después de capturarlo en memoria. |
 
 ## src/hooks/useResourceEditor.ts
 
@@ -2991,6 +3106,26 @@ Registro rápido para autos presentes, sin alta previa en cuentas ni garaje.
 | Exportación  | Responsabilidad                                                             |
 | ------------ | --------------------------------------------------------------------------- |
 | WalkInScreen | Registro rápido para autos presentes, sin alta previa en cuentas ni garaje. |
+
+## src/screens/auth/ForgotPasswordScreen.tsx
+
+Recuperación guiada; informa explícitamente el destino Sandbox de esta demostración.
+
+[Abrir fuente](../src/screens/auth/ForgotPasswordScreen.tsx)
+
+| Exportación          | Responsabilidad                                                                      |
+| -------------------- | ------------------------------------------------------------------------------------ |
+| ForgotPasswordScreen | Recuperación guiada; informa explícitamente el destino Sandbox de esta demostración. |
+
+## src/screens/auth/ResetPasswordScreen.tsx
+
+El token se consume solo al confirmar la nueva contraseña; abrir el correo no lo consume.
+
+[Abrir fuente](../src/screens/auth/ResetPasswordScreen.tsx)
+
+| Exportación         | Responsabilidad                                                                           |
+| ------------------- | ----------------------------------------------------------------------------------------- |
+| ResetPasswordScreen | El token se consume solo al confirmar la nueva contraseña; abrir el correo no lo consume. |
 
 ## src/screens/auth/SignInScreen.tsx
 
@@ -3530,6 +3665,16 @@ Recarga consultas relacionadas después de una acción o regreso a la pantalla.
 | ------------------- | ----------------------------------------------------------------------------- |
 | refreshResources    | Recarga consultas relacionadas después de una acción o regreso a la pantalla. |
 | revalidateResources | Consulta cambios sin ocultar los datos actuales ni desmontar formularios.     |
+
+## src/utils/resetLink.ts
+
+Lee un token exclusivamente del fragmento; nunca de la consulta enviada a servidores.
+
+[Abrir fuente](../src/utils/resetLink.ts)
+
+| Exportación    | Responsabilidad                                                                       |
+| -------------- | ------------------------------------------------------------------------------------- |
+| parseResetLink | Lee un token exclusivamente del fragmento; nunca de la consulta enviada a servidores. |
 
 ## src/utils/restoreDestination.ts
 

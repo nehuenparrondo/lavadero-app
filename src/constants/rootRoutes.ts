@@ -5,6 +5,8 @@ export type RouteAccess =
 export const rootRoutes = [
   { name: 'loading', access: 'public', options: { headerShown: false } },
   { name: 'sign-in', access: 'guest', options: { headerShown: false } },
+  { name: 'forgot-password', access: 'public', options: { title: 'Recuperar acceso' } },
+  { name: 'reset-password', access: 'public', options: { title: 'Nueva contraseña' } },
   { name: 'sign-up', access: 'guest', options: { title: 'Crear cuenta' } },
   { name: 'index', access: 'authenticated', options: { headerShown: false } },
   {

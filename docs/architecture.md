@@ -32,7 +32,7 @@ flowchart LR
   App[App Expo Android / Web] <-->|HTTPS REST v1 + JWT| API[Express en Render]
   API <-->|SQL parametrizado + TLS| DB[(MySQL Aiven)]
   App -->|AuthSession + PKCE| Browser[Navegador del sistema]
-  Browser <-->|Consentimiento| Providers[Google / Discord / GitHub]
+  Browser <-->|Consentimiento| Providers[Google]
   Providers -->|Callback HTTPS| API
   API -->|Grant efímero + state| App
 ```

@@ -16,7 +16,6 @@ export function profileCommands(
         firstName: v.firstName,
         lastName: v.lastName,
         phone: v.phone || null,
-        avatarUrl: v.avatarUrl || null,
       });
       await auth.reloadUser();
     });
