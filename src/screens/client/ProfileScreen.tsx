@@ -29,7 +29,7 @@ export function ProfileScreen() {
           submitLabel="Guardar perfil"
         />
       </Card>
-      <ThemeSelector theme={theme} />
+      {p.user?.role !== 'admin' && <ThemeSelector theme={theme} />}
       {p.user?.hasPassword && <ProfilePasswordForm p={p} />}
       <Button
         label="Cerrar sesión"

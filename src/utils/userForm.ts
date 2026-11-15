@@ -5,17 +5,11 @@ import {
 } from '../constants/userFields';
 import type { User } from '../types/entities';
 import type { FormFieldDefinition } from '../types/form';
-/** Construye opciones autorizadas; la cuenta propia conserva el rol administrador.
+/** Ofrece roles solo al crear; ninguna edición permite cambiar el rol.
  * @param current - Identidad o entidad actual usada para conservar sus invariantes.
- * @param userId - Identificador interno de cuenta, independiente del subject del proveedor.
  * @returns `FormFieldDefinition[]`.
  */
-export function userFields(
-  current: User | null,
-  userId: string | undefined,
-): FormFieldDefinition[] {
-  const roles =
-    current?.id === userId ? roleOptions.filter((r) => r.value === 'admin') : roleOptions;
+export function userFields(current: User | null): FormFieldDefinition[] {
   const password: FormFieldDefinition = {
     name: 'password',
     label: 'Contraseña inicial',
@@ -25,8 +19,14 @@ export function userFields(
   };
   return [
     ...userIdentityFields,
-    { name: 'role', label: 'Rol', kind: 'choice', options: roles },
-    ...(current ? userPermissionFields : [password]),
+    ...(current
+      ? userPermissionFields.filter(
+          (field) => field.name !== 'canRecordPayments' || current.role === 'employee',
+        )
+      : [
+          { name: 'role', label: 'Rol', kind: 'choice' as const, options: roleOptions },
+          password,
+        ]),
   ];
 }
 /** Serializa una cuenta a valores de formulario sin exponer credenciales.

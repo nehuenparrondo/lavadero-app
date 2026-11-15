@@ -16,7 +16,7 @@ export function useAppointmentVehicle(
 ) {
   const options = useOptions<Vehicle>(
     '/vehicles',
-    admin ? { ownerId: appointment.clientId } : {},
+    admin ? { ownerId: appointment.clientId ?? undefined } : {},
   );
   const action = useAction();
   const attach = async (body: { vehicleId: string } | { vehicle: Record<string, string> }) => {

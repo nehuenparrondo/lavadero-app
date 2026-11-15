@@ -1103,6 +1103,36 @@ Uso:
 <Pagination page={page} total={total} limit={limit} onChange={handleAction} />
 ```
 
+### ProgressBar
+
+Barra accesible para comparar importes o cantidades reales de una serie.
+
+[Fuente](../src/components/molecules/ProgressBar.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  label: string;
+  value: number;
+  max: number;
+  detail: string;
+}
+```
+
+| Prop   | Obligatoria | Tipo     |
+| ------ | ----------- | -------- |
+| label  | Sí          | `string` |
+| value  | Sí          | `number` |
+| max    | Sí          | `number` |
+| detail | Sí          | `string` |
+
+Uso:
+
+```tsx
+<ProgressBar label="Guardar" value={value} max={max} detail={detail} />
+```
+
 ### QuickAction
 
 Acceso a un recorrido existente; toda la tarjeta mantiene un único objetivo táctil.
@@ -1173,34 +1203,6 @@ Uso:
 
 ```tsx
 <ResponsiveGrid />
-```
-
-### RevenueBar
-
-Barra con cifra explícita para no depender de color o longitud.
-
-[Fuente](../src/components/molecules/RevenueBar.tsx)
-
-Tipo del parámetro:
-
-```ts
-{
-  date: string;
-  cents: number;
-  max: number;
-}
-```
-
-| Prop  | Obligatoria | Tipo     |
-| ----- | ----------- | -------- |
-| date  | Sí          | `string` |
-| cents | Sí          | `number` |
-| max   | Sí          | `number` |
-
-Uso:
-
-```tsx
-<RevenueBar date={date} cents={cents} max={max} />
 ```
 
 ### SearchBar
@@ -2589,7 +2591,7 @@ Uso:
 
 ### DashboardHeading
 
-Presentación del tablero y su acción prioritaria de reserva asistida.
+Presentación del tablero y su acción prioritaria de ingreso presencial.
 
 [Fuente](../src/components/organisms/DashboardHeading.tsx)
 
@@ -2697,30 +2699,6 @@ Uso:
 
 ```tsx
 <EmployeeDaySummary summary={summary} />
-```
-
-### EmployeePerformance
-
-Presenta trabajos completados por empleado en el período.
-
-[Fuente](../src/components/organisms/EmployeePerformance.tsx)
-
-Tipo del parámetro:
-
-```ts
-{
-  report: Report;
-}
-```
-
-| Prop   | Obligatoria | Tipo     |
-| ------ | ----------- | -------- |
-| report | Sí          | `Report` |
-
-Uso:
-
-```tsx
-<EmployeePerformance report={report} />
 ```
 
 ### EmployeeWorkAction
@@ -2963,7 +2941,7 @@ Uso:
 
 ### ReportSummary
 
-Compone indicadores, ingresos, servicios y rendimiento desde un único reporte.
+Compone indicadores, ingresos semanales y servicios desde un único reporte.
 
 [Fuente](../src/components/organisms/ReportSummary.tsx)
 
@@ -2985,11 +2963,11 @@ Uso:
 <ReportSummary report={report} />
 ```
 
-### RevenueByDay
+### RevenueByWeek
 
-Visualiza ingresos reales por día con las mismas barras accesibles del tablero.
+Compara semanas con cifras recalculadas por el servidor, sin metas ficticias.
 
-[Fuente](../src/components/organisms/RevenueByDay.tsx)
+[Fuente](../src/components/organisms/RevenueByWeek.tsx)
 
 Tipo del parámetro:
 
@@ -3006,7 +2984,7 @@ Tipo del parámetro:
 Uso:
 
 ```tsx
-<RevenueByDay report={report} />
+<RevenueByWeek report={report} />
 ```
 
 ### ScheduleSelector
@@ -3611,6 +3589,78 @@ Uso:
 <VehicleTypeManager />
 ```
 
+### WalkInConfirmation
+
+Distingue la estimación de disponibilidad del turno ya guardado.
+
+[Fuente](../src/components/organisms/WalkInConfirmation.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  m: ReturnType<typeof useWalkIn>;
+}
+```
+
+| Prop | Obligatoria | Tipo                           |
+| ---- | ----------- | ------------------------------ |
+| m    | Sí          | `ReturnType<typeof useWalkIn>` |
+
+Uso:
+
+```tsx
+<WalkInConfirmation m={manager} />
+```
+
+### WalkInServices
+
+Reutiliza reglas de lavado único y adicionales por categoría, con precios visibles.
+
+[Fuente](../src/components/organisms/WalkInServices.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  m: ReturnType<typeof useWalkIn>;
+}
+```
+
+| Prop | Obligatoria | Tipo                           |
+| ---- | ----------- | ------------------------------ |
+| m    | Sí          | `ReturnType<typeof useWalkIn>` |
+
+Uso:
+
+```tsx
+<WalkInServices m={manager} />
+```
+
+### WalkInVehicle
+
+Solicita solo patente y categoría; los datos de contacto son opcionales.
+
+[Fuente](../src/components/organisms/WalkInVehicle.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  m: ReturnType<typeof useWalkIn>;
+}
+```
+
+| Prop | Obligatoria | Tipo                           |
+| ---- | ----------- | ------------------------------ |
+| m    | Sí          | `ReturnType<typeof useWalkIn>` |
+
+Uso:
+
+```tsx
+<WalkInVehicle m={manager} />
+```
+
 ### WashFeedbackForm
 
 Captura una devolución del titular después de que se confirma el trabajo.
@@ -3641,7 +3691,7 @@ Uso:
 
 ### WeeklyActivity
 
-Serie semanal real; no rellena actividad ni fabrica tendencias para decorar el tablero.
+Muestra semanas del mes y demanda de servicios con actualización automática.
 
 [Fuente](../src/components/organisms/WeeklyActivity.tsx)
 

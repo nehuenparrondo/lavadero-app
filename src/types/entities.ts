@@ -65,7 +65,8 @@ export type AppointmentStatus = (typeof APPOINTMENT_STATUS)[number];
 /** Proyección de una reserva según el rol. Importes pueden faltar para empleados sin cobros. */
 export interface Appointment {
   id: string;
-  clientId?: string;
+  clientId?: string | null;
+  isWalkIn?: boolean;
   employeeId?: string | null;
   vehicleId?: string | null;
   vehicleTypeId?: string;
@@ -139,6 +140,7 @@ export interface Report {
   totalWashes: number;
   revenueCents: number;
   days: { date: string; washes: number; revenueCents: number }[];
+  weeks: { from: string; to: string; washes: number; revenueCents: number }[];
   services: { name: string; count: number }[];
   employees: { id: string; name: string; completed: number }[];
 }

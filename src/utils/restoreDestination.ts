@@ -14,6 +14,7 @@ const routes: Record<Role, string[]> = {
   admin: [
     ...shared,
     '/dashboard',
+    '/walk-in',
     '/vehicles',
     '/services',
     '/appointments',

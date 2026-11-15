@@ -2,14 +2,12 @@ import { useState } from 'react';
 import { saveUser } from '../api/services/userService';
 import type { User } from '../types/entities';
 import { userFields, userInitialValues } from '../utils/userForm';
-import { useAuth } from './useAuth';
 import { useDebouncedValue } from './useDebouncedValue';
 import { useEntityManager } from './useEntityManager';
 /** Gestión de usuarios; delega selección, persistencia y definición de formularios.
  * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
  */
 export function useUsers() {
-  const { user } = useAuth();
   const [search, setSearch] = useState('');
   const [role, setRole] = useState('');
   const query = useDebouncedValue(search);
@@ -25,7 +23,7 @@ export function useUsers() {
     setSearch,
     role,
     setRole,
-    fields: userFields(manager.editing, user?.id),
+    fields: userFields(manager.editing),
     initialValues: userInitialValues(manager.editing),
   };
 }

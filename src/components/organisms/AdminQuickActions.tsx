@@ -3,17 +3,17 @@ import { View } from 'react-native';
 import { overviewStyles as s } from '../../theme/overview.styles';
 import { QuickAction } from '../molecules/QuickAction';
 /** Accesos operativos que complementan la navegación administrativa.
- * @returns Reserva asistida, gestión del equipo y catálogo editable.
+ * @returns Ingreso sin turno, gestión del equipo y catálogo editable.
  */
 export function AdminQuickActions() {
   const router = useRouter();
   return (
     <View style={s.row}>
       <QuickAction
-        title="Reserva asistida"
-        detail="Agendá la visita de un cliente."
+        title="Auto sin turno"
+        detail="Registrá la llegada con su patente y servicios."
         icon="plus"
-        onPress={() => router.push('/booking')}
+        onPress={() => router.push('/(admin)/walk-in')}
       />
       <QuickAction
         title="Clientes y equipo"

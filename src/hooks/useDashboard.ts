@@ -2,12 +2,12 @@ import type { Appointment, Page, Report } from '../types/entities';
 import { useAuth } from './useAuth';
 import { useRemoteData } from './useRemoteData';
 /** Datos del tablero; refresca resumen y solicitudes como una sola acción de pantalla.
- * @returns Usuario, reporte diario, pendientes globales, reporte semanal y recarga conjunta.
+ * @returns Usuario, reporte diario, pendientes globales, semanas del mes y recarga conjunta.
  */
 export function useDashboard() {
   const { user } = useAuth();
   const report = useRemoteData<Report>('/reports', { period: 'day' });
-  const week = useRemoteData<Report>('/reports', { period: 'week' });
+  const week = useRemoteData<Report>('/reports', { period: 'month' });
   const pending = useRemoteData<Page<Appointment>>('/appointments', {
     queue: 'requested',
     limit: 5,

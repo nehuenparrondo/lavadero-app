@@ -143,13 +143,13 @@ Persiste el refresh antes de publicar la sesión para sus consumidores.
 
 ## src/api/services/userService.ts
 
-Alta o edición administrativa; los cambios de rol tienen endpoint independiente.
+Alta de cliente/empleado o edición administrativa que conserva el rol actual.
 
 [Abrir fuente](../src/api/services/userService.ts)
 
-| Exportación | Responsabilidad                                                                  |
-| ----------- | -------------------------------------------------------------------------------- |
-| saveUser    | Alta o edición administrativa; los cambios de rol tienen endpoint independiente. |
+| Exportación | Responsabilidad                                                               |
+| ----------- | ----------------------------------------------------------------------------- |
+| saveUser    | Alta de cliente/empleado o edición administrativa que conserva el rol actual. |
 
 ## src/api/sessionStorage.ts
 
@@ -306,6 +306,16 @@ Composición interna del módulo; consultar sus contratos de tipos.
 | Exportación | Responsabilidad                         |
 | ----------- | --------------------------------------- |
 | default     | Contrato tipado declarado en la fuente. |
+
+## src/app/(admin)/walk-in.tsx
+
+Ingreso presencial reservado a Administración por la navegación y la API.
+
+[Abrir fuente](<../src/app/(admin)/walk-in.tsx>)
+
+| Exportación | Responsabilidad                                                           |
+| ----------- | ------------------------------------------------------------------------- |
+| WalkIn      | Ingreso presencial reservado a Administración por la navegación y la API. |
 
 ## src/app/(client)/_layout.tsx
 
@@ -940,6 +950,16 @@ Navegación de listas grandes sin perder búsqueda y filtros.
 | ----------- | ----------------------------------------------------------- |
 | Pagination  | Navegación de listas grandes sin perder búsqueda y filtros. |
 
+## src/components/molecules/ProgressBar.tsx
+
+Barra accesible para comparar importes o cantidades reales de una serie.
+
+[Abrir fuente](../src/components/molecules/ProgressBar.tsx)
+
+| Exportación | Responsabilidad                                                          |
+| ----------- | ------------------------------------------------------------------------ |
+| ProgressBar | Barra accesible para comparar importes o cantidades reales de una serie. |
+
 ## src/components/molecules/QuickAction.tsx
 
 Acceso a un recorrido existente; toda la tarjeta mantiene un único objetivo táctil.
@@ -969,16 +989,6 @@ Cuadrícula de dos columnas que conserva las claves y el orden de los elementos.
 | Exportación    | Responsabilidad                                                                 |
 | -------------- | ------------------------------------------------------------------------------- |
 | ResponsiveGrid | Cuadrícula de dos columnas que conserva las claves y el orden de los elementos. |
-
-## src/components/molecules/RevenueBar.tsx
-
-Barra con cifra explícita para no depender de color o longitud.
-
-[Abrir fuente](../src/components/molecules/RevenueBar.tsx)
-
-| Exportación | Responsabilidad                                                 |
-| ----------- | --------------------------------------------------------------- |
-| RevenueBar  | Barra con cifra explícita para no depender de color o longitud. |
 
 ## src/components/molecules/SearchBar.tsx
 
@@ -1553,13 +1563,13 @@ Muestra la conversación y, en devoluciones, el responsable y su descripción hi
 
 ## src/components/organisms/DashboardHeading.tsx
 
-Presentación del tablero y su acción prioritaria de reserva asistida.
+Presentación del tablero y su acción prioritaria de ingreso presencial.
 
 [Abrir fuente](../src/components/organisms/DashboardHeading.tsx)
 
-| Exportación      | Responsabilidad                                                       |
-| ---------------- | --------------------------------------------------------------------- |
-| DashboardHeading | Presentación del tablero y su acción prioritaria de reserva asistida. |
+| Exportación      | Responsabilidad                                                         |
+| ---------------- | ----------------------------------------------------------------------- |
+| DashboardHeading | Presentación del tablero y su acción prioritaria de ingreso presencial. |
 
 ## src/components/organisms/DashboardIndicators.tsx
 
@@ -1600,16 +1610,6 @@ Resumen de la fecha consultada, compartido por el equipo, sin información finan
 | Exportación        | Responsabilidad                                                                       |
 | ------------------ | ------------------------------------------------------------------------------------- |
 | EmployeeDaySummary | Resumen de la fecha consultada, compartido por el equipo, sin información financiera. |
-
-## src/components/organisms/EmployeePerformance.tsx
-
-Presenta trabajos completados por empleado en el período.
-
-[Abrir fuente](../src/components/organisms/EmployeePerformance.tsx)
-
-| Exportación         | Responsabilidad                                           |
-| ------------------- | --------------------------------------------------------- |
-| EmployeePerformance | Presenta trabajos completados por empleado en el período. |
 
 ## src/components/organisms/EmployeeWorkAction.tsx
 
@@ -1703,23 +1703,23 @@ Confirma la contraseña actual y solicita la nueva al servidor.
 
 ## src/components/organisms/ReportSummary.tsx
 
-Compone indicadores, ingresos, servicios y rendimiento desde un único reporte.
+Compone indicadores, ingresos semanales y servicios desde un único reporte.
 
 [Abrir fuente](../src/components/organisms/ReportSummary.tsx)
 
-| Exportación   | Responsabilidad                                                                |
-| ------------- | ------------------------------------------------------------------------------ |
-| ReportSummary | Compone indicadores, ingresos, servicios y rendimiento desde un único reporte. |
+| Exportación   | Responsabilidad                                                             |
+| ------------- | --------------------------------------------------------------------------- |
+| ReportSummary | Compone indicadores, ingresos semanales y servicios desde un único reporte. |
 
-## src/components/organisms/RevenueByDay.tsx
+## src/components/organisms/RevenueByWeek.tsx
 
-Visualiza ingresos reales por día con las mismas barras accesibles del tablero.
+Compara semanas con cifras recalculadas por el servidor, sin metas ficticias.
 
-[Abrir fuente](../src/components/organisms/RevenueByDay.tsx)
+[Abrir fuente](../src/components/organisms/RevenueByWeek.tsx)
 
-| Exportación  | Responsabilidad                                                                 |
-| ------------ | ------------------------------------------------------------------------------- |
-| RevenueByDay | Visualiza ingresos reales por día con las mismas barras accesibles del tablero. |
+| Exportación   | Responsabilidad                                                               |
+| ------------- | ----------------------------------------------------------------------------- |
+| RevenueByWeek | Compara semanas con cifras recalculadas por el servidor, sin metas ficticias. |
 
 ## src/components/organisms/ScheduleSelector.tsx
 
@@ -1981,6 +1981,36 @@ Categorías registradas y formularios administrativos sin exponer SQL ni identif
 | ------------------ | ------------------------------------------------------------------------------------------------- |
 | VehicleTypeManager | Categorías registradas y formularios administrativos sin exponer SQL ni identificadores técnicos. |
 
+## src/components/organisms/WalkInConfirmation.tsx
+
+Distingue la estimación de disponibilidad del turno ya guardado.
+
+[Abrir fuente](../src/components/organisms/WalkInConfirmation.tsx)
+
+| Exportación        | Responsabilidad                                                  |
+| ------------------ | ---------------------------------------------------------------- |
+| WalkInConfirmation | Distingue la estimación de disponibilidad del turno ya guardado. |
+
+## src/components/organisms/WalkInServices.tsx
+
+Reutiliza reglas de lavado único y adicionales por categoría, con precios visibles.
+
+[Abrir fuente](../src/components/organisms/WalkInServices.tsx)
+
+| Exportación    | Responsabilidad                                                                     |
+| -------------- | ----------------------------------------------------------------------------------- |
+| WalkInServices | Reutiliza reglas de lavado único y adicionales por categoría, con precios visibles. |
+
+## src/components/organisms/WalkInVehicle.tsx
+
+Solicita solo patente y categoría; los datos de contacto son opcionales.
+
+[Abrir fuente](../src/components/organisms/WalkInVehicle.tsx)
+
+| Exportación   | Responsabilidad                                                          |
+| ------------- | ------------------------------------------------------------------------ |
+| WalkInVehicle | Solicita solo patente y categoría; los datos de contacto son opcionales. |
+
 ## src/components/organisms/WashFeedbackForm.tsx
 
 Captura una devolución del titular después de que se confirma el trabajo.
@@ -1993,13 +2023,13 @@ Captura una devolución del titular después de que se confirma el trabajo.
 
 ## src/components/organisms/WeeklyActivity.tsx
 
-Serie semanal real; no rellena actividad ni fabrica tendencias para decorar el tablero.
+Muestra semanas del mes y demanda de servicios con actualización automática.
 
 [Abrir fuente](../src/components/organisms/WeeklyActivity.tsx)
 
-| Exportación    | Responsabilidad                                                                         |
-| -------------- | --------------------------------------------------------------------------------------- |
-| WeeklyActivity | Serie semanal real; no rellena actividad ni fabrica tendencias para decorar el tablero. |
+| Exportación    | Responsabilidad                                                              |
+| -------------- | ---------------------------------------------------------------------------- |
+| WeeklyActivity | Muestra semanas del mes y demanda de servicios con actualización automática. |
 
 ## src/components/organisms/WelcomePanel.tsx
 
@@ -2761,6 +2791,46 @@ ABML de vehículos con definición de formulario separada de las consultas y acc
 | ----------- | ------------------------------------------------------------------------------------ |
 | useVehicles | ABML de vehículos con definición de formulario separada de las consultas y acciones. |
 
+## src/hooks/useWalkIn.ts
+
+Compone selección, cotización y guardado del ingreso presencial sin mezclar responsabilidades.
+
+[Abrir fuente](../src/hooks/useWalkIn.ts)
+
+| Exportación | Responsabilidad                                                                                |
+| ----------- | ---------------------------------------------------------------------------------------------- |
+| useWalkIn   | Compone selección, cotización y guardado del ingreso presencial sin mezclar responsabilidades. |
+
+## src/hooks/useWalkInActions.ts
+
+Conserva el mismo UUID al reintentar; el servidor devuelve el turno ya guardado.
+
+[Abrir fuente](../src/hooks/useWalkInActions.ts)
+
+| Exportación      | Responsabilidad                                                                  |
+| ---------------- | -------------------------------------------------------------------------------- |
+| useWalkInActions | Conserva el mismo UUID al reintentar; el servidor devuelve el turno ya guardado. |
+
+## src/hooks/useWalkInResources.ts
+
+Actualiza catálogo y disponibilidad sin descartar el texto que se está escribiendo.
+
+[Abrir fuente](../src/hooks/useWalkInResources.ts)
+
+| Exportación        | Responsabilidad                                                                     |
+| ------------------ | ----------------------------------------------------------------------------------- |
+| useWalkInResources | Actualiza catálogo y disponibilidad sin descartar el texto que se está escribiendo. |
+
+## src/hooks/useWalkInSelection.ts
+
+Conserva una clave de reintento hasta confirmar o comenzar otro ingreso.
+
+[Abrir fuente](../src/hooks/useWalkInSelection.ts)
+
+| Exportación        | Responsabilidad                                                          |
+| ------------------ | ------------------------------------------------------------------------ |
+| useWalkInSelection | Conserva una clave de reintento hasta confirmar o comenzar otro ingreso. |
+
 ## src/hooks/useWashFeedback.ts
 
 Envía una devolución ligada al turno; el servidor recupera el parte y su autor.
@@ -2864,13 +2934,23 @@ Horarios, capacidad, ventana de cancelación y categorías del negocio.
 
 ## src/screens/admin/UsersScreen.tsx
 
-ABML de usuarios con filtros y cambios de rol reservados al administrador.
+ABML de clientes y empleados; los roles se eligen únicamente al crear.
 
 [Abrir fuente](../src/screens/admin/UsersScreen.tsx)
 
-| Exportación | Responsabilidad                                                            |
-| ----------- | -------------------------------------------------------------------------- |
-| UsersScreen | ABML de usuarios con filtros y cambios de rol reservados al administrador. |
+| Exportación | Responsabilidad                                                        |
+| ----------- | ---------------------------------------------------------------------- |
+| UsersScreen | ABML de clientes y empleados; los roles se eligen únicamente al crear. |
+
+## src/screens/admin/WalkInScreen.tsx
+
+Registro rápido para autos presentes, sin alta previa en cuentas ni garaje.
+
+[Abrir fuente](../src/screens/admin/WalkInScreen.tsx)
+
+| Exportación  | Responsabilidad                                                             |
+| ------------ | --------------------------------------------------------------------------- |
+| WalkInScreen | Registro rápido para autos presentes, sin alta previa en cuentas ni garaje. |
 
 ## src/screens/auth/SignInScreen.tsx
 
@@ -3495,14 +3575,14 @@ Agrega/quita una selección; la representación CSV coincide con filtros del con
 
 ## src/utils/userForm.ts
 
-Construye opciones autorizadas; la cuenta propia conserva el rol administrador.
+Ofrece roles solo al crear; ninguna edición permite cambiar el rol.
 
 [Abrir fuente](../src/utils/userForm.ts)
 
-| Exportación       | Responsabilidad                                                                 |
-| ----------------- | ------------------------------------------------------------------------------- |
-| userFields        | Construye opciones autorizadas; la cuenta propia conserva el rol administrador. |
-| userInitialValues | Serializa una cuenta a valores de formulario sin exponer credenciales.          |
+| Exportación       | Responsabilidad                                                        |
+| ----------------- | ---------------------------------------------------------------------- |
+| userFields        | Ofrece roles solo al crear; ninguna edición permite cambiar el rol.    |
+| userInitialValues | Serializa una cuenta a valores de formulario sin exponer credenciales. |
 
 ## src/utils/vehicleForm.ts
 

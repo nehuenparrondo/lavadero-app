@@ -30,6 +30,8 @@ export interface CustomerMessage {
 export interface Attendance {
   date: string;
   today: string;
+  canRecord: boolean;
+  recordReason: string | null;
   items: Arrival[];
 }
 

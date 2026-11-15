@@ -20,6 +20,9 @@ export function ServicesScreen({ admin = false }: { admin?: boolean }) {
         subtitle="Precios en pesos argentinos, según tu vehículo."
       />
       {admin && <Button label="+ Crear servicio" onPress={c.create} />}
+      {admin && (
+        <Notice message="Editá el nombre, la descripción o la duración desde cada servicio. Los precios se ajustan por categoría; al eliminar, los turnos anteriores conservan sus datos." />
+      )}
       <ChoiceGroup
         value={typeId}
         onChange={c.setTypeId}

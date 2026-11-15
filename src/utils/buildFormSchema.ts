@@ -23,7 +23,20 @@ export function buildFormSchema(fields: FormFieldDefinition[]) {
       rule = rule.regex(/^\d{4}-\d{2}-\d{2}$/u, 'Usá el formato AAAA-MM-DD.');
     if (field.kind === 'time')
       rule = rule.regex(/^([01]\d|2[0-3]):[0-5]\d$/u, 'Usá el formato HH:MM.');
-    shape[field.name] = rule;
+    shape[field.name] = allowedChoice(rule, field);
   }
   return z.object(shape);
+}
+
+/** Los formularios no aceptan opciones ajenas al catálogo mostrado. */
+function allowedChoice(rule: z.ZodString, field: FormFieldDefinition) {
+  if (field.kind !== 'choice' && field.kind !== 'multiple') return rule;
+  const allowed = new Set(field.options?.map((option) => option.value));
+  return rule.refine((value) => {
+    if (!value && field.required === false) return true;
+    const selected = field.kind === 'multiple' ? value.split(',') : [value];
+    return (
+      new Set(selected).size === selected.length && selected.every((id) => allowed.has(id))
+    );
+  }, 'Elegí una opción disponible.');
 }

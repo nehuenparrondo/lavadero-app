@@ -3,7 +3,6 @@ import type { FormFieldDefinition } from '../types/form';
 export const roleOptions = [
   { value: 'client', label: 'Cliente' },
   { value: 'employee', label: 'Empleado' },
-  { value: 'admin', label: 'Administrador' },
 ];
 /** Campos de identidad comunes a creación y edición de usuarios. */
 export const userIdentityFields: FormFieldDefinition[] = [

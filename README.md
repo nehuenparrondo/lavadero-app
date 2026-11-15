@@ -74,3 +74,5 @@ Ver [comportamiento, módulos y pruebas de la versión 1.1.1](docs/reliability.m
 La agenda compartida, la asignación, la verificación del trabajo, los reclamos y el fichaje se explican en el [manual de uso](docs/user-manual.md).
 
 Ver [cancelaciones, observaciones y mejora de interfaz](docs/interface-polish.md).
+
+[Panel administrativo: ingreso presencial, usuarios, servicios, asistencia y semanas](docs/admin-panel.md).

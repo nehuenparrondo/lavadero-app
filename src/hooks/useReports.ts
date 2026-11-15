@@ -6,7 +6,7 @@ import { useRemoteData } from './useRemoteData';
  * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
  */
 export function useReports() {
-  const [period, setPeriod] = useState('week');
+  const [period, setPeriod] = useState('month');
   const [date, setDate] = useState(today());
   const state = useRemoteData<Report>('/reports', {
     period,

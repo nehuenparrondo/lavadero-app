@@ -43,9 +43,9 @@ export function ServiceCard({
       {!service.isActive && <Badge label="Inactivo" tone="warning" />}
       {onEdit && (
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-          <Button label="Editar" variant="secondary" onPress={onEdit} />
-          {onPrice && <Button label="Precios" variant="secondary" onPress={onPrice} />}{' '}
-          {onDelete && <Button label="Eliminar" variant="quiet" onPress={onDelete} />}
+          <Button label="Editar servicio" variant="secondary" onPress={onEdit} />
+          {onPrice && <Button label="Editar precios" variant="secondary" onPress={onPrice} />}
+          {onDelete && <Button label="Eliminar servicio" variant="quiet" onPress={onDelete} />}
         </View>
       )}
     </Card>

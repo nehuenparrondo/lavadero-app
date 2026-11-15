@@ -4,8 +4,8 @@ Composición de rutas de Expo Router. Cada archivo delega su contenido y el layo
 
 ## Archivos y responsabilidades
 
-| Archivo | Responsabilidad |
-| --- | --- |
+| Archivo                  | Responsabilidad                                                   |
+| ------------------------ | ----------------------------------------------------------------- |
 | [[id].tsx](%5Bid%5D.tsx) | Composición interna del módulo; consultar sus contratos de tipos. |
 
 ## Mantenimiento

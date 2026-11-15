@@ -25,12 +25,7 @@ export function AppointmentAgendaPresets({ m }: { m: ReturnType<typeof useAppoin
       options={[
         { value: 'today', label: 'Hoy' },
         { value: 'all', label: 'Todas las fechas' },
-        ...(m.mode === 'admin'
-          ? [
-              { value: 'new', label: 'Nuevas solicitudes' },
-              { value: 'review', label: 'Por verificar' },
-            ]
-          : []),
+        ...(m.mode === 'admin' ? [{ value: 'new', label: 'Nuevas solicitudes' }] : []),
       ]}
     />
   );

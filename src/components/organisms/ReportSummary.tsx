@@ -3,10 +3,9 @@ import { overviewStyles as s } from '../../theme/overview.styles';
 import type { Report } from '../../types/entities';
 import { money } from '../../utils/format';
 import { MetricTile } from '../molecules/MetricTile';
-import { EmployeePerformance } from './EmployeePerformance';
 import { PopularServices } from './PopularServices';
-import { RevenueByDay } from './RevenueByDay';
-/** Compone indicadores, ingresos, servicios y rendimiento desde un único reporte.
+import { RevenueByWeek } from './RevenueByWeek';
+/** Compone indicadores, ingresos semanales y servicios desde un único reporte.
  * @param props Reporte autorizado del período solicitado.
  * @returns Resumen contable y operativo, sin recalcular ni inferir cifras en la UI.
  */
@@ -27,9 +26,8 @@ export function ReportSummary({ report }: { report: Report }) {
           icon="wallet"
         />
       </View>
-      <RevenueByDay report={report} />
+      <RevenueByWeek report={report} />
       <PopularServices report={report} />
-      <EmployeePerformance report={report} />
     </>
   );
 }

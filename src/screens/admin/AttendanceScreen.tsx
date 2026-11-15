@@ -26,6 +26,7 @@ export function AttendanceScreen() {
         onChange={m.setDate}
       />
       <Button label="Volver a hoy" variant="quiet" onPress={() => m.setDate('')} />
+      <Notice message={m.data?.recordReason ?? undefined} />
       <Notice
         error={m.error || m.action.error}
         message={m.action.message}
@@ -41,7 +42,13 @@ function AttendanceList({ m }: { m: ReturnType<typeof useAttendance> }) {
   if (!m.data) return null;
   if (!m.data.items.length) return <Text>Sin fichajes para esta fecha.</Text>;
   return m.data.items.map((item) => (
-    <ArrivalCard key={item.employeeId} item={item} busy={m.action.busy} record={m.record} />
+    <ArrivalCard
+      key={item.employeeId}
+      item={item}
+      busy={m.action.busy}
+      canRecord={m.data!.canRecord}
+      record={m.record}
+    />
   ));
 }
 
@@ -49,10 +56,12 @@ function AttendanceList({ m }: { m: ReturnType<typeof useAttendance> }) {
 function ArrivalCard({
   item,
   busy,
+  canRecord,
   record,
 }: {
   item: Arrival;
   busy: boolean;
+  canRecord: boolean;
   record: (id: string) => Promise<void>;
 }) {
   return (
@@ -66,6 +75,7 @@ function ArrivalCard({
         <Button
           label={`Fichar llegada de ${item.employeeName}`}
           loading={busy}
+          disabled={!canRecord}
           onPress={() => {
             void record(item.employeeId);
           }}

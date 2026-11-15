@@ -19,7 +19,11 @@ export function AppointmentVehicle({ appointment: a }: { appointment: Appointmen
           {a.plate ?? a.vehicleType}
         </Text>
         <Text style={{ fontSize: 13, color: colors.muted }}>
-          {a.plate ? `${a.brand} ${a.model} · ${a.color}` : 'Vehículo pendiente de cargar'}
+          {a.plate
+            ? [a.isWalkIn ? 'Sin turno' : '', a.brand, a.model, a.color]
+                .filter(Boolean)
+                .join(' · ') || a.vehicleType
+            : 'Vehículo pendiente de cargar'}
         </Text>
         {a.serviceSummary && (
           <Text style={{ fontSize: 13, color: colors.muted }}>{a.serviceSummary}</Text>

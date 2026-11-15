@@ -22,6 +22,7 @@ export const roleNavigation: Record<Role, NavigationItem[]> = {
   ],
   admin: [
     { label: 'Resumen', href: '/(admin)/dashboard', path: '/dashboard', icon: 'grid' },
+    { label: 'Auto sin turno', href: '/(admin)/walk-in', path: '/walk-in', icon: 'plus' },
     {
       label: 'Turnos',
       href: '/(admin)/appointments',

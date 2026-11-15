@@ -4,10 +4,10 @@ Composición de cada recorrido. Coordina organismos con su hook y deja a las rut
 
 ## Archivos y responsabilidades
 
-| Archivo | Responsabilidad |
-| --- | --- |
+| Archivo                                    | Responsabilidad                                                                            |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | [BootstrapScreen.tsx](BootstrapScreen.tsx) | Pantalla de arranque: compone el estado de conectividad mientras se prepara la navegación. |
-| [bootstrap.styles.ts](bootstrap.styles.ts) | Layout centrado, desplazable y con ancho legible en teléfono o tablet. |
+| [bootstrap.styles.ts](bootstrap.styles.ts) | Layout centrado, desplazable y con ancho legible en teléfono o tablet.                     |
 
 ## Mantenimiento
 

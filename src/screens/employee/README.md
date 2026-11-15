@@ -4,8 +4,8 @@ Experiencia operativa propia del empleado: jornada, resumen por fecha e historia
 
 ## Archivos y responsabilidades
 
-| Archivo | Responsabilidad |
-| --- | --- |
+| Archivo                                              | Responsabilidad                                                                 |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------- |
 | [EmployeeAgendaScreen.tsx](EmployeeAgendaScreen.tsx) | Experiencia del equipo separada de la pantalla de clientes y de administración. |
 
 ## Mantenimiento
