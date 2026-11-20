@@ -19,8 +19,8 @@ En la comprobación del 12/11/2026, la web principal de Render y MariaDB respond
 
 ## Publicar cambios
 
-1. Ejecutar `npm ci` y `npm run check` en el repositorio modificado. Las pruebas de integración utilizan únicamente una base QA desechable.
-2. Subir los cambios a `main` del repositorio privado correspondiente. Render publica la API y la app por separado.
+1. Desde la carpeta `main`, ejecutar `npm run install:all` y `npm run check`. Las pruebas de integración utilizan únicamente una base QA desechable.
+2. Subir los cambios a la rama `main` del repositorio privado único `nehuenparrondo/lavadero-app`. Render publica la API desde la raíz `backend` y la app desde la raíz `frontend`, conservando servicios y direcciones independientes. La configuración conjunta está en `main/render.yaml`.
 3. La API compila con `npm ci --include=dev && npm run build && npm prune --omit=dev`. Inicia con `npm run db:migrate:production && npm start`.
 4. El migrador verifica checksums y toma un bloqueo para impedir ejecuciones simultáneas. No volver a sembrar producción después de copiar sus datos.
 5. Comprobar `/health`, `/ready`, `/api/openapi.json` y el ingreso desde la web. `/ready` comprueba MariaDB.

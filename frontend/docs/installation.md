@@ -2,7 +2,7 @@
 
 ## Desde cero
 
-Instalar Node 24 LTS y Git; clonar solamente lavadero-app y ejecutar `npm ci`.
+Instalar Node 24.15 o superior y Git; clonar `lavadero-app` con el nombre local `main`, entrar en `main/frontend` y ejecutar `npm ci`. Para instalar y abrir ambas aplicaciones juntas, seguir [la guía principal](../../README.md) desde `main`.
 Copiar `.env.example` a `.env` y definir:
 
 ```dotenv
@@ -44,7 +44,7 @@ Los callbacks de proveedores terminan en el backend HTTPS; el backend redirige u
 código efímero a la app. No copiar client secrets a EXPO_PUBLIC.
 
 Versión web: https://lavadero-app-2558.onrender.com. Se construye en Render Static Site
-con `npm ci --include=dev && npm run export:web`, publica `web-dist`, y tiene rewrite
+con raíz `frontend` y comando `npm ci --include=dev && npm run export:web`, publica `web-dist`, y tiene rewrite
 `/*` a `/index.html`. Su origen exacto está permitido en CORS. Los refresh web duran
 solo la pestaña, en sessionStorage. Para probar desarrollo web contra otra API hay que
 permitir ese origen explícitamente en el entorno correspondiente.
