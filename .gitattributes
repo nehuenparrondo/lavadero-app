@@ -1,2 +1,7 @@
 * text=auto eol=lf
-docs/requirements-source.txt -text
+*.cmd text eol=crlf
+*.png binary
+*.jpg binary
+*.ico binary
+*.ttf binary
+*.hbc binary

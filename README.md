@@ -1,84 +1,72 @@
-# Lavadero App 1.0
+# Lavadero
 
-Aplicación Expo/React Native con TypeScript estricto y Expo Router. Tiene flujos reales
-para Cliente, Empleado y Administrador, temas claro/oscuro/sistema y diseño adaptable.
-Consume exclusivamente una API HTTPS pública; es independiente del repositorio backend.
+El proyecto completo está en esta carpeta `main`, con un repositorio de GitHub y dos aplicaciones independientes:
 
-Repositorio privado: https://github.com/nehuenparrondo/lavadero-app.
-Proyecto EAS: https://expo.dev/accounts/elpepoestangod/projects/lavadero-app.
+```text
+main/
+├── backend/       API Express, autenticación, reglas, MariaDB y migraciones
+├── frontend/      Expo, interfaz web e iPhone/Android, vistas de los tres roles
+├── scripts/       Instalación, arranque conjunto, verificación y vista previa
+├── package.json   Comandos comunes
+└── render.yaml    Publicación de ambos servicios desde este repositorio
+```
 
-## Ejecutar
+Repositorio único: [nehuenparrondo/lavadero-app](https://github.com/nehuenparrondo/lavadero-app).
+La carpeta local se llama `main`; la rama de Git también es `main`.
+El antiguo repositorio `lavadero-api` conserva el historial anterior; el código activo del backend está en `backend/` del repositorio único.
 
-Node 24 LTS, Expo SDK 58, React 19.3 y React Native 0.88. Las versiones exactas están
-fijadas en `package-lock.json`. Instalar paquetes nativos con `npx expo install`.
+## Abrir y ejecutar en esta computadora
+
+Requiere Node 24.15 o superior. Abrí esta carpeta `main` en el editor.
 
 ```powershell
-npm ci
-Copy-Item .env.example .env
-# EXPO_PUBLIC_API_URL=https://lavadero-api-48m4.onrender.com
+npm run install:all
+npm run dev
+```
+
+Abrí **http://localhost:8081**. El comando inicia frontend y backend; Ctrl+C detiene ambos.
+El backend local usa la base escolar configurada en `backend/.env`. El arranque rechaza una base que no termine en `_dev`, para evitar trabajar por accidente sobre producción.
+Los puertos se comprueban antes de iniciar. Para cambiarlos, definí `LAVADERO_API_PORT` y `LAVADERO_WEB_PORT` en esa terminal antes de ejecutar el comando.
+
+En esta computadora se conservaron las configuraciones privadas existentes. No hace falta volver a cargar las contraseñas.
+En otra computadora, copiá `backend/.env.example` a `backend/.env`, completá tu conexión escolar y una clave JWT privada de al menos 32 caracteres. Ejecutá `npm run db:migrate` si la base todavía no tiene las migraciones aplicadas.
+
+## Verificar y compilar
+
+```powershell
 npm run check
-npm start
+npm run build
+npm run preview
 ```
 
-La URL es solo el origen, sin `/api/v1`. Nunca poner secretos OAuth o credenciales
-MySQL en variables EXPO_PUBLIC. En móvil, localhost identifica al teléfono.
+`check` ejecuta tipos, lint, pruebas y auditoría de modularidad de ambas aplicaciones. `build` compila la API y exporta la web con sus protecciones de navegador. `preview` sirve esa exportación en **http://127.0.0.1:8086**, usando la API HTTPS publicada.
+La configuración pública de la exportación está en `frontend/.env`: copiá `frontend/.env.example` si falta. Nunca poner claves SQL, OAuth privadas o de Mailtrap en el frontend.
 
-## Funciones
+`npm run export:android` exporta el bundle móvil. No construye ni instala un APK.
+Para Expo Go, ejecutá `npm start` dentro de `frontend/` con `EXPO_PUBLIC_API_URL` apuntando a la API HTTPS publicada. El backend HTTP local de `npm run dev` está limitado a esta computadora.
 
-- Cliente: cuenta, perfil, vehículos, tarifas, cotización, reserva, historial,
-  cancelación según anticipación y comprobante del trabajo finalizado.
-- Empleado: agenda e historial propios, detalle del vehículo/cliente, observaciones,
-  búsqueda por patente, inicio y envío a verificación del responsable, y cobro cuando un administrador lo habilita.
-- Administrador: usuarios/roles, catálogo/tarifas/tipos, agenda/asignación, horarios,
-  capacidad, políticas y reportes por día/semana/mes.
-- Formularios React Hook Form + Zod, listas paginadas, búsqueda, estados de carga,
-  errores, vacíos, actualización y confirmaciones de acciones.
+## Desarrollo y página publicada
 
-## Compilar y distribuir
+| Entorno          | Frontend                               | API / base                                                     |
+| ---------------- | -------------------------------------- | -------------------------------------------------------------- |
+| Desarrollo local | http://localhost:8081                  | http://127.0.0.1:3000 / base escolar `_dev`                    |
+| Web publicada    | https://lavadero-app-2558.onrender.com | https://lavadero-api-48m4.onrender.com / `nehuenlavadero_prod` |
 
-```powershell
-npm run export:android
-npx eas-cli@latest build --platform android --profile preview
-```
+El ingreso con correo funciona en desarrollo local. Google necesita su retorno HTTPS autorizado y se comprueba en la versión publicada; el arranque local lo deshabilita para evitar mezclar estados de autenticación con producción. Mailtrap requiere sus variables privadas en el backend del entorno correspondiente; el sitio publicado usa la bandeja Sandbox, sin entrega a casillas reales.
 
-La exportación verifica el bundle; el segundo comando genera el APK firmado en EAS.
-El perfil preview usa distribución interna y NO necesita el servidor Metro para funcionar.
-Para desarrollar OAuth usar un development build o el APK: Expo Go no representa
-correctamente el scheme propio. El backend conserva los secretos del proveedor.
+Cada aplicación conserva sus dependencias y su `package-lock.json`: no se mezclan paquetes móviles con los del servidor.
+La API no importa código del frontend y la interfaz se comunica con la API mediante HTTP.
 
-`npm run export:web` genera `web-dist`; en Render Static Site se añade rewrite
-`/*` → `/index.html`. El origen HTTPS web debe incluirse en CORS del backend.
+## Render
 
-[Instalación](docs/installation.md), [arquitectura](docs/architecture.md),
-[componentes](docs/components.md), [navegación](docs/navigation.md),
-[estado](docs/state.md), [manual por rol](docs/user-manual.md),
-[verificación](docs/verification.md), [entrega](docs/delivery.md).
+Los dos servicios toman la rama `main` del repositorio único. La raíz del servicio API es `backend`; la raíz del sitio estático es `frontend`. Los comandos se ejecutan dentro de su raíz, por lo que las rutas de compilación son relativas a cada carpeta.
+`render.yaml` reúne esta configuración. Los secretos se completan en Render y se conservan en los servicios existentes, junto con las direcciones públicas y los datos publicados.
 
-En Android el refresh se guarda con SecureStore. En la vista web se usa sessionStorage
-de la pestaña; cerrar la pestaña elimina esa persistencia. El access token queda en memoria.
+## Documentación
 
-## Revisión de la consigna
+- [Backend y contrato](backend/README.md), [OpenAPI](backend/docs/openapi.json).
+- [Frontend e interfaz](frontend/README.md).
+- [Seguridad y recuperación](backend/docs/security-recovery.md).
+- [Funcionamiento](backend/docs/functional-guide.md).
 
-[Matriz de requisitos y evidencia](docs/requirements-review.md) · [Prueba desde iPhone/Expo Go](docs/iphone-expo-go.md).
-
-## Lectura y mantenimiento del código
-
-- [Guía de código e invariantes](docs/code-guide.md)
-- [Mapa de todos los módulos](docs/source-map.md)
-- [Sistema visual](docs/design-system.md)
-
-## Correcciones de acceso y reservas
-
-Ver [comportamiento, módulos y pruebas de la versión 1.1.1](docs/reliability.md).
-
-La agenda compartida, la asignación, la verificación del trabajo, los reclamos y el fichaje se explican en el [manual de uso](docs/user-manual.md).
-
-Ver [cancelaciones, observaciones y mejora de interfaz](docs/interface-polish.md).
-
-[Panel administrativo: ingreso presencial, usuarios, servicios, asistencia y semanas](docs/admin-panel.md).
-
-[Cliente y empleado: calendario, agenda, limpieza, cobro y reclamos](docs/client-employee-flow.md).
-
-## Seguridad y acceso actual
-
-Ingreso con Google o correo y contraseña. Discord y GitHub fueron retirados. Perfil sin fotos. Recuperación mediante Mailtrap Sandbox, sin entrega a casillas reales. Ver [seguridad y recuperación](docs/security-recovery.md) para configuración, pruebas y límites.
+No subir `.env`, `node_modules`, bases exportadas ni archivos privados a GitHub. El ZIP público de esta estructura excluye esos archivos.

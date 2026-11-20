@@ -1,0 +1,42 @@
+# Repositorio único: todos los comandos se ejecutan dentro de backend.
+services:
+  - type: web
+    name: lavadero-api
+    runtime: node
+    rootDir: backend
+    plan: free
+    buildCommand: npm ci --include=dev && npm run build && npm prune --omit=dev
+    # El plan Free no ofrece pre-deploy command; migrar al arrancar, bajo lock MySQL.
+    startCommand: npm run db:migrate:production && npm start
+    healthCheckPath: /ready
+    envVars:
+      - key: NODE_VERSION
+        value: 24.15.0
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_TLS
+        value: 'true'
+      - key: DATABASE_CA_BASE64
+        sync: false
+      - key: DATABASE_POOL_SIZE
+        value: '5'
+      - key: CORS_ORIGINS
+        value: https://lavadero-app-2558.onrender.com,https://nehuenlavadero.alwaysdata.net
+      - key: JWT_ACCESS_SECRET
+        sync: false
+      - key: PUBLIC_API_URL
+        value: https://lavadero-api-48m4.onrender.com
+      - key: OAUTH_REDIRECT_URIS
+        value: lavadero://oauth,https://lavadero-app-2558.onrender.com/oauth,https://nehuenlavadero.alwaysdata.net/oauth
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: MAILTRAP_API_TOKEN
+        sync: false
+      - key: MAILTRAP_INBOX_ID
+        sync: false
+      - key: PASSWORD_RESET_URL
+        value: https://lavadero-app-2558.onrender.com/reset-password

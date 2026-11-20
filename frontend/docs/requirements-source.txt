@@ -1,0 +1,569 @@
+================================================================================
+PROMPT - APLICACION MOVIL PARA LAVADERO DE AUTOS
+================================================================================
+
+
+ROL Y OBJETIVO
+--------------------------------------------------------------------------------
+Actua como un desarrollador full stack senior, experto en React Native con Expo,
+TypeScript, Node.js y bases de datos relacionales. Vas a ayudarme a disenar y
+construir, paso a paso, una aplicacion movil completa para un lavadero de autos,
+con frontend y backend como dos proyectos totalmente separados, backend hosteado
+en un servidor publico, codigo atomizado y todo bien documentado.
+
+Es un proyecto academico con requisitos de evaluacion estrictos, pero tiene que
+funcionar como una app real, con codigo limpio, escalable y facil de explicar.
+
+
+STACK TECNOLOGICO (OBLIGATORIO)
+--------------------------------------------------------------------------------
+- Frontend: React Native con Expo (flujo managed, ultima version estable del
+  SDK) y TypeScript en modo strict. Nada de JavaScript plano.
+- Backend: Node.js con Express y TypeScript.
+- Base de datos: MySQL (relacional).
+- Todo el sistema debe estar hosteado (ver seccion 9). La app no puede depender
+  de localhost.
+
+
+IDEA DE LA APLICACION
+--------------------------------------------------------------------------------
+La app digitaliza la operacion de un lavadero de autos y conecta a tres tipos de
+personas, cada una con su propia experiencia dentro de la misma app: Cliente,
+Empleado y Administrador.
+
+
+================================================================================
+1. ARQUITECTURA: FRONTEND Y BACKEND SEPARADOS (OBLIGATORIO)
+================================================================================
+
+El frontend y el backend son dos proyectos independientes, no una sola carpeta
+mezclada.
+
+- Dos repositorios de Git/GitHub (o, como minimo, dos carpetas raiz
+  completamente autonomas dentro de un monorepo sin codigo compartido):
+    * lavadero-api -> backend.
+    * lavadero-app -> frontend movil.
+- Cada proyecto tiene su propio package.json, tsconfig.json, .gitignore,
+  .env.example, README, configuracion de linter/formateador, historial de
+  commits y despliegue.
+- No se importa codigo de un proyecto en el otro. Se comunican unicamente por la
+  API REST a traves de HTTP. Los tipos de datos del frontend se definen en el
+  frontend, a partir del contrato de la API (documentado con OpenAPI/Swagger).
+- El contrato de la API es lo que une ambos mundos. Tiene que estar documentado
+  y versionado (/api/v1/...) para que se pueda cambiar un proyecto sin romper el
+  otro.
+- Se despliegan, se configuran y se prueban por separado. El frontend solo
+  conoce la URL publica del backend mediante EXPO_PUBLIC_API_URL.
+- Cada proyecto debe poder instalarse, ejecutarse y probarse solo. El backend se
+  puede probar con Postman, Insomnia o Swagger UI sin necesitar la app.
+- Diagrama de arquitectura (Mermaid) que muestre: app movil <-> API REST <->
+  base de datos, mas los proveedores OAuth.
+
+
+================================================================================
+2. CODIGO ATOMIZADO (OBLIGATORIO)
+================================================================================
+
+Todo el codigo se divide en piezas pequenas, con una sola responsabilidad y
+reutilizables. Reglas concretas:
+
+REGLAS GENERALES (EN AMBOS PROYECTOS)
+- Una responsabilidad por archivo. Un componente, un hook, un servicio o un
+  controlador por archivo.
+- Archivos cortos: como referencia, menos de 150 lineas por archivo y menos de
+  30 lineas por funcion. Si se pasa, se divide.
+- Funciones puras y pequenas, con nombres que expliquen lo que hacen
+  (calculateAppointmentTotal, no calc).
+- Sin logica duplicada: si algo se repite dos veces, se extrae a una utilidad o
+  componente.
+- Sin "numeros magicos" ni textos repetidos: constantes y enums centralizados
+  (APPOINTMENT_STATUS, ROLES).
+- Una convencion de nombres unica y consistente en todo el proyecto (por
+  ejemplo: codigo en ingles, textos de interfaz en espanol, PascalCase para
+  componentes y tipos, camelCase para funciones y variables).
+- Dependencias entre capas en una sola direccion, sin dependencias circulares.
+
+FRONTEND: ATOMIZACION CON ATOMIC DESIGN
+- atoms: Button, Input, Text, Icon, Badge, Spinner, Avatar.
+- molecules: FormField (label + input + error), ListItem, StatusBadge,
+  SearchBar, ServiceCard.
+- organisms: AppointmentCard, VehicleForm, AppointmentList, UserTable,
+  ScheduleSelector.
+- screens: solo componen componentes y conectan hooks. No contienen logica de
+  negocio ni estilos extensos.
+- Logica en custom hooks (useAppointments, useAuth, useVehicleForm), nunca
+  dentro del JSX.
+- Llamadas HTTP solo en api/services, nunca dentro de componentes ni pantallas.
+- Estilos y tema centralizados (colores claro/oscuro, espaciados, tipografias,
+  breakpoints).
+
+BACKEND: ATOMIZACION POR CAPAS Y POR MODULOS
+- Cada modulo de negocio (auth, users, vehicles, services, appointments,
+  payments, reports) es autonomo y tiene su propia carpeta.
+- Cada modulo se divide en capas con responsabilidades separadas:
+    * routes: solo define rutas y middlewares.
+    * controller: recibe la peticion, llama al servicio y devuelve la
+      respuesta. Sin logica de negocio.
+    * service: contiene las reglas de negocio (transiciones de estado, calculo
+      de totales, validacion de horarios).
+    * repository: unico lugar que habla con la base de datos (SQL
+      parametrizado).
+    * schema: validaciones de entrada (Zod).
+    * types: tipos e interfaces del modulo.
+- Middlewares pequenos y reutilizables: authenticate, requireRole,
+  requireOwnership, validate, errorHandler, rateLimiter.
+- Errores propios (AppError, NotFoundError, ForbiddenError, ConflictError)
+  capturados en un unico manejador central.
+
+
+================================================================================
+3. DOCUMENTACION (OBLIGATORIA Y EN TODO EL PROYECTO)
+================================================================================
+
+La documentacion no es un anexo del final: se escribe a medida que se
+desarrolla.
+
+EN EL CODIGO
+- TSDoc/JSDoc en todas las funciones, servicios, hooks y componentes publicos:
+  que hace, parametros, que devuelve y que errores puede lanzar.
+- Comentarios que expliquen el porque de las decisiones no obvias (no el que, que
+  ya lo dice el codigo).
+- Tipos e interfaces con descripcion en los campos importantes.
+- Cada carpeta importante con un breve README.md que explique su proposito (por
+  ejemplo src/components/atoms/README.md).
+
+POR PROYECTO (UN SET COMPLETO EN CADA REPOSITORIO)
+- README.md: que es, tecnologias, estructura de carpetas, requisitos,
+  instalacion, variables de entorno, scripts disponibles, ejecucion y
+  despliegue.
+- docs/architecture.md: arquitectura, capas, flujo de una peticion, decisiones
+  tecnicas y su justificacion.
+- CHANGELOG.md y CONTRIBUTING.md (convencion de commits y ramas).
+- .env.example con cada variable comentada.
+
+BACKEND
+- Documentacion de la API en API.md y Swagger/OpenAPI (/api/docs). Cada endpoint
+  indica: metodo HTTP, ruta, roles permitidos, parametros, body, ejemplos de
+  request y response, y codigos de error.
+- docs/database.md: diagrama ER, descripcion de cada tabla y columna, y
+  explicacion de la 1FN, 2FN y 3FN.
+- Coleccion de Postman/Insomnia exportada para probar la API.
+
+FRONTEND
+- docs/navigation.md: mapa de navegacion por rol.
+- docs/components.md: catalogo de componentes con sus props y ejemplos de uso.
+- docs/state.md: como se maneja la sesion, el tema y el estado global.
+
+PARA EL USUARIO FINAL
+- Manual de usuario por rol (Cliente, Empleado, Administrador), con capturas.
+- Guia de instalacion y configuracion de ambos proyectos, paso a paso.
+
+
+================================================================================
+4. ROLES DE USUARIO (DETALLE COMPLETO)
+================================================================================
+
+REGLAS GENERALES DE ROLES
+- Todo usuario que se registra (por email o por red social) recibe
+  automaticamente el rol Cliente.
+- Los roles Empleado y Administrador no se pueden elegir al registrarse. Solo un
+  Administrador puede asignarlos o cambiarlos.
+- Hay un Administrador inicial creado por el script de datos semilla.
+- Un administrador no puede quitarse su propio rol ni desactivarse a si mismo, y
+  el sistema nunca puede quedar sin al menos un administrador activo.
+- Al iniciar sesion, la app lee el rol del usuario (que viene en el JWT y en la
+  respuesta de login) y arma la navegacion correspondiente.
+- Los permisos se validan siempre en el backend. Ocultar botones en la interfaz
+  es solo comodidad. Ademas del rol, el backend verifica la propiedad del
+  recurso (un cliente solo accede a sus propios vehiculos y turnos, aunque
+  conozca el ID de otro).
+
+
+--------------------------------------------------------------------------------
+ROL 1: CLIENTE
+--------------------------------------------------------------------------------
+Perfil: el dueno del auto que usa el lavadero. Es el rol por defecto.
+
+Que puede hacer:
+- Ver y editar su perfil (nombre, apellido, telefono, foto opcional) y cambiar
+  su contrasena si se registro con email.
+- Gestionar sus vehiculos (alta, baja, modificacion y listado): patente (unica),
+  marca, modelo, tipo de vehiculo (auto, camioneta, SUV, moto, etc.) y color.
+- Ver el catalogo de servicios con la descripcion, la duracion y el precio segun
+  el tipo de su vehiculo.
+- Reservar un turno: elegir vehiculo, uno o mas servicios, fecha y horario
+  disponible. Ve el total calculado antes de confirmar.
+- Ver sus turnos proximos y pasados, con el estado actual en cada uno.
+- Cancelar un turno propio mientras este en estado "pendiente" o "confirmado" y
+  falten mas de X horas (X configurable, por ejemplo 2).
+- Ver el detalle y el comprobante de sus turnos finalizados.
+
+Que NO puede hacer:
+- Ver datos de otros clientes ni sus vehiculos o turnos.
+- Cambiar el estado de un turno (salvo cancelarlo), asignar empleados ni
+  modificar servicios o precios.
+- Acceder a ninguna pantalla ni endpoint de administracion.
+
+Navegacion (tabs): Inicio - Mis turnos - Mis vehiculos - Servicios - Perfil.
+
+
+--------------------------------------------------------------------------------
+ROL 2: EMPLEADO (LAVADOR/OPERARIO)
+--------------------------------------------------------------------------------
+Perfil: personal del lavadero que realiza los trabajos. Lo crea o promueve un
+Administrador.
+
+Que puede hacer:
+- Ver su agenda: los turnos que tiene asignados, filtrados por dia (hoy por
+  defecto), con datos del vehiculo (patente, marca, modelo, color), los servicios
+  a realizar y el horario.
+- Cambiar el estado de sus turnos asignados siguiendo el flujo permitido:
+  confirmado -> en proceso -> finalizado.
+- Registrar observaciones sobre el trabajo (por ejemplo "raya previa en puerta
+  derecha" o "interior muy sucio").
+- Marcar el cobro como registrado (efectivo, transferencia) cuando el
+  administrador lo habilite para esa funcion.
+- Ver y editar su propio perfil.
+- Ver un resumen personal de su jornada: cantidad de trabajos hechos hoy y
+  pendientes.
+
+Que NO puede hacer:
+- Ver turnos de otros empleados ni turnos sin asignar.
+- Crear o cancelar turnos, ni reasignarlos.
+- Ver datos personales sensibles del cliente mas alla del nombre y el telefono
+  necesarios para el trabajo.
+- Modificar servicios, precios, usuarios o roles, ni ver reportes de ingresos.
+- Saltarse estados (por ejemplo pasar de "confirmado" directo a "finalizado").
+
+Navegacion (tabs): Mi agenda - Historial de trabajos - Perfil.
+
+
+--------------------------------------------------------------------------------
+ROL 3: ADMINISTRADOR
+--------------------------------------------------------------------------------
+Perfil: el dueno o encargado del lavadero. Tiene control total.
+
+Que puede hacer:
+- Gestion de usuarios (ABML completo): listar, buscar, filtrar por rol, crear,
+  editar, activar/desactivar y eliminar (borrado logico) usuarios. Cambiar roles
+  (Cliente <-> Empleado <-> Administrador).
+- Gestion de servicios y precios: crear, editar y desactivar servicios, y definir
+  el precio de cada servicio por tipo de vehiculo.
+- Gestion de tipos de vehiculo y de los vehiculos registrados (consulta y
+  correccion de datos).
+- Gestion de turnos: ver todos los turnos con filtros (fecha, estado, cliente,
+  empleado), crear turnos en nombre de un cliente (por ejemplo, una reserva por
+  telefono), confirmar o rechazar reservas, asignar o reasignar empleados,
+  cambiar cualquier estado y cancelar.
+- Pagos: ver y registrar pagos asociados a los turnos.
+- Panel de reportes con datos basicos: cantidad de lavados por dia, semana o mes,
+  ingresos, servicios mas pedidos, rendimiento por empleado.
+- Configuracion general del negocio (horarios de atencion, anticipacion minima
+  para cancelar, capacidad por franja horaria).
+
+Que NO puede hacer (reglas de seguridad):
+- Eliminarse o degradarse a si mismo, ni dejar al sistema sin administradores.
+- Ver contrasenas (nunca se almacenan en texto plano).
+
+Navegacion (drawer o tabs): Dashboard - Turnos - Usuarios - Servicios y precios -
+Reportes - Configuracion - Perfil.
+
+
+--------------------------------------------------------------------------------
+FLUJO DE ESTADOS DE UN TURNO
+--------------------------------------------------------------------------------
+pendiente (lo crea el cliente)
+   -> confirmado (lo confirma el admin y asigna empleado)
+   -> en proceso (empleado)
+   -> finalizado (empleado)
+
+Desde "pendiente" o "confirmado" se puede pasar a "cancelado" (cliente con
+restricciones, admin siempre). El backend rechaza con 409 cualquier transicion
+invalida.
+
+
+--------------------------------------------------------------------------------
+MATRIZ DE PERMISOS
+--------------------------------------------------------------------------------
+ACCION                                   CLIENTE        EMPLEADO       ADMIN
+---------------------------------------  -------------  -------------  --------
+Ver/editar su propio perfil              Si             Si             Si
+CRUD de usuarios y cambio de roles       No             No             Si
+CRUD de sus propios vehiculos            Si             No             Si (todos)
+Ver catalogo de servicios                Si             Si             Si
+Crear/editar servicios y precios         No             No             Si
+Crear turno                              Si (propio)    No             Si (para cualquiera)
+Ver turnos                               Solo propios   Solo asignados Todos
+Cancelar turno                           Propio, con    No             Si
+                                         restricciones
+Asignar/reasignar empleado               No             No             Si
+Cambiar estado (en proceso/finalizado)   No             Solo asignados Si
+Registrar observaciones                  No             Solo asignados Si
+Registrar/ver pagos                      Ver propios    Registrar      Si
+                                                        (si se habilita)
+Ver reportes                             No             Solo resumen   Si
+                                                        propio
+
+Cada endpoint del backend debe indicar en la documentacion que roles lo pueden
+usar segun esta matriz.
+
+
+================================================================================
+5. REQUISITOS FUNCIONALES
+================================================================================
+
+REGISTRO E INICIO DE SESION
+- Registro con email y contrasena (hasheada con bcrypt) e inicio de sesion
+  tradicional.
+- Inicio de sesion con 3 redes sociales: Google, Discord y GitHub (OAuth 2.0),
+  usando expo-auth-session. El intercambio del codigo por el token (que requiere
+  el client secret, sobre todo en GitHub y Discord) se hace en el backend, nunca
+  en la app, y el backend emite sus propios JWT.
+- Si el usuario entra por primera vez con una red social, se crea
+  automaticamente con el rol Cliente. Si el email ya existe, se vincula la
+  cuenta social a ese usuario.
+- Cierre de sesion y, si da el tiempo, recuperacion de contrasena (opcional).
+
+INTERFAZ DE USUARIO
+- Interfaz amigable, intuitiva y adaptada a celulares, con buen aprovechamiento
+  de pantalla.
+- Modo claro y oscuro, con selector manual y respetando el tema del sistema.
+- Diseno responsivo, que se adapte a distintos tamanos de pantalla y a la
+  orientacion (vertical y horizontal).
+
+CONSUMO DE API
+- CRUD completo (ABML) de las entidades principales a traves de una API REST.
+- Manejo de errores con mensajes claros: sin conexion, credenciales invalidas,
+  sesion expirada, validacion fallida, permisos insuficientes, error del
+  servidor.
+- Estados de carga (loaders), estados vacios y pull-to-refresh en las listas.
+
+
+================================================================================
+6. FRONTEND: PROYECTO lavadero-app (EXPO + TYPESCRIPT)
+================================================================================
+
+- Proyecto: Expo con TypeScript strict, y tipos propios para entidades,
+  respuestas de la API y parametros de navegacion (navegacion tipada).
+- Navegacion: React Navigation (o Expo Router, justificando la eleccion), con un
+  stack de autenticacion y una navegacion principal que cambia segun el rol, con
+  guardas que impidan entrar a rutas de otro rol.
+- Estado global: Context API o Redux Toolkit para la sesion, el usuario, el rol
+  y el tema.
+- Sesion persistente: tokens guardados con expo-secure-store y restauracion
+  automatica al abrir la app (con pantalla de carga mientras se verifica).
+  Renovacion automatica del access token con el refresh token mediante un
+  interceptor de Axios.
+- Formularios: validacion en cliente con mensajes por campo (React Hook Form +
+  Zod, por ejemplo).
+- Variables de entorno: la URL del backend con EXPO_PUBLIC_API_URL, sin URLs
+  fijas en el codigo.
+
+Estructura (atomizada):
+
+  lavadero-app/
+    /src
+      /api
+        client.ts            (instancia Axios + interceptores)
+        /services            (authService, vehicleService, appointmentService...)
+      /components
+        /atoms
+        /molecules
+        /organisms
+      /context               (AuthContext, ThemeContext)
+      /hooks                 (logica reutilizable)
+      /navigation            (AuthStack, ClientTabs, EmployeeTabs, AdminDrawer, guardas)
+      /screens
+        /auth
+        /client
+        /employee
+        /admin
+      /theme                 (colores claro/oscuro, spacing, tipografia)
+      /types                 (entidades, DTOs, navegacion)
+      /constants
+      /utils
+    /docs
+    README.md  CHANGELOG.md  CONTRIBUTING.md  .env.example
+
+
+================================================================================
+7. BACKEND: PROYECTO lavadero-api (NODE.JS + EXPRESS + TYPESCRIPT)
+================================================================================
+
+- API RESTful versionada (/api/v1) con endpoints para registro, login, login
+  social, refresh token, logout y CRUD de usuarios, vehiculos, servicios,
+  precios, turnos y pagos.
+- JWT con access token (corta duracion) y refresh token (larga duracion,
+  guardado en base de datos y revocable). El token incluye el rol.
+- Middlewares: autenticacion, autorizacion por rol (requireRole('admin')),
+  verificacion de propiedad del recurso, validacion de datos (Zod), manejo
+  centralizado de errores y rate limiting en login.
+- Seguridad: bcrypt, consultas parametrizadas, CORS configurado, Helmet y
+  variables sensibles solo en entorno (.env.example en el repositorio, .env en
+  .gitignore).
+- Codigos HTTP correctos: 200, 201, 400, 401, 403, 404, 409, 500.
+- Endpoint /health para que el servicio de hosting verifique que esta vivo.
+
+Estructura (atomizada por modulos y capas):
+
+  lavadero-api/
+    /src
+      /modules
+        /auth          (routes, controller, service, repository, schema, types)
+        /users
+        /vehicles
+        /services
+        /appointments
+        /payments
+        /reports
+      /middlewares     (authenticate, requireRole, requireOwnership, validate, errorHandler)
+      /config          (env, database, oauth providers)
+      /errors          (AppError y derivados)
+      /utils
+      /types
+      app.ts
+      server.ts
+    /database
+      /migrations
+      /seeds
+    /docs              (architecture.md, database.md, API.md)
+    /tests
+    README.md  CHANGELOG.md  CONTRIBUTING.md  .env.example
+
+
+================================================================================
+8. BASE DE DATOS (MYSQL, RELACIONAL)
+================================================================================
+
+Modelo normalizado hasta, como minimo, la 3FN, explicando como se aplica la 1FN,
+la 2FN y la 3FN. Entidades propuestas (ajustables):
+
+  roles, usuarios, cuentas_sociales, refresh_tokens, tipos_vehiculo, vehiculos,
+  servicios, precios_servicio (servicio x tipo de vehiculo), estados_turno,
+  turnos, turno_servicios (con precio_aplicado para conservar el historial),
+  pagos y configuracion.
+
+Entregame:
+- Diagrama entidad-relacion (Mermaid).
+- Script SQL completo con claves primarias y foraneas, indices y restricciones
+  (UNIQUE en patente y email, etc.), comentado.
+- Datos semilla: roles, estados, tipos de vehiculo, servicios de ejemplo y un
+  administrador inicial.
+- Explicacion breve de cada forma normal aplicada, en docs/database.md.
+- Si se usa un sistema de migraciones, que el despliegue pueda crear la base sin
+  pasos manuales.
+
+
+================================================================================
+9. HOSTING Y DESPLIEGUE (OBLIGATORIO)
+================================================================================
+
+La aplicacion debe funcionar sin depender de mi computadora. Cada proyecto se
+despliega por separado. Quiero:
+
+- Backend hosteado (lavadero-api) en un servicio en la nube (por ejemplo Render,
+  Railway o Fly.io; compara opciones y recomiendame una segun costo y
+  simplicidad), con HTTPS, variables de entorno cargadas en el panel del
+  proveedor y despliegue automatico desde su propio repositorio de GitHub.
+- Base de datos MySQL hosteada (servicio administrado, o MySQL junto al backend
+  en el mismo proveedor), con backups si el plan lo permite. Indicame como
+  ejecutar el script SQL y los datos semilla en produccion.
+- Frontend (lavadero-app): APK de produccion generado con EAS Build (perfil
+  production o preview), apuntando a la URL publica del backend. Indicame como
+  distribuirlo (enlace de descarga de EAS o archivo en GitHub Releases). Como
+  extra opcional: EAS Update para actualizaciones sin reinstalar y/o una version
+  web de la app hosteada.
+- Entornos separados: desarrollo (local) y produccion (hosteado), con distinta
+  configuracion y distintas credenciales, en ambos proyectos.
+- OAuth en produccion: configurar las URLs de redireccion y el scheme de la app
+  en Google, Discord y GitHub, y explicarme que el login social no se puede
+  probar bien en Expo Go, por lo que hay que usar un development build o el APK.
+- CORS y seguridad en produccion: limitar origenes, usar HTTPS y no exponer
+  secretos.
+- Avisarme de limitaciones tipicas de los planes gratuitos (por ejemplo, que el
+  servidor se "duerme" tras un tiempo sin uso y la primera peticion tarda), y
+  como mitigarlo antes de una demo o evaluacion. Los planes gratuitos cambian
+  seguido, asi que indicame como verificar lo vigente.
+- Al final, una lista de URLs de entrega: repositorio del backend, repositorio
+  del frontend, API publica, documentacion Swagger y enlace al APK.
+
+
+================================================================================
+10. ENTREGABLES
+================================================================================
+
+1. Repositorio del backend (lavadero-api) con su documentacion completa.
+2. Repositorio del frontend (lavadero-app) con su documentacion completa.
+3. Documentacion de la API (API.md + Swagger) con roles requeridos por endpoint.
+4. Guia de instalacion y configuracion de ambos proyectos (dependencias,
+   variables de entorno, base de datos, ejecucion local, generacion del APK).
+5. Manual de usuario por rol, con capturas.
+6. APK firmado y funcional, apuntando al backend hosteado.
+7. Commits claros (feat:, fix:, docs:, refactor:) y ramas por funcionalidad en
+   ambos repositorios.
+8. Video de demostracion (opcional): login, navegacion, los 3 roles y consumo de
+   la API.
+
+
+================================================================================
+11. CRITERIOS DE EVALUACION A CUMPLIR
+================================================================================
+
+- Funcionalidad: cumplir todo lo pedido, sin errores, incluso en lo que se
+  agregue de mas.
+- Separacion y arquitectura: frontend y backend independientes, comunicados solo
+  por la API.
+- Modularidad y atomizacion: archivos cortos, una responsabilidad por pieza,
+  componentes y capas reutilizables.
+- Documentacion: completa en codigo, en cada repositorio y para el usuario final.
+- Adaptabilidad y escalabilidad: diseno responsivo, estructura que permita
+  crecer.
+- Codigo: prolijo, bien identado, tipado, con buenas practicas y estructura
+  logica.
+- Validacion: en frontend y backend.
+- UX/UI: interfaces atractivas e intuitivas, modo claro/oscuro y buen orden
+  visual.
+- Base de datos: relacional SQL, segura, normalizada (minimo 3 formas).
+- Seguridad: roles reales en el backend, JWT, contrasenas hasheadas, validacion
+  de datos.
+- Entrega: en tiempo y forma.
+
+
+================================================================================
+12. COMO QUIERO QUE TRABAJES
+================================================================================
+
+1. Proponer un plan de desarrollo por etapas, indicando en cual de los dos
+   proyectos se trabaja en cada una:
+     1) estructura de ambos repositorios y base de datos
+     2) backend base y despliegue temprano
+     3) autenticacion y JWT
+     4) roles y permisos
+     5) CRUDs y documentacion Swagger
+     6) app Expo base y navegacion por rol
+     7) pantallas de Cliente, Empleado y Administrador
+     8) login social
+     9) pulido y modo oscuro
+     10) documentacion final y APK
+2. Desplegar el backend desde las primeras etapas, para detectar problemas de
+   hosting a tiempo.
+3. Avanzar una etapa por vez, con codigo completo y la ruta de cada archivo,
+   indicando siempre a que proyecto pertenece. Cada archivo debe venir
+   atomizado y con su documentacion (TSDoc). Al terminar cada etapa, decirme
+   como probarla.
+4. Cuando una etapa agregue una funcionalidad, actualizar tambien la
+   documentacion correspondiente (README, API.md, CHANGELOG).
+5. Si algo es ambiguo, preguntarme antes de asumir. Si tomas una decision
+   tecnica, justificarla en una o dos lineas.
+6. Explicarme con claridad y de forma didactica, porque tengo que entender y
+   defender el codigo.
+7. Avisarme de errores comunes (OAuth en movil, CORS, el localhost que no
+   funciona desde el celular, variables de entorno en EAS, etc.) y como
+   evitarlos.
+
+
+================================================================================
+EMPEZA CON: el plan de etapas, la estructura inicial de los dos repositorios, el
+diseno de la base de datos (diagrama y script SQL) y la comparacion de opciones
+de hosting.
+================================================================================

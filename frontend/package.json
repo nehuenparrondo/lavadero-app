@@ -1,0 +1,62 @@
+{
+  "name": "lavadero-app",
+  "version": "1.2.0",
+  "main": "expo-router/entry",
+  "dependencies": {
+    "@hookform/resolvers": "^6.0.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "axios": "^1.12.0",
+    "expo": "~58.0.22",
+    "expo-auth-session": "~58.0.16",
+    "expo-constants": "~58.0.14",
+    "expo-crypto": "~58.0.7",
+    "expo-dev-client": "~58.0.18",
+    "expo-linking": "~58.0.15",
+    "expo-router": "~58.0.29",
+    "expo-secure-store": "~58.0.2",
+    "expo-status-bar": "~58.0.4",
+    "expo-system-ui": "~58.0.7",
+    "expo-web-browser": "~58.0.7",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-hook-form": "^7.91.0",
+    "react-native": "0.88.1",
+    "react-native-safe-area-context": "~5.10.1",
+    "react-native-screens": "~4.30.0",
+    "react-native-svg": "15.16.0",
+    "react-native-web": "^0.21.4",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "~19.3.0",
+    "eslint": "^10.13.0",
+    "jiti": "^2.6.0",
+    "prettier": "^3.6.0",
+    "tsx": "^4.20.0",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.46.0"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --max-warnings=0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "tsx --test tests/*.test.ts",
+    "check": "npm run typecheck && npm run lint && npm test && npm run audit:source",
+    "export:android": "expo export --platform android --output-dir dist",
+    "web": "expo start --web",
+    "export:web": "expo export --platform web --output-dir web-dist && node scripts/secure-web.mjs",
+    "audit:source": "tsx scripts/auditSource.ts",
+    "docs:source": "node scripts/document-source.mjs",
+    "docs:components": "node scripts/document-components.mjs"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}

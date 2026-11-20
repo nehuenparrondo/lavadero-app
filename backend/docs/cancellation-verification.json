@@ -1,0 +1,33 @@
+{
+  "fecha": "2026-11-12",
+  "backend": 17,
+  "frontend": 18,
+  "database": 4,
+  "acceptance": 34,
+  "totalUnique": 73,
+  "acceptanceRerun": "El primer recorrido encontró una aserción que tomaba la primera fila de una fecha con fixtures anteriores; se corrigió para buscar el turno creado por id. Los cuatro casos de esa suite y los dos de cancelaciones se aprobaron nuevamente.",
+  "browser": [
+    "aviso automático en Inicio",
+    "motivo íntegro en Inicio y detalle",
+    "lectura persistente entre sesiones",
+    "observación guardada con autor y fecha",
+    "borrador conservado al escribir otro empleado",
+    "rechazo de motivo en blanco",
+    "escritorio, teléfono y temas claro/oscuro"
+  ],
+  "sql": {
+    "motor": "MariaDB 11.8.9",
+    "tables": 24,
+    "migration": "015_cancellation_notices.sql",
+    "newField": "turnos.cancellation_read_at",
+    "existingFields": [
+      "turnos.cancellation_reason",
+      "turnos.cancelled_by_id",
+      "notas_turno.body",
+      "notas_turno.author_id",
+      "notas_turno.created_at"
+    ]
+  },
+  "physicalDeviceTested": false,
+  "newApkBuilt": false
+}

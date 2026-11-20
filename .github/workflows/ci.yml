@@ -1,16 +1,33 @@
-name: App checks
+name: Lavadero · backend y frontend
 on: [push, pull_request]
+permissions:
+  contents: read
 jobs:
   check:
+    name: Verificar ${{ matrix.folder }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        folder: [backend, frontend]
+    defaults:
+      run:
+        working-directory: ${{ matrix.folder }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version: 24.15.0
           cache: npm
+          cache-dependency-path: ${{ matrix.folder }}/package-lock.json
       - run: npm ci
       - run: npm run check
       - run: npm run format:check
-      - run: npx expo install --check
-      - run: npm run export:android
+      - if: matrix.folder == 'frontend'
+        run: npm run export:web
+        env:
+          EXPO_PUBLIC_API_URL: https://lavadero-api-48m4.onrender.com
+      - if: matrix.folder == 'frontend'
+        run: npm run export:android
+        env:
+          EXPO_PUBLIC_API_URL: https://lavadero-api-48m4.onrender.com

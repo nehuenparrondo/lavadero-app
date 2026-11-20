@@ -1,0 +1,1008 @@
+{
+  "loginSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "email": {
+        "type": "string",
+        "format": "email",
+        "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+      },
+      "password": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      }
+    },
+    "required": ["email", "password"],
+    "additionalProperties": false
+  },
+  "refreshSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "refreshToken": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "required": ["refreshToken"],
+    "additionalProperties": false
+  },
+  "registerSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "email": {
+        "type": "string",
+        "maxLength": 254,
+        "format": "email",
+        "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+      },
+      "password": {
+        "type": "string",
+        "minLength": 12
+      },
+      "firstName": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      },
+      "lastName": {
+        "type": "string",
+        "maxLength": 80
+      },
+      "phone": {
+        "type": "string",
+        "maxLength": 30
+      }
+    },
+    "required": ["email", "password", "firstName", "lastName"],
+    "additionalProperties": false
+  },
+  "forgotPasswordSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "email": {
+        "type": "string",
+        "maxLength": 254,
+        "format": "email",
+        "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+      }
+    },
+    "required": ["email"],
+    "additionalProperties": false
+  },
+  "resetPasswordSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "token": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "newPassword": {
+        "type": "string",
+        "minLength": 12
+      }
+    },
+    "required": ["token", "newPassword"],
+    "additionalProperties": false
+  },
+  "adminPatchSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "firstName": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      },
+      "lastName": {
+        "type": "string",
+        "maxLength": 80
+      },
+      "phone": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 30
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "email": {
+        "type": "string",
+        "maxLength": 254,
+        "format": "email",
+        "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+      },
+      "isActive": {
+        "type": "boolean"
+      },
+      "canRecordPayments": {
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false
+  },
+  "createUserSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "email": {
+        "type": "string",
+        "maxLength": 254,
+        "format": "email",
+        "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+      },
+      "password": {
+        "type": "string",
+        "minLength": 12
+      },
+      "firstName": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      },
+      "lastName": {
+        "type": "string",
+        "maxLength": 80
+      },
+      "phone": {
+        "type": "string",
+        "maxLength": 30
+      },
+      "role": {
+        "default": "client",
+        "type": "string",
+        "enum": ["client", "employee"]
+      }
+    },
+    "required": ["email", "password", "firstName", "lastName"],
+    "additionalProperties": false
+  },
+  "passwordChangeSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "currentPassword": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "newPassword": {
+        "type": "string",
+        "minLength": 12
+      }
+    },
+    "required": ["currentPassword", "newPassword"],
+    "additionalProperties": false
+  },
+  "profileSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "firstName": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      },
+      "lastName": {
+        "type": "string",
+        "maxLength": 80
+      },
+      "phone": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 30
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "additionalProperties": false
+  },
+  "roleSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "role": {
+        "type": "string",
+        "enum": ["client", "employee", "admin"]
+      }
+    },
+    "required": ["role"],
+    "additionalProperties": false
+  },
+  "usersQuerySchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "page": {
+        "default": 1,
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 9007199254740991
+      },
+      "limit": {
+        "default": 50,
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100
+      },
+      "search": {
+        "default": "",
+        "type": "string",
+        "maxLength": 100
+      },
+      "role": {
+        "type": "string",
+        "enum": ["client", "employee", "admin"]
+      }
+    }
+  },
+  "vehiclePatchSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "plate": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 16,
+        "pattern": "^[a-zA-Z0-9 -]+$"
+      },
+      "brand": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      },
+      "model": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      },
+      "color": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 50
+      },
+      "vehicleTypeId": {
+        "type": "string",
+        "pattern": "^[1-9]\\d*$"
+      },
+      "ownerId": {
+        "type": "string",
+        "pattern": "^[1-9]\\d*$"
+      }
+    },
+    "additionalProperties": false
+  },
+  "vehicleSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "plate": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 16,
+        "pattern": "^[a-zA-Z0-9 -]+$"
+      },
+      "brand": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      },
+      "model": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      },
+      "color": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 50
+      },
+      "vehicleTypeId": {
+        "type": "string",
+        "pattern": "^[1-9]\\d*$"
+      },
+      "ownerId": {
+        "type": "string",
+        "pattern": "^[1-9]\\d*$"
+      }
+    },
+    "required": ["plate", "brand", "model", "color", "vehicleTypeId"],
+    "additionalProperties": false
+  },
+  "priceSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "priceCents": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100000000
+      }
+    },
+    "required": ["priceCents"],
+    "additionalProperties": false
+  },
+  "servicePatchSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "code": {
+        "type": "string",
+        "pattern": "^[a-z0-9_-]{2,40}$"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "description": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 3000
+      },
+      "durationMinutes": {
+        "type": "integer",
+        "minimum": 5,
+        "maximum": 420
+      },
+      "isActive": {
+        "default": true,
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false
+  },
+  "serviceSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "code": {
+        "type": "string",
+        "pattern": "^[a-z0-9_-]{2,40}$"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "description": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 3000
+      },
+      "durationMinutes": {
+        "type": "integer",
+        "minimum": 5,
+        "maximum": 420
+      },
+      "isActive": {
+        "default": true,
+        "type": "boolean"
+      }
+    },
+    "required": ["code", "name", "description", "durationMinutes"],
+    "additionalProperties": false
+  },
+  "appointmentQuerySchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "page": {
+        "default": 1,
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 9007199254740991
+      },
+      "limit": {
+        "default": 50,
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100
+      },
+      "search": {
+        "default": "",
+        "type": "string",
+        "maxLength": 100
+      },
+      "date": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "confirmed",
+          "in_progress",
+          "awaiting_review",
+          "completed",
+          "cancelled"
+        ]
+      },
+      "clientId": {
+        "type": "string",
+        "pattern": "^[1-9]\\d{0,18}$"
+      },
+      "employeeId": {
+        "type": "string",
+        "pattern": "^[1-9]\\d{0,18}$"
+      },
+      "plate": {
+        "type": "string",
+        "pattern": "^[a-z0-9 -]{1,24}$"
+      },
+      "history": {
+        "type": "string",
+        "enum": ["true", "false"]
+      },
+      "queue": {
+        "type": "string",
+        "enum": ["requested"]
+      },
+      "scope": {
+        "type": "string",
+        "enum": ["today", "all"]
+      },
+      "home": {
+        "type": "string",
+        "enum": ["true"]
+      }
+    }
+  },
+  "appointmentSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "vehicleId": {
+        "type": "string",
+        "pattern": "^[1-9]\\d{0,18}$"
+      },
+      "vehicleTypeId": {
+        "type": "string",
+        "pattern": "^[1-9]\\d{0,18}$"
+      },
+      "serviceIds": {
+        "minItems": 1,
+        "maxItems": 10,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{0,18}$"
+        }
+      },
+      "startsAt": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+      },
+      "clientId": {
+        "type": "string",
+        "pattern": "^[1-9]\\d{0,18}$"
+      }
+    },
+    "required": ["serviceIds", "startsAt"],
+    "additionalProperties": false
+  },
+  "assignmentSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "employeeId": {
+        "type": "string",
+        "pattern": "^[1-9]\\d{0,18}$"
+      }
+    },
+    "required": ["employeeId"],
+    "additionalProperties": false
+  },
+  "availabilitySchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "date": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+      },
+      "vehicleId": {
+        "type": "string",
+        "pattern": "^[1-9]\\d{0,18}$"
+      },
+      "vehicleTypeId": {
+        "type": "string",
+        "pattern": "^[1-9]\\d{0,18}$"
+      },
+      "serviceIds": {
+        "minItems": 1,
+        "maxItems": 10,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{0,18}$"
+        }
+      }
+    },
+    "required": ["date", "serviceIds"]
+  },
+  "cancelSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "reason": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    "required": ["reason"],
+    "additionalProperties": false
+  },
+  "noteSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "body": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      }
+    },
+    "required": ["body"],
+    "additionalProperties": false
+  },
+  "serviceIdsSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "minItems": 1,
+    "maxItems": 10,
+    "type": "array",
+    "items": {
+      "type": "string",
+      "pattern": "^[1-9]\\d{0,18}$"
+    }
+  },
+  "statusSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "confirmed",
+          "in_progress",
+          "awaiting_review",
+          "completed",
+          "cancelled"
+        ]
+      }
+    },
+    "required": ["status"],
+    "additionalProperties": false
+  },
+  "attachVehicleSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+      {
+        "type": "object",
+        "properties": {
+          "vehicleId": {
+            "type": "string",
+            "pattern": "^[1-9]\\d{0,18}$"
+          }
+        },
+        "required": ["vehicleId"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "vehicle": {
+            "type": "object",
+            "properties": {
+              "plate": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 16,
+                "pattern": "^[a-zA-Z0-9 -]+$"
+              },
+              "brand": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "model": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "color": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 50
+              }
+            },
+            "required": ["plate", "brand", "model", "color"],
+            "additionalProperties": false
+          }
+        },
+        "required": ["vehicle"],
+        "additionalProperties": false
+      }
+    ]
+  },
+  "reviewSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "oneOf": [
+      {
+        "type": "object",
+        "properties": {
+          "submissionId": {
+            "type": "string",
+            "pattern": "^[1-9]\\d{0,18}$"
+          },
+          "decision": {
+            "type": "string",
+            "const": "approved"
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        },
+        "required": ["submissionId", "decision"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "submissionId": {
+            "type": "string",
+            "pattern": "^[1-9]\\d{0,18}$"
+          },
+          "decision": {
+            "type": "string",
+            "const": "returned"
+          },
+          "note": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        },
+        "required": ["submissionId", "decision", "note"],
+        "additionalProperties": false
+      }
+    ]
+  },
+  "vehicleDetailSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "description": {
+        "type": "string",
+        "maxLength": 1000
+      }
+    },
+    "required": ["description"],
+    "additionalProperties": false
+  },
+  "washSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "description": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      }
+    },
+    "required": ["description"],
+    "additionalProperties": false
+  },
+  "messageQuery": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "page": {
+        "default": 1,
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 9007199254740991
+      },
+      "limit": {
+        "default": 50,
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100
+      },
+      "search": {
+        "default": "",
+        "type": "string",
+        "maxLength": 100
+      },
+      "state": {
+        "type": "string",
+        "enum": ["open", "resolved"]
+      }
+    }
+  },
+  "messageSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "oneOf": [
+      {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "complaint"
+          },
+          "body": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          }
+        },
+        "required": ["kind", "body"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "feedback"
+          },
+          "body": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "appointmentId": {
+            "type": "string",
+            "pattern": "^[1-9]\\d{0,18}$"
+          }
+        },
+        "required": ["kind", "body", "appointmentId"],
+        "additionalProperties": false
+      }
+    ]
+  },
+  "replySchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "reply": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      }
+    },
+    "required": ["reply"],
+    "additionalProperties": false
+  },
+  "vehicleTypeSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "code": {
+        "type": "string",
+        "pattern": "^[a-z0-9_-]{2,24}$"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      },
+      "isActive": {
+        "default": true,
+        "type": "boolean"
+      },
+      "prices": {
+        "maxItems": 100,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "priceCents": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100000000
+            },
+            "serviceId": {
+              "type": "string",
+              "pattern": "^[1-9]\\d{0,18}$"
+            }
+          },
+          "required": ["priceCents", "serviceId"],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": ["code", "name"],
+    "additionalProperties": false
+  },
+  "settingsSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "timeZone": {
+        "type": "string"
+      },
+      "cancellationNoticeMinutes": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 10080
+      },
+      "simultaneousCapacity": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 20
+      },
+      "slotStepMinutes": {
+        "type": "integer",
+        "minimum": 5,
+        "maximum": 60
+      },
+      "hours": {
+        "maxItems": 7,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "weekday": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "opensAt": {
+              "type": "string",
+              "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+            },
+            "closesAt": {
+              "type": "string",
+              "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+            }
+          },
+          "required": ["weekday", "opensAt", "closesAt"],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "timeZone",
+      "cancellationNoticeMinutes",
+      "simultaneousCapacity",
+      "slotStepMinutes",
+      "hours"
+    ],
+    "additionalProperties": false
+  },
+  "paymentSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "amountCents": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100000000
+      },
+      "method": {
+        "type": "string",
+        "enum": ["cash", "transfer"]
+      },
+      "reference": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 100
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "idempotencyKey": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      }
+    },
+    "required": ["amountCents", "method", "idempotencyKey"],
+    "additionalProperties": false
+  },
+  "oauthExchangeSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "code": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "codeVerifier": {
+        "type": "string",
+        "minLength": 43,
+        "maxLength": 128
+      },
+      "password": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 72
+      }
+    },
+    "required": ["code", "codeVerifier"],
+    "additionalProperties": false
+  },
+  "walkInSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "requestId": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      },
+      "plate": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 16,
+        "pattern": "^[a-zA-Z0-9 -]+$"
+      },
+      "vehicleTypeId": {
+        "type": "string",
+        "pattern": "^[1-9]\\d*$"
+      },
+      "serviceIds": {
+        "minItems": 1,
+        "maxItems": 10,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[1-9]\\d*$"
+        }
+      },
+      "customerName": {
+        "default": "",
+        "type": "string",
+        "maxLength": 160
+      },
+      "customerPhone": {
+        "default": "",
+        "type": "string",
+        "maxLength": 30
+      },
+      "brand": {
+        "default": "",
+        "type": "string",
+        "maxLength": 80
+      },
+      "model": {
+        "default": "",
+        "type": "string",
+        "maxLength": 80
+      },
+      "color": {
+        "default": "",
+        "type": "string",
+        "maxLength": 50
+      },
+      "notes": {
+        "default": "",
+        "type": "string",
+        "maxLength": 2000
+      }
+    },
+    "required": ["requestId", "plate", "vehicleTypeId", "serviceIds"],
+    "additionalProperties": false
+  }
+}

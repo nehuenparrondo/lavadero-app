@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Privacidad y uso de datos · Lavadero</title>
+  <style>
+    body {
+      font:
+        18px/1.65 system-ui,
+        sans-serif;
+      color: #18263e;
+      background: #f5f7fb;
+      margin: 40px auto;
+      padding: 0 24px;
+      max-width: 760px;
+    }
+    h1,
+    h2 {
+      line-height: 1.2;
+    }
+    a {
+      color: #2457c5;
+    }
+    main {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+    }
+    small {
+      color: #536176;
+    }
+  </style>
+  <main>
+    <small>LAVADERO · Proyecto académico</small>
+    <h1>Privacidad y uso de datos</h1>
+    <p>
+      Esta aplicación permite gestionar vehículos, reservas, atención del lavadero y registros
+      de cobros. Sus datos iniciales de demostración son ficticios.
+    </p>
+    <h2>Información que se utiliza</h2>
+    <p>
+      La cuenta incluye nombre, apellido, correo, teléfono opcional y foto opcional. Si elegís
+      Google, Discord o GitHub, el servidor consulta tu identificador, perfil básico y correo
+      verificado para iniciar sesión o vincular una cuenta. No solicita acceso a tus mensajes,
+      archivos ni repositorios privados.
+    </p>
+    <p>
+      Los vehículos, servicios reservados, fechas, observaciones y pagos registrados se usan
+      para prestar y administrar el servicio. La app registra cobros realizados fuera de ella;
+      no procesa tarjetas ni mueve dinero.
+    </p>
+    <h2>Acceso y almacenamiento</h2>
+    <p>
+      Los clientes consultan sus propios vehículos y turnos. Los empleados reciben información
+      operativa de trabajos asignados; ven importes cuando están habilitados para cobrar. Los
+      administradores gestionan el negocio.
+    </p>
+    <p>
+      La API se aloja en Render y la base MySQL en Aiven, conectadas mediante TLS. El proyecto
+      móvil se compila con Expo. Las contraseñas locales se guardan como hashes bcrypt; los
+      secretos sociales permanecen en el servidor. Los tokens de proveedores no se conservan
+      como sesión de la app.
+    </p>
+    <p>
+      En Android/iOS se usa SecureStore para la renovación de sesión. En web se guarda en
+      sessionStorage de la pestaña. La preferencia de apariencia se conserva en el dispositivo.
+      Cerrar sesión revoca la sesión correspondiente.
+    </p>
+    <h2>Corrección y baja</h2>
+    <p>
+      Podés corregir tu perfil y tus vehículos desde la app y solicitar la desactivación de la
+      cuenta al administrador del lavadero. Las bajas son lógicas: el historial de trabajos y
+      cobros puede conservarse para mantener trazabilidad. Esta versión no configura una
+      eliminación automática por antigüedad.
+    </p>
+    <p>
+      El correo de soporte del responsable se muestra en la pantalla de consentimiento de
+      Google. Para consultas o solicitudes de acceso, corrección o baja, usá ese contacto o
+      comunicate con el administrador del lavadero.
+    </p>
+    <p><a href="https://lavadero-app-2558.onrender.com">Abrir Lavadero</a></p>
+    <small>Versión del aviso: 1.0 · 29 de octubre de 2026.</small>
+  </main>
+</html>
