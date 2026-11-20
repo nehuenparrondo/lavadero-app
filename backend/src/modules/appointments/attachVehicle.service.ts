@@ -3,7 +3,7 @@ import { AppError } from '../../errors/AppError.js';
 import { NotFoundError } from '../../errors/NotFoundError.js';
 import type { Actor } from '../../types/domain.js';
 import type { Executor } from '../../utils/db.js';
-import { execute } from '../../utils/db.js';
+import { linkVehicle } from './appointmentDetails.repository.js';
 import { transaction } from '../../utils/transaction.js';
 import { readSettings } from '../settings/settings.repository.js';
 import { findVehicle, insertVehicle } from '../vehicles/vehicles.repository.js';
@@ -39,11 +39,7 @@ export function attachVehicle(actor: Actor, id: string, input: Attachment) {
         'Solo podés agregar el vehículo a un turno confirmado.',
       );
     const vehicleId = await resolveAttachment(appointment, input, connection);
-    await execute(
-      'UPDATE turnos SET vehicle_id=?,version=version+1 WHERE id=?',
-      [vehicleId, id],
-      connection,
-    );
+    await linkVehicle(id, vehicleId, connection);
     return { vehicleId };
   });
 }

@@ -17,7 +17,8 @@ export interface WashSubmission extends RowDataPacket {
 }
 
 /** Lee el último intento. Las devoluciones anteriores quedan en el historial SQL.
- * @param id - Identificador del turno; executor permite usar la transacción del llamador.
+ * @param id - Turno cuyo último parte se consulta.
+ * @param executor - Conexión opcional; permite leer bajo el bloqueo de la operación actual.
  * @returns Último parte con decisión y devolución asociada si existen.
  */
 export async function latestWash(id: string, executor?: Executor) {
@@ -36,7 +37,10 @@ export async function latestWash(id: string, executor?: Executor) {
 }
 
 /** Crea un parte inmutable bajo el mismo bloqueo que el estado del turno.
- * @param id - Turno, junto con employeeId, description y el ejecutor de la transacción.
+ * @param id - Turno en proceso al que pertenece el parte.
+ * @param employeeId - Cuenta responsable cuyo nombre se conserva junto al trabajo.
+ * @param description - Declaración del trabajo realizado; no reemplaza partes anteriores.
+ * @param executor - Conexión transaccional que mantiene el bloqueo del turno.
  * @returns Resultado SQL de la inserción.
  */
 export function submitWash(
@@ -54,7 +58,11 @@ export function submitWash(
 }
 
 /** Registra quién revisó un parte y cuándo, conservando descripción y autor originales.
- * @param submissionId - Parte inspeccionado; los demás argumentos identifican al revisor y su decisión.
+ * @param submissionId - Identificador exacto del parte aún sin decisión.
+ * @param reviewerId - Administrador que registra la revisión.
+ * @param decision - Aprobación o devolución del parte seleccionado.
+ * @param note - Explicación opcional de la revisión; se guarda como NULL si falta.
+ * @param executor - Conexión de la misma transacción que cambia el estado del turno.
  * @returns Resultado SQL del cambio de revisión.
  */
 export function recordReview(
@@ -68,6 +76,19 @@ export function recordReview(
     `UPDATE partes_lavado SET decision=?,review_note=?,reviewed_by_id=?,reviewed_at=UTC_TIMESTAMP(3)
      WHERE id=? AND decision IS NULL`,
     [decision, note ?? null, reviewerId, submissionId],
+    executor,
+  );
+}
+
+/** Identifica el cierre directo del empleado sin fingir una revisión administrativa.
+ * @param id Parte recién insertado por la misma operación de cierre.
+ * @param executor Conexión que conserva los bloqueos de agenda y turno.
+ * @returns Resultado SQL; la escritura se confirma junto al cambio de estado del turno.
+ */
+export function markEmployeeCompleted(id: number, executor: Executor) {
+  return execute(
+    'UPDATE partes_lavado SET completed_by_employee=TRUE WHERE id=?',
+    [id],
     executor,
   );
 }

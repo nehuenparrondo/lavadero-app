@@ -1,20 +1,22 @@
-# api/services
+# src/api/services
+
+<!-- Generado por npm run docs. -->
 
 Frontera HTTP: serialización de entradas y extracción del contrato REST. No contiene componentes ni decide permisos por su cuenta.
 
 ## Archivos y responsabilidades
 
-| Archivo                                      | Responsabilidad                                                                        |
-| -------------------------------------------- | -------------------------------------------------------------------------------------- |
-| [authService.ts](authService.ts)             | Registro siempre Cliente; rol no forma parte de este contrato.                         |
-| [healthService.ts](healthService.ts)         | Comprueba conectividad.                                                                |
-| [oauthStartService.ts](oauthStartService.ts) | Prepara una autorización PKCE por JSON y verifica el destino antes de salir de la app. |
-| [recoveryService.ts](recoveryService.ts)     | Estado público del canal, sin credenciales ni identidad de destinatarios.              |
-| [resourceService.ts](resourceService.ts)     | Parámetros de filtros de listas, nunca URLs arbitrarias de terceros.                   |
-| [restoreSession.ts](restoreSession.ts)       | Restaura la sesión segura sin publicar resultados de un proveedor desmontado.          |
-| [sessionActions.ts](sessionActions.ts)       | Persiste el refresh antes de publicar la sesión para sus consumidores.                 |
-| [userService.ts](userService.ts)             | Alta de cliente/empleado o edición administrativa que conserva el rol actual.          |
+| Archivo                                      | Responsabilidad                                                                             |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| [authService.ts](authService.ts)             | Registro siempre Cliente; rol no forma parte de este contrato.                              |
+| [healthService.ts](healthService.ts)         | Comprueba conectividad. @throws Error ante configuración ausente, red o respuesta inválida. |
+| [oauthStartService.ts](oauthStartService.ts) | Prepara una autorización PKCE por JSON y verifica el destino antes de salir de la app.      |
+| [recoveryService.ts](recoveryService.ts)     | Estado público del canal, sin credenciales ni identidad de destinatarios.                   |
+| [resourceService.ts](resourceService.ts)     | Parámetros de filtros de listas, nunca URLs arbitrarias de terceros.                        |
+| [restoreSession.ts](restoreSession.ts)       | Restaura la sesión segura sin publicar resultados de un proveedor desmontado.               |
+| [sessionActions.ts](sessionActions.ts)       | Persiste el refresh antes de publicar la sesión para sus consumidores.                      |
+| [userService.ts](userService.ts)             | Alta de cliente/empleado o edición administrativa que conserva el rol actual.               |
 
 ## Mantenimiento
 
-Consultar los TSDoc de cada función antes de cambiar sus precondiciones. Mantener los efectos en su capa y actualizar esta tabla junto con el módulo. Ejecutar npm run check desde la raíz del repositorio.
+Las precondiciones, parámetros y resultados se documentan junto a cada función. Desde `main`, ejecutar `npm run docs` después de cambiar contratos y `npm run check` antes de publicar. No editar este índice a mano.

@@ -21,6 +21,15 @@ jobs:
           cache: npm
           cache-dependency-path: ${{ matrix.folder }}/package-lock.json
       - run: npm ci
+      - run: npm run docs:source -- --check
+      - if: matrix.folder == 'frontend'
+        run: npm run docs:components -- --check
+      - if: matrix.folder == 'frontend'
+        run: npm run test:tooling
+        working-directory: .
+      - if: matrix.folder == 'frontend'
+        run: npm run lint && npm run format:check
+        working-directory: .
       - run: npm run check
       - run: npm run format:check
       - if: matrix.folder == 'frontend'

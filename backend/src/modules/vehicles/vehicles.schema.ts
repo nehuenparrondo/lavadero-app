@@ -1,4 +1,12 @@
 import { z } from 'zod';
+import { paginationSchema } from '../../utils/pagination.js';
+/** Filtros validados; el servicio ignora ownerId para actores que no son administradores. */
+export const vehicleQuerySchema = paginationSchema.extend({
+  ownerId: z
+    .string()
+    .regex(/^[1-9]\d{0,18}$/u)
+    .optional(),
+});
 /** Formulario de vehículo: el cliente no puede seleccionar un dueño ajeno. */
 export const vehicleSchema = z
   .object({

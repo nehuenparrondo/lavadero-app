@@ -8,7 +8,7 @@ import { useRemoteData } from './useRemoteData';
 import { useResourceEditor } from './useResourceEditor';
 import { useServicePrice } from './useServicePrice';
 /** Compone consulta, edición de servicio y edición de tarifa como responsabilidades separadas.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Catálogo, edición/baja de servicios y diálogo de tarifa por categoría, con errores de lectura y escritura separados.
  */
 export function useCatalog() {
   const list = useRemoteData<Service[]>('/services');

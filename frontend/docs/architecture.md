@@ -2,7 +2,7 @@
 
 Expo Router monta rutas pequeñas que delegan en pantallas. Las pantallas componen
 componentes Atomic Design y hooks; los servicios encapsulan el contrato HTTP y Axios.
-No se importa ningún archivo ni dependencia del repositorio backend.
+No se importa código del backend, aunque ambas aplicaciones comparten el mismo repositorio.
 
 `components/atoms` contiene texto/botones/inputs/avatar; `molecules` tarjetas, campos,
 notificaciones, filtros simples y paginación; `organisms` formularios, selectores y diálogos.
@@ -22,7 +22,7 @@ Formularios RHF + Zod muestran errores por campo. La validación backend vuelve 
 comprobar todo. Las listas distinguen carga, vacío, error, paginación y actualización.
 En pantallas grandes el contenido tiene ancho máximo; la orientación no se bloquea.
 
-No hay modo de datos falsos ni fallback a localhost. Falta de conexión y proveedores
+Producción exige una API HTTPS explícita. El arranque local autoriza únicamente loopback de forma explícita; no existe fallback silencioso ni datos falsos. Falta de conexión y proveedores
 OAuth no configurados se muestran de forma explícita.
 
 ## Mapa del sistema
@@ -30,7 +30,7 @@ OAuth no configurados se muestran de forma explícita.
 ```mermaid
 flowchart LR
   App[App Expo Android / Web] <-->|HTTPS REST v1 + JWT| API[Express en Render]
-  API <-->|SQL parametrizado + TLS| DB[(MySQL Aiven)]
+  API <-->|SQL parametrizado + TLS| DB[(MariaDB alwaysdata)]
   App -->|AuthSession + PKCE| Browser[Navegador del sistema]
   Browser <-->|Consentimiento| Providers[Google]
   Providers -->|Callback HTTPS| API

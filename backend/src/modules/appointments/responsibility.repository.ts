@@ -4,8 +4,11 @@ import { rows } from '../../utils/db.js';
 import { setEmployee } from './appointments.write.repository.js';
 
 /** Asigna un empleado activo y libre, dando prioridad a quien lleva más tiempo sin asignación.
- * @param id - Turno a asignar; startsAt y endsAt están en UTC. connection mantiene el bloqueo de agenda.
- * @returns Promesa que termina aunque no haya un empleado libre.
+ * @param id - Turno confirmado al que se intenta asignar un responsable.
+ * @param startsAt - Inicio del contrato, en UTC y formato SQL.
+ * @param endsAt - Fin exclusivo del contrato, en UTC y formato SQL.
+ * @param connection - Conexión de la reserva que ya mantiene el bloqueo común de agenda.
+ * @returns Promesa sin valor; si nadie está libre el turno sigue confirmado y visible en la agenda compartida.
  */
 export async function assignAvailableEmployee(
   id: string,

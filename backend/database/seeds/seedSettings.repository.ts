@@ -1,7 +1,11 @@
 import type { PoolConnection } from 'mysql2/promise';
 import type { readSeedConfig } from './seedConfig.js';
 
-/** Inserta configuración inicial sin sobrescribir cambios posteriores del administrador. */
+/** Inserta configuración inicial sin sobrescribir cambios posteriores del administrador.
+ * @param connection - Conexión de la instalación inicial.
+ * @param config - Moneda, zona, capacidad y días/horas validados de BUSINESS_*; no sobrescribe edición administrativa.
+ * @returns Promesa sin valor tras insertar únicamente la configuración y horarios ausentes.
+ */
 export async function seedSettings(
   connection: PoolConnection,
   config: ReturnType<typeof readSeedConfig>,

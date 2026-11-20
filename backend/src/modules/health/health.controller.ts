@@ -1,9 +1,9 @@
 import type { RequestHandler } from 'express';
 
 /** Devuelve salud del proceso sin depender de MySQL.
- * @param _request - Petición del middleware; el error público no depende de su contenido.
- * @param response - Respuesta HTTP donde se escribe el contrato uniforme de error.
- * @returns `void`.
+ * @param _request - Petición ignorada; esta comprobación no consulta datos de usuario.
+ * @param response - Respuesta donde se publica el estado del proceso, servicio y versión.
+ * @returns No devuelve un recurso: envía la respuesta JSON de liveness.
  */
 export const getHealth: RequestHandler = (_request, response) => {
   response.json({ status: 'ok', service: 'lavadero-api', version: '1.0.0' });

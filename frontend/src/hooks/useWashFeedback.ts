@@ -2,7 +2,8 @@ import { writeResource } from '../api/services/resourceService';
 import { useAction } from './useAction';
 
 /** Envía una devolución ligada al turno; el servidor recupera el parte y su autor.
- * @param appointmentId - Turno aprobado; refresh recarga su detalle tras el envío.
+ * @param appointmentId - Turno finalizado sobre el que se envía la devolución.
+ * @param refresh - Vuelve a consultar el detalle tras confirmar el envío.
  * @returns Estado del envío y función para enviar el texto.
  */
 export function useWashFeedback(appointmentId: string, refresh: () => Promise<void>) {

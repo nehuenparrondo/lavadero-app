@@ -37,7 +37,9 @@ export async function getAttendance(requestedDate?: string) {
 }
 
 /** Ficha una llegada observada por Administración con el reloj del servidor y el día del negocio.
- * @param admin - Autor autenticado; employeeId y expectedDate identifican el fichaje.
+ * @param admin - Administrador autenticado que registra la llegada observada.
+ * @param employeeId - Cuenta de empleado que debe seguir activa.
+ * @param expectedDate - Día mostrado por la pantalla; debe coincidir con hoy según el servidor.
  * @returns Confirmación del registro y fecha.
  */
 export function recordArrival(admin: Actor, employeeId: string, expectedDate: string) {

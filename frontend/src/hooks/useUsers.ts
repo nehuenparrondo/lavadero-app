@@ -5,7 +5,7 @@ import { userFields, userInitialValues } from '../utils/userForm';
 import { useDebouncedValue } from './useDebouncedValue';
 import { useEntityManager } from './useEntityManager';
 /** Gestión de usuarios; delega selección, persistencia y definición de formularios.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Listado y editor de clientes/empleados; el formulario de edición conserva el rol existente.
  */
 export function useUsers() {
   const [search, setSearch] = useState('');

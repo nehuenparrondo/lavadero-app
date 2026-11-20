@@ -8,8 +8,8 @@ import { useSocialExchange } from './useSocialExchange';
 import { useSocialResponse } from './useSocialResponse';
 WebBrowser.maybeCompleteAuthSession();
 /** Inicia AuthSession con PKCE; la API intercambia el código y emite su propia sesión.
- * @param provider - Proveedor permitido: Google, Discord o GitHub.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @param provider - Identificador social; la API solo habilita Google y rechaza proveedores retirados.
+ * @returns Acción de ingreso nativo y confirmación de vinculación local, con estado de red y error.
  */
 export function useSocialLogin(provider: 'google' | 'discord' | 'github') {
   const action = useSocialExchange();

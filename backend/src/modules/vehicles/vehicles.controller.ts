@@ -1,25 +1,16 @@
 import type { Request } from 'express';
 import { z } from 'zod';
 import { actor, paramId } from '../../utils/http.js';
-import { paginationSchema } from '../../utils/pagination.js';
-import { listVehicles } from './vehicles.repository.js';
+import { vehicleQuerySchema } from './vehicles.schema.js';
 import type { vehiclePatchSchema, vehicleSchema } from './vehicles.schema.js';
 import * as service from './vehicles.service.js';
 
-const vehicleQuery = paginationSchema.extend({
-  ownerId: z
-    .string()
-    .regex(/^[1-9]\d{0,18}$/u)
-    .optional(),
-});
 /** Lista visibles para el actor, con búsqueda/paginación.
  * @param r - Petición HTTP; los valores se validan antes de ejecutar el servicio.
  * @returns `Promise<{ items: import("./vehicles.repository.js").Vehicle[]; page: number; limit: number; total: number; }>`.
  */
 export function list(r: Request) {
-  const q = vehicleQuery.parse(r.query);
-  const a = actor(r);
-  return listVehicles(a.role === 'admin' ? q.ownerId : a.id, q.page, q.limit, q.search);
+  return service.listVehicles(actor(r), vehicleQuerySchema.parse(r.query));
 }
 /** Consulta por ID con propiedad validada.
  * @param r - Petición HTTP; los valores se validan antes de ejecutar el servicio.

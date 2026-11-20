@@ -2,8 +2,8 @@ import { apiUrl } from '../api/transport';
 import { startWebOAuth } from '../utils/startWebOAuth';
 import { useAction } from './useAction';
 /** Estado del botón web; la confirmación de vinculación ocurre en la ruta de retorno.
- * @param provider - Proveedor permitido: Google, Discord o GitHub.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @param provider - Identificador social; la API solo habilita Google y rechaza proveedores retirados.
+ * @returns Estado y acción que inicia el ingreso en esta pestaña; la ruta OAuth consume el retorno.
  */
 export function useSocialLogin(provider: 'google' | 'discord' | 'github') {
   const action = useAction();

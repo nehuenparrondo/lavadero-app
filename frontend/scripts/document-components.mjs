@@ -1,8 +1,10 @@
+/** Lee props reales con el compilador; genera un catálogo sin importar componentes ni ejecutar hooks. */
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import console from 'node:console';
 import ts from 'typescript';
+import prettier from 'prettier';
 const root = process.cwd();
 const config = ts.readConfigFile(path.join(root, 'tsconfig.json'), ts.sys.readFile);
 const parsed = ts.parseJsonConfigFileContent(config.config, ts.sys, root),
@@ -106,5 +108,16 @@ for (const layer of ['atoms', 'molecules', 'organisms']) {
     );
   }
 }
-fs.writeFileSync(path.join(root, 'docs/components.md'), output.join('\n'));
+const destination = path.join(root, 'docs/components.md');
+const content = await prettier.format(output.join('\n'), {
+  ...(await prettier.resolveConfig(path.join(root, 'README.md'))),
+  parser: 'markdown',
+  printWidth: 95,
+});
+if (process.argv.includes('--check')) {
+  if (fs.readFileSync(destination, 'utf8').replaceAll('\r\n', '\n') !== content)
+    throw new Error(
+      'Catálogo de componentes desactualizado. Ejecutá npm run docs desde main.',
+    );
+} else fs.writeFileSync(destination, content);
 console.log('Catálogo completo:', count, 'componentes con props y ejemplo.');

@@ -1,6 +1,8 @@
-# modules/attendance
+# src/modules/attendance
 
-Casos de uso separados por dominio; routes → controller → service → repository.
+<!-- Generado por npm run docs. -->
+
+Asistencia con el reloj y horario del negocio. El administrador registra la llegada observada; no se permite fichar otra fecha ni duplicar el primer fichaje.
 
 ## Archivos y responsabilidades
 
@@ -13,4 +15,4 @@ Casos de uso separados por dominio; routes → controller → service → reposi
 
 ## Mantenimiento
 
-Consultar los TSDoc de cada función antes de cambiar sus precondiciones. Mantener los efectos en su capa y actualizar esta tabla junto con el módulo. Ejecutar npm run check desde la raíz del repositorio.
+Las precondiciones, parámetros y resultados se documentan junto a cada función. Desde `main`, ejecutar `npm run docs` después de cambiar contratos y `npm run check` antes de publicar. No editar este índice a mano.

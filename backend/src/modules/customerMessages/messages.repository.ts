@@ -7,7 +7,10 @@ const messageFrom = ` FROM mensajes_cliente m JOIN usuarios c ON c.id=m.client_i
  LEFT JOIN vehiculos v ON v.id=a.vehicle_id`;
 
 /** Bandeja paginada. clientId nulo corresponde únicamente a Administración.
- * @param clientId - Titular opcional; state, page y limit delimitan la consulta.
+ * @param clientId - Cuenta cuyo buzón se consulta; NULL amplía el alcance y solo lo usa Administración.
+ * @param state - Filtro open/resolved; undefined incluye ambos estados.
+ * @param page - Página validada, comenzando en uno.
+ * @param limit - Cantidad máxima validada de mensajes por página.
  * @returns Mensajes y metadatos de paginación.
  */
 export async function listMessages(
@@ -41,7 +44,11 @@ export async function listMessages(
 }
 
 /** Persiste el caso con la identidad autenticada y un vínculo al parte aprobado si corresponde.
- * @param clientId - Autor autenticado; kind, body y submissionId describen el caso.
+ * @param clientId - Cliente autenticado que envía el texto.
+ * @param kind - Distingue reclamo general de devolución sobre un lavado.
+ * @param body - Texto validado; se almacena como dato, sin interpretar HTML.
+ * @param submissionId - Parte finalizado al que se refiere una devolución; NULL en reclamos generales.
+ * @param executor - Conexión opcional para guardar la devolución bajo el bloqueo del turno.
  * @returns Resultado SQL con el identificador generado.
  */
 export function insertMessage(
@@ -59,7 +66,9 @@ export function insertMessage(
 }
 
 /** Resuelve una sola vez; dos administradores no se pisan la respuesta.
- * @param id - Mensaje, junto con el administrador y su respuesta.
+ * @param id - Caso abierto que se intenta resolver una sola vez.
+ * @param adminId - Cuenta administrativa autora de la respuesta.
+ * @param reply - Respuesta validada que verá el cliente en su bandeja.
  * @returns Resultado SQL; cero filas si el caso está cerrado o ausente.
  */
 export function resolveMessage(id: string, adminId: string, reply: string) {

@@ -9,8 +9,18 @@ import { transaction } from '../../utils/transaction.js';
 import { readSettings } from '../settings/settings.repository.js';
 import { getProfile } from '../users/users.service.js';
 import * as repository from './vehicles.repository.js';
-import type { vehiclePatchSchema } from './vehicles.schema.js';
+import type { vehiclePatchSchema, vehicleQuerySchema } from './vehicles.schema.js';
 import { vehicleSchema } from './vehicles.schema.js';
+
+/** Delimita el listado por identidad antes de consultar SQL.
+ * @param current Cuenta autenticada; solo Administración puede filtrar otro titular.
+ * @param query Búsqueda, paginación y titular opcional ya validados por Zod.
+ * @returns Página de vehículos visibles; ownerId nunca amplía el alcance de un cliente.
+ */
+export function listVehicles(current: Actor, query: z.infer<typeof vehicleQuerySchema>) {
+  const ownerId = current.role === 'admin' ? query.ownerId : current.id;
+  return repository.listVehicles(ownerId, query.page, query.limit, query.search);
+}
 
 /** Accede solo a un vehículo propio o administrado; oculta recursos ajenos.
  * @param current - Identidad o entidad actual usada para conservar sus invariantes.

@@ -3,7 +3,11 @@ import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import { root } from './process.mjs';
 
-/** Desarrollo se ejecuta sobre una base escolar; no hereda producción por accidente. */
+/** Desarrollo se ejecuta sobre una base escolar; no hereda producción por accidente.
+ * @param {number} apiPort Puerto local libre elegido para Express.
+ * @param {number} webPort Puerto local libre elegido para Expo web y CORS.
+ * @returns {object} Overrides del backend; exige nombre de base terminado en _dev y deshabilita Google local.
+ */
 export function developmentEnvironment(apiPort, webPort) {
   const require = createRequire(resolve(root, 'backend/package.json'));
   const parsed = require('dotenv').parse(readFileSync(resolve(root, 'backend/.env')));

@@ -9,6 +9,7 @@ import { useRemoteData } from './useRemoteData';
 export function useCancellationNotices() {
   const list = useRemoteData<CancellationNotice[]>('/appointments/cancellation-notices');
   const action = useAction();
+  /** Confirma la lectura en el servidor y vuelve a consultar los avisos persistentes. */
   async function acknowledge(id: string) {
     await action.run(async () => {
       await writeResource('post', `/appointments/${id}/cancellation-read`);

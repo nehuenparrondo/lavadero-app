@@ -2,7 +2,8 @@ import type { Executor } from '../../utils/db.js';
 import { execute, rows } from '../../utils/db.js';
 
 /** Muestra el plantel activo para el día actual e incluye fichajes históricos aunque cambie el plantel.
- * @param date - Fecha del negocio; currentDay incluye empleados activos sin fichar.
+ * @param date - Fecha local del negocio en formato YYYY-MM-DD.
+ * @param currentDay - Incluye empleados activos aún sin fichaje solo cuando se consulta hoy.
  * @returns Filas del plantel y de la asistencia.
  */
 export function readAttendance(date: string, currentDay: boolean) {
@@ -19,7 +20,10 @@ export function readAttendance(date: string, currentDay: boolean) {
 }
 
 /** El primer fichaje del día prevalece ante clics duplicados o simultáneos.
- * @param date - Fecha del negocio, con IDs de empleado y administrador y ejecutor de transacción.
+ * @param date - Día local del negocio validado por el servicio.
+ * @param employeeId - Empleado activo cuya llegada se registra.
+ * @param adminId - Administrador que observó y registra la llegada.
+ * @param executor - Conexión de la transacción; el primer fichaje del día prevalece.
  * @returns Resultado SQL del fichaje.
  */
 export function insertArrival(

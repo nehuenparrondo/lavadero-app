@@ -3,7 +3,7 @@ import type { Report } from '../types/entities';
 import { today } from '../utils/format';
 import { useRemoteData } from './useRemoteData';
 /** Reporte por período calendario local y fecha elegida.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Período/fecha seleccionados, respuesta agregada del servidor y carga/error del reporte.
  */
 export function useReports() {
   const [period, setPeriod] = useState('month');

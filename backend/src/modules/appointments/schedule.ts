@@ -4,8 +4,8 @@ import type { BusinessHour, Settings } from '../settings/settings.repository.js'
 import type { Interval } from './appointments.types.js';
 
 /** Interpreta un DATETIME de MySQL como UTC sin depender de la zona del servidor.
- * @param value - Entrada del formato declarado que se valida o transforma.
- * @returns `number`.
+ * @param value - DATETIME SQL o valor temporal leído del driver; se interpreta como UTC.
+ * @returns Instante en milisegundos desde Unix, sin aplicar la zona del servidor.
  */
 export function utcMillis(value: string) {
   return DateTime.fromSQL(value, { zone: 'utc' }).toMillis();
@@ -20,8 +20,8 @@ export function sqlTime(milliseconds: number) {
   );
 }
 /** Fecha ISO pública con Z.
- * @param value - Entrada del formato declarado que se valida o transforma.
- * @returns `string | null`.
+ * @param value - Valor temporal interno opcional leído del driver SQL.
+ * @returns Instante ISO 8601 con zona UTC o NULL cuando no existe un valor válido.
  */
 export function isoTime(value: string) {
   return DateTime.fromSQL(value, { zone: 'utc' }).toISO();

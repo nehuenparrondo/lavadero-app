@@ -36,6 +36,19 @@ test('perfil, vehículo, categorías, servicios y tarifas completan su ciclo adm
     isActive: true,
   }).expect(200);
   const car = await vehicle(customer.accessToken);
+  const otherCustomer = await client();
+  const otherCar = await vehicle(otherCustomer.accessToken);
+  // El filtro solicitado nunca amplía el alcance de un cliente, aunque conozca otro ID.
+  const ownList = await api('get', '/vehicles', customer.accessToken)
+    .query({ ownerId: otherCustomer.user.id })
+    .expect(200);
+  assert.ok(ownList.body.data.items.some((item: { id: string }) => item.id === car.id));
+  assert.ok(!ownList.body.data.items.some((item: { id: string }) => item.id === otherCar.id));
+  const filtered = await api('get', '/vehicles', owner.accessToken)
+    .query({ ownerId: otherCustomer.user.id })
+    .expect(200);
+  assert.ok(filtered.body.data.items.some((item: { id: string }) => item.id === otherCar.id));
+  assert.ok(!filtered.body.data.items.some((item: { id: string }) => item.id === car.id));
   await api('patch', `/vehicles/${car.id}`, customer.accessToken, {
     vehicleTypeId: type.id,
     color: 'Gris',

@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon';
 import { AppError } from '../../errors/AppError.js';
 import type { Actor } from '../../types/domain.js';
-import { execute } from '../../utils/db.js';
+import { hideHomeAppointments } from './appointmentDetails.repository.js';
 import { transaction } from '../../utils/transaction.js';
 import { readSettings } from '../settings/settings.repository.js';
 
@@ -18,13 +18,7 @@ export function clearClientHome(actor: Actor) {
       .startOf('day')
       .toUTC()
       .toSQL({ includeOffset: false });
-    const result = await execute(
-      `UPDATE turnos a JOIN estados_turno s ON s.id=a.status_id
- SET a.home_hidden_at=UTC_TIMESTAMP(3) WHERE a.client_id=? AND a.home_hidden_at IS NULL
- AND a.starts_at>=? AND s.code IN ('confirmed','in_progress','awaiting_review')`,
-      [actor.id, from],
-      connection,
-    );
+    const result = await hideHomeAppointments(actor.id, from, connection);
     return { hidden: result.affectedRows };
   });
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 /** Evita una solicitud de búsqueda por cada tecla sin retrasar la escritura visible.
- * @param value - Entrada del formato declarado que se valida o transforma.
+ * @param value - Texto o filtro actual; se publica después de permanecer estable durante delay.
  * @param delay - Espera en milisegundos antes de publicar el valor estabilizado.
  * @returns Último valor que se mantuvo estable durante el intervalo pedido.
  */

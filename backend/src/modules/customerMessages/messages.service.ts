@@ -11,7 +11,8 @@ import { insertMessage, listMessages, resolveMessage } from './messages.reposito
 import type { messageQuery, messageSchema } from './messages.schema.js';
 
 /** Administración ve la bandeja completa; el cliente solo ve sus propios mensajes.
- * @param actor - Identidad que restringe la bandeja; query aplica filtros y paginación.
+ * @param actor - Identidad autenticada que delimita la bandeja.
+ * @param query - Estado y paginación validados; no puede ampliar el alcance del cliente.
  * @returns Mensajes autorizados y fechas ISO.
  */
 export async function getMessages(actor: Actor, query: z.infer<typeof messageQuery>) {
@@ -31,8 +32,9 @@ export async function getMessages(actor: Actor, query: z.infer<typeof messageQue
   };
 }
 
-/** Una devolución queda asociada al parte verificado y al cliente dueño del turno.
- * @param actor - Cliente que envía el reclamo o devolución descrito en input.
+/** Guarda reclamos generales o una devolución única sobre un lavado ya finalizado.
+ * @param actor - Cliente autenticado; el mensaje conserva este autor.
+ * @param input - Tipo, texto y turno opcional; las devoluciones comprueban titularidad y parte finalizado.
  * @returns Identificador del mensaje creado.
  */
 export async function createMessage(actor: Actor, input: z.infer<typeof messageSchema>) {
@@ -74,7 +76,9 @@ async function feedbackTarget(id: string, status: string, connection: Executor) 
 }
 
 /** Guarda la respuesta del administrador, visible para el titular en su bandeja.
- * @param actor - Administrador que responde al mensaje id con el texto reply.
+ * @param actor - Administrador autenticado autor de la respuesta.
+ * @param id - Mensaje abierto que se resuelve con una escritura condicional.
+ * @param reply - Respuesta validada y visible para el titular del caso.
  * @returns Confirmación del cierre.
  */
 export async function replyToMessage(actor: Actor, id: string, reply: string) {

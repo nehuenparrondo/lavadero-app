@@ -1,4 +1,6 @@
-# hooks
+# src/hooks
+
+<!-- Generado por npm run docs. -->
 
 Coordinación de consultas, filtros, selección y mutaciones. Separa el error de lectura del de escritura y descarta respuestas obsoletas.
 
@@ -21,7 +23,7 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 | [useAppointmentVehicle.ts](useAppointmentVehicle.ts)           | Carga los vehículos del titular y confirma el vínculo sin volver a reservar el horario.        |
 | [useAppointments.ts](useAppointments.ts)                       | Coordina filtros, página y opciones; el servidor aplica propiedad y asignaciones.              |
 | [useAttendance.ts](useAttendance.ts)                           | Usa la fecha oficial del servidor y recarga el fichaje tras cada llegada.                      |
-| [useAuth.ts](useAuth.ts)                                       | Accede a sesión verificada.                                                                    |
+| [useAuth.ts](useAuth.ts)                                       | Accede a sesión verificada. @throws Error si falta AuthProvider.                               |
 | [useBooking.ts](useBooking.ts)                                 | Compone selección, consulta y confirmación sin lógica de negocio dentro de la pantalla.        |
 | [useBookingOptions.ts](useBookingOptions.ts)                   | Recursos y recarga de los selectores, separados de la cotización dependiente.                  |
 | [useBookingResources.ts](useBookingResources.ts)               | Cotiza por categoría y recarga las opciones vigentes cuando se vuelve al formulario.           |
@@ -61,7 +63,7 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 | [useSocialLogin.web.ts](useSocialLogin.web.ts)                 | Estado del botón web; la confirmación de vinculación ocurre en la ruta de retorno.             |
 | [useSocialProviders.ts](useSocialProviders.ts)                 | Consulta proveedores y permite reintentar si Render estaba despertando.                        |
 | [useSocialResponse.ts](useSocialResponse.ts)                   | Completa retornos nativos y muestra también cancelaciones y errores del proveedor.             |
-| [useTheme.ts](useTheme.ts)                                     | Retorna tema y selector.                                                                       |
+| [useTheme.ts](useTheme.ts)                                     | Retorna tema y selector. @throws Error fuera de ThemeProvider.                                 |
 | [useTimeWheel.ts](useTimeWheel.ts)                             | Sincroniza arrastre, rueda del mouse y botones sin inventar horas libres.                      |
 | [useUsers.ts](useUsers.ts)                                     | Gestión de usuarios; delega selección, persistencia y definición de formularios.               |
 | [useVehicleTypes.ts](useVehicleTypes.ts)                       | Categorías con edición común y baja lógica que conserva referencias históricas.                |
@@ -76,4 +78,4 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 
 ## Mantenimiento
 
-Consultar los TSDoc de cada función antes de cambiar sus precondiciones. Mantener los efectos en su capa y actualizar esta tabla junto con el módulo. Ejecutar npm run check desde la raíz del repositorio.
+Las precondiciones, parámetros y resultados se documentan junto a cada función. Desde `main`, ejecutar `npm run docs` después de cambiar contratos y `npm run check` antes de publicar. No editar este índice a mano.

@@ -5,7 +5,7 @@ import { isoTime } from './schedule.js';
 /** Oculta turnos de otros clientes; el equipo comparte la agenda operativa.
  * @param actor - Actor autenticado por el middleware; determina rol y propiedad.
  * @param appointment - Turno autorizado que conserva datos históricos del contrato.
- * @returns `void`.
+ * @returns No devuelve datos; al terminar estrecha el tipo y garantiza que el actor puede acceder al turno.
  * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
  */
 export function assertAppointmentAccess(

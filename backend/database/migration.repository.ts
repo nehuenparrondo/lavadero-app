@@ -8,7 +8,10 @@ import {
   matchesMigrationChecksum,
 } from './migrationChecksum.js';
 
-/** Serializa migraciones por base para evitar dos arranques modificando el esquema a la vez. */
+/** Serializa migraciones por base para evitar dos arranques modificando el esquema a la vez.
+ * @param connection - Conexión del migrador; el lock queda ligado a esta sesión SQL.
+ * @returns Clave del lock obtenido, necesaria para RELEASE_LOCK al terminar.
+ */
 export async function lockMigrations(connection: PoolConnection): Promise<string> {
   const [rows] = await connection.query<RowDataPacket[]>('SELECT DATABASE() AS name');
   const key = createHash('sha256').update(String(rows[0]?.name)).digest('hex').slice(0, 32);
@@ -21,7 +24,10 @@ export async function lockMigrations(connection: PoolConnection): Promise<string
   return key;
 }
 
-/** Crea el registro de migraciones, independiente de las tablas de negocio. */
+/** Crea el registro de migraciones, independiente de las tablas de negocio.
+ * @param connection - Conexión del migrador protegida por el lock de esquema.
+ * @returns Promesa sin valor cuando el registro de checksums está disponible; el DDL puede hacer commit implícito.
+ */
 export async function ensureMigrationTable(connection: PoolConnection): Promise<void> {
   const [legacy] = await connection.query<RowDataPacket[]>(
     "SELECT TABLE_TYPE type FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='schema_migrations'",
@@ -38,7 +44,12 @@ export async function ensureMigrationTable(connection: PoolConnection): Promise<
     );
 }
 
-/** Ejecuta una migración nueva o comprueba que su contenido no cambió tras aplicarla. */
+/** Ejecuta una migración nueva o comprueba que su contenido no cambió tras aplicarla.
+ * @param connection - Conexión que conserva el lock del migrador.
+ * @param name - Nombre ordenable del archivo SQL; identifica la versión aplicada.
+ * @param sql - Contenido original inmutable; se valida su checksum antes de adaptar el dialecto.
+ * @returns Promesa sin valor tras verificar una versión existente o registrar la nueva; un DDL parcial exige revisión manual.
+ */
 export async function applyMigration(connection: PoolConnection, name: string, sql: string) {
   const checksum = migrationChecksum(sql);
   const [existing] = await connection.execute<RowDataPacket[]>(

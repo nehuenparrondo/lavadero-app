@@ -1,7 +1,7 @@
 /** Valida HTTPS; admite loopback HTTP únicamente cuando el modo de desarrollo lo pide.
- * @param value - Entrada del formato declarado que se valida o transforma.
+ * @param value - Origen API configurado públicamente; no admite credenciales, rutas, query ni fragmento.
  * @param allowLocal - Solo desarrollo: conexión del navegador al backend de esta computadora.
- * @returns `string | null`.
+ * @returns Origen normalizado permitido o NULL; HTTP loopback solo se acepta con allowLocal explícito.
  */
 export function parseApiUrl(value: string | undefined, allowLocal = false): string | null {
   if (!value?.trim()) return null;

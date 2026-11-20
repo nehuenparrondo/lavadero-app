@@ -2,13 +2,12 @@ import { AppError } from '../../errors/AppError.js';
 import type { Actor } from '../../types/domain.js';
 import type { Executor } from '../../utils/db.js';
 import type { Appointment } from './appointments.types.js';
-import { execute } from '../../utils/db.js';
 import { transaction } from '../../utils/transaction.js';
 import { readHours, readSettings } from '../settings/settings.repository.js';
 import { assertAppointmentAccess } from './appointments.access.js';
 import { findAppointment, setStatus } from './appointments.repository.js';
 import { assertCompletionTime } from './schedule.js';
-import { latestWash, submitWash } from './wash.repository.js';
+import { latestWash, submitWash, markEmployeeCompleted } from './wash.repository.js';
 
 /** Finaliza directamente un lavado cobrado por su responsable, con parte y hora verificables.
  * @param actor Empleado activo con permiso de cobros; el administrador no se suplanta como revisor.
@@ -70,10 +69,6 @@ async function completeWashRecord(
   connection: Executor,
 ) {
   const submission = await submitWash(id, employeeId, description, connection);
-  await execute(
-    'UPDATE partes_lavado SET completed_by_employee=TRUE WHERE id=?',
-    [submission.insertId],
-    connection,
-  );
+  await markEmployeeCompleted(submission.insertId, connection);
   await setStatus(id, 'completed', employeeId, connection);
 }

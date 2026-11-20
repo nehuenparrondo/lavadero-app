@@ -53,14 +53,14 @@ Las migraciones 006/007 mantienen completa la pareja proveedor/subject pendiente
 
 ## Disponibilidad y reserva atómica
 
-1. availability.service verifica el vehículo y servicios activos con tarifa para su tipo.
+1. availability.service verifica la categoría o vehículo opcional y servicios activos con tarifa para su tipo.
 2. schedule calcula la ventana en la zona IANA del negocio y convierte a UTC.
 3. canFit usa intervalos [inicio, fin), excluye vehículo/empleado ocupado y barre
    eventos para medir concurrencia real. Los finales empatados liberan antes de iniciar.
 4. Las opciones usan slotStepMinutes; ese paso no es la duración del lavado.
 5. booking.service toma primero el lock de settings, recotiza y vuelve a verificar
    titular activo, horario y ocupación dentro de la misma transacción.
-6. Persiste precios/duraciones como contrato histórico junto al primer estado pendiente.
+6. Persiste precios/duraciones como contrato histórico y confirma el turno automáticamente.
 
 No aceptar total, precio ni duración enviados por el cliente como fuente de verdad.
 La disponibilidad consultada es orientativa: otra reserva puede ocupar el horario
@@ -73,7 +73,7 @@ cambiar su orden puede introducir carreras o deadlocks.
 transitions declara el alcance de cada rol. El cliente cancela pendientes/confirmados;
 cualquier empleado avanza confirmado (o pendiente anterior) → en proceso → finalizado; administración
 puede corregir estados respetando las demás invariantes del servicio.
-Confirmar requiere empleado activo y capacidad. Los cambios conservan historial.
+Confirmar requiere horario/capacidad. Se intenta asignar un empleado activo libre; el turno puede quedar confirmado sin responsable y se comparte en la agenda. Los cambios conservan historial.
 La anticipación del cliente es estrictamente mayor al límite configurado: exactamente
 120 minutos no supera un límite de 120. Administración conserva cancelación de emergencia.
 Las notas tienen autor y momento; no se sustituyen por un campo de texto mutable.
@@ -104,7 +104,7 @@ esperar que ambos totales describan exactamente las mismas visitas.
 
 utils/transaction siempre libera conexión y revierte al rechazar. Todas las escrituras
 de una operación atómica deben usar su executor. No abrir otro pool desde el callback.
-La conexión Aiven verifica TLS. La base de desarrollo es distinta de producción.
+La conexión MariaDB en alwaysdata verifica TLS y la identidad del servidor. La base de desarrollo es distinta de producción.
 Las migraciones no se editan una vez aplicadas: agregar otra. migrationChecksum
 normaliza LF/CRLF y admite el checksum histórico equivalente, pero rechaza SQL diferente.
 

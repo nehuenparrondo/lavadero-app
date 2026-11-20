@@ -1,4 +1,6 @@
-# modules/appointments
+# src/modules/appointments
+
+<!-- Generado por npm run docs. -->
 
 Agenda y contratos históricos. Compartir el lock de settings para reservar/asignar/cambiar estado; no confiar en precios del cliente.
 
@@ -7,6 +9,7 @@ Agenda y contratos históricos. Compartir el lock de settings para reservar/asig
 | Archivo                                                                  | Responsabilidad                                                                                                            |
 | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
 | [agendaScope.repository.ts](agendaScope.repository.ts)                   | Define próximas visitas por día local y separa la jornada actual del historial.                                            |
+| [appointmentDetails.repository.ts](appointmentDetails.repository.ts)     | Vincula el vehículo ya validado sin cambiar los servicios ni el horario contratados.                                       |
 | [appointments.access.ts](appointments.access.ts)                         | Oculta turnos de otros clientes; el equipo comparte la agenda operativa.                                                   |
 | [appointments.controller.ts](appointments.controller.ts)                 | Lista por rol y filtros.                                                                                                   |
 | [appointments.filters.repository.ts](appointments.filters.repository.ts) | Construye únicamente predicados cerrados; los datos siempre viajan como parámetros.                                        |
@@ -42,10 +45,10 @@ Agenda y contratos históricos. Compartir el lock de settings para reservar/asig
 | [walkIn.service.ts](walkIn.service.ts)                                   | Registra llegada, contrato y observaciones atómicamente; nunca crea cuentas ficticias.                                     |
 | [walkIn.slot.ts](walkIn.slot.ts)                                         | Elige la primera ventana de hoy bajo el mismo lock que las reservas de clientes.                                           |
 | [wash.repository.ts](wash.repository.ts)                                 | El parte guarda el responsable real, su declaración y la decisión administrativa.                                          |
-| [wash.service.ts](wash.service.ts)                                       | Solo el responsable registra la finalización física, durante el horario de trabajo.                                        |
+| [wash.service.ts](wash.service.ts)                                       | Flujo de revisión conservado para compatibilidad; el cierre actual del empleado usa paidFinish.service.                    |
 | [work.routes.ts](work.routes.ts)                                         | Cambios del auto, envío del responsable y decisión exclusiva de Administración.                                            |
 | [work.schema.ts](work.schema.ts)                                         | Datos adicionales del auto ingresados después de confirmar.                                                                |
 
 ## Mantenimiento
 
-Consultar los TSDoc de cada función antes de cambiar sus precondiciones. Mantener los efectos en su capa y actualizar esta tabla junto con el módulo. Ejecutar npm run check desde la raíz del repositorio.
+Las precondiciones, parámetros y resultados se documentan junto a cada función. Desde `main`, ejecutar `npm run docs` después de cambiar contratos y `npm run check` antes de publicar. No editar este índice a mano.

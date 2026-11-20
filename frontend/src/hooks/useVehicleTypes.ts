@@ -6,7 +6,7 @@ import { useRemoteData } from './useRemoteData';
 import { useResourceEditor } from './useResourceEditor';
 /** Categorías con edición común y baja lógica que conserva referencias históricas.
  * @param onChanged Recarga los selectores externos que usan estas categorías.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Categorías y editor con baja lógica; propaga la recarga a los selectores que las utilizan.
  */
 export function useVehicleTypes(onChanged?: (() => Promise<void>) | undefined) {
   const state = useRemoteData<VehicleType[]>('/vehicle-types');

@@ -11,8 +11,8 @@ export function money(cents: number | undefined) {
   }).format((cents ?? 0) / 100);
 }
 /** Fecha legible en la zona horaria operativa confirmada.
- * @param value - Entrada del formato declarado que se valida o transforma.
- * @returns `string`.
+ * @param value - Instante ISO UTC de la API que se presenta en la zona del negocio.
+ * @returns Fecha y hora legibles para el usuario; no se reutiliza para guardar otro instante.
  */
 export function appointmentDate(value: string) {
   return new Intl.DateTimeFormat('es-AR', {
@@ -37,8 +37,8 @@ export function today() {
   return `${parts.find((p) => p.type === 'year')!.value}-${parts.find((p) => p.type === 'month')!.value}-${parts.find((p) => p.type === 'day')!.value}`;
 }
 /** Hora local de una opción UTC, enviada por el servidor.
- * @param value - Entrada del formato declarado que se valida o transforma.
- * @returns `string`.
+ * @param value - Inicio ISO UTC de una opción de disponibilidad.
+ * @returns Hora y minutos locales para mostrar en la rueda de horarios.
  */
 export function slotTime(value: string) {
   return new Intl.DateTimeFormat('es-AR', {

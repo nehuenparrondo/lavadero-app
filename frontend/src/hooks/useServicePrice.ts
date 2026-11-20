@@ -5,7 +5,7 @@ import { pesosToCents } from '../utils/pesosToCents';
 import { useAction } from './useAction';
 /** Administra la tarifa por tipo de vehículo, independientemente del formulario de servicio.
  * @param refresh - Vuelve a consultar recursos después de una operación confirmada.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Servicio seleccionado, diálogo, error y guardado que recarga el catálogo después de confirmar.
  */
 export function useServicePrice(refresh: () => Promise<void>) {
   const [pricing, setPricing] = useState<Service | null>(null);

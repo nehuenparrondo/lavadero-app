@@ -63,6 +63,8 @@ Los dos servicios toman la rama `main` del repositorio único. La raíz del serv
 
 ## Documentación
 
+Empezar por la [guía común del código](docs/README.md), con [arquitectura](docs/architecture.md), [configuración](docs/configuration.md) y [mantenimiento/pruebas](docs/maintenance.md). Para regenerar mapas, índices y contratos de componentes: `npm run docs`. `npm run docs:check` detecta documentación generada desactualizada sin escribir archivos.
+
 - [Backend y contrato](backend/README.md), [OpenAPI](backend/docs/openapi.json).
 - [Frontend e interfaz](frontend/README.md).
 - [Seguridad y recuperación](backend/docs/security-recovery.md).

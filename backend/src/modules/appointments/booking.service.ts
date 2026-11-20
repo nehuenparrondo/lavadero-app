@@ -18,8 +18,8 @@ import { sqlTime } from './schedule.js';
 type BookingInput = z.infer<typeof appointmentSchema>;
 
 /** Reserva y guarda el contrato histórico bajo el bloqueo compartido de agenda.
- * @param actor Actor autenticado; un cliente solo reserva para su propio vehículo.
- * @param input Vehículo, servicios e inicio; clientId es opcional para reserva asistida.
+ * @param actor - Cuenta autenticada; un cliente solo puede reservar para sí mismo.
+ * @param input - Categoría o vehículo, servicios y hora; vehículo opcional hasta después de confirmar.
  * @returns Turno confirmado automáticamente para la agenda compartida con precios y duraciones recalculados por el servidor.
  * @throws AppError Si falta configuración, el titular no corresponde o el horario se ocupó.
  * @remarks El lock de settings serializa reservas, asignaciones y cambios de configuración.

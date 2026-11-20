@@ -5,7 +5,7 @@ import { useBookingSelection } from './useBookingSelection';
 import { useBookingSubmit } from './useBookingSubmit';
 import type { RefreshTrigger } from '../utils/refreshGate';
 /** Compone selección, consulta y confirmación sin lógica de negocio dentro de la pantalla.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Selección, cotización vigente, horarios libres, confirmación y sondeo; canSubmit se desactiva ante carga o error.
  */
 export function useBooking() {
   const { user } = useAuth();

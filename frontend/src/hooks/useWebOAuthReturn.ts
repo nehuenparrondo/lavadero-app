@@ -5,7 +5,7 @@ import { useAuth } from './useAuth';
 import { useSocialExchange } from './useSocialExchange';
 
 /** Consume el retorno web una vez, validando state/PKCE antes de guardar sesión.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Estado de canje y formulario de vinculación; valida state y vencimiento antes de consumir el código.
  * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
  */
 export function useWebOAuthReturn() {

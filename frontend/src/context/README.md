@@ -1,4 +1,6 @@
-# context
+# src/context
+
+<!-- Generado por npm run docs. -->
 
 Proveedores compartidos de sesión y tema. No duplicar los tokens en estados de pantallas.
 
@@ -11,4 +13,4 @@ Proveedores compartidos de sesión y tema. No duplicar los tokens en estados de 
 
 ## Mantenimiento
 
-Consultar los TSDoc de cada función antes de cambiar sus precondiciones. Mantener los efectos en su capa y actualizar esta tabla junto con el módulo. Ejecutar npm run check desde la raíz del repositorio.
+Las precondiciones, parámetros y resultados se documentan junto a cada función. Desde `main`, ejecutar `npm run docs` después de cambiar contratos y `npm run check` antes de publicar. No editar este índice a mano.

@@ -1,8 +1,8 @@
 import type { Session, User } from '../../types/entities';
 import { publicTransport, requireApi } from '../transport';
 /** Registro siempre Cliente; rol no forma parte de este contrato.
- * @param input - Entrada validada por el esquema del caso de uso.
- * @returns `Promise<Session>`.
+ * @param input - Nombre, apellido, correo y contraseña del registro; la API asigna siempre el rol Cliente.
+ * @returns Sesión de la cuenta nueva: perfil público, access, refresh y vencimiento en segundos.
  */
 export async function register(input: Record<string, string>) {
   requireApi();
@@ -10,8 +10,8 @@ export async function register(input: Record<string, string>) {
     .data;
 }
 /** Inicio de sesión email/contraseña.
- * @param input - Entrada validada por el esquema del caso de uso.
- * @returns `Promise<Session>`.
+ * @param input - Correo y contraseña que se transmiten exclusivamente al backend configurado.
+ * @returns Sesión propia de Lavadero; un rechazo HTTP se propaga al hook de acceso.
  */
 export async function login(input: { email: string; password: string }) {
   requireApi();
@@ -20,7 +20,7 @@ export async function login(input: { email: string; password: string }) {
 }
 /** Renueva sesión mediante refresh opaco.
  * @param refreshToken - Credencial opaca del dispositivo, revocable por el servidor.
- * @returns `Promise<Session>`.
+ * @returns Sesión rotada; el llamador persiste el nuevo refresh antes de publicar la sesión.
  */
 export async function refreshSession(refreshToken: string) {
   requireApi();
@@ -30,7 +30,7 @@ export async function refreshSession(refreshToken: string) {
 }
 /** Revoca la familia del dispositivo en backend.
  * @param refreshToken - Credencial opaca del dispositivo, revocable por el servidor.
- * @returns `Promise<void>`.
+ * @returns Promesa sin valor tras revocar la familia; la limpieza local corresponde a sessionActions.
  */
 export async function logout(refreshToken: string) {
   requireApi();
@@ -40,7 +40,7 @@ export async function logout(refreshToken: string) {
  * @param code - Código efímero recibido del flujo de autorización.
  * @param codeVerifier - Secreto PKCE original de la app que inició el acceso.
  * @param password - Contraseña de la cuenta, usada solo para comprobar su propiedad.
- * @returns `Promise<Session>`.
+ * @returns Sesión de Lavadero tras consumir el grant con PKCE; la vinculación puede requerir la contraseña local.
  */
 export async function exchangeSocial(code: string, codeVerifier: string, password?: string) {
   requireApi();
@@ -53,7 +53,7 @@ export async function exchangeSocial(code: string, codeVerifier: string, passwor
   ).data.data;
 }
 /** Estado de habilitación de accesos sociales.
- * @returns `Promise<{ provider: string; enabled: boolean; }[]>`.
+ * @returns Disponibilidad pública por proveedor; actualmente solo Google puede estar habilitado.
  */
 export async function getProviders() {
   requireApi();

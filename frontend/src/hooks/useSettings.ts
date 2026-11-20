@@ -5,7 +5,7 @@ import { settingsInitialValues } from '../utils/settingsForm';
 import { useAction } from './useAction';
 import { useRemoteData } from './useRemoteData';
 /** Configuración operativa con horario local y capacidad simultánea.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Configuración vigente, formulario y guardado; la pantalla no calcula capacidad ni valida reservas por su cuenta.
  */
 export function useSettings() {
   const state = useRemoteData<Settings>('/settings');

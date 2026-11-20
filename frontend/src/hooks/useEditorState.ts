@@ -1,6 +1,6 @@
 import { useState } from 'react';
 /** Mantiene exclusivamente la selección y apertura de un editor de entidad.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Entidad seleccionada y controles para abrir alta/edición, cerrar y solicitar/cancelar el diálogo de baja.
  */
 export function useEditorState<T>() {
   const [editing, setEditing] = useState<T | null>(null);

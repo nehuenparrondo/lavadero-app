@@ -10,8 +10,10 @@ import type { reviewSchema } from './work.schema.js';
 import { assertCompletionTime, isoTime } from './schedule.js';
 import { latestWash, recordReview, submitWash } from './wash.repository.js';
 
-/** Solo el responsable registra la finalización física, durante el horario de trabajo.
- * @param actor - Empleado responsable; id y description identifican el trabajo realizado.
+/** Flujo de revisión conservado para compatibilidad; el cierre actual del empleado usa paidFinish.service.
+ * @param actor - Empleado autenticado que debe ser responsable del turno.
+ * @param id - Turno en proceso que se bloquea y valida antes de emitir el parte.
+ * @param description - Descripción del trabajo físico que se conserva en el parte.
  * @returns Estado que espera revisión.
  */
 export function sendWashForReview(actor: Actor, id: string, description: string) {
@@ -34,7 +36,9 @@ export function sendWashForReview(actor: Actor, id: string, description: string)
 }
 
 /** Valida el parte exacto inspeccionado; una revisión desactualizada no decide un parte nuevo.
- * @param actor - Administrador; id identifica el turno e input contiene la decisión y parte.
+ * @param actor - Administrador autenticado que registra la decisión.
+ * @param id - Turno en revisión; se bloquea para evitar decisiones concurrentes.
+ * @param input - Identificador del parte, decisión y nota validados; rechaza revisiones desactualizadas.
  * @returns Estado resultante de la revisión.
  */
 export function reviewWash(actor: Actor, id: string, input: z.infer<typeof reviewSchema>) {
@@ -66,7 +70,8 @@ export function reviewWash(actor: Actor, id: string, input: z.infer<typeof revie
 }
 
 /** El cliente ve el parte aprobado; el equipo también ve envíos y correcciones internas.
- * @param actor - Rol que determina qué campos son visibles; id es el turno autorizado.
+ * @param actor - Identidad que limita los campos del parte a mostrar.
+ * @param id - Turno previamente autorizado por el servicio que llama a este presentador.
  * @returns Parte proyectado o null cuando aún no es visible.
  */
 export async function presentWash(actor: Actor, id: string) {

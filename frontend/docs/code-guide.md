@@ -69,14 +69,13 @@ la misma paleta. Mantener nombres accesibles, foco y áreas táctiles al modific
 
 useRemoteData delega en useQuery y serializa filtros para identificar la consulta. sequence impide que
 una respuesta de un filtro anterior o de un consumidor desmontado publique su resultado.
-Es cancelación lógica: no aborta necesariamente HTTP. Al actualizar se ocultan los datos
+Es cancelación lógica: no aborta necesariamente HTTP. Al cambiar de filtro se ocultan los datos
 anteriores; cada resultado está vinculado a su recurso/filtros y nunca habilita una reserva de otra selección.
 enabled impide pedir disponibilidad antes de contar con la selección mínima.
 
 usePagedList reinicia página al cambiar filtros. CollectionState distingue carga
 inicial, error con reintento y lista vacía. No usar un array vacío como sustituto de
-un error de red. useAppointments recarga lista, resumen personal y selectores juntos.
-El resumen se oculta mientras carga o falla para no atribuir cifras a otra fecha.
+un error de red. useAppointments coordina lista y selectores. La revalidación silenciosa conserva datos del mismo filtro y Screen consulta al regresar y cada 10–15 segundos mientras está visible.
 
 useAction captura errores y devuelve undefined al fallar. Solo navegar, cerrar
 diálogo o renovar claves después de recibir un resultado distinto de undefined.
@@ -85,9 +84,9 @@ fallida no elimina una colección ya cargada ni oculta el formulario que debe co
 
 ## Reserva y cobro
 
-useBookingSelection invalida slot al cambiar titular, vehículo, servicios o fecha.
-Cambiar titular también limpia vehículo/servicios; cambiar vehículo limpia servicios.
-useBookingResources ofrece vehículos del titular y servicios con tarifa para su tipo.
+useBookingSelection invalida slot al cambiar titular, categoría, servicios o fecha.
+Cambiar titular también limpia categoría/servicios; cambiar categoría limpia servicios.
+useBookingResources ofrece categorías y servicios con tarifa por tipo. El cliente puede confirmar sin vehículo y agregarlo después mediante useAppointmentVehicle.
 La cotización de availability viene del backend; la UI solo presenta total y duración.
 useBookingSubmit no envía precio como fuente de verdad. Si pierde el horario,
 limpia la selección de inicio y vuelve a consultar disponibilidad.

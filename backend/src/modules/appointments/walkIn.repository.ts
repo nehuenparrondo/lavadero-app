@@ -39,6 +39,8 @@ export async function registeredArrival(plate: string, connection: Executor) {
 /** Evita registrar dos veces un auto que ya espera atención o está siendo lavado.
  * @param plate Patente observada en el local.
  * @param connection Conexión con bloqueo de agenda.
+ * @param from - Inicio UTC incluido de la ventana consultada.
+ * @param to - Fin UTC excluido de la ventana consultada.
  * @returns Si existe un turno activo del mismo auto para hoy o en proceso.
  */
 export async function hasActiveArrival(

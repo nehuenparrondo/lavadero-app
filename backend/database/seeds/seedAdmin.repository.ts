@@ -1,7 +1,12 @@
 import bcrypt from 'bcrypt';
 import type { PoolConnection, RowDataPacket } from 'mysql2/promise';
 
-/** Crea solo el administrador inicial. Nunca promueve cuentas existentes ni resetea claves. */
+/** Crea solo el administrador inicial. Nunca promueve cuentas existentes ni resetea claves.
+ * @param connection - Conexión de las semillas en la base de instalación.
+ * @param email - Correo del administrador inicial, validado desde SEED_ADMIN_EMAIL.
+ * @param password - Contraseña inicial validada; solo se guarda su hash y no reemplaza la existente.
+ * @returns Promesa sin valor; crea la cuenta inicial si falta y conserva cuentas ya existentes.
+ */
 export async function seedAdmin(connection: PoolConnection, email: string, password: string) {
   const [existing] = await connection.execute<RowDataPacket[]>(
     'SELECT u.id, u.is_active, u.deleted_at, r.code FROM usuarios u JOIN roles r ON r.id=u.role_id WHERE u.email=?',

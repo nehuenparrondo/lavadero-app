@@ -3,7 +3,7 @@ import { profileCommands } from './profileCommands';
 import { useAction } from './useAction';
 import { useAuth } from './useAuth';
 /** Perfil propio con formularios, sesión y comandos separados por responsabilidad.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Perfil propio, campos iniciales y comandos de guardado, contraseña y cierre de sesión.
  */
 export function useProfile() {
   const auth = useAuth();

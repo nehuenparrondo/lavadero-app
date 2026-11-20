@@ -4,7 +4,7 @@ import { useAction } from './useAction';
 import { useAuth } from './useAuth';
 /** Conecta formulario con registro/login y guarda refresh de forma segura.
  * @param signUp - Distingue el contrato de registro del de acceso.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Estado ocupado/error y envío de acceso o registro que guarda la sesión y abre la portada del rol.
  */
 export function useSignIn(signUp = false) {
   const auth = useAuth();

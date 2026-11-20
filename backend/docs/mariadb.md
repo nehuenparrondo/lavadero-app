@@ -8,38 +8,41 @@ El proyecto usa MariaDB 11.8 e InnoDB. El conector `mysql2` habla el protocolo c
 - `nehuenlavadero_prod`: datos de la web publicada. Usuario exclusivo del backend `nehuenlavadero_app`.
 - `nehuenlavadero_dev`: desarrollo y trabajo escolar. Usuario `nehuenlavadero_escuela`, sin acceso a producción.
 - `nehuenlavadero_qa`: pruebas automáticas desechables, sin datos reales.
-- Render conserva la API y la web original. alwaysdata aloja MariaDB y una copia funcional de la web; el plan gratuito no permite alojar exclusivamente bases.
+- Render conserva la API y la web original. alwaysdata aloja MariaDB y los archivos de una copia secundaria de la web (ver sus limitaciones en hosting.md); el plan gratuito no permite alojar exclusivamente bases.
 
 No guardar credenciales en GitHub ni enviarlas desde Expo. La API recibe la conexión mediante su entorno privado. El equipo de desarrollo usa `.env` ignorado por Git.
 
 ## Diccionario
 
-| Tabla                     | Contenido                                               |
-| ------------------------- | ------------------------------------------------------- |
-| `roles`                   | Cliente, empleado y administrador                       |
-| `usuarios`                | Perfil, contraseña cifrada, permisos y baja lógica      |
-| `cuentas_sociales`        | Relación del usuario con Google, Discord o GitHub       |
-| `sesiones_renovacion`     | Hashes de sesiones, rotación y revocación               |
-| `estados_oauth`           | Solicitudes temporales de inicio social y PKCE          |
-| `autorizaciones_oauth`    | Códigos temporales de un único uso                      |
-| `tipos_vehiculo`          | Auto, SUV, camioneta, moto y categorías administrativas |
-| `vehiculos`               | Patente, marca, modelo, color y titular                 |
-| `servicios`               | Lavados, encerado y tapizados; duración y estado        |
-| `tarifas_servicio`        | Precio por categoría y servicio, en centavos ARS        |
-| `estados_turno`           | Estados válidos del trabajo                             |
-| `turnos`                  | Reserva confirmada, titular, horario, tipo y asignación |
-| `servicios_turno`         | Precio y duración históricos de cada servicio reservado |
-| `detalles_vehiculo_turno` | Descripción aportada por el cliente                     |
-| `notas_turno`             | Observaciones del equipo con autor                      |
-| `historial_estados_turno` | Auditoría de cambios de estado                          |
-| `partes_lavado`           | Trabajo realizado, empleado, revisión y correcciones    |
-| `mensajes_cliente`        | Reclamos, devoluciones y respuesta administrativa       |
-| `asistencia_empleados`    | Fichajes registrados por el administrador               |
-| `pagos`                   | Cobros, método y saldo de cada turno                    |
-| `configuracion_negocio`   | Moneda, zona, capacidad y anticipación de cancelación   |
-| `horarios_atencion`       | Días y horas de atención                                |
-| `bloqueos_agenda`         | Serialización de operaciones de agenda                  |
-| `migraciones_esquema`     | Versiones SQL y checksums aplicados                     |
+| Tabla                     | Contenido                                                                   |
+| ------------------------- | --------------------------------------------------------------------------- |
+| `roles`                   | Cliente, empleado y administrador                                           |
+| `usuarios`                | Perfil, hash bcrypt de contraseña, permisos y baja lógica                   |
+| `cuentas_sociales`        | Vinculación Google y registros históricos de proveedores retirados          |
+| `sesiones_renovacion`     | Hashes de sesiones, rotación y revocación                                   |
+| `estados_oauth`           | Solicitudes temporales de inicio social y PKCE                              |
+| `autorizaciones_oauth`    | Códigos temporales de un único uso                                          |
+| `tipos_vehiculo`          | Auto, SUV, camioneta, moto y categorías administrativas                     |
+| `vehiculos`               | Patente, marca, modelo, color y titular                                     |
+| `servicios`               | Lavados, encerado y tapizados; duración y estado                            |
+| `tarifas_servicio`        | Precio por categoría y servicio, en centavos ARS                            |
+| `estados_turno`           | Estados válidos del trabajo                                                 |
+| `turnos`                  | Reserva confirmada, titular, horario, tipo y asignación                     |
+| `servicios_turno`         | Precio y duración históricos de cada servicio reservado                     |
+| `detalles_vehiculo_turno` | Descripción aportada por el cliente                                         |
+| `notas_turno`             | Observaciones del equipo con autor                                          |
+| `historial_estados_turno` | Auditoría de cambios de estado                                              |
+| `partes_lavado`           | Trabajo realizado, empleado, revisión y correcciones                        |
+| `mensajes_cliente`        | Reclamos, devoluciones y respuesta administrativa                           |
+| `asistencia_empleados`    | Fichajes registrados por el administrador                                   |
+| `pagos`                   | Cobros, método y saldo de cada turno                                        |
+| `configuracion_negocio`   | Moneda, zona, capacidad y anticipación de cancelación                       |
+| `horarios_atencion`       | Días y horas de atención                                                    |
+| `bloqueos_agenda`         | Reserva para particionar bloqueos; el lock activo usa configuracion_negocio |
+| `migraciones_esquema`     | Versiones SQL y checksums aplicados                                         |
+| `ingresos_sin_turno`      | Patente, contacto y datos presenciales sin garaje obligatorio               |
+| `limites_recuperacion`    | Hash de correo y ventana de intentos de recuperación                        |
+| `recuperaciones_clave`    | Cola persistente, token de un uso, reintentos y vencimiento                 |
 
 Las columnas y el contrato JSON conservan sus nombres para no romper clientes existentes. Las consultas SQL del backend ya usan los nombres españoles.
 

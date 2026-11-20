@@ -6,12 +6,22 @@ import { developmentEnvironment } from './development-env.mjs';
 
 const children = [];
 let stopping = false;
+/** Detiene exclusivamente los procesos creados por este arranque y conserva un fallo del hijo.
+ * @param {number} code Código final; cero representa cierre solicitado por el operador.
+ * @returns {void} Señala el cierre una sola vez, incluso ante señales simultáneas.
+ */
 function shutdown(code = 0) {
   if (stopping) return;
   stopping = true;
   children.forEach(stop);
   process.exitCode = code;
 }
+/** Inicia una aplicación y propaga su salida/fallo al proceso coordinador.
+ * @param {string} folder Aplicación backend o frontend dentro de main.
+ * @param {string[]} args Comando npm y argumentos separados, sin shell.
+ * @param {object} env Variables explícitas del entorno elegido.
+ * @returns {void} Registra el hijo para cerrarlo junto con su aplicación hermana.
+ */
 function launch(folder, args, env) {
   const child = npmProcess(folder, args, { env });
   children.push(child);

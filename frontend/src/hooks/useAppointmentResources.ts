@@ -6,7 +6,7 @@ import { useRemoteData } from './useRemoteData';
  * @param id - Identificador del recurso dentro del proyecto actual.
  * @param user - Perfil vigente; nunca incluye una contraseña legible.
  * @param receiptOpen - Indica si debe consultarse y mostrarse el comprobante.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Consultas separadas de turno, pagos, comprobante, ajustes y empleados, más su recarga coordinada.
  */
 export function useAppointmentResources(id: string, user: User | null, receiptOpen: boolean) {
   const detail = useRemoteData<Appointment>(`/appointments/${id}`, {}, Boolean(id));

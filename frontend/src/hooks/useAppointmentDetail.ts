@@ -8,7 +8,7 @@ import { useAppointmentResources } from './useAppointmentResources';
 import { useAuth } from './useAuth';
 /** Compone datos, selección y acciones del detalle de turno con ownership en la API.
  * @param id - Identificador del recurso dentro del proyecto actual.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Detalle, permisos de controles, diálogos y comandos de estado/cobro; los errores de escritura no borran el turno.
  */
 export function useAppointmentDetail(id: string) {
   const { user } = useAuth();

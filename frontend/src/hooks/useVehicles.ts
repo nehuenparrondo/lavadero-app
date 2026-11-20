@@ -7,7 +7,7 @@ import { useEntityManager } from './useEntityManager';
 import { useOptions } from './useOptions';
 import { useRemoteData } from './useRemoteData';
 /** ABML de vehículos con definición de formulario separada de las consultas y acciones.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Garaje/listado administrativo, campos y comandos de alta/edición/baja con categorías y titulares autorizados.
  */
 export function useVehicles() {
   const { user } = useAuth();

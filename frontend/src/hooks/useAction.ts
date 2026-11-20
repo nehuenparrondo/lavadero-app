@@ -5,6 +5,7 @@ import { errorMessage } from '../utils/errorMessage';
  */
 export function useAction() {
   const [state, setState] = useState({ busy: false, error: '', message: '' });
+  /** Publica ocupado/error y devuelve undefined al fallar para evitar navegación o cierre prematuros. */
   async function run<T>(
     task: () => Promise<T>,
     success = 'Cambios guardados.',

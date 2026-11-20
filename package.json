@@ -13,6 +13,11 @@
     "build": "node scripts/run.mjs build",
     "export:web": "node scripts/run.mjs web",
     "export:android": "node scripts/run.mjs android",
-    "db:migrate": "node scripts/run.mjs migrate"
+    "db:migrate": "node scripts/run.mjs migrate",
+    "docs": "node scripts/run.mjs docs",
+    "docs:check": "node scripts/run.mjs docs-check",
+    "test:tooling": "node --test scripts/tests/*.test.mjs",
+    "lint": "node frontend/node_modules/eslint/bin/eslint.js scripts eslint.config.mjs --max-warnings=0",
+    "format:check": "node frontend/node_modules/prettier/bin/prettier.cjs --check README.md docs scripts .github package.json render.yaml eslint.config.mjs"
   }
 }

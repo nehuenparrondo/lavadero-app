@@ -44,7 +44,7 @@ erDiagram
 La relación "turno contiene al menos un servicio" se valida en la transacción de creación,
 no con una FK inversa. Un turno pendiente puede no tener empleado. Se puede confirmar por categoría antes de cargar un vehículo; la vinculación posterior conserva precio, servicios y horario.
 
-Ver [ubicación de MariaDB, diccionario de las 25 tablas y migración](mariadb.md).
+Ver [ubicación de MariaDB, diccionario de las 27 tablas y migración](mariadb.md).
 
 ## Formas normales
 
@@ -334,7 +334,7 @@ expires_at DATETIME(3) indexado, consumed_at DATETIME(3) nullable. El código le
 viaja por el retorno y se canjea con PKCE. Los estados vencidos se limpian al generar nuevos. Los grants vencidos dejan de ser
 válidos por consulta; su purga periódica queda como tarea de mantenimiento, sin cron configurado.
 
-La instalación actual contiene 25 tablas y 17 migraciones aplicadas. Desarrollo escolar y producción usan usuarios limitados a su propia base; ver [MariaDB](mariadb.md).
+La instalación actual contiene 27 tablas y 18 migraciones aplicadas. Desarrollo escolar y producción usan usuarios limitados a su propia base; ver [MariaDB](mariadb.md).
 
 ## Migración 006 — vinculación social protegida
 
@@ -372,3 +372,11 @@ La migración 015 agrega `turnos.cancellation_read_at` y su índice. El motivo p
 La migración 016 incorpora `ingresos_sin_turno` y admite un titular nulo para ingresos presenciales sin cuenta. Patente, contacto y datos del auto se conservan separados del garaje. [Modelo, validaciones y pruebas del panel](admin-panel.md).
 
 La migración 017 agrega limpieza del Inicio y autoría del cierre del empleado. Ver [flujo de cliente y empleado](client-employee-flow.md).
+
+## Migración 018 — recuperación y cola persistente
+
+`limites_recuperacion` conserva el hash del correo, inicio de ventana e intentos para limitar solicitudes sin exponer si existe la cuenta. `recuperaciones_clave` contiene cada trabajo de la cola: identidad opcional, versión de credenciales, nonce, hash del token, estado, contador de intentos, próximo intento, bloqueo y fechas de vencimiento/envío/consumo. Solo el hash del token se almacena para su validación; el correo se captura en Mailtrap Sandbox.
+
+Estados de cola: `pendiente`, `procesando`, `enviado`, `descartado` y `usado`. El trabajador reclama mediante bloqueo, puede reintentar después de fallos y comprueba otra vez cuenta/versión/vencimiento antes de enviar. El código y el contrato se explican en [seguridad y recuperación](security-recovery.md).
+
+La referencia agregada `database/schema.sql` incluye la migración 018. El registro `migraciones_esquema` lo crea el migrador; usar el proceso de migraciones como instalación habitual. Los archivos SQL históricos no se modificaron para documentarlos.

@@ -6,6 +6,9 @@ const tasks = {
     ['frontend', ['ci']],
   ],
   check: [
+    ['.', ['run', 'lint']],
+    ['.', ['run', 'test:tooling']],
+    ['.', ['run', 'docs:check']],
     ['backend', ['run', 'check']],
     ['frontend', ['run', 'check']],
   ],
@@ -16,6 +19,16 @@ const tasks = {
   web: [['frontend', ['run', 'export:web']]],
   android: [['frontend', ['run', 'export:android']]],
   migrate: [['backend', ['run', 'db:migrate']]],
+  docs: [
+    ['backend', ['run', 'docs:source']],
+    ['frontend', ['run', 'docs:source']],
+    ['frontend', ['run', 'docs:components']],
+  ],
+  'docs-check': [
+    ['backend', ['run', 'docs:source', '--', '--check']],
+    ['frontend', ['run', 'docs:source', '--', '--check']],
+    ['frontend', ['run', 'docs:components', '--', '--check']],
+  ],
 };
 
 try {

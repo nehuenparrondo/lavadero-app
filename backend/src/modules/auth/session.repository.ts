@@ -15,7 +15,7 @@ export interface SessionRow extends RowDataPacket {
  * @param hash - Hash del token; evita persistir su valor legible.
  * @param familyId - Familia de sesión que agrupa sus renovaciones.
  * @param executor - Ejecutor SQL; permite participar en la transacción del llamador.
- * @returns `Promise<string>`.
+ * @returns ID SQL serializado como string; el token legible nunca se escribe en esta tabla.
  * @throws Error - Si falla la persistencia o el servicio remoto; se conserva el manejo central de errores.
  */
 export async function insertSession(
@@ -35,7 +35,7 @@ export async function insertSession(
 /** Consulta y bloquea un refresh para consumirlo exactamente una vez.
  * @param hash - Hash del token; evita persistir su valor legible.
  * @param executor - Ejecutor SQL; permite participar en la transacción del llamador.
- * @returns `Promise<SessionRow | undefined>`.
+ * @returns Fila de sesión bajo bloqueo o undefined si el hash no existe; requiere transacción del llamador.
  * @throws Error - Si falla la persistencia o el servicio remoto; se conserva el manejo central de errores.
  */
 export async function lockSession(hash: Buffer, executor: Executor) {
@@ -51,7 +51,7 @@ export async function lockSession(hash: Buffer, executor: Executor) {
 /** Revoca familia ante logout o detección de refresh reutilizado.
  * @param familyId - Familia de sesión que agrupa sus renovaciones.
  * @param executor - Ejecutor SQL; permite participar en la transacción del llamador.
- * @returns `Promise<void>`.
+ * @returns Promesa sin valor tras marcar la familia revocada; el llamador debe confirmar la transacción antes de emitir el rechazo.
  * @throws Error - Si falla la persistencia o el servicio remoto; se conserva el manejo central de errores.
  */
 export async function revokeFamily(familyId: string, executor: Executor) {
@@ -62,10 +62,10 @@ export async function revokeFamily(familyId: string, executor: Executor) {
   );
 }
 /** Registra el token sucesor conservando el anterior para detectar reuso.
- * @param id - Identificador del recurso dentro del proyecto actual.
- * @param nextId - Identificador de la sesión sucesora durante la rotación de refresh.
- * @param executor - Ejecutor SQL; permite participar en la transacción del llamador.
- * @returns `Promise<void>`.
+ * @param id - ID de la sesión refresh consumida.
+ * @param nextId - ID de su sucesora en la misma familia.
+ * @param executor - Conexión que mantiene el bloqueo de la sesión consumida.
+ * @returns Promesa sin valor; conserva la sesión anterior revocada para detectar reutilización.
  * @throws Error - Si falla la persistencia o el servicio remoto; se conserva el manejo central de errores.
  */
 export async function rotateSession(id: string, nextId: string, executor: Executor) {
@@ -78,7 +78,7 @@ export async function rotateSession(id: string, nextId: string, executor: Execut
 /** Valida que la familia del JWT siga activa tras logout o reuso de refresh.
  * @param userId - Identificador interno de cuenta, independiente del subject del proveedor.
  * @param familyId - Familia de sesión que agrupa sus renovaciones.
- * @returns `Promise<boolean>`.
+ * @returns Si queda alguna sesión no revocada y no vencida para esa cuenta y familia.
  * @throws Error - Si falla la persistencia o el servicio remoto; se conserva el manejo central de errores.
  */
 export async function isFamilyActive(userId: string, familyId: string) {

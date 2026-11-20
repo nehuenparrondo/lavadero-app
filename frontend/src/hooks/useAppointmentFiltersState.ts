@@ -4,7 +4,7 @@ import { agendaPreset, initialAgendaFilters } from '../utils/agendaPresets';
 /** Filtros locales; no sustituyen las restricciones de propiedad aplicadas por la API.
  * @param mode - Experiencia o preferencia seleccionada dentro de su unión de tipos.
  * @param history - Selecciona trabajos anteriores en lugar de próximas visitas.
- * @returns Estado tipado y operaciones del hook; los fallos de acciones remotas se publican en su estado de error.
+ * @returns Filtros y setters de fecha, texto, estado, titular y responsable para construir la clave de consulta.
  */
 export function useAppointmentFiltersState(
   mode: 'client' | 'employee' | 'admin',
@@ -15,6 +15,7 @@ export function useAppointmentFiltersState(
     ...initialAgendaFilters(mode, history),
     ...(mode === 'admin' && (view === 'new' || view === 'review') ? agendaPreset(view) : {}),
   }));
+  /** Actualiza un filtro conservando los demás; usePagedList reinicia la paginación cuando cambia su clave. */
   function set<K extends keyof typeof filters>(key: K, value: (typeof filters)[K]) {
     setFilters((current) => ({ ...current, [key]: value }));
   }
