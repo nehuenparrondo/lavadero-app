@@ -5,7 +5,6 @@ import { typescriptFor } from '../lib/source-files.mjs';
 import { inspectContracts } from '../quality/contracts.mjs';
 import { dependencyCycles } from '../quality/dependencies.mjs';
 import { architectureFailures } from '../quality/architecture.mjs';
-import { exportsOf } from '../docs/source-model.mjs';
 
 const ts = typescriptFor(fileURLToPath(new URL('../../frontend/', import.meta.url)));
 const parse = (text) => ts.createSourceFile('fixture.ts', text, ts.ScriptTarget.Latest, true);
@@ -128,17 +127,4 @@ test('interfaz: inspecciona llamadas/imports reales, sin confundir comentarios n
     ).length,
     1,
   );
-});
-
-test('documentación: conserva funciones, constantes, tipos y reexportaciones sin ejecutar el módulo', () => {
-  const source = parse(
-    '/** Formato público. */\nexport interface Entry {id:string}\n/** Regla. */\nexport const rule = true;\n/** Lee.\n * @returns Texto.\n */\nexport function read() {throw new Error("Nunca ejecutar");}\nexport {external} from "./other";',
-  );
-  const entries = exportsOf(ts, source);
-  assert.deepEqual(
-    entries.map((item) => item.name),
-    ['Entry', 'rule', 'read', 'external'],
-  );
-  assert.equal(entries[2].signature, 'export function read()');
-  assert.ok(!entries[2].signature.includes('throw'));
 });

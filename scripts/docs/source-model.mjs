@@ -72,7 +72,18 @@ export function projectModules(project) {
     if (entry.isFile() && /\.[cm]?[tj]sx?$/u.test(entry.name))
       files.push({ file: join(project, entry.name), area: 'entry' });
   }
-  return files.map(({ file, area }) => moduleRecord(ts, project, file, area));
+  return orderModules(files.map(({ file, area }) => moduleRecord(ts, project, file, area)));
+}
+
+/** Fija un orden por capa y ruta normalizada, independiente del sistema de archivos y su locale.
+ * @param {object[]} modules Inventario ya normalizado con barras URL.
+ * @returns {object[]} Copia ordenada con comparación ordinal; no altera el arreglo del llamador.
+ */
+export function orderModules(modules) {
+  const rank = { src: 0, database: 1, scripts: 2, tests: 3, entry: 4 };
+  return [...modules].sort(
+    (a, b) => rank[a.area] - rank[b.area] || (a.path < b.path ? -1 : a.path > b.path ? 1 : 0),
+  );
 }
 
 /** Resume un módulo sin importar su configuración o ejecutar sus efectos de arranque.

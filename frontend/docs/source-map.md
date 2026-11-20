@@ -7774,6 +7774,16 @@ Escenarios y aserciones que verifican el comportamiento descrito por cada test.
 
 [Abrir fuente](../tests/workspace.test.ts)
 
+## App.tsx
+
+Punto de entrada o configuración del proyecto; consultar su declaración y los comandos de la guía de instalación.
+
+[Abrir fuente](../App.tsx)
+
+| Exportación | Responsabilidad                                                  |
+| ----------- | ---------------------------------------------------------------- |
+| default     | Contrato de tipos o reexportación; consultar la fuente enlazada. |
+
 ## app.config.ts
 
 Define identidad móvil; usa solo variables públicas, nunca secretos OAuth.
@@ -7792,16 +7802,6 @@ export default function createExpoConfig({ config }: ConfigContext): ExpoConfig;
 
 - @param props - Configuración inicial suministrada por Expo.
 - @returns Configuración managed de Lavadero para Android, iOS y web.
-
-## App.tsx
-
-Punto de entrada o configuración del proyecto; consultar su declaración y los comandos de la guía de instalación.
-
-[Abrir fuente](../App.tsx)
-
-| Exportación | Responsabilidad                                                  |
-| ----------- | ---------------------------------------------------------------- |
-| default     | Contrato de tipos o reexportación; consultar la fuente enlazada. |
 
 ## eslint.config.ts
 

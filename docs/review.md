@@ -21,12 +21,12 @@ Los README de producción, mapas y catálogo se regeneran desde AST y se compara
 | Tipos, lint, compilación backend y auditoría | Aprobados.                                                                     |
 | Tipos, lint y auditoría frontend             | Aprobados.                                                                     |
 | Unitarias backend/frontend                   | 23 + 25 aprobadas.                                                             |
-| Herramientas comunes                         | 8 pruebas aprobadas, lint y formato correctos.                                 |
+| Herramientas comunes                         | 9 pruebas aprobadas, lint y formato correctos.                                 |
 | Aceptación MariaDB QA                        | 13 pruebas aprobadas: management, client-employee, vehicle-later y operations. |
 | Documentación generada                       | Mapas/README y catálogo coinciden con la fuente.                               |
 | Formato y enlaces principales                | Aprobados en raíz y aplicaciones.                                              |
 | Migraciones históricas                       | Sin cambios.                                                                   |
 
-Total: **69 pruebas aprobadas, cero fallos**. La aceptación utilizó una base QA separada; no ejecutó escenarios destructivos en producción. No se repitió la aceptación de todas las suites ni se instaló un APK/iPhone en esta revisión. Los cambios del frontend son documentación y herramientas; la compilación web/Android se comprueba también en el flujo de CI.
+Total: **70 pruebas aprobadas, cero fallos**. La aceptación utilizó una base QA separada; no ejecutó escenarios destructivos en producción. No se repitió la aceptación de todas las suites ni se instaló un APK/iPhone en esta revisión. Los cambios del frontend son documentación y herramientas; la compilación web/Android se comprueba también en el flujo de CI.
 
 Los conteos son una instantánea de esta revisión. La documentación de parámetros y los límites de tamaño ayudan a mantener el código, pero no sustituyen las pruebas de permisos, concurrencia y recorrido cuando cambien reglas del negocio.
