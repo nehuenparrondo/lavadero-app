@@ -6,7 +6,7 @@ El proyecto completo está en esta carpeta `main`, con un repositorio de GitHub 
 main/
 ├── backend/       API Express, autenticación, reglas, MariaDB y migraciones
 ├── frontend/      Expo, interfaz web e iPhone/Android, vistas de los tres roles
-├── scripts/       Instalación, arranque conjunto, verificación y vista previa
+├── scripts/       Instalación, arranque conjunto y verificación
 ├── package.json   Comandos comunes
 └── render.yaml    Publicación de ambos servicios desde este repositorio
 ```
@@ -36,10 +36,9 @@ En otra computadora, copiá `backend/.env.example` a `backend/.env`, completá t
 ```powershell
 npm run check
 npm run build
-npm run preview
 ```
 
-`check` ejecuta tipos, lint, pruebas y auditoría de modularidad de ambas aplicaciones. `build` compila la API y exporta la web con sus protecciones de navegador. `preview` sirve esa exportación en **http://127.0.0.1:8086**, usando la API HTTPS publicada.
+`check` ejecuta tipos, lint, pruebas y auditoría de modularidad de ambas aplicaciones. `build` compila la API y exporta la web con sus protecciones de navegador. Para probar localmente las funciones usá `npm run dev`; la exportación de producción se publica en Render, con su origen HTTPS autorizado.
 La configuración pública de la exportación está en `frontend/.env`: copiá `frontend/.env.example` si falta. Nunca poner claves SQL, OAuth privadas o de Mailtrap en el frontend.
 
 `npm run export:android` exporta el bundle móvil. No construye ni instala un APK.

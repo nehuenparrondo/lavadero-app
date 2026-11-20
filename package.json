@@ -13,7 +13,6 @@
     "build": "node scripts/run.mjs build",
     "export:web": "node scripts/run.mjs web",
     "export:android": "node scripts/run.mjs android",
-    "db:migrate": "node scripts/run.mjs migrate",
-    "preview": "node scripts/preview.mjs"
+    "db:migrate": "node scripts/run.mjs migrate"
   }
 }
