@@ -25,6 +25,7 @@ export function ProfileHeader() {
         <CompactIconButton
           icon="logout"
           label="Cerrar sesión"
+          variant="danger"
           onPress={exit.show}
           disabled={exit.busy}
         />

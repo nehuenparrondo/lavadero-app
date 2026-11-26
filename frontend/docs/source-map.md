@@ -1291,15 +1291,17 @@ export function CompactIconButton({
   label,
   onPress,
   disabled = false,
+  variant = 'neutral',
 }: {
   icon: IconName;
   label: string;
   onPress: () => void;
   disabled?: boolean;
+  variant?: 'neutral' | 'danger';
 });
 ```
 
-- @param props Ícono, etiqueta, estado y callback autorizado por el contenedor.
+- @param props Ícono, etiqueta, variante semántica, estado y callback autorizado por el contenedor.
 - @returns Botón de 44 puntos sin texto visible.
 
 ## src/components/atoms/FloatingAction.tsx

@@ -152,15 +152,17 @@ Tipo del parámetro:
   label: string;
   onPress: () => void;
   disabled?: boolean;
+  variant?: 'neutral' | 'danger';
 }
 ```
 
-| Prop     | Obligatoria | Tipo         |
-| -------- | ----------- | ------------ |
-| icon     | Sí          | `IconName`   |
-| label    | Sí          | `string`     |
-| onPress  | Sí          | `() => void` |
-| disabled | No          | `boolean`    |
+| Prop     | Obligatoria | Tipo                    |
+| -------- | ----------- | ----------------------- |
+| icon     | Sí          | `IconName`              |
+| label    | Sí          | `string`                |
+| onPress  | Sí          | `() => void`            |
+| disabled | No          | `boolean`               |
+| variant  | No          | `'neutral' \| 'danger'` |
 
 Uso:
 
