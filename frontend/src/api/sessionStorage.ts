@@ -1,34 +1,38 @@
 import * as SecureStore from 'expo-secure-store';
-import { Platform } from 'react-native';
+import type { StoredCredential } from '../types/storedCredential';
+import { decodeCredential, encodeCredential } from '../utils/credentialCodec';
 const key = 'lavadero.refresh';
-/** Lee refresh del dispositivo. Web de demostración usa solo sessionStorage de la pestaña.
- * @returns `Promise<string | null>`.
+/** Lee la credencial cifrada nativa; reconoce tokens legados hasta su primera renovación.
+ * @returns Credencial vigente o null; el perfil/rol se recuperan exclusivamente desde el servidor.
+ */
+export async function readStoredCredential() {
+  return decodeCredential(await SecureStore.getItemAsync(key));
+}
+/** Consulta el refresh sin exponer metadatos al transporte.
+ * @returns Token vigente o null al cerrar sesión/vencer la persistencia local.
  */
 export async function readRefresh() {
-  return Platform.OS === 'web'
-    ? typeof sessionStorage === 'undefined'
-      ? null
-      : sessionStorage.getItem(key)
-    : SecureStore.getItemAsync(key);
+  return (await readStoredCredential())?.refreshToken ?? null;
 }
-/** Persiste solo refresh; access token y perfil se mantienen en memoria.
- * @param token - Token recibido; se valida o transforma antes de utilizarlo.
- * @returns `Promise<void>`.
+/** Conserva refresh y titular en almacenamiento seguro para todos los roles/proveedores.
+ * @param token Credencial opaca del servidor; nunca una contraseña.
+ * @param userId ID del titular confirmado por la API.
+ * @returns Promesa resuelta después de persistir y antes de publicar la sesión.
  */
-export async function storeRefresh(token: string) {
-  if (Platform.OS === 'web') {
-    sessionStorage.setItem(key, token);
-    return;
-  }
-  await SecureStore.setItemAsync(key, token);
+export async function storeRefresh(token: string, userId: string) {
+  await SecureStore.setItemAsync(key, encodeCredential(token, userId));
 }
-/** Elimina sesión persistida del dispositivo.
- * @returns `Promise<void>`.
+/** Elimina la credencial del dispositivo, además del estado de navegación.
+ * @returns Promesa resuelta al quitar la persistencia local.
  */
 export async function deleteRefresh() {
-  if (Platform.OS === 'web') {
-    if (typeof sessionStorage !== 'undefined') sessionStorage.removeItem(key);
-    return;
-  }
   await SecureStore.deleteItemAsync(key);
+}
+/** Adaptador común de sincronización; nativo tiene un único contexto JavaScript de sesión.
+ * @param listener Consumidor común; nativo no recibe eventos entre pestañas web.
+ * @returns Limpieza compatible con la implementación web.
+ */
+export function subscribeStoredCredential(listener: (value: StoredCredential | null) => void) {
+  void listener;
+  return () => {};
 }

@@ -5,7 +5,7 @@ Actualización: 15 de noviembre de 2026.
 ## Qué cambió
 
 - Mi perfil usa iniciales en cliente, empleado y administrador. Se retiró el campo de foto y el servidor rechaza `avatarUrl` en los formularios de edición. Los datos históricos de imagen se conservan sin cargarlos en el navegador.
-- El ingreso disponible es correo/contraseña o Google. Discord y GitHub dejaron de aparecer y sus inicios y callbacks responden `410 OAUTH_REMOVED`, incluso si se usa un enlace antiguo. Las cuentas y reservas existentes no se borran. Si una cuenta antigua solo usaba esos proveedores, puede establecer una contraseña mediante la recuperación.
+- El ingreso disponible es correo/contraseña, Google, Discord o GitHub. Cada proveedor requiere sus credenciales privadas en el backend; no se envían a Expo. State, PKCE y grants de un uso protegen el retorno. La sesión propia persiste al reabrir y se revoca al cerrar sesión o cambiar contraseña. Ver [sesión y accesos](../../docs/social-session.md).
 - El botón «¿Olvidaste tu contraseña?» está debajo de «¿Primera vez? Creá tu cuenta». La nueva pantalla explica el modo de demostración.
 - La paleta oscura compartida usa azul noche, superficies pizarra y acentos azules; mantiene el botón flotante y las mismas vistas.
 
@@ -59,6 +59,6 @@ No subir `.env`, archivos privados, exportaciones SQL con cuentas ni mensajes co
 
 ## Verificación
 
-Las pruebas cubren respuestas genéricas, tokens hasheados, expiración UTC, un uso incluso bajo concurrencia, contraseña válida, cierre de sesiones, límites por correo, fallos reintentables, cuenta desactivada, proveedores retirados, campos de foto/rol rechazados e intentos de inyección. Se verificó además la llegada de un mensaje a Mailtrap y el restablecimiento de una cuenta ficticia de la base escolar, sin cambiar contraseñas productivas. La prueba real de CSP permitió el script propio y bloqueó tanto el script inline insertado como el evento HTML.
+Las pruebas cubren respuestas genéricas, tokens hasheados, expiración UTC, un uso incluso bajo concurrencia, contraseña válida, cierre de sesiones, límites por correo, fallos reintentables, cuenta desactivada, configuración y estados inválidos de los proveedores sociales, campos de foto/rol rechazados e intentos de inyección. Se verificó además la llegada de un mensaje a Mailtrap y el restablecimiento de una cuenta ficticia de la base escolar, sin cambiar contraseñas productivas. La prueba real de CSP permitió el script propio y bloqueó tanto el script inline insertado como el evento HTML.
 
 Referencias primarias: [OWASP: recuperación de contraseñas](https://cheatsheetseries.owasp.org/cheatsheets/Forgot_Password_Cheat_Sheet.html), [Mailtrap Sandbox](https://docs.mailtrap.io/developers/email-sandbox/send-test-emails), [encabezados estáticos de Render](https://render.com/docs/static-site-headers), [Helmet](https://helmetjs.github.io/).

@@ -1,5 +1,7 @@
 import type { Session, User } from '../../types/entities';
-import { deleteRefresh, storeRefresh } from '../sessionStorage';
+import { deleteRefresh, readStoredCredential, storeRefresh } from '../sessionStorage';
+import { runSessionExclusive } from '../sessionLock';
+import { changeSessionRevision, sessionRevision } from '../sessionRevision';
 import { getSession, setSession } from '../sessionStore';
 import * as auth from './authService';
 import { readResource } from './resourceService';
@@ -8,16 +10,31 @@ import { readResource } from './resourceService';
  * @returns `Promise<void>`.
  */
 export const accept = async (next: Session) => {
-  await storeRefresh(next.refreshToken);
-  setSession(next);
+  const revision = changeSessionRevision();
+  await runSessionExclusive(async () => {
+    if (sessionRevision() !== revision)
+      throw new Error('El ingreso fue reemplazado por otra acción.');
+    await storeRefresh(next.refreshToken, next.user.id);
+    if (sessionRevision() === revision) setSession(next);
+  });
 };
 /** Elimina primero el acceso local y después intenta revocar su familia en el backend.
  * @returns `Promise<void>`.
  */
 export const signOut = async () => {
-  const token = getSession()?.refreshToken;
+  const current = getSession();
+  const revision = changeSessionRevision();
   setSession(null);
-  await deleteRefresh();
+  const token = await runSessionExclusive(async () => {
+    const stored = await readStoredCredential();
+    if (
+      sessionRevision() !== revision ||
+      (stored?.userId && stored.userId !== current?.user.id)
+    )
+      return null;
+    await deleteRefresh();
+    return stored?.refreshToken ?? current?.refreshToken;
+  });
   if (token)
     try {
       await auth.logout(token);

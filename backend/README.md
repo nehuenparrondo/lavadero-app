@@ -78,4 +78,4 @@ Panel administrativo: [ingresos sin turno, asistencia laboral, usuarios y gráfi
 
 ## Seguridad y acceso actual
 
-Ingreso con Google o correo y contraseña. Discord y GitHub fueron retirados. Perfil sin fotos. Recuperación mediante Mailtrap Sandbox, sin entrega a casillas reales. Ver [seguridad y recuperación](docs/security-recovery.md) para configuración, pruebas y límites.
+Ingreso con Google, Discord, GitHub o correo y contraseña. La sesión persiste para los tres roles; ver [sesión y accesos](../docs/social-session.md). Perfil sin fotos. Recuperación mediante Mailtrap Sandbox, sin entrega a casillas reales. Ver [seguridad y recuperación](docs/security-recovery.md) para configuración, pruebas y límites.

@@ -5,7 +5,7 @@ import { Text } from '../atoms/Text';
 import { Notice } from '../molecules/Notice';
 import { ModalPanel } from './ModalPanel';
 import { OAuthLinkForm } from './OAuthLinkForm';
-const labels = { google: 'Google', discord: 'Discord', github: 'GitHub' };
+import { socialProviderLabels as labels } from '../../constants/socialProviders';
 /** Botón OAuth de un proveedor configurado, con su propia solicitud PKCE.
  * @param props - Propiedades tipadas: provider.
  * @returns Vista de SocialLoginButton con el contrato de propiedades declarado.

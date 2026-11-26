@@ -16,7 +16,7 @@ export interface User {
   /** Indica si corresponde ofrecer cambio o confirmación de contraseña local. */
   hasPassword: boolean;
 }
-/** Sesión propia del backend; refresh se persiste solo en almacenamiento seguro nativo. */
+/** Sesión propia del backend: access/perfil en memoria; solo refresh y metadatos se conservan al cerrar. */
 export interface Session {
   user: User;
   accessToken: string;

@@ -40,9 +40,9 @@ Un controller convierte una solicitud validada en una llamada al servicio; no im
 
 El registro público asigna Cliente. El login busca una cuenta activa y compara bcrypt; no guarda contraseñas legibles. El servidor emite access JWT corto y refresh opaco. Solo el hash del refresh se persiste. La rotación bloquea la fila y conserva la revocación de la familia ante reutilización. Los rechazos que deben confirmar una revocación se emiten después del commit.
 
-El frontend guarda el access/perfil en memoria y el refresh en el almacenamiento de la plataforma; en web dura la pestaña mediante sessionStorage. El interceptor comparte una renovación en curso y reintenta una sola vez. Un fallo de red no equivale a una sesión rechazada. La API vuelve a comprobar identidad vigente y permisos en cada solicitud.
+El frontend guarda el access/perfil en memoria y el refresh en el almacenamiento de la plataforma; en web persiste en localStorage y en nativo usa SecureStore; al reabrir se valida con el backend. El interceptor comparte una renovación en curso y reintenta una sola vez. Un fallo de red no equivale a una sesión rechazada. La API vuelve a comprobar identidad vigente y permisos en cada solicitud.
 
-Google es el único proveedor social habilitable. El navegador comparte código/state y el backend usa su secreto para canjearlo. La app consume un grant efímero con PKCE. Si coincide el correo de una cuenta local, exige comprobar su contraseña antes de vincular. Discord/GitHub permanecen retirados. La recuperación con Mailtrap Sandbox usa tokens de un uso con expiración y una cola persistente; los mensajes se capturan en la bandeja de pruebas.
+Google, Discord y GitHub se habilitan únicamente si tienen sus credenciales privadas configuradas. El navegador comparte código/state y el backend usa su secreto para canjearlo. La app consume un grant efímero con PKCE. Si coincide el correo de una cuenta local, exige comprobar su contraseña antes de vincular. Los tres tramos con el proveedor usan PKCE S256; el estado transitorio web permanece en sessionStorage de la pestaña. La recuperación con Mailtrap Sandbox usa tokens de un uso con expiración y una cola persistente; los mensajes se capturan en la bandeja de pruebas.
 
 ## Reserva y disponibilidad
 

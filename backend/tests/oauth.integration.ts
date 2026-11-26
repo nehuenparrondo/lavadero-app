@@ -11,39 +11,47 @@ test('PKCE coincide con el vector de referencia RFC 7636', () => {
     'E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM',
   );
 });
-for (const provider of ['google'])
+for (const provider of ['google', 'discord', 'github'])
   test(`OAuth ${provider}: vinculación verificada, PKCE, grant de un uso y state`, async (t) => {
     const subject = String(randomInt(100_000_000_000, 999_999_999_999));
     const existing = await client();
     await database!.execute('UPDATE usuarios SET password_hash=NULL WHERE id=?', [
       existing.user.id,
     ]);
-    t.mock.method(globalThis, 'fetch', async (input: RequestInfo | URL) => {
-      const url = String(input);
-      let payload: unknown;
-      if (url.includes('token')) payload = { access_token: 'mock-provider-token' };
-      else if (url.includes('userinfo'))
-        payload = {
-          sub: subject,
-          email: existing.user.email,
-          email_verified: true,
-          given_name: 'Social',
-        };
-      else if (url.includes('discord.com'))
-        payload = {
-          id: subject,
-          email: existing.user.email,
-          verified: true,
-          username: 'Social',
-        };
-      else if (url.endsWith('/user/emails'))
-        payload = [{ email: existing.user.email, primary: true, verified: true }];
-      else payload = { id: Number(subject), name: 'Social' };
-      return new Response(JSON.stringify(payload), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    });
+    let challenge = '';
+    t.mock.method(
+      globalThis,
+      'fetch',
+      async (input: RequestInfo | URL, init?: RequestInit) => {
+        const url = String(input);
+        let payload: unknown;
+        if (url.includes('token')) {
+          const body = new URLSearchParams(String(init?.body));
+          assert.equal(pkceChallenge(body.get('code_verifier')!), challenge);
+          payload = { access_token: 'mock-provider-token' };
+        } else if (url.includes('userinfo'))
+          payload = {
+            sub: subject,
+            email: existing.user.email,
+            email_verified: true,
+            given_name: 'Social',
+          };
+        else if (url.includes('discord.com'))
+          payload = {
+            id: subject,
+            email: existing.user.email,
+            verified: true,
+            username: 'Social',
+          };
+        else if (url.endsWith('/user/emails'))
+          payload = [{ email: existing.user.email, primary: true, verified: true }];
+        else payload = { id: Number(subject), name: 'Social' };
+        return new Response(JSON.stringify(payload), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      },
+    );
     const verifier = 'a'.repeat(64);
     const state = 'client-state-'.repeat(3);
     const start = await api('post', `/auth/oauth/${provider}/start`, undefined, {
@@ -54,6 +62,9 @@ for (const provider of ['google'])
       response_type: 'code',
     }).expect(200);
     const authorization = new URL(start.body.data.url);
+    challenge = authorization.searchParams.get('code_challenge')!;
+    assert.equal(authorization.searchParams.get('code_challenge_method'), 'S256');
+    assert.ok(challenge);
     assert.equal(
       authorization.searchParams.get('prompt'),
       provider === 'discord' ? 'consent' : 'select_account',

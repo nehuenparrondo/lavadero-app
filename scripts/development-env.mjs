@@ -25,5 +25,9 @@ export function developmentEnvironment(apiPort, webPort) {
     PUBLIC_API_URL: `http://127.0.0.1:${apiPort}`,
     GOOGLE_CLIENT_ID: '',
     GOOGLE_CLIENT_SECRET: '',
+    GITHUB_CLIENT_ID: '',
+    GITHUB_CLIENT_SECRET: '',
+    DISCORD_CLIENT_ID: '',
+    DISCORD_CLIENT_SECRET: '',
   };
 }

@@ -2413,7 +2413,7 @@ export async function fetchJson(url: string, init: RequestInit);
 ```
 
 - @param url - Dirección que debe superar la validación del consumidor antes de utilizarse.
-- @param init - Inicializador del estado local del editor.
+- @param init - Método, cabeceras y cuerpo definidos por el adaptador del proveedor; no acepta URLs desde el usuario.
 - @returns `Promise<Record<string, unknown>>`.
 - @throws Error - Cuando no se cumple una precondición indicada en esta operación.
 
@@ -5518,6 +5518,12 @@ Escenarios y aserciones que verifican el comportamiento descrito por cada test.
 Escenarios y aserciones que verifican el comportamiento descrito por cada test.
 
 [Abrir fuente](../tests/security.integration.ts)
+
+## tests/social-providers.test.ts
+
+Escenarios y aserciones que verifican el comportamiento descrito por cada test.
+
+[Abrir fuente](../tests/social-providers.test.ts)
 
 ## tests/sql.test.ts
 

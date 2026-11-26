@@ -38,12 +38,13 @@ muestre el dispositivo. El APK funciona sin la computadora ni Metro.
 Las credenciales iniciales están en el archivo privado de acceso, separado del código.
 
 Para una cuenta nueva elegí **Creá tu cuenta**, completá nombre, apellido, email,
-teléfono opcional y contraseña. La cuenta se crea como Cliente. Un Administrador
-puede promoverla después; no existe elección pública de rol.
-En el APK, Google abren el navegador del sistema; en web se usa la misma pestaña. Revisá el consentimiento,
+teléfono opcional y contraseña. La cuenta se crea como Cliente. El Administrador puede crear cuentas de Cliente o Empleado; la edición no permite cambiar el rol. No existe elección pública de rol.
+Google, Discord y GitHub abren el navegador del sistema en una compilación nativa actualizada; en web se usa la misma pestaña. Revisá el consentimiento,
 autorizá y volvé a la app. Si el correo ya tiene una cuenta con contraseña, confirmala una vez para vincular el mismo perfil. No uses Expo Go para evaluar ese retorno.
 
 ![Ingreso y tema oscuro](images/login-publicado.png)
+
+La sesión permanece al cerrar y volver a abrir, para Cliente, Empleado y Administrador. Se renueva mientras se usa la aplicación y vence tras 30 días sin renovación o cuando el servidor la revoca. **Cerrar sesión** elimina el acceso guardado; en web cierra también las otras pestañas del mismo navegador y sitio. En equipos compartidos, cerrá sesión al terminar. El modo privado o borrar datos del navegador puede eliminar esta persistencia.
 
 ## Cliente
 
@@ -206,7 +207,7 @@ En el menú o el resumen administrativo abrí **Auto sin turno**. Cargá patente
 
 Para cancelar es obligatorio escribir un motivo; queda guardado y el cliente registrado recibe el aviso en Inicio. En **Asistencia**, fichá cuando veas llegar al empleado, solo en día y hora laboral. Fuera de horario los botones están deshabilitados y se muestra la explicación. Las fechas anteriores permiten consultar los fichajes.
 
-En cada servicio usá **Editar servicio**, **Editar precios** o **Eliminar servicio**. La baja conserva los datos de los turnos anteriores. Los gráficos del resumen comparan semanas del mes; en Reportes podés elegir otro período. El trabajo del empleado mantiene revisión administrativa desde su bandeja, aunque se haya retirado el filtro rápido Por verificar de Turnos.
+En cada servicio usá **Editar servicio**, **Editar precios** o **Eliminar servicio**. La baja conserva los datos de los turnos anteriores. Los gráficos del resumen comparan semanas del mes; en Reportes podés elegir otro período. Después de registrar el cobro, el empleado puede finalizar directamente el lavado durante el horario laboral; no necesita aprobación posterior.
 
 ## Cliente y empleado: agenda y cierre actualizados
 

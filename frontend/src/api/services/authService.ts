@@ -53,7 +53,7 @@ export async function exchangeSocial(code: string, codeVerifier: string, passwor
   ).data.data;
 }
 /** Estado de habilitación de accesos sociales.
- * @returns Disponibilidad pública por proveedor; actualmente solo Google puede estar habilitado.
+ * @returns Disponibilidad pública de Google, Discord y GitHub, según su configuración privada en el servidor.
  */
 export async function getProviders() {
   requireApi();

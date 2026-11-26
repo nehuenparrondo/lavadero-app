@@ -1,4 +1,4 @@
-> Estado actual, 15/11/2026: solo Google está habilitado. Discord y GitHub fueron retirados del cliente y del servidor (410). Los detalles anteriores se conservan abajo como referencia histórica; no habilitarlos. Ver security-recovery.md.
+> Estado del código, 25/11/2026: Google, Discord y GitHub están habilitados cuando sus credenciales privadas existen. La sesión propia persiste con independencia del proveedor y del rol. Ver [sesión y accesos](../../docs/social-session.md).
 
 # Configuración y defensa del flujo OAuth
 
@@ -32,7 +32,7 @@ code/codeVerifier con password; solo después se vincula la identidad. Cinco int
 fallidos bloquean ese grant. La contraseña no se guarda ni aparece en URLs.
 
 El state del proveedor vence a los 10 minutos y se consume una vez. El grant móvil normal vence
-a los 60 segundos, necesita el verifier y también es de un solo uso. Los refresh/access
+a los 60 segundos, necesita el verifier y también es de un solo uso.
 Para confirmar una vinculación local, el grant dura cinco minutos. Los tokens
 propios jamás aparecen en el deep link. Cancelar autorización devuelve access_denied.
 

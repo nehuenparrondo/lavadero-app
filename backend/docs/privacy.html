@@ -62,8 +62,11 @@
     </p>
     <p>
       En Android/iOS se usa SecureStore para la renovación de sesión. En web se guarda en
-      sessionStorage de la pestaña. La preferencia de apariencia se conserva en el dispositivo.
-      Cerrar sesión revoca la sesión correspondiente.
+      localStorage del sitio, hasta 30 días renovables. Solo se conservan el token opaco de
+      renovación, el identificador y el vencimiento; el perfil y los permisos se verifican con
+      el servidor al reabrir. Cerrar sesión elimina esa credencial y comunica el cierre a las
+      otras pestañas. La preferencia de apariencia se conserva en el dispositivo. Cerrar sesión
+      revoca la sesión correspondiente.
     </p>
     <h2>Corrección y baja</h2>
     <p>

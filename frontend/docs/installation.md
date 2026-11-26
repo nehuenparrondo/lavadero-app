@@ -45,8 +45,8 @@ código efímero a la app. No copiar client secrets a EXPO_PUBLIC.
 
 Versión web: https://lavadero-app-2558.onrender.com. Se construye en Render Static Site
 con raíz `frontend` y comando `npm ci --include=dev && npm run export:web`, publica `web-dist`, y tiene rewrite
-`/*` a `/index.html`. Su origen exacto está permitido en CORS. Los refresh web duran
-solo la pestaña, en sessionStorage. Para probar desarrollo web contra otra API hay que
+`/*` a `/index.html`. Su origen exacto está permitido en CORS. Los refresh web persisten en localStorage al cerrar y reabrir;
+la API valida su vigencia y rota la credencial. OAuth transitorio usa sessionStorage. Para probar desarrollo web contra otra API hay que
 permitir ese origen explícitamente en el entorno correspondiente.
 
 ## Problemas comunes

@@ -16,6 +16,7 @@ Transformaciones puras o infraestructura puntual. Mantener unidades explícitas:
 | [buttonColors.ts](buttonColors.ts)                 | Resuelve contraste y superficie de variantes sin repetir colores en los botones.                     |
 | [calendar.ts](calendar.ts)                         | Valida fecha real de calendario sin normalizar 31 de febrero a otro mes.                             |
 | [catalogFields.ts](catalogFields.ts)               | Opciones de tarifa para los tipos registrados; la API valida su vigencia.                            |
+| [credentialCodec.ts](credentialCodec.ts)           | Treinta días, igual que expires_at de sesiones_renovacion; el servidor puede revocar antes.          |
 | [decorativeSvgProps.ts](decorativeSvgProps.ts)     | Oculta los íconos decorativos sin enviar atributos nativos booleanos al DOM web.                     |
 | [editorCommands.ts](editorCommands.ts)             | Construye el guardado; solo cierra el formulario cuando el servidor lo confirma.                     |
 | [errorMessage.ts](errorMessage.ts)                 | Traduce fallas de red y errores REST a mensajes presentables.                                        |
@@ -37,8 +38,10 @@ Transformaciones puras o infraestructura puntual. Mantener unidades explícitas:
 | [restoreDestination.ts](restoreDestination.ts)     | Limita el retorno de arranque a pantallas internas permitidas para el rol actual.                    |
 | [routeAccess.ts](routeAccess.ts)                   | Resuelve guardas con el rol verificado; durante restauración solo deja rutas públicas.               |
 | [scrollVisibility.ts](scrollVisibility.ts)         | Medidas de la región desplazable; los valores se mantienen fuera del estado visual.                  |
+| [serialQueue.ts](serialQueue.ts)                   | Serializa acciones sin dejar bloqueada la cola cuando falla una operación.                           |
 | [serviceForm.ts](serviceForm.ts)                   | Serializa campos de servicio; el código permanece estable durante una edición.                       |
 | [sessionFailure.ts](sessionFailure.ts)             | Solo un rechazo definitivo de credenciales invalida la sesión local.                                 |
+| [sessionRenewal.ts](sessionRenewal.ts)             | Dependencias inyectables: permite probar carreras, desconexión y rotación sin ejecutar React.        |
 | [settingsForm.ts](settingsForm.ts)                 | Presenta configuración remota como campos de texto sin alterar zona ni moneda.                       |
 | [startWebOAuth.ts](startWebOAuth.ts)               | Prepara PKCE y navega en la misma pestaña, sin secretos de proveedor ni popups.                      |
 | [toggleChoice.ts](toggleChoice.ts)                 | Agrega/quita una selección; la representación CSV coincide con filtros del contrato REST.            |

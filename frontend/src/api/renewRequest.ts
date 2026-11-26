@@ -1,8 +1,10 @@
 import axios from 'axios';
 import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { isSessionRejected } from '../utils/sessionFailure';
-import { refreshSession } from './services/authService';
-import { deleteRefresh, storeRefresh } from './sessionStorage';
+import { renewStoredSession } from './services/sessionRenewalService';
+import { deleteRefresh, readRefresh } from './sessionStorage';
+import { runSessionExclusive } from './sessionLock';
+import { sessionRevision } from './sessionRevision';
 import { getSession, setSession } from './sessionStore';
 /** Marca la identidad de origen para no repetir peticiones de otra cuenta. */
 export type AuthRequestConfig = InternalAxiosRequestConfig & {
@@ -14,19 +16,23 @@ let refreshing: Promise<string> | null = null;
 async function renew() {
   const current = getSession();
   if (!current) throw new Error('Tu sesión venció.');
-  const next = await refreshSession(current.refreshToken);
-  if (getSession()?.refreshToken !== current.refreshToken)
+  const revision = sessionRevision();
+  const next = await renewStoredSession();
+  if (!next || next.user.id !== current.user.id || sessionRevision() !== revision)
     throw new Error('La sesión cambió durante la solicitud.');
-  await storeRefresh(next.refreshToken);
   setSession(next);
   return next.accessToken;
 }
 /** Borra credenciales solo si todavía corresponden a la renovación rechazada. */
 async function rejectSession(error: unknown, originalToken: string) {
-  if (isSessionRejected(error) && getSession()?.refreshToken === originalToken) {
-    setSession(null);
-    await deleteRefresh();
-  }
+  if (isSessionRejected(error))
+    await runSessionExclusive(async () => {
+      const stored = await readRefresh();
+      if (getSession()?.refreshToken !== originalToken || (stored && stored !== originalToken))
+        return;
+      setSession(null);
+      await deleteRefresh();
+    });
   throw error;
 }
 /** Reintenta solo un rechazo 401, conservando sesión en errores de red y servidor.

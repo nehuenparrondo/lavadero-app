@@ -39,7 +39,7 @@ separan fecha del trabajo y fecha real de pago para evitar sumar ingresos dos ve
 AuthSession genera state y PKCE S256. El backend conserva su propio state de proveedor,
 intercambia el código con el secreto y exige email verificado. El retorno móvil contiene
 un grant de 60 segundos, de un uso y ligado al PKCE, nunca access tokens en la URL.
-Solo se aceptan redirect URIs exactas de una allowlist. Google usa además PKCE en el tramo proveedor. Discord y GitHub se retiraron; sus endpoints devuelven 410. Ningún secreto viaja a Expo.
+Solo se aceptan redirect URIs exactas de una allowlist. Google, Discord y GitHub usan PKCE S256 en el tramo proveedor. Sus credenciales privadas habilitan cada opción; faltantes producen 503 OAUTH_NOT_CONFIGURED. Ningún secreto viaja a Expo.
 
 ## Persistencia y despliegue
 

@@ -30,8 +30,10 @@ api/client añade el access y comparte una sola renovación entre peticiones con
 Reintenta cada 401 una sola vez. renew comprueba que el refresh original siga siendo
 el actual antes de publicar; una respuesta tardía no puede restaurar la sesión cerrada.
 El transporte público de autenticación no lleva ese interceptor para evitar recursión.
-En nativo el refresh usa SecureStore; en web sessionStorage conserva el refresh dentro
-del almacenamiento del navegador. No hay secretos OAuth en el cliente.
+En nativo el refresh usa SecureStore; en web localStorage conserva una credencial
+versionada de hasta 30 días renovables. Access JWT, perfil y rol quedan en memoria.
+Web Locks serializa renovaciones entre pestañas; los eventos storage comparten cierre
+y cambio de cuenta. El estado efímero OAuth sigue en sessionStorage. No hay secretos OAuth en el cliente.
 
 RootNavigation conserva montado el navegador y usa /loading durante la restauración.
 Sus guardas separan cliente, empleado, administración y reserva asistida.
@@ -42,8 +44,8 @@ El servidor vuelve a comprobar rol, propiedad y asignación en todas las operaci
 
 Cliente: HomeScreen compone saludo, BookingInvitation, ClientQuickActions y ClientVisitList.
 useHome ordena las próximas tres visitas de la lista autorizada.
-Empleado: EmployeeAgendaScreen tiene composición propia, resumen por fecha, filtros,
-agenda compartida e historial. useAgendaResources consulta el resumen solo en la agenda.
+Empleado: EmployeeAgendaScreen muestra los lavados pendientes de hoy; las consultas
+de otras fechas permanecen en el historial. useAgendaResources consulta el resumen solo en la agenda.
 Administrador: DashboardScreen reúne reporte diario, solicitudes globales pendientes y
 actividad semanal. Los recursos y su recarga se coordinan en useDashboard.
 

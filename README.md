@@ -51,7 +51,7 @@ Para Expo Go, ejecutá `npm start` dentro de `frontend/` con `EXPO_PUBLIC_API_UR
 | Desarrollo local | http://localhost:8081                  | http://127.0.0.1:3000 / base escolar `_dev`                    |
 | Web publicada    | https://lavadero-app-2558.onrender.com | https://lavadero-api-48m4.onrender.com / `nehuenlavadero_prod` |
 
-El ingreso con correo funciona en desarrollo local. Google necesita su retorno HTTPS autorizado y se comprueba en la versión publicada; el arranque local lo deshabilita para evitar mezclar estados de autenticación con producción. Mailtrap requiere sus variables privadas en el backend del entorno correspondiente; el sitio publicado usa la bandeja Sandbox, sin entrega a casillas reales.
+El ingreso con correo funciona en desarrollo local. Google, Discord y GitHub necesitan sus retornos HTTPS autorizados y se comprueban en la versión publicada; el arranque local los deshabilita para evitar mezclar estados de autenticación con producción. Mailtrap requiere sus variables privadas en el backend del entorno correspondiente; el sitio publicado usa la bandeja Sandbox, sin entrega a casillas reales.
 
 Cada aplicación conserva sus dependencias y su `package-lock.json`: no se mezclan paquetes móviles con los del servidor.
 La API no importa código del frontend y la interfaz se comunica con la API mediante HTTP.

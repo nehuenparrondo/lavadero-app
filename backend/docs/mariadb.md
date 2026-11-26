@@ -18,7 +18,7 @@ No guardar credenciales en GitHub ni enviarlas desde Expo. La API recibe la cone
 | ------------------------- | --------------------------------------------------------------------------- |
 | `roles`                   | Cliente, empleado y administrador                                           |
 | `usuarios`                | Perfil, hash bcrypt de contraseña, permisos y baja lógica                   |
-| `cuentas_sociales`        | Vinculación Google y registros históricos de proveedores retirados          |
+| `cuentas_sociales`        | Vinculación de identidades Google, Discord y GitHub                         |
 | `sesiones_renovacion`     | Hashes de sesiones, rotación y revocación                                   |
 | `estados_oauth`           | Solicitudes temporales de inicio social y PKCE                              |
 | `autorizaciones_oauth`    | Códigos temporales de un único uso                                          |

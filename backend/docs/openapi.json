@@ -794,9 +794,6 @@
                 }
               }
             }
-          },
-          "410": {
-            "description": "Discord y GitHub fueron retirados; usar Google o recuperación por correo."
           }
         },
         "parameters": [
@@ -956,9 +953,6 @@
                 }
               }
             }
-          },
-          "410": {
-            "description": "Discord y GitHub fueron retirados; usar Google o recuperación por correo."
           }
         },
         "parameters": [
@@ -7136,9 +7130,6 @@
                 }
               }
             }
-          },
-          "410": {
-            "description": "Discord y GitHub fueron retirados; usar Google o recuperación por correo."
           }
         },
         "parameters": [

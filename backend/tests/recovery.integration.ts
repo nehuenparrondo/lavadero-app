@@ -85,7 +85,8 @@ test('Recuperación: vencimiento, versión anterior y cuenta desactivada no camb
   const existing = await client();
   const expired = await deliver(existing.user.email);
   await database!.execute(
-    'UPDATE recuperaciones_clave SET vence_en=DATE_SUB(UTC_TIMESTAMP(3),INTERVAL 1 SECOND) WHERE token_hash=?',
+    // Un minuto evita que un pequeño desfase entre el reloj SQL y el proceso falsee la prueba.
+    'UPDATE recuperaciones_clave SET vence_en=DATE_SUB(UTC_TIMESTAMP(3),INTERVAL 1 MINUTE) WHERE token_hash=?',
     [tokenHash(expired)],
   );
   await assert.rejects(resetPassword({ token: expired, newPassword }));
@@ -126,25 +127,25 @@ test('Recuperación: límite por correo atómico, fallos reintentables y sin enl
   );
 });
 
-test('Discord y GitHub están retirados también por sus endpoints antiguos', async () => {
-  for (const provider of ['github', 'discord']) {
+test('los tres accesos sociales configurados aceptan inicio seguro y rechazan state inventado', async () => {
+  for (const provider of ['google', 'github', 'discord']) {
     await api('post', `/auth/oauth/${provider}/start`, undefined, {
       redirect_uri: 'lavadero://oauth',
       state: 'a'.repeat(32),
       code_challenge: 'a'.repeat(43),
       code_challenge_method: 'S256',
       response_type: 'code',
-    }).expect(410);
+    }).expect(200);
     await api('get', `/auth/oauth/${provider}/callback`)
       .query({ state: 'a'.repeat(64), code: 'fake' })
-      .expect(410);
+      .expect(400);
   }
   const providers = await api('get', '/auth/providers').expect(200);
   assert.deepEqual(
     providers.body.data
       .filter((p: { enabled: boolean }) => p.enabled)
       .map((p: { provider: string }) => p.provider),
-    ['google'],
+    ['google', 'github', 'discord'],
   );
 });
 

@@ -214,7 +214,7 @@ export async function exchangeSocial(code: string, codeVerifier: string, passwor
 export async function getProviders();
 ```
 
-- @returns Disponibilidad pública por proveedor; actualmente solo Google puede estar habilitado.
+- @returns Disponibilidad pública de Google, Discord y GitHub, según su configuración privada en el servidor.
 
 ## src/api/services/healthService.ts
 
@@ -379,6 +379,24 @@ Persiste el refresh antes de publicar la sesión para sus consumidores.
 | signOut     | Elimina primero el acceso local y después intenta revocar su familia en el backend.    |
 | reloadUser  | Recarga el perfil propio después de editar, sin reemplazar las credenciales de sesión. |
 
+## src/api/services/sessionRenewalService.ts
+
+Única vía de rotación usada por restauración e interceptor; evita reuso accidental del refresh.
+
+[Abrir fuente](../src/api/services/sessionRenewalService.ts)
+
+| Exportación        | Responsabilidad                                                                                 |
+| ------------------ | ----------------------------------------------------------------------------------------------- |
+| renewStoredSession | Única vía de rotación usada por restauración e interceptor; evita reuso accidental del refresh. |
+
+### renewStoredSession
+
+```ts
+export function renewStoredSession();
+```
+
+- @returns Sesión validada en servidor o null si el usuario cerró sesión; puede rechazar por red o revocación.
+
 ## src/api/services/userService.ts
 
 Alta de cliente/empleado o edición administrativa que conserva el rol actual.
@@ -399,17 +417,92 @@ export async function saveUser(current: User | null, v: Record<string, string>);
 - @param v - Datos tipados del elemento o formulario que se transforma.
 - @returns `Promise<unknown>`.
 
+## src/api/sessionLock.ts
+
+Serializa aceptación, cierre y rotación dentro de la instancia nativa.
+
+[Abrir fuente](../src/api/sessionLock.ts)
+
+| Exportación         | Responsabilidad                                                        |
+| ------------------- | ---------------------------------------------------------------------- |
+| runSessionExclusive | Serializa aceptación, cierre y rotación dentro de la instancia nativa. |
+
+### runSessionExclusive
+
+```ts
+export function runSessionExclusive<T>(operation: () => Promise<T>): Promise<T>;
+```
+
+- @param operation Operación que lee/cambia la credencial persistente.
+- @returns Resultado propio; una falla no bloquea las acciones siguientes.
+
+## src/api/sessionLock.web.ts
+
+Serializa rotaciones entre pestañas mediante Web Locks, liberados también ante fallos.
+
+[Abrir fuente](../src/api/sessionLock.web.ts)
+
+| Exportación         | Responsabilidad                                                                        |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| runSessionExclusive | Serializa rotaciones entre pestañas mediante Web Locks, liberados también ante fallos. |
+
+### runSessionExclusive
+
+```ts
+export function runSessionExclusive<T>(operation: () => Promise<T>): Promise<T>;
+```
+
+- @param operation Operación de credenciales dentro del bloqueo del origen.
+- @returns Resultado exclusivo; sin Web Locks conserva la cola de la pestaña.
+
+## src/api/sessionRevision.ts
+
+Lee la generación de identidad, distinta de la rotación del token de la misma cuenta.
+
+[Abrir fuente](../src/api/sessionRevision.ts)
+
+| Exportación           | Responsabilidad                                                                       |
+| --------------------- | ------------------------------------------------------------------------------------- |
+| sessionRevision       | Lee la generación de identidad, distinta de la rotación del token de la misma cuenta. |
+| changeSessionRevision | Invalida operaciones anteriores antes de aceptar/cerrar explícitamente una cuenta.    |
+
+### sessionRevision
+
+```ts
+export function sessionRevision();
+```
+
+- @returns Generación que permite descartar respuestas de una cuenta que se cerró/cambió.
+
+### changeSessionRevision
+
+```ts
+export function changeSessionRevision();
+```
+
+- @returns Nueva generación que debe seguir vigente antes de publicar una respuesta asíncrona.
+
 ## src/api/sessionStorage.ts
 
-Lee refresh del dispositivo. Web de demostración usa solo sessionStorage de la pestaña.
+Lee la credencial cifrada nativa; reconoce tokens legados hasta su primera renovación.
 
 [Abrir fuente](../src/api/sessionStorage.ts)
 
-| Exportación   | Responsabilidad                                                                         |
-| ------------- | --------------------------------------------------------------------------------------- |
-| readRefresh   | Lee refresh del dispositivo. Web de demostración usa solo sessionStorage de la pestaña. |
-| storeRefresh  | Persiste solo refresh; access token y perfil se mantienen en memoria.                   |
-| deleteRefresh | Elimina sesión persistida del dispositivo.                                              |
+| Exportación               | Responsabilidad                                                                         |
+| ------------------------- | --------------------------------------------------------------------------------------- |
+| readStoredCredential      | Lee la credencial cifrada nativa; reconoce tokens legados hasta su primera renovación.  |
+| readRefresh               | Consulta el refresh sin exponer metadatos al transporte.                                |
+| storeRefresh              | Conserva refresh y titular en almacenamiento seguro para todos los roles/proveedores.   |
+| deleteRefresh             | Elimina la credencial del dispositivo, además del estado de navegación.                 |
+| subscribeStoredCredential | Adaptador común de sincronización; nativo tiene un único contexto JavaScript de sesión. |
+
+### readStoredCredential
+
+```ts
+export async function readStoredCredential();
+```
+
+- @returns Credencial vigente o null; el perfil/rol se recuperan exclusivamente desde el servidor.
 
 ### readRefresh
 
@@ -417,16 +510,17 @@ Lee refresh del dispositivo. Web de demostración usa solo sessionStorage de la 
 export async function readRefresh();
 ```
 
-- @returns `Promise<string | null>`.
+- @returns Token vigente o null al cerrar sesión/vencer la persistencia local.
 
 ### storeRefresh
 
 ```ts
-export async function storeRefresh(token: string);
+export async function storeRefresh(token: string, userId: string);
 ```
 
-- @param token - Token recibido; se valida o transforma antes de utilizarlo.
-- @returns `Promise<void>`.
+- @param token Credencial opaca del servidor; nunca una contraseña.
+- @param userId ID del titular confirmado por la API.
+- @returns Promesa resuelta después de persistir y antes de publicar la sesión.
 
 ### deleteRefresh
 
@@ -434,7 +528,73 @@ export async function storeRefresh(token: string);
 export async function deleteRefresh();
 ```
 
-- @returns `Promise<void>`.
+- @returns Promesa resuelta al quitar la persistencia local.
+
+### subscribeStoredCredential
+
+```ts
+export function subscribeStoredCredential(listener: (value: StoredCredential | null) => void);
+```
+
+- @param listener Consumidor común; nativo no recibe eventos entre pestañas web.
+- @returns Limpieza compatible con la implementación web.
+
+## src/api/sessionStorage.web.ts
+
+Lee la credencial local; la API valida cuenta, sesión y permisos al reabrir.
+
+[Abrir fuente](../src/api/sessionStorage.web.ts)
+
+| Exportación               | Responsabilidad                                                                          |
+| ------------------------- | ---------------------------------------------------------------------------------------- |
+| readStoredCredential      | Lee la credencial local; la API valida cuenta, sesión y permisos al reabrir.             |
+| readRefresh               | Consulta el refresh persistente común a las pestañas del mismo origen.                   |
+| storeRefresh              | Conserva el ingreso al cerrar pestaña/navegador; la vigencia final la decide el backend. |
+| deleteRefresh             | Quita el token de ambos almacenes y conserva una marca de cierre sin datos sensibles.    |
+| subscribeStoredCredential | Sincroniza cierre, cambio de cuenta y rotación sin duplicar renovaciones de red.         |
+
+### readStoredCredential
+
+```ts
+export async function readStoredCredential();
+```
+
+- @returns Credencial vigente o null, incluida migración desde una versión anterior.
+
+### readRefresh
+
+```ts
+export async function readRefresh();
+```
+
+- @returns Token opaco vigente o null; nunca recupera access JWT ni perfil desde disco.
+
+### storeRefresh
+
+```ts
+export async function storeRefresh(token: string, userId: string);
+```
+
+- @param token Refresh opaco emitido por la API.
+- @param userId Titular confirmado en la sesión recibida.
+- @returns Promesa resuelta tras guardar y retirar la copia heredada de la pestaña.
+
+### deleteRefresh
+
+```ts
+export async function deleteRefresh();
+```
+
+- @returns Promesa resuelta tras el cierre persistente, sincronizado con otras pestañas.
+
+### subscribeStoredCredential
+
+```ts
+export function subscribeStoredCredential(listener: (value: StoredCredential | null) => void);
+```
+
+- @param listener Recibe credencial nueva o null; no debe usarla como perfil autorizado.
+- @returns Limpieza del listener; el navegador no emite el evento en la pestaña que escribió.
 
 ## src/api/sessionStore.ts
 
@@ -505,6 +665,33 @@ export function validateResponse(response: AxiosResponse);
 - @param response Respuesta de un transporte de la aplicación.
 - @returns La misma respuesta cuando respeta el contrato JSON.
 - @throws Error ante una respuesta inesperada, sin repetir una posible escritura.
+
+## src/api/webCredentialStore.ts
+
+Almacenamiento del origen, separado de la clave de pestaña de las versiones anteriores.
+
+[Abrir fuente](../src/api/webCredentialStore.ts)
+
+| Exportación              | Responsabilidad                                                                         |
+| ------------------------ | --------------------------------------------------------------------------------------- |
+| persistentCredentialKey  | Almacenamiento del origen, separado de la clave de pestaña de las versiones anteriores. |
+| legacyCredentialKey      | Credencial heredada; solo se migra después de renovarla con el servidor.                |
+| createWebCredentialStore | Encapsula persistencia y migración web, con almacenes inyectables para pruebas.         |
+
+### createWebCredentialStore
+
+```ts
+export function createWebCredentialStore(
+  persistent: CredentialStorage,
+  legacy: CredentialStorage,
+  now = Date.now,
+);
+```
+
+- @param persistent Almacenamiento que sobrevive al cierre del navegador.
+- @param legacy Almacenamiento de la pestaña de una versión anterior.
+- @param now Reloj que comprueba la vigencia local.
+- @returns Lectura/escritura/cierre; la marca de cierre impide resucitar una copia legacy en otra pestaña.
 
 ## src/app/(admin)/_layout.tsx
 
@@ -4694,6 +4881,17 @@ Configuración inicial de horarios, cancelación y capacidad.
 | -------------- | ----------------------------------------------------------- |
 | settingsFields | Configuración inicial de horarios, cancelación y capacidad. |
 
+## src/constants/socialProviders.ts
+
+Proveedores admitidos; su disponibilidad real depende de credenciales privadas del backend.
+
+[Abrir fuente](../src/constants/socialProviders.ts)
+
+| Exportación          | Responsabilidad                                                                             |
+| -------------------- | ------------------------------------------------------------------------------------------- |
+| socialProviders      | Proveedores admitidos; su disponibilidad real depende de credenciales privadas del backend. |
+| socialProviderLabels | Etiquetas comunes para los botones habilitados y estados no disponibles.                    |
+
 ## src/constants/timeWheel.ts
 
 Alto fijo para alinear la selección central y el ajuste de cada plataforma.
@@ -5733,6 +5931,25 @@ export function useSessionRestore();
 
 - @returns Estado de arranque, error recuperable y retryRestore.
 
+## src/hooks/useSessionSync.ts
+
+Comparte cierre y cambios de cuenta; una rotación ajena actualiza el refresh sin crear un bucle de red.
+
+[Abrir fuente](../src/hooks/useSessionSync.ts)
+
+| Exportación    | Responsabilidad                                                                                         |
+| -------------- | ------------------------------------------------------------------------------------------------------- |
+| useSessionSync | Comparte cierre y cambios de cuenta; una rotación ajena actualiza el refresh sin crear un bucle de red. |
+
+### useSessionSync
+
+```ts
+export function useSessionSync(restore: () => void);
+```
+
+- @param restore Reinicia la restauración cuando otra pestaña elige una cuenta diferente.
+- @returns void; retira el listener al desmontarse. Nativo usa un adaptador sin pestañas.
+
 ## src/hooks/useSettings.ts
 
 Configuración operativa con horario local y capacidad simultánea.
@@ -5804,7 +6021,7 @@ Inicia AuthSession con PKCE; la API intercambia el código y emite su propia ses
 export function useSocialLogin(provider: 'google' | 'discord' | 'github');
 ```
 
-- @param provider - Identificador social; la API solo habilita Google y rechaza proveedores retirados.
+- @param provider - Google, Discord o GitHub; la API comprueba configuración y estado de un solo uso.
 - @returns Acción de ingreso nativo y confirmación de vinculación local, con estado de red y error.
 
 ## src/hooks/useSocialLogin.web.ts
@@ -5823,7 +6040,7 @@ Estado del botón web; la confirmación de vinculación ocurre en la ruta de ret
 export function useSocialLogin(provider: 'google' | 'discord' | 'github');
 ```
 
-- @param provider - Identificador social; la API solo habilita Google y rechaza proveedores retirados.
+- @param provider - Google, Discord o GitHub; la API comprueba configuración y estado de un solo uso.
 - @returns Estado y acción que inicia el ingreso en esta pestaña; la ruta OAuth consume el retorno.
 
 ## src/hooks/useSocialProviders.ts
@@ -6611,21 +6828,21 @@ Roles enviados y verificados por la API, sin código importado desde el backend.
 
 [Abrir fuente](../src/types/entities.ts)
 
-| Exportación       | Responsabilidad                                                                           |
-| ----------------- | ----------------------------------------------------------------------------------------- |
-| Role              | Roles enviados y verificados por la API, sin código importado desde el backend.           |
-| User              | Perfil público y permisos vigentes.                                                       |
-| Session           | Sesión propia del backend; refresh se persiste solo en almacenamiento seguro nativo.      |
-| Page              | Paginación REST.                                                                          |
-| Vehicle           | Vehículo registrado.                                                                      |
-| VehicleType       | Categoría de tarifas.                                                                     |
-| Service           | Servicio y precios por tipo de vehículo, siempre en centavos ARS.                         |
-| AppointmentStatus | Estados reales de una reserva.                                                            |
-| Appointment       | Proyección de una reserva según el rol. Importes pueden faltar para empleados sin cobros. |
-| Availability      | Cotización y opciones calculadas en backend.                                              |
-| Settings          | Configuración de operación.                                                               |
-| Payment           | Cobro asociado.                                                                           |
-| Report            | Reporte administrativo.                                                                   |
+| Exportación       | Responsabilidad                                                                                       |
+| ----------------- | ----------------------------------------------------------------------------------------------------- |
+| Role              | Roles enviados y verificados por la API, sin código importado desde el backend.                       |
+| User              | Perfil público y permisos vigentes.                                                                   |
+| Session           | Sesión propia del backend: access/perfil en memoria; solo refresh y metadatos se conservan al cerrar. |
+| Page              | Paginación REST.                                                                                      |
+| Vehicle           | Vehículo registrado.                                                                                  |
+| VehicleType       | Categoría de tarifas.                                                                                 |
+| Service           | Servicio y precios por tipo de vehículo, siempre en centavos ARS.                                     |
+| AppointmentStatus | Estados reales de una reserva.                                                                        |
+| Appointment       | Proyección de una reserva según el rol. Importes pueden faltar para empleados sin cobros.             |
+| Availability      | Cotización y opciones calculadas en backend.                                                          |
+| Settings          | Configuración de operación.                                                                           |
+| Payment           | Cobro asociado.                                                                                       |
+| Report            | Reporte administrativo.                                                                               |
 
 ## src/types/form.ts
 
@@ -6681,6 +6898,17 @@ Parte del responsable; los datos de revisión interna solo llegan al equipo.
 | CustomerMessage | Reclamo o devolución, con respuesta administrativa cuando se resuelve.      |
 | Attendance      | Fichaje de llegada observado y guardado por Administración.                 |
 | Arrival         | Fila del plantel de hoy o un fichaje histórico.                             |
+
+## src/types/storedCredential.ts
+
+Persistencia sin perfil ni permisos: el backend valida identidad y rol al reabrir.
+
+[Abrir fuente](../src/types/storedCredential.ts)
+
+| Exportación       | Responsabilidad                                                                    |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| StoredCredential  | Persistencia sin perfil ni permisos: el backend valida identidad y rol al reabrir. |
+| CredentialStorage | Interfaz mínima para probar almacenamiento web sin depender del navegador.         |
 
 ## src/utils/agendaPresets.ts
 
@@ -6926,6 +7154,42 @@ export function priceFields(types: VehicleType[]): FormFieldDefinition[];
 
 - @param types - Categorías de vehículo que determinan las tarifas disponibles.
 - @returns `FormFieldDefinition[]`.
+
+## src/utils/credentialCodec.ts
+
+Treinta días, igual que expires_at de sesiones_renovacion; el servidor puede revocar antes.
+
+[Abrir fuente](../src/utils/credentialCodec.ts)
+
+| Exportación        | Responsabilidad                                                                             |
+| ------------------ | ------------------------------------------------------------------------------------------- |
+| credentialLifetime | Treinta días, igual que expires_at de sesiones_renovacion; el servidor puede revocar antes. |
+| decodeCredential   | Valida persistencia propia o un token legado sin aceptar permisos desde disco.              |
+| encodeCredential   | Serializa solo refresh, titular y vencimiento; nunca access JWT, rol o contraseña.          |
+
+### decodeCredential
+
+```ts
+export function decodeCredential(
+  value: string | null,
+  now = Date.now(),
+): StoredCredential | null;
+```
+
+- @param value Contenido local potencialmente alterado o ausente.
+- @param now Reloj en milisegundos para comprobar vencimiento.
+- @returns Credencial vigente o null ante cierre, corrupción o expiración.
+
+### encodeCredential
+
+```ts
+export function encodeCredential(refreshToken: string, userId: string, now = Date.now());
+```
+
+- @param refreshToken Credencial opaca emitida por la API.
+- @param userId Titular confirmado por el servidor.
+- @param now Inicio de persistencia en milisegundos.
+- @returns Sobre versionado válido localmente durante treinta días desde la rotación.
 
 ## src/utils/decorativeSvgProps.ts
 
@@ -7473,6 +7737,24 @@ export function shouldOfferScrollTop({ offset, viewport, content }: ScrollMetric
 - @param metrics Desplazamiento y tamaños medidos en la misma región.
 - @returns true solo después de recorrer una parte significativa de una página larga.
 
+## src/utils/serialQueue.ts
+
+Serializa acciones sin dejar bloqueada la cola cuando falla una operación.
+
+[Abrir fuente](../src/utils/serialQueue.ts)
+
+| Exportación       | Responsabilidad                                                            |
+| ----------------- | -------------------------------------------------------------------------- |
+| createSerialQueue | Serializa acciones sin dejar bloqueada la cola cuando falla una operación. |
+
+### createSerialQueue
+
+```ts
+export function createSerialQueue();
+```
+
+- @returns Ejecutor que conserva el resultado/error de cada acción y continúa con la siguiente.
+
 ## src/utils/serviceForm.ts
 
 Serializa campos de servicio; el código permanece estable durante una edición.
@@ -7521,6 +7803,26 @@ export function isSessionRejected(error: unknown);
 
 - @param error Error de una renovación; caídas de red y 5xx son recuperables.
 - @returns true para respuestas 401/403, false para fallas transitorias.
+
+## src/utils/sessionRenewal.ts
+
+Dependencias inyectables: permite probar carreras, desconexión y rotación sin ejecutar React.
+
+[Abrir fuente](../src/utils/sessionRenewal.ts)
+
+| Exportación                | Responsabilidad                                                                                    |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| SessionRenewalDependencies | Dependencias inyectables: permite probar carreras, desconexión y rotación sin ejecutar React.      |
+| createSessionRenewal       | Comparte renovaciones simultáneas y siempre persiste el sucesor, incluso si una vista se desmontó. |
+
+### createSessionRenewal
+
+```ts
+export function createSessionRenewal(deps: SessionRenewalDependencies);
+```
+
+- @param deps Almacenamiento, bloqueo y transporte del entorno actual.
+- @returns Renovador compartido; conserva credenciales ante red/5xx y borra solo un rechazo definitivo vigente.
 
 ## src/utils/settingsForm.ts
 
@@ -7750,6 +8052,12 @@ Escenarios y aserciones que verifican el comportamiento descrito por cada test.
 
 [Abrir fuente](../tests/pendingOAuth.test.ts)
 
+## tests/persistent-session.test.ts
+
+Almacén de prueba independiente de globals/React; cerrar una pestaña descarta solo su mapa legacy.
+
+[Abrir fuente](../tests/persistent-session.test.ts)
+
 ## tests/queryRevalidation.test.ts
 
 Escenarios y aserciones que verifican el comportamiento descrito por cada test.
@@ -7767,6 +8075,12 @@ Escenarios y aserciones que verifican el comportamiento descrito por cada test.
 Escenarios y aserciones que verifican el comportamiento descrito por cada test.
 
 [Abrir fuente](../tests/reliability.test.ts)
+
+## tests/session-renewal.test.ts
+
+Sesión de prueba con rol decidido por el servidor simulado, nunca por persistencia local.
+
+[Abrir fuente](../tests/session-renewal.test.ts)
 
 ## tests/workspace.test.ts
 

@@ -1,7 +1,9 @@
 # Estado y comunicaciones
 
 AuthContext: usuario y access token en memoria; refresh en SecureStore Android/iOS,
-sessionStorage para web. Logout borra la sesión local y solicita revocación al backend.
+localStorage versionado para web. Solo persisten refresh, ID y vencimiento; nunca
+contraseña, access JWT, perfil ni rol. Logout elimina la credencial, avisa a las otras
+pestañas y solicita revocación al backend. Ver [detalle de sesión](../../docs/social-session.md).
 ThemeContext: system/light/dark en AsyncStorage; sigue al sistema cuando corresponde.
 
 useRemoteData: recurso con carga/error/refresh y cancelación lógica de resultados viejos.
