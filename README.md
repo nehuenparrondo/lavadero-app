@@ -69,5 +69,6 @@ Empezar por la [guía común del código](docs/README.md), con [arquitectura](do
 - [Frontend e interfaz](frontend/README.md).
 - [Seguridad y recuperación](backend/docs/security-recovery.md).
 - [Funcionamiento](backend/docs/functional-guide.md).
+- [Gestor web de la base escolar](tools/database-admin/USO.md) y [configuración de Adminer](tools/database-admin/README.md).
 
 No subir `.env`, `node_modules`, bases exportadas ni archivos privados a GitHub. El ZIP público de esta estructura excluye esos archivos.
