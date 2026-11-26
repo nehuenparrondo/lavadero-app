@@ -26,4 +26,5 @@ export const iconPaths: Record<IconName, string> = {
   moon: 'M20.5 14A9 9 0 0 1 10 3a9 9 0 1 0 10.5 11Z',
   arrowUp: 'M12 20V4m-6 6 6-6 6 6',
   trash: 'M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7',
+  logout: 'M10 3H4v18h6M10 12h11m-4-4 4 4-4 4',
 };

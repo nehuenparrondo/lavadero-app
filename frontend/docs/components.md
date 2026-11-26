@@ -3027,6 +3027,20 @@ Uso:
 <PopularServices report={report} />
 ```
 
+### ProfileHeader
+
+Cabecera común de Cliente, Empleado y Administrador con salida en la esquina superior derecha.
+
+[Fuente](../src/components/organisms/ProfileHeader.tsx)
+
+No recibe propiedades.
+
+Uso:
+
+```tsx
+<ProfileHeader />
+```
+
 ### ProfileIdentity
 
 Identifica la sesión propia con nombre, email y avatar opcional.
@@ -3417,6 +3431,30 @@ Uso:
 <SignInPresentation />
 ```
 
+### SignOutDialog
+
+La cuenta permanece abierta hasta confirmar; cancelar o cerrar el diálogo no revoca la sesión.
+
+[Fuente](../src/components/organisms/SignOutDialog.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  exit: ReturnType<typeof useSignOutConfirmation>;
+}
+```
+
+| Prop | Obligatoria | Tipo                                        |
+| ---- | ----------- | ------------------------------------------- |
+| exit | Sí          | `ReturnType<typeof useSignOutConfirmation>` |
+
+Uso:
+
+```tsx
+<SignOutDialog exit={exit} />
+```
+
 ### SocialLoginButton
 
 Botón OAuth de un proveedor configurado, con su propia solicitud PKCE.
@@ -3451,30 +3489,6 @@ Uso:
 
 ```tsx
 <SocialLogins />
-```
-
-### ThemeSelector
-
-Conserva la preferencia automática; los cambios claro/oscuro usan el botón flotante.
-
-[Fuente](../src/components/organisms/ThemeSelector.tsx)
-
-Tipo del parámetro:
-
-```ts
-{
-  theme: ReturnType<typeof useTheme>;
-}
-```
-
-| Prop  | Obligatoria | Tipo                          |
-| ----- | ----------- | ----------------------------- |
-| theme | Sí          | `ReturnType<typeof useTheme>` |
-
-Uso:
-
-```tsx
-<ThemeSelector theme={theme} />
 ```
 
 ### UserCollection

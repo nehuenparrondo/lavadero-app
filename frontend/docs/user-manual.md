@@ -147,7 +147,7 @@ las existentes conservan su fecha y valores contratados.
 ![Configuración del negocio](images/admin-configuracion.png)
 
 Cada rol dispone de Perfil para nombre, apellido, teléfono y foto mediante enlace HTTPS.
-Las cuentas con contraseña local pueden cambiarla indicando la actual. En el perfil administrativo se retiró Apariencia; el botón flotante permite alternar Claro/Oscuro y guarda la elección. Cerrar sesión revoca la sesión del dispositivo.
+Las cuentas con contraseña local pueden cambiarla indicando la actual. Los tres perfiles usan únicamente el botón flotante para alternar Claro/Oscuro; ya no muestran el apartado Apariencia. Para salir, tocá el ícono de puerta con flecha arriba a la derecha, junto a **Mi perfil**. Elegí **Sí, cerrar sesión** para borrar el acceso guardado o **Seguir en mi cuenta** para conservarlo. Cerrar el diálogo también conserva la sesión. En web, confirmar la salida cierra las otras pestañas del mismo sitio y perfil del navegador.
 
 ![Perfil y tema claro](images/perfil-claro.png)
 

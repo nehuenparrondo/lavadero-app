@@ -3945,6 +3945,24 @@ export function PopularServices({ report }: { report: Report });
 - @param props - Propiedades tipadas: report.
 - @returns Vista de PopularServices con el contrato de propiedades declarado.
 
+## src/components/organisms/ProfileHeader.tsx
+
+Cabecera común de Cliente, Empleado y Administrador con salida en la esquina superior derecha.
+
+[Abrir fuente](../src/components/organisms/ProfileHeader.tsx)
+
+| Exportación   | Responsabilidad                                                                                |
+| ------------- | ---------------------------------------------------------------------------------------------- |
+| ProfileHeader | Cabecera común de Cliente, Empleado y Administrador con salida en la esquina superior derecha. |
+
+### ProfileHeader
+
+```ts
+export function ProfileHeader();
+```
+
+- @returns Título, botón accesible de puerta con flecha y diálogo de confirmación sin modificar formularios.
+
 ## src/components/organisms/ProfileIdentity.tsx
 
 Identifica la sesión propia con nombre, email y avatar opcional.
@@ -4291,6 +4309,25 @@ export function SignInPresentation();
 
 - @returns Marca, promesa concreta y una ilustración vectorial sin recursos de terceros.
 
+## src/components/organisms/SignOutDialog.tsx
+
+La cuenta permanece abierta hasta confirmar; cancelar o cerrar el diálogo no revoca la sesión.
+
+[Abrir fuente](../src/components/organisms/SignOutDialog.tsx)
+
+| Exportación   | Responsabilidad                                                                                |
+| ------------- | ---------------------------------------------------------------------------------------------- |
+| SignOutDialog | La cuenta permanece abierta hasta confirmar; cancelar o cerrar el diálogo no revoca la sesión. |
+
+### SignOutDialog
+
+```ts
+export function SignOutDialog({ exit }: { exit: ReturnType<typeof useSignOutConfirmation> });
+```
+
+- @param props Estado y comandos de salida; compartidos por todos los roles y plataformas.
+- @returns Confirmación accesible con acción de salida, cancelación y errores de almacenamiento.
+
 ## src/components/organisms/SocialLoginButton.tsx
 
 Botón OAuth de un proveedor configurado, con su propia solicitud PKCE.
@@ -4327,25 +4364,6 @@ export function SocialLogins();
 ```
 
 - @returns Vista de SocialLogins con el contrato de propiedades declarado.
-
-## src/components/organisms/ThemeSelector.tsx
-
-Conserva la preferencia automática; los cambios claro/oscuro usan el botón flotante.
-
-[Abrir fuente](../src/components/organisms/ThemeSelector.tsx)
-
-| Exportación   | Responsabilidad                                                                      |
-| ------------- | ------------------------------------------------------------------------------------ |
-| ThemeSelector | Conserva la preferencia automática; los cambios claro/oscuro usan el botón flotante. |
-
-### ThemeSelector
-
-```ts
-export function ThemeSelector({ theme }: { theme: ReturnType<typeof useTheme> });
-```
-
-- @param props Tema local persistido; no cambia datos de cuenta ni del negocio.
-- @returns Ajuste para seguir el sistema con etiqueta accesible.
 
 ## src/components/organisms/UserCollection.tsx
 
@@ -5686,7 +5704,7 @@ Perfil propio con formularios, sesión y comandos separados por responsabilidad.
 export function useProfile();
 ```
 
-- @returns Perfil propio, campos iniciales y comandos de guardado, contraseña y cierre de sesión.
+- @returns Perfil propio, campos iniciales y comandos de guardado y contraseña; la cabecera gestiona la salida.
 
 ## src/hooks/useQuery.ts
 
@@ -5986,6 +6004,24 @@ export function useSignIn(signUp = false);
 
 - @param signUp - Distingue el contrato de registro del de acceso.
 - @returns Estado ocupado/error y envío de acceso o registro que guarda la sesión y abre la portada del rol.
+
+## src/hooks/useSignOutConfirmation.ts
+
+Pide confirmación antes de borrar la sesión persistente de cualquiera de los tres roles.
+
+[Abrir fuente](../src/hooks/useSignOutConfirmation.ts)
+
+| Exportación            | Responsabilidad                                                                          |
+| ---------------------- | ---------------------------------------------------------------------------------------- |
+| useSignOutConfirmation | Pide confirmación antes de borrar la sesión persistente de cualquiera de los tres roles. |
+
+### useSignOutConfirmation
+
+```ts
+export function useSignOutConfirmation();
+```
+
+- @returns Visibilidad, acciones de apertura/cierre y confirmación con carga/error sin envíos duplicados.
 
 ## src/hooks/useSocialExchange.ts
 
@@ -6650,13 +6686,13 @@ export function HomeScreen();
 
 ## src/screens/client/ProfileScreen.tsx
 
-Perfil, preferencia de tema persistente, contraseña local y cierre de sesión.
+Perfil compartido por los tres roles, contraseña local y salida confirmada desde la cabecera.
 
 [Abrir fuente](../src/screens/client/ProfileScreen.tsx)
 
-| Exportación   | Responsabilidad                                                               |
-| ------------- | ----------------------------------------------------------------------------- |
-| ProfileScreen | Perfil, preferencia de tema persistente, contraseña local y cierre de sesión. |
+| Exportación   | Responsabilidad                                                                               |
+| ------------- | --------------------------------------------------------------------------------------------- |
+| ProfileScreen | Perfil compartido por los tres roles, contraseña local y salida confirmada desde la cabecera. |
 
 ### ProfileScreen
 

@@ -65,6 +65,7 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [PasswordResetForm.tsx](PasswordResetForm.tsx)                         | Campos de confirmación separados de la navegación y del enlace privado.                           |
 | [PendingAppointments.tsx](PendingAppointments.tsx)                     | Solicitudes pendientes del tablero y acceso a la gestión completa.                                |
 | [PopularServices.tsx](PopularServices.tsx)                             | Presenta frecuencias reales de servicios en el período consultado.                                |
+| [ProfileHeader.tsx](ProfileHeader.tsx)                                 | Cabecera común de Cliente, Empleado y Administrador con salida en la esquina superior derecha.    |
 | [ProfileIdentity.tsx](ProfileIdentity.tsx)                             | Identifica la sesión propia con nombre, email y avatar opcional.                                  |
 | [ProfilePasswordForm.tsx](ProfilePasswordForm.tsx)                     | Confirma la contraseña actual y solicita la nueva al servidor.                                    |
 | [RecoveryScreen.tsx](RecoveryScreen.tsx)                               | Mantiene legibles los formularios de acceso en teléfono y escritorio.                             |
@@ -82,9 +83,9 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [SidebarNavigation.tsx](SidebarNavigation.tsx)                         | Selección de destinos basada en rol y ruta, sin estado de navegación duplicado.                   |
 | [SignInForm.tsx](SignInForm.tsx)                                       | Valida email y contraseña y delega el acceso en useSignIn.                                        |
 | [SignInPresentation.tsx](SignInPresentation.tsx)                       | Presentación de acceso que comparte la identidad del resto de la aplicación.                      |
+| [SignOutDialog.tsx](SignOutDialog.tsx)                                 | La cuenta permanece abierta hasta confirmar; cancelar o cerrar el diálogo no revoca la sesión.    |
 | [SocialLoginButton.tsx](SocialLoginButton.tsx)                         | Botón OAuth de un proveedor configurado, con su propia solicitud PKCE.                            |
 | [SocialLogins.tsx](SocialLogins.tsx)                                   | Muestra proveedores y deshabilita los que el negocio todavía no configuró.                        |
-| [ThemeSelector.tsx](ThemeSelector.tsx)                                 | Conserva la preferencia automática; los cambios claro/oscuro usan el botón flotante.              |
 | [UserCollection.tsx](UserCollection.tsx)                               | Presenta la página autorizada de usuarios y los estados de consulta.                              |
 | [UserDeleteDialog.tsx](UserDeleteDialog.tsx)                           | Confirma la baja lógica de una cuenta conservando su historial.                                   |
 | [UserEditDialog.tsx](UserEditDialog.tsx)                               | Comparte campos de creación y edición de cuentas administradas.                                   |

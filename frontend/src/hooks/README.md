@@ -59,6 +59,7 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 | [useSessionSync.ts](useSessionSync.ts)                         | Comparte cierre y cambios de cuenta; una rotación ajena actualiza el refresh sin crear un bucle de red. |
 | [useSettings.ts](useSettings.ts)                               | Configuración operativa con horario local y capacidad simultánea.                                       |
 | [useSignIn.ts](useSignIn.ts)                                   | Conecta formulario con registro/login y guarda refresh de forma segura.                                 |
+| [useSignOutConfirmation.ts](useSignOutConfirmation.ts)         | Pide confirmación antes de borrar la sesión persistente de cualquiera de los tres roles.                |
 | [useSocialExchange.ts](useSocialExchange.ts)                   | Canje compartido por web/APK; la contraseña se conserva solo mientras se envía.                         |
 | [useSocialLogin.ts](useSocialLogin.ts)                         | Inicia AuthSession con PKCE; la API intercambia el código y emite su propia sesión.                     |
 | [useSocialLogin.web.ts](useSocialLogin.web.ts)                 | Estado del botón web; la confirmación de vinculación ocurre en la ruta de retorno.                      |

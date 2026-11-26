@@ -3,7 +3,7 @@ import { profileCommands } from './profileCommands';
 import { useAction } from './useAction';
 import { useAuth } from './useAuth';
 /** Perfil propio con formularios, sesión y comandos separados por responsabilidad.
- * @returns Perfil propio, campos iniciales y comandos de guardado, contraseña y cierre de sesión.
+ * @returns Perfil propio, campos iniciales y comandos de guardado y contraseña; la cabecera gestiona la salida.
  */
 export function useProfile() {
   const auth = useAuth();
@@ -20,6 +20,5 @@ export function useProfile() {
     user,
     fields: profileFields,
     initialValues,
-    signOut: auth.signOut,
   };
 }
