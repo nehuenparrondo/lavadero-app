@@ -6,7 +6,9 @@ anchos de teléfono y paisaje; no son capturas de un teléfono físico.
 
 ## Reserva y administración actuales
 
-La disponibilidad se elige con una rueda de horarios libres. Las agendas y bandejas se actualizan automáticamente. Las capturas siguientes corresponden a los controles actuales; las imágenes posteriores se conservan como referencia de los recorridos anteriores.
+La disponibilidad se elige con una rueda de horarios libres. Después de elegir una hora, tocá **Guardar** para agregarla a **Tu reserva**. En escritorio se muestra el resumen de arriba a la derecha; en teléfono la pantalla te lleva al resumen debajo del formulario. Revisá fecha, hora, servicios y precio, y tocá **Confirmar reserva** para crear el turno. Guardar solo prepara el resumen: el horario queda reservado después de confirmar y recibir la respuesta del servidor. Si cambiás la fecha, el tipo, los servicios o la hora, volvé a guardar el horario.
+
+Las agendas y bandejas se actualizan automáticamente. Las capturas siguientes corresponden a las versiones anteriores del selector; las imágenes posteriores se conservan como referencia de los recorridos.
 
 ![Rueda de horarios disponibles](images/redesign-wheel-final.png)
 

@@ -11,6 +11,7 @@ Transformaciones puras o infraestructura puntual. Mantener unidades explícitas:
 | [agendaPresets.ts](agendaPresets.ts)               | Genera filtros consistentes al abrir una agenda.                                                     |
 | [appointmentListTitle.ts](appointmentListTitle.ts) | Título de la colección según rol e historial, sin reglas de acceso dentro del JSX.                   |
 | [bookingAvailability.ts](bookingAvailability.ts)   | Explica por qué una fecha no puede ofrecer turnos antes de consultar un horario.                     |
+| [bookingDraft.ts](bookingDraft.ts)                 | Selección local: mover la rueda no confirma ni crea una reserva.                                     |
 | [bookingSelection.ts](bookingSelection.ts)         | Separa los adicionales del único lavado base elegible.                                               |
 | [buildFormSchema.ts](buildFormSchema.ts)           | Genera validación por campo sobre valores de texto del formulario móvil.                             |
 | [buttonColors.ts](buttonColors.ts)                 | Resuelve contraste y superficie de variantes sin repetir colores en los botones.                     |

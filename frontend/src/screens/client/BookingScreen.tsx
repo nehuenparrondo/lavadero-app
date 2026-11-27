@@ -10,18 +10,21 @@ import { BookingSummary } from '../../components/organisms/BookingSummary';
 import { BookingTypeField } from '../../components/organisms/BookingTypeField';
 import { Screen } from '../../components/organisms/Screen';
 import { useBooking } from '../../hooks/useBooking';
+import { useBookingSummaryNavigation } from '../../hooks/useBookingSummaryNavigation';
 
 /** Reserva por pasos, con servicios separados y total siempre verificable.
  * @returns Formulario adaptable que solicita el vehículo particular después de reservar.
  */
 export function BookingScreen() {
   const b = useBooking();
+  const summary = useBookingSummaryNavigation(b);
   return (
     <Screen
       refreshing={b.optionsLoading}
       onRefresh={b.refresh}
       refreshInterval={10_000}
       onRevalidate={b.revalidateAvailability}
+      scrollRequest={summary.scrollRequest}
     >
       <PageHeading
         eyebrow="Nueva visita"
@@ -31,7 +34,7 @@ export function BookingScreen() {
       <Notice error={b.error || b.loadError} onRetry={b.refresh} />
       {b.admin && <BookingClientField b={b} />}
       <OverviewColumns
-        primary={<BookingDetails b={b} />}
+        primary={<BookingDetails b={b} onSave={summary.saveSlot} />}
         secondary={<BookingSummary b={b} />}
       />
     </Screen>
@@ -39,14 +42,20 @@ export function BookingScreen() {
 }
 
 /** Mantiene juntos los controles de cada paso antes del resumen final. */
-function BookingDetails({ b }: { b: ReturnType<typeof useBooking> }) {
+function BookingDetails({
+  b,
+  onSave,
+}: {
+  b: ReturnType<typeof useBooking>;
+  onSave: () => void;
+}) {
   return (
     <View style={{ gap: 20 }}>
       <BookingSection number="1" title="Elegí cómo cuidarlo">
         <BookingTypeField b={b} />
         <BookingServicesField b={b} />
       </BookingSection>
-      <BookingSchedule b={b} />
+      <BookingSchedule b={b} onSave={onSave} />
     </View>
   );
 }

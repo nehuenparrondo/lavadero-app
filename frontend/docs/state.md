@@ -19,6 +19,10 @@ La restauración se separa en `useSessionRestore`/`restoreSession`; `AuthProvide
 
 `useQuery` identifica cada resultado por ruta y filtros: una selección nueva, una consulta deshabilitada o un fallo no muestran datos del filtro anterior. `useRefreshOnReturn` recarga al volver a la pantalla; los hooks coordinan la actualización de recursos relacionados, incluidos los selectores.
 
+En la reserva, `useBookingSelection` usa el reductor `bookingDraft`: `draftSlot` pertenece a la rueda y `slot` es únicamente la hora que el cliente agregó al resumen con **Guardar**. Cambiar la fecha, los servicios, la categoría o la hora invalida el guardado. Los eventos de la rueda sobre la misma hora no lo borran. `useBookingConfirmation` verifica disponibilidad y separa el guardado local del envío real de **Confirmar reserva**. La respuesta de un envío rechazado solo limpia la selección correspondiente.
+
+`useBookingSummaryNavigation` solicita el desplazamiento al resumen después de un guardado válido. `useScrollRequest` actúa sobre el ScrollView de esa pantalla; las recargas automáticas no generan desplazamientos. En escritorio se vuelve al resumen superior y en teléfono al resumen final, con las columnas apiladas sin proporciones flex que compriman su contenido.
+
 `readinessGate` comparte la conexión inicial dentro de un plazo acotado. Solo reintenta GET /ready, nunca escrituras. `ConnectionNotice` explica la espera después de dos segundos; no hay sondeos periódicos mientras la app está inactiva. El tiempo de arranque de Render Free sigue existiendo.
 
 La restauración conserva refresh ante errores de red, 429 y 5xx y ofrece reintentar. Solo 401/403 definitivos invalidan la sesión. `renewRequest` conserva una rotación compartida y comprueba la cuenta de origen. `/loading` guarda un destino interno; `restoreDestination` lo valida según el rol antes de volver al enlace solicitado.

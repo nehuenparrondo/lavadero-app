@@ -2430,17 +2430,45 @@ Tipo del parámetro:
 ```ts
 {
   b: ReturnType<typeof useBooking>;
+  onSave: () => void;
 }
 ```
 
-| Prop | Obligatoria | Tipo                            |
-| ---- | ----------- | ------------------------------- |
-| b    | Sí          | `ReturnType<typeof useBooking>` |
+| Prop   | Obligatoria | Tipo                            |
+| ------ | ----------- | ------------------------------- |
+| b      | Sí          | `ReturnType<typeof useBooking>` |
+| onSave | Sí          | `() => void`                    |
 
 Uso:
 
 ```tsx
-<BookingSchedule b={b} />
+<BookingSchedule b={b} onSave={handleAction} />
+```
+
+### BookingScheduleSave
+
+Agrega al resumen únicamente la hora elegida y todavía ofrecida por el servidor.
+
+[Fuente](../src/components/organisms/BookingScheduleSave.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  b: ReturnType<typeof useBooking>;
+  onSave: () => void;
+}
+```
+
+| Prop   | Obligatoria | Tipo                            |
+| ------ | ----------- | ------------------------------- |
+| b      | Sí          | `ReturnType<typeof useBooking>` |
+| onSave | Sí          | `() => void`                    |
+
+Uso:
+
+```tsx
+<BookingScheduleSave b={b} onSave={handleAction} />
 ```
 
 ### BookingServicesField
@@ -2489,6 +2517,30 @@ Uso:
 
 ```tsx
 <BookingSummary b={b} />
+```
+
+### BookingSummarySchedule
+
+Identifica el horario guardado; nunca anuncia que ya existe un turno antes de confirmar.
+
+[Fuente](../src/components/organisms/BookingSummarySchedule.tsx)
+
+Tipo del parámetro:
+
+```ts
+{
+  b: ReturnType<typeof useBooking>;
+}
+```
+
+| Prop | Obligatoria | Tipo                            |
+| ---- | ----------- | ------------------------------- |
+| b    | Sí          | `ReturnType<typeof useBooking>` |
+
+Uso:
+
+```tsx
+<BookingSummarySchedule b={b} />
 ```
 
 ### BookingTypeField
@@ -3196,6 +3248,7 @@ Tipo del parámetro:
   onRefresh?: () => void | Promise<void>;
   refreshInterval?: number;
   onRevalidate?: (trigger: RefreshTrigger) => void | Promise<void>;
+  scrollRequest?: ScrollRequest | undefined;
 }
 ```
 
@@ -3206,6 +3259,7 @@ Tipo del parámetro:
 | onRefresh       | No          | `() => void \| Promise<void>`                        |
 | refreshInterval | No          | `number`                                             |
 | onRevalidate    | No          | `(trigger: RefreshTrigger) => void \| Promise<void>` |
+| scrollRequest   | No          | `ScrollRequest \| undefined`                         |
 
 Uso:
 
@@ -3225,13 +3279,15 @@ Tipo del parámetro:
 PropsWithChildren<{
   refreshing: boolean;
   onRefresh?: (() => void | Promise<void>) | undefined;
+  scrollRequest?: ScrollRequest | undefined;
 }>;
 ```
 
-| Prop       | Obligatoria | Tipo                                         |
-| ---------- | ----------- | -------------------------------------------- |
-| refreshing | Sí          | `boolean`                                    |
-| onRefresh  | No          | `(() => void \| Promise<void>) \| undefined` |
+| Prop          | Obligatoria | Tipo                                         |
+| ------------- | ----------- | -------------------------------------------- |
+| refreshing    | Sí          | `boolean`                                    |
+| onRefresh     | No          | `(() => void \| Promise<void>) \| undefined` |
+| scrollRequest | No          | `ScrollRequest \| undefined`                 |
 
 Uso:
 
@@ -3248,8 +3304,12 @@ Superficie acotada que mantiene los controles fuera del contenido desplazable.
 Tipo del parámetro:
 
 ```ts
-ComponentProps<typeof ScrollView>;
+ComponentProps<typeof ScrollView> & { scrollRequest?: ScrollRequest | undefined }
 ```
+
+| Prop          | Obligatoria | Tipo                         |
+| ------------- | ----------- | ---------------------------- |
+| scrollRequest | No          | `ScrollRequest \| undefined` |
 
 Uso:
 

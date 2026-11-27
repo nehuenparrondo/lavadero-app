@@ -1,19 +1,15 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
+import { bookingDraft, initialBooking } from '../utils/bookingDraft';
+import type { BookingDraft } from '../utils/bookingDraft';
 
 /** Cada cambio de titular, categoría, servicios o día invalida el inicio elegido.
  * @param clientId Titular inicial. En una reserva asistida se elige en el formulario.
- * @returns Selección del turno sin requerir los datos de un vehículo particular.
+ * @returns Hora en borrador y hora guardada por separado, sin requerir un vehículo particular.
  */
 export function useBookingSelection(clientId: string) {
-  const [selection, setSelection] = useState(() => initialBooking(clientId));
-  const choose = (field: keyof typeof selection, value: string) =>
-    setSelection((current) => ({
-      ...current,
-      [field]: value,
-      ...(field !== 'slot' ? { slot: '' } : {}),
-      ...(field === 'clientId' ? { vehicleTypeId: '', baseId: '', extraIds: '' } : {}),
-      ...(field === 'vehicleTypeId' ? { baseId: '', extraIds: '' } : {}),
-    }));
+  const [selection, dispatch] = useReducer(bookingDraft, clientId, initialBooking);
+  const choose = (field: Exclude<keyof BookingDraft, 'slot'>, value: string) =>
+    dispatch({ type: 'choose', field, value });
   return {
     ...selection,
     serviceIds: [selection.baseId, selection.extraIds].filter(Boolean).join(','),
@@ -22,15 +18,8 @@ export function useBookingSelection(clientId: string) {
     setBaseId: (v: string) => choose('baseId', v),
     setExtraIds: (v: string) => choose('extraIds', v),
     setDate: (v: string) => choose('date', v),
-    setSlot: (v: string) => choose('slot', v),
-    clearRejectedSlot: (attempted: string) =>
-      setSelection((current) =>
-        current.slot === attempted ? { ...current, slot: '' } : current,
-      ),
+    setDraftSlot: (v: string) => choose('draftSlot', v),
+    saveSlot: () => dispatch({ type: 'save', slot: selection.draftSlot }),
+    clearRejectedSlot: (attempted: string) => dispatch({ type: 'reject', slot: attempted }),
   };
-}
-
-/** La fecha debe elegirse explícitamente antes de consultar o confirmar horarios. */
-function initialBooking(clientId: string) {
-  return { clientId, vehicleTypeId: '', baseId: '', extraIds: '', date: '', slot: '' };
 }

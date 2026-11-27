@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRefreshOnReturn } from '../../hooks/useRefreshOnReturn';
 import { useTheme } from '../../hooks/useTheme';
 import type { RefreshTrigger } from '../../utils/refreshGate';
+import type { ScrollRequest } from '../../hooks/useScrollRequest';
 import { WorkspaceFrame } from './WorkspaceFrame';
 import { ScreenContent } from './ScreenContent';
 /** Marco de todos los roles con controles flotantes y actualización al regresar.
@@ -15,12 +16,14 @@ export function Screen({
   onRefresh,
   refreshInterval = 15_000,
   onRevalidate,
+  scrollRequest,
 }: {
   children: PropsWithChildren['children'];
   refreshing?: boolean;
   onRefresh?: () => void | Promise<void>;
   refreshInterval?: number;
   onRevalidate?: (trigger: RefreshTrigger) => void | Promise<void>;
+  scrollRequest?: ScrollRequest | undefined;
 }) {
   useRefreshOnReturn(onRefresh, refreshing, refreshInterval, onRevalidate);
   const { colors } = useTheme();
@@ -30,7 +33,11 @@ export function Screen({
       style={{ flex: 1, backgroundColor: colors.background }}
     >
       <WorkspaceFrame>
-        <ScreenContent refreshing={refreshing} onRefresh={onRefresh}>
+        <ScreenContent
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+          scrollRequest={scrollRequest}
+        >
           {children}
         </ScreenContent>
       </WorkspaceFrame>

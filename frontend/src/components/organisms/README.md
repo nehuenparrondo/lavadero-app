@@ -42,8 +42,10 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [BookingInvitation.tsx](BookingInvitation.tsx)                         | Composición de la acción principal del cliente, sin información comercial fija.                   |
 | [BookingInvitationCopy.tsx](BookingInvitationCopy.tsx)                 | Contenido editorial de la portada de reserva, independiente de navegación e ilustración.          |
 | [BookingSchedule.tsx](BookingSchedule.tsx)                             | Ofrece calendario y rueda sobre una sola cotización vigente.                                      |
+| [BookingScheduleSave.tsx](BookingScheduleSave.tsx)                     | Agrega al resumen únicamente la hora elegida y todavía ofrecida por el servidor.                  |
 | [BookingServicesField.tsx](BookingServicesField.tsx)                   | Ofrece un lavado base y adicionales separados para el tipo cotizado.                              |
 | [BookingSummary.tsx](BookingSummary.tsx)                               | Confirma únicamente una cotización y un horario que siguen vigentes.                              |
+| [BookingSummarySchedule.tsx](BookingSummarySchedule.tsx)               | Identifica el horario guardado; nunca anuncia que ya existe un turno antes de confirmar.          |
 | [BookingTypeField.tsx](BookingTypeField.tsx)                           | Solicita solo la categoría que determina la cotización.                                           |
 | [CancellationNoticeCard.tsx](CancellationNoticeCard.tsx)               | Cancelación del equipo con contexto, motivo completo y dos acciones inequívocas.                  |
 | [ClientCancellationNotices.tsx](ClientCancellationNotices.tsx)         | Avisos visibles en Inicio hasta que el cliente confirme haberlos leído.                           |

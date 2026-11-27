@@ -4,12 +4,19 @@ import { Text } from '../atoms/Text';
 import { BookingSection } from '../molecules/BookingSection';
 import { FormField } from '../molecules/FormField';
 import { ScheduleSelector } from './ScheduleSelector';
+import { BookingScheduleSave } from './BookingScheduleSave';
 
 /** Ofrece calendario y rueda sobre una sola cotización vigente.
  * @param props Estado coordinado de la reserva.
  * @returns Segundo paso con horarios libres y explicación de atención.
  */
-export function BookingSchedule({ b }: { b: ReturnType<typeof useBooking> }) {
+export function BookingSchedule({
+  b,
+  onSave,
+}: {
+  b: ReturnType<typeof useBooking>;
+  onSave: () => void;
+}) {
   return (
     <BookingSection number="2" title="Elegí cuándo venir">
       <FormField
@@ -20,6 +27,7 @@ export function BookingSchedule({ b }: { b: ReturnType<typeof useBooking> }) {
       <Text>{bookingDateMessage(b.date, b.settings)}</Text>
       {!b.serviceIds && <Text>Elegí los servicios para ver los horarios disponibles.</Text>}
       <ScheduleSelector booking={b} />
+      <BookingScheduleSave b={b} onSave={onSave} />
     </BookingSection>
   );
 }

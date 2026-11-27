@@ -1,9 +1,10 @@
 import type { useBooking } from '../../hooks/useBooking';
 import { useTheme } from '../../hooks/useTheme';
-import { appointmentDate, money } from '../../utils/format';
+import { money } from '../../utils/format';
 import { Button } from '../atoms/Button';
 import { Text } from '../atoms/Text';
 import { Card } from '../molecules/Card';
+import { BookingSummarySchedule } from './BookingSummarySchedule';
 
 /** Confirma únicamente una cotización y un horario que siguen vigentes.
  * @param props Estado de la reserva, sin calcular importes fuera del servidor.
@@ -17,6 +18,7 @@ export function BookingSummary({ b }: { b: ReturnType<typeof useBooking> }) {
         Tu reserva
       </Text>
       <BookingQuote b={b} />
+      <BookingSummarySchedule b={b} />
       <Button
         label="Confirmar reserva"
         loading={b.busy}
@@ -52,11 +54,6 @@ function BookingQuote({ b }: { b: ReturnType<typeof useBooking> }) {
         {quote
           ? `${quote.durationMinutes} minutos estimados · ARS`
           : 'El total aparece al elegir tus servicios.'}
-      </Text>
-      <Text>
-        {b.slot && quote?.slots.includes(b.slot)
-          ? appointmentDate(b.slot)
-          : 'Elegí un horario disponible.'}
       </Text>
     </>
   );

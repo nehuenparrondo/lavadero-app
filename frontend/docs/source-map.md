@@ -3403,11 +3403,42 @@ Ofrece calendario y rueda sobre una sola cotización vigente.
 ### BookingSchedule
 
 ```ts
-export function BookingSchedule({ b }: { b: ReturnType<typeof useBooking> });
+export function BookingSchedule({
+  b,
+  onSave,
+}: {
+  b: ReturnType<typeof useBooking>;
+  onSave: () => void;
+});
 ```
 
 - @param props Estado coordinado de la reserva.
 - @returns Segundo paso con horarios libres y explicación de atención.
+
+## src/components/organisms/BookingScheduleSave.tsx
+
+Agrega al resumen únicamente la hora elegida y todavía ofrecida por el servidor.
+
+[Abrir fuente](../src/components/organisms/BookingScheduleSave.tsx)
+
+| Exportación         | Responsabilidad                                                                  |
+| ------------------- | -------------------------------------------------------------------------------- |
+| BookingScheduleSave | Agrega al resumen únicamente la hora elegida y todavía ofrecida por el servidor. |
+
+### BookingScheduleSave
+
+```ts
+export function BookingScheduleSave({
+  b,
+  onSave,
+}: {
+  b: ReturnType<typeof useBooking>;
+  onSave: () => void;
+});
+```
+
+- @param props Estado vigente y acción de guardado/navegación al resumen.
+- @returns Guardar después de elegir una hora, o el aviso de guardado pendiente de reserva.
 
 ## src/components/organisms/BookingServicesField.tsx
 
@@ -3446,6 +3477,25 @@ export function BookingSummary({ b }: { b: ReturnType<typeof useBooking> });
 
 - @param props Estado de la reserva, sin calcular importes fuera del servidor.
 - @returns Resumen visible antes de reservar y siguiente paso explicado.
+
+## src/components/organisms/BookingSummarySchedule.tsx
+
+Identifica el horario guardado; nunca anuncia que ya existe un turno antes de confirmar.
+
+[Abrir fuente](../src/components/organisms/BookingSummarySchedule.tsx)
+
+| Exportación            | Responsabilidad                                                                          |
+| ---------------------- | ---------------------------------------------------------------------------------------- |
+| BookingSummarySchedule | Identifica el horario guardado; nunca anuncia que ya existe un turno antes de confirmar. |
+
+### BookingSummarySchedule
+
+```ts
+export function BookingSummarySchedule({ b }: { b: ReturnType<typeof useBooking> });
+```
+
+- @param props Borrador, hora guardada y última disponibilidad del servidor.
+- @returns Estado accesible del horario que se enviará al confirmar la reserva.
 
 ## src/components/organisms/BookingTypeField.tsx
 
@@ -4098,12 +4148,14 @@ export function Screen({
   onRefresh,
   refreshInterval = 15_000,
   onRevalidate,
+  scrollRequest,
 }: {
   children: PropsWithChildren['children'];
   refreshing?: boolean;
   onRefresh?: () => void | Promise<void>;
   refreshInterval?: number;
   onRevalidate?: (trigger: RefreshTrigger) => void | Promise<void>;
+  scrollRequest?: ScrollRequest | undefined;
 });
 ```
 
@@ -4125,9 +4177,11 @@ Contenido común con espacio reservado para los controles flotantes.
 ```ts
 export function ScreenContent({
   children,
+  scrollRequest,
 }: PropsWithChildren<{
   refreshing: boolean;
   onRefresh?: (() => void | Promise<void>) | undefined;
+  scrollRequest?: ScrollRequest | undefined;
 }>);
 ```
 
@@ -4147,7 +4201,10 @@ Superficie acotada que mantiene los controles fuera del contenido desplazable.
 ### ScrollSurface
 
 ```ts
-export function ScrollSurface(props: ComponentProps<typeof ScrollView>);
+export function ScrollSurface({
+  scrollRequest,
+  ...props
+}: ComponentProps<typeof ScrollView> & { scrollRequest?: ScrollRequest | undefined });
 ```
 
 - @param props Propiedades del contenido desplazable, incluidos recarga y estilos.
@@ -5324,6 +5381,31 @@ export function useBooking();
 
 - @returns Selección, cotización vigente, horarios libres, confirmación y sondeo; canSubmit se desactiva ante carga o error.
 
+## src/hooks/useBookingConfirmation.ts
+
+Guardar solo prepara el resumen; confirmar envía el turno y vuelve a validar en el servidor.
+
+[Abrir fuente](../src/hooks/useBookingConfirmation.ts)
+
+| Exportación            | Responsabilidad                                                                              |
+| ---------------------- | -------------------------------------------------------------------------------------------- |
+| useBookingConfirmation | Guardar solo prepara el resumen; confirmar envía el turno y vuelve a validar en el servidor. |
+
+### useBookingConfirmation
+
+```ts
+export function useBookingConfirmation(
+  selection: ReturnType<typeof useBookingSelection>,
+  resources: ReturnType<typeof useBookingResources>,
+  admin: boolean,
+);
+```
+
+- @param selection Borrador y hora guardada explícitamente por el cliente.
+- @param resources Catálogo y disponibilidad de la selección vigente.
+- @param admin Permite incluir el titular de una reserva asistida.
+- @returns Acciones separadas y permisos calculados sobre la disponibilidad actual.
+
 ## src/hooks/useBookingOptions.ts
 
 Recursos y recarga de los selectores, separados de la cotización dependiente.
@@ -5380,7 +5462,7 @@ export function useBookingSelection(clientId: string);
 ```
 
 - @param clientId Titular inicial. En una reserva asistida se elige en el formulario.
-- @returns Selección del turno sin requerir los datos de un vehículo particular.
+- @returns Hora en borrador y hora guardada por separado, sin requerir un vehículo particular.
 
 ## src/hooks/useBookingSubmit.ts
 
@@ -5408,6 +5490,25 @@ export function useBookingSubmit(
 - @param refresh Recotiza si el servidor rechaza, por ejemplo por un horario ocupado.
 - @param ready Solo true para un horario de la cotización vigente.
 - @returns Estado de acción y submit; navega solo después de confirmar.
+
+## src/hooks/useBookingSummaryNavigation.ts
+
+Tras guardar, muestra el resumen superior en escritorio y la tarjeta final en teléfono.
+
+[Abrir fuente](../src/hooks/useBookingSummaryNavigation.ts)
+
+| Exportación                 | Responsabilidad                                                                         |
+| --------------------------- | --------------------------------------------------------------------------------------- |
+| useBookingSummaryNavigation | Tras guardar, muestra el resumen superior en escritorio y la tarjeta final en teléfono. |
+
+### useBookingSummaryNavigation
+
+```ts
+export function useBookingSummaryNavigation(booking: ReturnType<typeof useBooking>);
+```
+
+- @param booking Acción validada que guarda la hora sin enviar una reserva.
+- @returns Solicitud de scroll y callback exclusivo del botón Guardar.
 
 ## src/hooks/useCancellationNotices.ts
 
@@ -5894,6 +5995,30 @@ export function useScrollControls();
 ```
 
 - @returns Ref, visibilidad y manejadores de medidas/desplazamiento para ScrollView.
+
+## src/hooks/useScrollRequest.ts
+
+Un identificador nuevo representa un gesto explícito, nunca una recarga automática.
+
+[Abrir fuente](../src/hooks/useScrollRequest.ts)
+
+| Exportación      | Responsabilidad                                                                      |
+| ---------------- | ------------------------------------------------------------------------------------ |
+| ScrollRequest    | Un identificador nuevo representa un gesto explícito, nunca una recarga automática.  |
+| useScrollRequest | Lleva al resumen dentro del scroll existente, sin mover ventanas ni diálogos ajenos. |
+
+### useScrollRequest
+
+```ts
+export function useScrollRequest(
+  ref: RefObject<ComponentRef<typeof ScrollView> | null>,
+  request?: ScrollRequest,
+);
+```
+
+- @param ref Región desplazable propietaria de la pantalla.
+- @param request Solicitud nueva de navegación dentro del contenido, si la hubo.
+- @returns void; no desplaza por cambios de datos, sondeo o renderizados posteriores.
 
 ## src/hooks/useSearchSelect.ts
 
@@ -7046,6 +7171,38 @@ export function emptyAvailability(reason: Availability['unavailableReason']);
 - @param reason Motivo calculado por el servidor.
 - @returns Instrucción para elegir otra fecha o servicio.
 
+## src/utils/bookingDraft.ts
+
+Selección local: mover la rueda no confirma ni crea una reserva.
+
+[Abrir fuente](../src/utils/bookingDraft.ts)
+
+| Exportación        | Responsabilidad                                                                  |
+| ------------------ | -------------------------------------------------------------------------------- |
+| BookingDraft       | Selección local: mover la rueda no confirma ni crea una reserva.                 |
+| BookingDraftAction | Cambios del formulario y guardado explícito de una hora en el resumen.           |
+| initialBooking     | Empieza sin fecha, hora elegida ni hora guardada.                                |
+| bookingDraft       | Separa la intención del selector de la hora que el cliente guardó para reservar. |
+
+### initialBooking
+
+```ts
+export function initialBooking(clientId: string): BookingDraft;
+```
+
+- @param clientId Titular inicial de la reserva.
+- @returns Borrador vacío; no contiene datos de un vehículo particular.
+
+### bookingDraft
+
+```ts
+export function bookingDraft(state: BookingDraft, action: BookingDraftAction): BookingDraft;
+```
+
+- @param state Borrador vigente.
+- @param action Cambio del formulario, guardado o rechazo de una reserva enviada.
+- @returns Estado nuevo; descarta acciones tardías que afectarían otra selección.
+
 ## src/utils/bookingSelection.ts
 
 Separa los adicionales del único lavado base elegible.
@@ -8077,6 +8234,12 @@ Escenarios y aserciones que verifican el comportamiento descrito por cada test.
 Escenarios y aserciones que verifican el comportamiento descrito por cada test.
 
 [Abrir fuente](../tests/annotation-fields.test.ts)
+
+## tests/booking-draft.test.ts
+
+Escenarios y aserciones que verifican el comportamiento descrito por cada test.
+
+[Abrir fuente](../tests/booking-draft.test.ts)
 
 ## tests/parseApiUrl.test.ts
 

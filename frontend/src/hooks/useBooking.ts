@@ -1,8 +1,7 @@
-import { canBook } from '../utils/bookingAvailability';
 import { useAuth } from './useAuth';
+import { useBookingConfirmation } from './useBookingConfirmation';
 import { useBookingResources } from './useBookingResources';
 import { useBookingSelection } from './useBookingSelection';
-import { useBookingSubmit } from './useBookingSubmit';
 import type { RefreshTrigger } from '../utils/refreshGate';
 /** Compone selección, consulta y confirmación sin lógica de negocio dentro de la pantalla.
  * @returns Selección, cotización vigente, horarios libres, confirmación y sondeo; canSubmit se desactiva ante carga o error.
@@ -12,19 +11,12 @@ export function useBooking() {
   const admin = user?.role === 'admin';
   const selection = useBookingSelection(admin ? '' : (user?.id ?? ''));
   const resources = useBookingResources(selection, admin);
-  const ready = canBook(
-    resources.availability.data,
-    selection.slot,
-    resources.availability.loading,
-    resources.availability.error,
-  );
-  const submission = useBookingSubmit(selection, admin, resources.availability.refresh, ready);
+  const submission = useBookingConfirmation(selection, resources, admin);
   return {
     ...selection,
     ...resources,
     ...submission,
     admin,
-    canSubmit: ready && !resources.optionsLoading && !resources.loadError,
     revalidateAvailability: (trigger: RefreshTrigger) => {
       if (submission.busy) return;
       if (trigger === 'resume') return resources.revalidate();

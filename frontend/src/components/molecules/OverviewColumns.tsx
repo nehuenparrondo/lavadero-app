@@ -17,8 +17,8 @@ export function OverviewColumns({
     <View
       style={{ flexDirection: columns ? 'row' : 'column', gap: 24, alignItems: 'stretch' }}
     >
-      <View style={{ flex: 2, minWidth: 0, gap: 18 }}>{primary}</View>
-      <View style={{ flex: 1, minWidth: 0, gap: 18 }}>{secondary}</View>
+      <View style={[{ minWidth: 0, gap: 18 }, columns && { flex: 2 }]}>{primary}</View>
+      <View style={[{ minWidth: 0, gap: 18 }, columns && { flex: 1 }]}>{secondary}</View>
     </View>
   );
 }

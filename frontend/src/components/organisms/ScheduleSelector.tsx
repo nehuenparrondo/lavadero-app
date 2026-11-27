@@ -18,13 +18,13 @@ export function ScheduleSelector({ booking: b }: { booking: ReturnType<typeof us
           <Notice error={b.availability.error} onRetry={b.availability.refresh} />
           {b.availability.data && (
             <>
-              {b.slot && !b.availability.data.slots.includes(b.slot) && (
+              {Boolean(b.draftSlot) && !b.availability.data.slots.includes(b.draftSlot) && (
                 <Notice error="El horario que elegiste ya no está disponible. Elegí otro." />
               )}
               <AvailableSlots
                 quote={b.availability.data}
-                value={b.slot}
-                onChange={b.setSlot}
+                value={b.draftSlot}
+                onChange={b.setDraftSlot}
               />
             </>
           )}
