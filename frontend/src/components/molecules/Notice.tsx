@@ -32,7 +32,7 @@ export function Notice({
       <Text style={{ lineHeight: 22, color: error ? colors.danger : colors.text }}>
         {error || message}
       </Text>
-      {error && onRetry && (
+      {Boolean(error) && onRetry && (
         <Button label="Volver a intentar" onPress={onRetry} variant="quiet" />
       )}
     </View>
