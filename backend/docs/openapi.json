@@ -8259,14 +8259,14 @@
       "put": {
         "tags": ["appointments"],
         "summary": "Vincular vehículo a un turno confirmado",
-        "description": "Titular o Administración. Vincula un vehículo existente del mismo tipo o lo registra junto con el vínculo. Mantiene el horario y precio del turno.",
+        "description": "Solo el cliente titular completa los datos de su vehículo o vincula uno propio del mismo tipo. Administración y empleados pueden consultar el resultado, pero no completar este formulario por el cliente. Mantiene el horario, la categoría y el precio del turno; la confirmación administrativa no exige cargar el vehículo.",
         "operationId": "putAppointmentVehicle",
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "x-roles": ["client", "admin"],
+        "x-roles": ["client"],
         "responses": {
           "200": {
             "description": "Operación exitosa.",

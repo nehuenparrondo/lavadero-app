@@ -33,7 +33,7 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [AppointmentResults.tsx](AppointmentResults.tsx)                       | Contenido de listado separado del ciclo de actualización de la pantalla.                          |
 | [AppointmentStatusEditor.tsx](AppointmentStatusEditor.tsx)             | Confirma reservas antiguas que quedaron pendientes antes de la confirmación automática.           |
 | [AppointmentStatusFilter.tsx](AppointmentStatusFilter.tsx)             | Filtra la consulta por estado sin cambiar ningún turno.                                           |
-| [AppointmentVehicleAttachment.tsx](AppointmentVehicleAttachment.tsx)   | Completa el vehículo de un turno ya confirmado.                                                   |
+| [AppointmentVehicleAttachment.tsx](AppointmentVehicleAttachment.tsx)   | El cliente completa el vehículo de su turno confirmado, con la categoría que eligió al reservar.  |
 | [AppointmentVehicleDetail.tsx](AppointmentVehicleDetail.tsx)           | Conserva la descripción del cliente junto al turno, separada de los servicios cotizados.          |
 | [AppointmentWashReport.tsx](AppointmentWashReport.tsx)                 | Detalle del parte con acciones para el responsable, la administración o el titular.               |
 | [AppointmentWashReview.tsx](AppointmentWashReview.tsx)                 | La decisión siempre identifica el parte revisado para evitar aprobar un envío posterior.          |

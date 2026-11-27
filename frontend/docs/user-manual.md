@@ -8,6 +8,8 @@ anchos de teléfono y paisaje; no son capturas de un teléfono físico.
 
 La disponibilidad se elige con una rueda de horarios libres. Después de elegir una hora, tocá **Guardar** para agregarla a **Tu reserva**. En escritorio se muestra el resumen de arriba a la derecha; en teléfono la pantalla te lleva al resumen debajo del formulario. Revisá fecha, hora, servicios y precio, y tocá **Confirmar reserva** para crear el turno. Guardar solo prepara el resumen: el horario queda reservado después de confirmar y recibir la respuesta del servidor. Si cambiás la fecha, el tipo, los servicios o la hora, volvé a guardar el horario.
 
+El cliente elige el tipo de vehículo al reservar. Cuando el turno está confirmado, abre su detalle y usa **Completá los datos de tu vehículo** para cargar patente, marca, modelo y color, o vincular un vehículo propio de la misma categoría. El administrador no completa este formulario: ve el aviso de datos pendientes del cliente y, cuando este guarda, recibe la información automáticamente. Confirmar un turno pendiente no exige al administrador cargar el auto. Los ingresos presenciales conservan su carga rápida desde **Auto sin turno**.
+
 Las agendas y bandejas se actualizan automáticamente. Las capturas siguientes corresponden a las versiones anteriores del selector; las imágenes posteriores se conservan como referencia de los recorridos.
 
 ![Rueda de horarios disponibles](images/redesign-wheel-final.png)

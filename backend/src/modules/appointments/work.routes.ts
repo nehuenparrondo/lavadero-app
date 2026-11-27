@@ -19,7 +19,7 @@ import {
 export function mountWorkRoutes(router: Router) {
   router.put(
     '/:id/vehicle',
-    requireRole('client', 'admin'),
+    requireRole('client'),
     validate(attachVehicleSchema),
     endpoint((r) => attachVehicle(actor(r), paramId(r), r.body)),
   );

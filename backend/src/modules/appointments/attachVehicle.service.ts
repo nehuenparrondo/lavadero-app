@@ -1,5 +1,6 @@
 import type { z } from 'zod';
 import { AppError } from '../../errors/AppError.js';
+import { ForbiddenError } from '../../errors/ForbiddenError.js';
 import { NotFoundError } from '../../errors/NotFoundError.js';
 import type { Actor } from '../../types/domain.js';
 import type { Executor } from '../../utils/db.js';
@@ -15,12 +16,16 @@ import type { attachVehicleSchema } from './work.schema.js';
 type Attachment = z.infer<typeof attachVehicleSchema>;
 
 /** Vincula un vehículo a un turno ya confirmado bajo el mismo bloqueo que usa la agenda.
- * @param actor Cliente titular o administrador autenticado.
+ * @param actor Cliente titular autenticado; Administración y empleados solo consultan los datos.
  * @param id Identificador del turno.
  * @param input Identificador de un vehículo propio o sus datos para crearlo.
  * @returns Identificador vinculado, incluso ante un reintento del mismo formulario.
  */
 export function attachVehicle(actor: Actor, id: string, input: Attachment) {
+  if (actor.role !== 'client')
+    throw new ForbiddenError(
+      'Solo el cliente titular puede completar el vehículo de su turno.',
+    );
   return transaction(async (connection) => {
     await readSettings(connection, true);
     const appointment = await findAppointment(id, connection, true);

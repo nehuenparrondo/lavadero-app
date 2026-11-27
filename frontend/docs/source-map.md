@@ -3224,30 +3224,28 @@ export function AppointmentStatusFilter({ m }: { m: ReturnType<typeof useAppoint
 
 ## src/components/organisms/AppointmentVehicleAttachment.tsx
 
-Completa el vehículo de un turno ya confirmado.
+El cliente completa el vehículo de su turno confirmado, con la categoría que eligió al reservar.
 
 [Abrir fuente](../src/components/organisms/AppointmentVehicleAttachment.tsx)
 
-| Exportación                  | Responsabilidad                                 |
-| ---------------------------- | ----------------------------------------------- |
-| AppointmentVehicleAttachment | Completa el vehículo de un turno ya confirmado. |
+| Exportación                  | Responsabilidad                                                                                  |
+| ---------------------------- | ------------------------------------------------------------------------------------------------ |
+| AppointmentVehicleAttachment | El cliente completa el vehículo de su turno confirmado, con la categoría que eligió al reservar. |
 
 ### AppointmentVehicleAttachment
 
 ```ts
 export function AppointmentVehicleAttachment({
   appointment,
-  admin,
   refresh,
 }: {
   appointment: Appointment;
-  admin: boolean;
   refresh: () => Promise<void>;
 });
 ```
 
-- @param props Turno y recarga de detalle, con modo asistido para Administración.
-- @returns Formulario de datos y opción de usar un vehículo existente.
+- @param props Turno propio y recarga del detalle después de vincular el vehículo.
+- @returns Formulario exclusivo del cliente y opción de usar un vehículo propio existente.
 
 ## src/components/organisms/AppointmentVehicleDetail.tsx
 
@@ -5294,17 +5292,12 @@ Carga los vehículos del titular y confirma el vínculo sin volver a reservar el
 ### useAppointmentVehicle
 
 ```ts
-export function useAppointmentVehicle(
-  appointment: Appointment,
-  admin: boolean,
-  refresh: () => Promise<void>,
-);
+export function useAppointmentVehicle(appointment: Appointment, refresh: () => Promise<void>);
 ```
 
 - @param appointment Turno confirmado cuyo tipo quedó registrado al reservar.
-- @param admin Permite filtrar por titular en una reserva asistida.
 - @param refresh Actualiza el detalle con la patente asignada.
-- @returns Opciones compatibles y comandos para vincular o registrar.
+- @returns Vehículos propios compatibles y comandos del cliente para vincular o registrar.
 
 ## src/hooks/useAppointments.ts
 

@@ -2243,7 +2243,7 @@ Uso:
 
 ### AppointmentVehicleAttachment
 
-Completa el vehículo de un turno ya confirmado.
+El cliente completa el vehículo de su turno confirmado, con la categoría que eligió al reservar.
 
 [Fuente](../src/components/organisms/AppointmentVehicleAttachment.tsx)
 
@@ -2252,7 +2252,6 @@ Tipo del parámetro:
 ```ts
 {
   appointment: Appointment;
-  admin: boolean;
   refresh: () => Promise<void>;
 }
 ```
@@ -2260,13 +2259,12 @@ Tipo del parámetro:
 | Prop        | Obligatoria | Tipo                  |
 | ----------- | ----------- | --------------------- |
 | appointment | Sí          | `Appointment`         |
-| admin       | Sí          | `boolean`             |
 | refresh     | Sí          | `() => Promise<void>` |
 
 Uso:
 
 ```tsx
-<AppointmentVehicleAttachment appointment={appointment} admin={admin} refresh={refresh} />
+<AppointmentVehicleAttachment appointment={appointment} refresh={refresh} />
 ```
 
 ### AppointmentVehicleDetail

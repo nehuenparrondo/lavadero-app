@@ -887,7 +887,7 @@ Vincula un vehículo a un turno ya confirmado bajo el mismo bloqueo que usa la a
 export function attachVehicle(actor: Actor, id: string, input: Attachment);
 ```
 
-- @param actor Cliente titular o administrador autenticado.
+- @param actor Cliente titular autenticado; Administración y empleados solo consultan los datos.
 - @param id Identificador del turno.
 - @param input Identificador de un vehículo propio o sus datos para crearlo.
 - @returns Identificador vinculado, incluso ante un reintento del mismo formulario.

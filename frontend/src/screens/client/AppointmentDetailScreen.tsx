@@ -72,14 +72,14 @@ function appointmentTitle(
 /** La agenda muestra el turno aunque todavía no tenga patente. */
 function PendingVehicle({ m }: { m: ReturnType<typeof useAppointmentDetail> }) {
   const a = m.detail.data;
-  if (a?.status !== 'confirmed') return null;
-  if (m.user?.role === 'employee')
-    return <Notice message="Falta cargar el vehículo para comenzar el lavado." />;
-  return (
-    <AppointmentVehicleAttachment
-      appointment={a}
-      admin={m.user?.role === 'admin'}
-      refresh={m.refresh}
-    />
-  );
+  if (!a || !['pending', 'confirmed'].includes(a.status)) return null;
+  if (m.user?.role !== 'client')
+    return (
+      <Notice message="El cliente debe completar los datos de su vehículo desde su turno. Cuando los guarde, aparecerán acá automáticamente." />
+    );
+  if (a.status === 'pending')
+    return (
+      <Notice message="Cuando tu turno esté confirmado, completá los datos de tu vehículo desde esta pantalla." />
+    );
+  return <AppointmentVehicleAttachment appointment={a} refresh={m.refresh} />;
 }

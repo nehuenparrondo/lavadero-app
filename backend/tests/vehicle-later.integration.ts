@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { admin, api, client, employee, future, vehicle } from './support/context.js';
+import { database } from '../src/config/database.js';
 
 type CatalogService = {
   id: string;
@@ -100,6 +101,7 @@ test('reserva sin vehículo, ocupa el horario y vincula los datos bajo el mismo 
     api('put', base + '/vehicle', token, { vehicle: newVehicle });
   await attach(outsider.accessToken).expect(404);
   await attach(staff.accessToken).expect(403);
+  await attach(manager.accessToken).expect(403);
   const [linked, replay] = await Promise.all([
     attach(winner.accessToken),
     attach(winner.accessToken),
@@ -112,9 +114,48 @@ test('reserva sin vehículo, ocupa el horario y vincula los datos bajo el mismo 
   assert.equal(detail.vehiclePending, false);
   assert.equal(detail.startsAt, startsAt);
   assert.equal(detail.totalCents, quote.totalCents);
+  const adminDetail = (await api('get', base, manager.accessToken).expect(200)).body.data;
+  assert.equal(adminDetail.plate, detail.plate);
+  assert.equal(adminDetail.vehicleTypeId, vehicleTypeId);
+  assert.equal(adminDetail.vehiclePending, false);
   await api('patch', base + '/status', staff.accessToken, { status: 'in_progress' }).expect(
     200,
   );
+});
+
+test('administración confirma un pendiente sin completar el vehículo, que sigue a cargo del cliente', async () => {
+  const manager = await admin();
+  const customer = await client();
+  const { type, service } = await catalog(customer.accessToken);
+  const vehicleTypeId = type('car').id;
+  const serviceId = service('exterior').id;
+  const quote = (
+    await api('get', '/availability', customer.accessToken)
+      .query({ date: future(170), vehicleTypeId, serviceIds: serviceId })
+      .expect(200)
+  ).body.data;
+  const created = (
+    await api('post', '/appointments', customer.accessToken, {
+      vehicleTypeId,
+      serviceIds: [serviceId],
+      startsAt: quote.slots[0],
+    }).expect(201)
+  ).body.data;
+  // Prepara un pendiente histórico: las reservas nuevas ya se confirman automáticamente.
+  await database!.execute(
+    "UPDATE turnos SET status_id=(SELECT id FROM estados_turno WHERE code='pending') WHERE id=?",
+    [created.id],
+  );
+  await api('patch', `/appointments/${created.id}/status`, manager.accessToken, {
+    status: 'confirmed',
+  }).expect(200);
+  const confirmed = (
+    await api('get', `/appointments/${created.id}`, manager.accessToken).expect(200)
+  ).body.data;
+  assert.equal(confirmed.status, 'confirmed');
+  assert.equal(confirmed.vehiclePending, true);
+  assert.equal(confirmed.vehicleTypeId, vehicleTypeId);
+  assert.equal(confirmed.vehicleId, null);
 });
 
 test('vincula vehículo existente y la cancelación de un turno incompleto libera el horario', async () => {

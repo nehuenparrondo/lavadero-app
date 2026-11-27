@@ -5,19 +5,11 @@ import { useOptions } from './useOptions';
 
 /** Carga los vehículos del titular y confirma el vínculo sin volver a reservar el horario.
  * @param appointment Turno confirmado cuyo tipo quedó registrado al reservar.
- * @param admin Permite filtrar por titular en una reserva asistida.
  * @param refresh Actualiza el detalle con la patente asignada.
- * @returns Opciones compatibles y comandos para vincular o registrar.
+ * @returns Vehículos propios compatibles y comandos del cliente para vincular o registrar.
  */
-export function useAppointmentVehicle(
-  appointment: Appointment,
-  admin: boolean,
-  refresh: () => Promise<void>,
-) {
-  const options = useOptions<Vehicle>(
-    '/vehicles',
-    admin ? { ownerId: appointment.clientId ?? undefined } : {},
-  );
+export function useAppointmentVehicle(appointment: Appointment, refresh: () => Promise<void>) {
+  const options = useOptions<Vehicle>('/vehicles');
   const action = useAction();
   const attach = async (body: { vehicleId: string } | { vehicle: Record<string, string> }) => {
     const result = await action.run(
