@@ -9,7 +9,7 @@ export const settingsFields: FormFieldDefinition[] = [
     options: days.map((label, i) => ({ label, value: String(i + 1) })),
   },
   { name: 'opensAt', label: 'Apertura', kind: 'time', placeholder: '09:30' },
-  { name: 'closesAt', label: 'Cierre', kind: 'time', placeholder: '16:30' },
+  { name: 'closesAt', label: 'Cierre', kind: 'time', placeholder: '21:30' },
   { name: 'capacity', label: 'Vehículos que se pueden atender a la vez', kind: 'number' },
   {
     name: 'cancellation',

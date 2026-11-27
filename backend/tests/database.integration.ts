@@ -34,7 +34,7 @@ test('catálogos y configuración confirmada existen', async () => {
     [1, 2, 3, 4, 5, 6],
   );
   assert.equal(hours[0]?.opens_at, '09:30:00');
-  assert.equal(hours[0]?.closes_at, '16:30:00');
+  assert.equal(hours[0]?.closes_at, '21:30:00');
 });
 
 test('email, patente y claves foráneas se protegen en la base', async () => {

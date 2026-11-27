@@ -67,7 +67,7 @@ Las tarifas vigentes se consultan por servicio y tipo de vehículo. El administr
 
 ### Reserva y cancelación
 
-En Inicio elegí **Reservar mi lavado**. Seleccioná el tipo de vehículo, el lavado y los extras que quieras, y luego la fecha y el horario disponible con la rueda. Arrastrá la rueda o usá Anterior/Siguiente; la fila central indica la hora elegida. La app muestra el total en pesos argentinos y la duración estimada antes de confirmar. Atención inicial: lunes a sábado 09:30–16:30, un auto a la vez.
+En Inicio elegí **Reservar mi lavado**. Seleccioná el tipo de vehículo, el lavado y los extras que quieras, y luego la fecha y el horario disponible con la rueda. Arrastrá la rueda o usá Anterior/Siguiente; la fila central indica la hora elegida. La app muestra el total en pesos argentinos y la duración estimada antes de confirmar. Atención inicial: lunes a sábado 09:30–21:30, un auto a la vez.
 Elegí un solo lavado base. El encerado cuesta $15.000 y se combina con exterior o completo. La limpieza de tapizados cuesta $20.000 y también se puede pedir por separado. Para moto solo se ofrece **Lavado** por $15.000, con una duración inicial de 35 minutos.
 
 La grilla propone inicios cada 5 minutos; no implica que cada lavado dure 5 minutos.

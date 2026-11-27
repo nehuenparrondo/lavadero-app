@@ -86,7 +86,7 @@ test('patente, detalles, devolución a corrección, aprobación y mensaje asocia
   await submit('Se limpió la carrocería y las llantas.');
   await review(owner.accessToken, pending.wash.id, 'approved').expect(409);
   const latest = (await get(owner.accessToken)).body.data.wash;
-  await atBusinessTime('2026-11-03T16:30:00-03:00', () =>
+  await atBusinessTime('2026-11-03T21:30:00-03:00', () =>
     review(owner.accessToken, latest.id, 'approved').expect(409),
   );
   await atBusinessTime(startsAt, () =>

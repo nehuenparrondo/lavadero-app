@@ -28,7 +28,7 @@ export function OpeningHoursCard({
         borderColor: colors.border,
       }}
     >
-      <Text style={{ fontWeight: '700' }}>Te esperamos de 9:30 a 16:30</Text>
+      <Text style={{ fontWeight: '700' }}>Te esperamos de 9:30 a 21:30</Text>
       <ConnectionStatus state={state} onRetry={onRetry} />
     </View>
   );

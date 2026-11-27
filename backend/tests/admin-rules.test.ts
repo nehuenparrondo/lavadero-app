@@ -25,7 +25,7 @@ test('asistencia respeta zona argentina, apertura incluida y cierre excluido', (
   const hours = [1, 2, 3, 4, 5, 6].map((weekday) => ({
     weekday,
     opensAt: '09:30',
-    closesAt: '16:30',
+    closesAt: '21:30',
   })) as BusinessHour[];
   const original = Clock.now;
   try {
@@ -33,7 +33,9 @@ test('asistencia respeta zona argentina, apertura incluida y cierre excluido', (
       ['2026-11-16T12:29:59Z', false],
       ['2026-11-16T12:30:00Z', true],
       ['2026-11-16T19:29:59Z', true],
-      ['2026-11-16T19:30:00Z', false],
+      ['2026-11-16T19:30:00Z', true],
+      ['2026-11-17T00:29:59Z', true],
+      ['2026-11-17T00:30:00Z', false],
       ['2026-11-15T15:00:00Z', false],
     ] as const) {
       Clock.now = () => Date.parse(instant);

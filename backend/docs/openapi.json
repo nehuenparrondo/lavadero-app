@@ -4502,32 +4502,32 @@
                       {
                         "weekday": 1,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 2,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 3,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 4,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 5,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 6,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       }
                     ]
                   }
@@ -4655,32 +4655,32 @@
                       {
                         "weekday": 1,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 2,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 3,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 4,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 5,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 6,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       }
                     ]
                   }
@@ -4806,32 +4806,32 @@
                       {
                         "weekday": 1,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 2,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 3,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 4,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 5,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       },
                       {
                         "weekday": 6,
                         "opensAt": "09:30",
-                        "closesAt": "16:30"
+                        "closesAt": "21:30"
                       }
                     ]
                   }
@@ -4936,32 +4936,32 @@
                   {
                     "weekday": 1,
                     "opensAt": "09:30",
-                    "closesAt": "16:30"
+                    "closesAt": "21:30"
                   },
                   {
                     "weekday": 2,
                     "opensAt": "09:30",
-                    "closesAt": "16:30"
+                    "closesAt": "21:30"
                   },
                   {
                     "weekday": 3,
                     "opensAt": "09:30",
-                    "closesAt": "16:30"
+                    "closesAt": "21:30"
                   },
                   {
                     "weekday": 4,
                     "opensAt": "09:30",
-                    "closesAt": "16:30"
+                    "closesAt": "21:30"
                   },
                   {
                     "weekday": 5,
                     "opensAt": "09:30",
-                    "closesAt": "16:30"
+                    "closesAt": "21:30"
                   },
                   {
                     "weekday": 6,
                     "opensAt": "09:30",
-                    "closesAt": "16:30"
+                    "closesAt": "21:30"
                   }
                 ]
               }

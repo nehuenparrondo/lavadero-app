@@ -892,7 +892,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"timeZone\": \"America/Argentina/Buenos_Aires\",\n  \"cancellationNoticeMinutes\": 120,\n  \"simultaneousCapacity\": 1,\n  \"slotStepMinutes\": 5,\n  \"hours\": [\n    {\n      \"weekday\": 1,\n      \"opensAt\": \"09:30\",\n      \"closesAt\": \"16:30\"\n    },\n    {\n      \"weekday\": 2,\n      \"opensAt\": \"09:30\",\n      \"closesAt\": \"16:30\"\n    },\n    {\n      \"weekday\": 3,\n      \"opensAt\": \"09:30\",\n      \"closesAt\": \"16:30\"\n    },\n    {\n      \"weekday\": 4,\n      \"opensAt\": \"09:30\",\n      \"closesAt\": \"16:30\"\n    },\n    {\n      \"weekday\": 5,\n      \"opensAt\": \"09:30\",\n      \"closesAt\": \"16:30\"\n    },\n    {\n      \"weekday\": 6,\n      \"opensAt\": \"09:30\",\n      \"closesAt\": \"16:30\"\n    }\n  ]\n}",
+          "raw": "{\n  \"timeZone\": \"America/Argentina/Buenos_Aires\",\n  \"cancellationNoticeMinutes\": 120,\n  \"simultaneousCapacity\": 1,\n  \"slotStepMinutes\": 5,\n  \"hours\": [\n    {\n      \"weekday\": 1,\n      \"opensAt\": \"09:30\",\n      \"closesAt\": \"21:30\"\n    },\n    {\n      \"weekday\": 2,\n      \"opensAt\": \"09:30\",\n      \"closesAt\": \"21:30\"\n    },\n    {\n      \"weekday\": 3,\n      \"opensAt\": \"09:30\",\n      \"closesAt\": \"21:30\"\n    },\n    {\n      \"weekday\": 4,\n      \"opensAt\": \"09:30\",\n      \"closesAt\": \"21:30\"\n    },\n    {\n      \"weekday\": 5,\n      \"opensAt\": \"09:30\",\n      \"closesAt\": \"21:30\"\n    },\n    {\n      \"weekday\": 6,\n      \"opensAt\": \"09:30\",\n      \"closesAt\": \"21:30\"\n    }\n  ]\n}",
           "options": {
             "raw": {
               "language": "json"

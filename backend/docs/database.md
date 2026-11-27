@@ -334,7 +334,7 @@ expires_at DATETIME(3) indexado, consumed_at DATETIME(3) nullable. El código le
 viaja por el retorno y se canjea con PKCE. Los estados vencidos se limpian al generar nuevos. Los grants vencidos dejan de ser
 válidos por consulta; su purga periódica queda como tarea de mantenimiento, sin cron configurado.
 
-La instalación actual contiene 27 tablas y 18 migraciones aplicadas. Desarrollo escolar y producción usan usuarios limitados a su propia base; ver [MariaDB](mariadb.md).
+La instalación actual contiene 27 tablas y 19 migraciones. La migración 019 ajusta los horarios a 09:30–21:30 sin cambiar el esquema ni los turnos. Desarrollo escolar y producción usan usuarios limitados a su propia base; ver [MariaDB](mariadb.md).
 
 ## Migración 006 — vinculación social protegida
 
@@ -379,4 +379,4 @@ La migración 017 agrega limpieza del Inicio y autoría del cierre del empleado.
 
 Estados de cola: `pendiente`, `procesando`, `enviado`, `descartado` y `usado`. El trabajador reclama mediante bloqueo, puede reintentar después de fallos y comprueba otra vez cuenta/versión/vencimiento antes de enviar. El código y el contrato se explican en [seguridad y recuperación](security-recovery.md).
 
-La referencia agregada `database/schema.sql` incluye la migración 018. El registro `migraciones_esquema` lo crea el migrador; usar el proceso de migraciones como instalación habitual. Los archivos SQL históricos no se modificaron para documentarlos.
+La referencia agregada `database/schema.sql` incluye el esquema hasta la migración 018; la 019 solo actualiza los horarios operativos. El registro `migraciones_esquema` lo crea el migrador; usar el proceso de migraciones como instalación habitual. Los archivos SQL históricos no se modificaron para documentarlos.

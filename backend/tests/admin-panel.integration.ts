@@ -133,7 +133,7 @@ test('ingresos distintos serializan cupos; misma patente no duplica; fuera de ho
   const rejected = { ...a, requestId: randomUUID(), plate: plate() };
   for (const instant of [
     date + 'T09:29:59-03:00',
-    date + 'T16:30:00-03:00',
+    date + 'T21:30:00-03:00',
     '2027-11-14T12:00:00-03:00',
   ])
     await atBusinessTime(instant, () =>
@@ -192,7 +192,7 @@ test('fichaje solo laboral y creación administrativa sin rol admin', async () =
   const staff = await employee(owner.accessToken);
   const date = day();
   const path = '/attendance/' + staff.user.id + '/arrival';
-  for (const time of ['09:29:59', '16:30:00'])
+  for (const time of ['09:29:59', '21:30:00'])
     await atBusinessTime(date + 'T' + time + '-03:00', () =>
       api('post', path, owner.accessToken, { date }).expect(409),
     );

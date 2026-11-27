@@ -27,7 +27,7 @@ export const seedSchema = z
     BUSINESS_CLOSE_TIME: z
       .string()
       .regex(/^([01]\d|2[0-3]):[0-5]\d$/u)
-      .default('16:30'),
+      .default('21:30'),
     BUSINESS_OPEN_DAYS: z
       .string()
       .regex(/^[1-7](,[1-7])*$/u)

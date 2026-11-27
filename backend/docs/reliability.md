@@ -3,7 +3,7 @@
 ## Comportamiento corregido
 
 - Una cuenta sin vehículos recibe una explicación y acceso a registrar el auto. Al volver, los selectores recargan los datos del servidor.
-- Las fechas se eligen en un calendario táctil accesible. No se interpretan fechas inexistentes ni cambia el día por la zona del dispositivo. Atención configurada: pesos ARS, Argentina, 09:30–16:30, lunes a sábado; la duración depende de los servicios elegidos (30–40 minutos de referencia por lavado).
+- Las fechas se eligen en un calendario táctil accesible. No se interpretan fechas inexistentes ni cambia el día por la zona del dispositivo. Atención configurada: pesos ARS, Argentina, 09:30–21:30, lunes a sábado; la duración depende de los servicios elegidos (30–40 minutos de referencia por lavado).
 - Cambiar fecha, titular, vehículo o servicios invalida inmediatamente el horario anterior. Una consulta deshabilitada o fallida no conserva horarios anteriores. Confirmar exige un inicio futuro ofrecido por la cotización vigente; el servidor vuelve a validar capacidad y precios dentro de su transacción.
 - Disponibilidad diferencia día cerrado, jornada terminada, duración incompatible y cupos ocupados. Los errores permiten reintentar.
 - Al volver a una pantalla se actualizan sus datos. El detalle actualiza turno, cobros y comprobante después de cambios.

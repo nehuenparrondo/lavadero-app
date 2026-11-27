@@ -5429,6 +5429,12 @@ Escenarios y aserciones que verifican el comportamiento descrito por cada test.
 
 [Abrir fuente](../tests/booking.integration.ts)
 
+## tests/business-hours.integration.ts
+
+Escenarios y aserciones que verifican el comportamiento descrito por cada test.
+
+[Abrir fuente](../tests/business-hours.integration.ts)
+
 ## tests/cancellation.integration.ts
 
 Escenarios y aserciones que verifican el comportamiento descrito por cada test.

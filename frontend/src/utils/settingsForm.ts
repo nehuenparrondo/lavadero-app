@@ -8,7 +8,7 @@ export function settingsInitialValues(data: Settings | null) {
     ? {
         days: data.hours.map((h) => h.weekday).join(','),
         opensAt: data.hours[0]?.opensAt.slice(0, 5) ?? '09:30',
-        closesAt: data.hours[0]?.closesAt.slice(0, 5) ?? '16:30',
+        closesAt: data.hours[0]?.closesAt.slice(0, 5) ?? '21:30',
         capacity: String(data.simultaneousCapacity),
         cancellation: String(data.cancellationNoticeMinutes),
         step: String(data.slotStepMinutes),

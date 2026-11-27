@@ -35,6 +35,8 @@ Los valores privados se completan en `backend/.env` local o en Environment de Re
 
 El frontend solo conoce `EXPO_PUBLIC_API_URL` y `EXPO_PUBLIC_EAS_PROJECT_ID`. Toda variable `EXPO_PUBLIC_*` puede quedar visible en el código distribuido. En producción la URL API exige HTTPS; el arranque común permite HTTP únicamente para loopback en desarrollo explícito.
 
+La jornada vigente es de **09:30 a 21:30** en Argentina, con los mismos días de apertura. Las reglas y el cambio de datos de la migración 019 se explican en [horario de atención y límites](../backend/docs/business-hours.md). La disponibilidad y las operaciones laborales usan las filas de `horarios_atencion`, también cuando se accede desde una APK.
+
 `scripts/dev.mjs` admite `LAVADERO_API_PORT` y `LAVADERO_WEB_PORT` para elegir otros puertos libres. El código comprueba que sean distintos y válidos; no mata otros servicios que ya estén usando un puerto.
 
 ## MariaDB y unidades

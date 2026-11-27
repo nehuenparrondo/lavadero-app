@@ -137,7 +137,7 @@ test('Hoy usa fecha argentina del servidor; cobro completo permite finalizar sin
     api('post', base + '/finish', staff.accessToken, finish).expect(409),
   );
   await pay(current.totalCents - 100);
-  await atBusinessTime(date + 'T16:30:00-03:00', () =>
+  await atBusinessTime(date + 'T21:30:00-03:00', () =>
     api('post', base + '/finish', staff.accessToken, finish).expect(409),
   );
   await atBusinessTime('2027-11-14T12:00:00-03:00', () =>

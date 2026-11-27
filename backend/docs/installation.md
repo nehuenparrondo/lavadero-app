@@ -15,7 +15,7 @@ npm run check
 npm run dev
 ```
 
-Las **18 migraciones** construyen 27 tablas con nombres españoles y guardan sus checksums en `migraciones_esquema`. El segundo arranque no repite migraciones. Conservar intactos los archivos históricos y agregar una migración nueva para cada cambio. El migrador adapta la sintaxis histórica de MySQL a MariaDB.
+Las **19 migraciones** construyen 27 tablas con nombres españoles y configuran la jornada de 09:30 a 21:30. Sus checksums se guardan en `migraciones_esquema`. El segundo arranque no repite migraciones. Conservar intactos los archivos históricos y agregar una migración nueva para cada cambio. El migrador adapta la sintaxis histórica de MySQL a MariaDB.
 
 `database/schema.sql` es una alternativa para construir una base nueva; no mezclarla con el migrador porque no registra su historial. Las semillas cargan roles, estados, categorías, servicios, tarifas y horario inicial. El administrador se crea desde `SEED_ADMIN_EMAIL` y `SEED_ADMIN_PASSWORD` si no existe; repetir la semilla no cambia su contraseña. No ejecutar semillas sobre una copia de producción.
 

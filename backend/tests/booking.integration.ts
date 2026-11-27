@@ -60,7 +60,7 @@ test('reserva, propiedad, flujo del empleado, observaciones, cobro y comprobante
   }).expect(200);
   for (const instant of [
     '2026-11-03T09:29:59-03:00',
-    '2026-11-03T16:30:00-03:00',
+    '2026-11-03T21:30:00-03:00',
     '2026-11-08T12:00:00-03:00',
   ]) {
     const rejected = await atBusinessTime(instant, () =>
