@@ -25,6 +25,8 @@ async function assertEmployee(
   const user = await findUser(employeeId, executor);
   if (!user || user.role !== 'employee' || !user.isActive || user.deletedAt)
     throw new AppError(400, 'INVALID_EMPLOYEE', 'Seleccioná un empleado activo.');
+  // Guardar al responsable vigente es idempotente: no agrega otra ocupación.
+  if (appointment.employeeId === employeeId) return;
   const existing = await repo.overlapping(
     appointment.startsAt,
     appointment.endsAt,
@@ -125,7 +127,8 @@ export async function assignEmployee(actor: Actor, id: string, employeeId: strin
     if (!canReassign(appointment))
       throw new AppError(409, 'ASSIGNMENT_CLOSED', 'El turno ya no admite reasignaciones.');
     await assertEmployee(appointment, employeeId, settings.simultaneousCapacity, connection);
-    await repo.setEmployee(id, employeeId, connection);
+    if (appointment.employeeId !== employeeId)
+      await repo.setEmployee(id, employeeId, connection);
     return { assigned: true };
   });
 }

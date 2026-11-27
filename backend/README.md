@@ -68,6 +68,8 @@ Ver [comportamiento, módulos y pruebas de la versión 1.1.1](docs/reliability.m
 
 El flujo vigente de agenda, asignación, verificación, reclamos y fichajes está documentado en [docs/work-operations.md](docs/work-operations.md).
 
+Las [tarifas compartidas, el guardado de responsables y los pendientes desde hoy](docs/catalog-assignment-queue.md) describen el ajuste de la migración 020 y sus pruebas.
+
 La base usa nombres de tablas en español. Ver [MariaDB y diccionario de tablas](docs/mariadb.md).
 
 Ver [cancelaciones, observaciones y mejora de interfaz](docs/cancellation-notices.md).

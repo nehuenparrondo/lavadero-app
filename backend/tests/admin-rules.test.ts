@@ -5,6 +5,8 @@ import { attendanceWindow } from '../src/modules/attendance/attendance.window.js
 import { reportWeeks } from '../src/modules/reports/reportWeeks.js';
 import { createUserSchema, adminPatchSchema } from '../src/modules/users/users.schema.js';
 import type { Settings, BusinessHour } from '../src/modules/settings/settings.repository.js';
+import { appointmentQuerySchema } from '../src/modules/appointments/appointments.schema.js';
+import { agendaScope } from '../src/modules/appointments/agendaScope.repository.js';
 
 test('semanas ISO conservan centavos, ceros y límites de año/período', () => {
   const weeks = reportWeeks([
@@ -61,4 +63,27 @@ test('alta solo cliente/empleado y edición sin rol', () => {
     assert.equal(createUserSchema.safeParse({ ...account, role }).success, true);
   assert.equal(createUserSchema.safeParse({ ...account, role: 'admin' }).success, false);
   assert.equal(adminPatchSchema.safeParse({ role: 'employee' }).success, false);
+});
+
+test('pendientes administrativos comienzan al inicio del día argentino, también al cambiar UTC', () => {
+  const actor = { id: '1', role: 'admin' as const, authVersion: 1, canRecordPayments: true };
+  const query = appointmentQuerySchema.parse({ queue: 'requested' });
+  const original = Clock.now;
+  try {
+    Clock.now = () => Date.parse('2026-11-28T02:30:00Z');
+    assert.deepEqual(agendaScope(actor, query, 'America/Argentina/Buenos_Aires'), {
+      conditions: ['a.starts_at>=?'],
+      values: ['2026-11-27 03:00:00.000'],
+    });
+    Clock.now = () => Date.parse('2026-11-28T03:00:00Z');
+    assert.deepEqual(agendaScope(actor, query, 'America/Argentina/Buenos_Aires').values, [
+      '2026-11-28 03:00:00.000',
+    ]);
+    assert.deepEqual(agendaScope(actor, appointmentQuerySchema.parse({}), 'UTC'), {
+      conditions: [],
+      values: [],
+    });
+  } finally {
+    Clock.now = original;
+  }
 });

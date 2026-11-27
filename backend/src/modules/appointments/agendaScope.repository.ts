@@ -17,6 +17,8 @@ export function agendaScope(
   const today = DateTime.now().setZone(timeZone).startOf('day');
   const start = today.toUTC().toSQL({ includeOffset: false })!;
   const end = today.plus({ days: 1 }).toUTC().toSQL({ includeOffset: false })!;
+  if (actor.role === 'admin' && input.queue)
+    return { conditions: ['a.starts_at>=?'], values: [start] };
   if (actor.role === 'employee' && input.scope === 'today')
     return {
       conditions: [

@@ -5411,6 +5411,12 @@ Escenarios y aserciones que verifican el comportamiento descrito por cada test.
 
 [Abrir fuente](../tests/admin-rules.test.ts)
 
+## tests/admin-updates.integration.ts
+
+Escenarios y aserciones que verifican el comportamiento descrito por cada test.
+
+[Abrir fuente](../tests/admin-updates.integration.ts)
+
 ## tests/agenda.integration.ts
 
 Escenarios y aserciones que verifican el comportamiento descrito por cada test.

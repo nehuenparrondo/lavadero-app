@@ -3701,13 +3701,15 @@ export function DashboardHeading();
 
 ## src/components/organisms/DashboardIndicators.tsx
 
-Métricas diarias y pendientes globales; un recurso no disponible muestra un guion.
+Métricas diarias y pendientes desde hoy; un recurso no disponible muestra un guion. @param props Resumen diario y página de pendientes, consultados independientemente. @returns Tres indicadores sin tendencias inventadas ni ceros de reemplazo.
 
 [Abrir fuente](../src/components/organisms/DashboardIndicators.tsx)
 
-| Exportación         | Responsabilidad                                                                    |
-| ------------------- | ---------------------------------------------------------------------------------- |
-| DashboardIndicators | Métricas diarias y pendientes globales; un recurso no disponible muestra un guion. |
+| Exportación                                                                         | Responsabilidad                                                                     |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| DashboardIndicators                                                                 | Métricas diarias y pendientes desde hoy; un recurso no disponible muestra un guion. |
+| @param props Resumen diario y página de pendientes, consultados independientemente. |
+| @returns Tres indicadores sin tendencias inventadas ni ceros de reemplazo.          |
 
 ### DashboardIndicators
 
@@ -3720,9 +3722,6 @@ export function DashboardIndicators({
   pending: ReturnType<typeof useDashboard>['pending'];
 });
 ```
-
-- @param props Resumen diario y página de pendientes, consultados independientemente.
-- @returns Tres indicadores sin tendencias inventadas ni ceros de reemplazo.
 
 ## src/components/organisms/DashboardPending.tsx
 
@@ -5592,7 +5591,7 @@ Datos del tablero; refresca resumen y solicitudes como una sola acción de panta
 export function useDashboard();
 ```
 
-- @returns Usuario, reporte diario, pendientes globales, semanas del mes y recarga conjunta.
+- @returns Usuario, reporte diario, pendientes desde hoy, semanas del mes y recarga conjunta.
 
 ## src/hooks/useDebouncedValue.ts
 

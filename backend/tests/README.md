@@ -1,8 +1,9 @@
 # Pruebas
 
-`npm test`: 15 pruebas unitarias/HTTP sin MySQL. `npm run check`: además tipos, lint, build y auditoría de fuente.
+`npm test`: 28 pruebas unitarias/HTTP sin MySQL. `npm run check`: además tipos, lint, build y auditoría de fuente.
 `npm run test:database`: restricciones SQL con una base exclusiva ya migrada/sembrada.
-`npm run test:acceptance`: 17 escenarios sobre app Express y MySQL reales.
+`npm run test:acceptance`: escenarios sobre app Express y MySQL/MariaDB reales; requiere una base exclusiva.
+`npm run test:admin-updates`: cuatro escenarios de tarifas, responsables y pendientes; ver [reglas y comprobaciones](../docs/catalog-assignment-queue.md).
 
 Para aceptación definir NODE_ENV=test, DATABASE_URL a una base desechable, TLS/CA según
 el servidor, JWT_ACCESS_SECRET de al menos 32 caracteres, SEED_ADMIN_EMAIL y

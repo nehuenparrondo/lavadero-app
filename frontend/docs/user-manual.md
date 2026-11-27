@@ -193,7 +193,7 @@ En **Vehículos**, Administración puede registrar un vehículo para un cliente 
 
 ## Bandejas y actualización automática
 
-En Administración, **Lavados pendientes** muestra las solicitudes recién creadas en primer lugar, aunque sean para otro día. Abrí Nuevas solicitudes para ver la bandeja completa. Usá Hoy o Todas las fechas y la búsqueda por patente para cambiar de recorrido. Más filtros permite buscar cliente, empleado y estado sin listas enormes.
+En Administración, **Lavados pendientes** muestra solo las solicitudes sin iniciar de hoy y próximos días, con las recién creadas en primer lugar. Los turnos anteriores siguen disponibles en el historial. Abrí Nuevas solicitudes para ver la bandeja completa. Usá Hoy o Todas las fechas y la búsqueda por patente para cambiar de recorrido. Más filtros permite buscar cliente, empleado y estado sin listas enormes.
 
 Las pantallas con datos consultan automáticamente mientras están visibles y al volver a ellas; ya no hay botones Actualizar. Los formularios abiertos conservan lo que estás escribiendo. La reserva consulta cada 10 segundos y las agendas cada 15.
 
@@ -222,3 +222,7 @@ El tacho junto a Tus turnos activos limpia las tarjetas del Inicio después de c
 Mi agenda del empleado muestra únicamente los pendientes de Hoy. Mi historial conserva todas las fechas y el buscador por patente. Tras cobrar el total, el responsable describe el trabajo y pulsa Finalizar lavado: queda Finalizado directamente y sale de Hoy, sin aprobación administrativa. El sistema comprueba el horario laboral y conserva quién hizo el trabajo.
 
 Al enviar un reclamo llega a Pendientes del administrador. El resumen muestra el contador de casos abiertos y un acceso directo; la bandeja se actualiza sola. La respuesta vuelve al cliente.
+
+### Tarifas y responsables actualizados
+
+Interior y exterior tienen el mismo precio por categoría: Auto $15.000, Camioneta $20.000 y Utilitario $17.000 ARS. Cliente, empleado y administrador consultan el mismo catálogo; las reservas anteriores conservan su precio pactado. En el detalle administrativo, **Empleado responsable** muestra la asignación actual. Elegí un empleado activo y pulsá **Guardar responsable**: aparece la confirmación incluso si ya estaba elegido.

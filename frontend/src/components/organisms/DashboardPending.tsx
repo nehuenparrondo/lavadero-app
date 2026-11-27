@@ -14,7 +14,7 @@ export function DashboardPending({
     <>
       <SectionHeader
         title="Lavados pendientes"
-        subtitle="Las nuevas solicitudes aparecen primero, aunque sean para otro día."
+        subtitle="Hoy y próximos días. Las nuevas solicitudes aparecen primero."
       />
       <PendingAppointments
         items={r.data?.items ?? []}

@@ -3,7 +3,7 @@ import type { useDashboard } from '../../hooks/useDashboard';
 import { overviewStyles as s } from '../../theme/overview.styles';
 import { money } from '../../utils/format';
 import { MetricTile } from '../molecules/MetricTile';
-/** Métricas diarias y pendientes globales; un recurso no disponible muestra un guion.
+/** Métricas diarias y pendientes desde hoy; un recurso no disponible muestra un guion.
  * @param props Resumen diario y página de pendientes, consultados independientemente.
  * @returns Tres indicadores sin tendencias inventadas ni ceros de reemplazo.
  */
@@ -31,7 +31,7 @@ export function DashboardIndicators({
       <MetricTile
         label="Lavados pendientes"
         value={pending.data ? String(pending.data.total) : '—'}
-        detail="Solicitudes todavía sin iniciar"
+        detail="Sin iniciar · hoy y próximos días"
         icon="calendar"
       />
     </View>

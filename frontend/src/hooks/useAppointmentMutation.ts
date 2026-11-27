@@ -7,9 +7,15 @@ import { useAction } from './useAction';
  */
 export function useAppointmentMutation(id: string, refresh: () => Promise<void>) {
   const action = useAction();
-  const mutate = async (method: 'post' | 'patch', path: string, body: unknown) => {
-    const result = await action.run(() =>
-      writeResource(method, `/appointments/${id}${path}`, body),
+  const mutate = async (
+    method: 'post' | 'patch',
+    path: string,
+    body: unknown,
+    success?: string,
+  ) => {
+    const result = await action.run(
+      () => writeResource(method, `/appointments/${id}${path}`, body),
+      success,
     );
     if (result !== undefined) await refresh();
     return result;

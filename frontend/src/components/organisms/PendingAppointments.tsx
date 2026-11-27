@@ -24,7 +24,9 @@ export function PendingAppointments({
           onPress={() => router.push(`/appointment/${a.id}`)}
         />
       ))}
-      {!loading && !items.length && <Text>No hay turnos por atender.</Text>}
+      {!loading && !items.length && (
+        <Text>No hay lavados pendientes para hoy ni próximos días.</Text>
+      )}
       <Button
         label="Ver solicitudes pendientes"
         variant="secondary"

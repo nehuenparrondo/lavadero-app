@@ -10,7 +10,12 @@ export function appointmentCommands(
   mutate: ReturnType<typeof useAppointmentMutation>['mutate'],
 ) {
   const assign = async () => {
-    await mutate('patch', '/assignment', { employeeId: flags.employeeId });
+    await mutate(
+      'patch',
+      '/assignment',
+      { employeeId: flags.employeeId },
+      'Responsable guardado.',
+    );
   };
   const cancel = async (v: Record<string, string>) => {
     if ((await mutate('post', '/cancel', { reason: v.reason ?? '' })) !== undefined)

@@ -3,7 +3,7 @@ import type { CustomerMessage } from '../types/operations';
 import { useAuth } from './useAuth';
 import { useRemoteData } from './useRemoteData';
 /** Datos del tablero; refresca resumen y solicitudes como una sola acción de pantalla.
- * @returns Usuario, reporte diario, pendientes globales, semanas del mes y recarga conjunta.
+ * @returns Usuario, reporte diario, pendientes desde hoy, semanas del mes y recarga conjunta.
  */
 export function useDashboard() {
   const { user } = useAuth();

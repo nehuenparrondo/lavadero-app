@@ -13,22 +13,32 @@ export function AppointmentAssignment({ m }: { m: ReturnType<typeof useAppointme
   return (
     <Card>
       <Text style={{ fontWeight: '700' }}>Empleado responsable</Text>
-      <ChoiceGroup
-        options={m.employees.map((e) => ({
-          value: e.id,
-          label: `${e.firstName} ${e.lastName}`,
-        }))}
-        value={m.employeeId}
-        onChange={m.setEmployeeId}
-      />
+      <Text accessibilityLiveRegion="polite">
+        Responsable actual: {appointment.employeeName ?? 'Sin asignar'}
+      </Text>
+      <AssignmentChoices m={m} />
       <Button
         label="Guardar responsable"
-        disabled={!m.employeeId || m.employeeId === appointment.employeeId}
+        disabled={!m.employees.some((employee) => employee.id === m.employeeId)}
         loading={m.action.busy}
         onPress={() => {
           void m.assign();
         }}
       />
     </Card>
+  );
+}
+
+/** Mantiene la misma selección y confirmación para todos los empleados activos. */
+function AssignmentChoices({ m }: { m: ReturnType<typeof useAppointmentDetail> }) {
+  return (
+    <ChoiceGroup
+      options={m.employees.map((employee) => ({
+        value: employee.id,
+        label: `${employee.firstName} ${employee.lastName}`,
+      }))}
+      value={m.employeeId}
+      onChange={m.setEmployeeId}
+    />
   );
 }

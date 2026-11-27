@@ -2763,7 +2763,7 @@ Uso:
 
 ### DashboardIndicators
 
-Métricas diarias y pendientes globales; un recurso no disponible muestra un guion.
+Métricas diarias y pendientes desde hoy; un recurso no disponible muestra un guion.
 
 [Fuente](../src/components/organisms/DashboardIndicators.tsx)
 
