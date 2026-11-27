@@ -3701,15 +3701,13 @@ export function DashboardHeading();
 
 ## src/components/organisms/DashboardIndicators.tsx
 
-Métricas diarias y pendientes desde hoy; un recurso no disponible muestra un guion. @param props Resumen diario y página de pendientes, consultados independientemente. @returns Tres indicadores sin tendencias inventadas ni ceros de reemplazo.
+Métricas diarias y pendientes desde hoy; un recurso no disponible muestra un guion.
 
 [Abrir fuente](../src/components/organisms/DashboardIndicators.tsx)
 
-| Exportación                                                                         | Responsabilidad                                                                     |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| DashboardIndicators                                                                 | Métricas diarias y pendientes desde hoy; un recurso no disponible muestra un guion. |
-| @param props Resumen diario y página de pendientes, consultados independientemente. |
-| @returns Tres indicadores sin tendencias inventadas ni ceros de reemplazo.          |
+| Exportación         | Responsabilidad                                                                     |
+| ------------------- | ----------------------------------------------------------------------------------- |
+| DashboardIndicators | Métricas diarias y pendientes desde hoy; un recurso no disponible muestra un guion. |
 
 ### DashboardIndicators
 
@@ -3722,6 +3720,9 @@ export function DashboardIndicators({
   pending: ReturnType<typeof useDashboard>['pending'];
 });
 ```
+
+- @param props Resumen diario y página de pendientes, consultados independientemente.
+- @returns Tres indicadores sin tendencias inventadas ni ceros de reemplazo.
 
 ## src/components/organisms/DashboardPending.tsx
 

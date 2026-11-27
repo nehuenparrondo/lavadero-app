@@ -43,10 +43,10 @@ function AgendaSearch({ m }: { m: ReturnType<typeof useAppointments> }) {
         <SearchBar label="Buscar por patente" value={m.plate} onChange={m.setPlate} />
       )}
       {!m.plate && <DateInput label="Elegir día" value={m.date} onChange={m.setDate} />}
-      {m.mode === 'client' && m.date && (
+      {m.mode === 'client' && Boolean(m.date) && (
         <Button label="Todas las fechas" variant="quiet" onPress={() => m.setDate('')} />
       )}
-      {m.plate && (
+      {Boolean(m.plate) && (
         <Button label="Limpiar búsqueda" variant="quiet" onPress={() => m.setPlate('')} />
       )}
     </View>

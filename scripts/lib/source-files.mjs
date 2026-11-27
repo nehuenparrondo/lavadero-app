@@ -26,13 +26,13 @@ export function typescriptFor(project) {
   return createRequire(join(project, 'package.json'))('typescript');
 }
 
-/** Obtiene texto y AST sin importar ni ejecutar el archivo inspeccionado.
+/** Obtiene texto y AST con saltos LF, sin importar ni ejecutar el archivo inspeccionado.
  * @param {typeof import('typescript')} ts Compilador del proyecto.
  * @param {string} file Archivo de código propio.
  * @returns {{ text: string, source: import('typescript').SourceFile }} Entrada para auditoría/documentación.
  */
 export function parseSource(ts, file) {
-  const text = readFileSync(file, 'utf8');
+  const text = readFileSync(file, 'utf8').replaceAll('\r\n', '\n');
   return { text, source: ts.createSourceFile(file, text, ts.ScriptTarget.Latest, true) };
 }
 
