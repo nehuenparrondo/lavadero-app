@@ -15,7 +15,7 @@ import { assertTransition } from './transitions.js';
 import { assertTeamCapacity } from './teamCapacity.js';
 import { saveCancellation } from './cancellation.service.js';
 
-/** Valida empleado activo y evita doble asignación al reactivar/asignar un turno. */
+/** Valida identidad activa; comprueba ocupación solo cuando cambia el responsable. */
 async function assertEmployee(
   appointment: Appointment,
   employeeId: string,
@@ -111,12 +111,12 @@ async function claimAppointment(actor: Actor, appointment: Appointment, executor
     await repo.setEmployee(appointment.id, actor.id, executor);
   }
 }
-/** Asigna/reasigna sin cambiar estado; confirmar es una acción administrativa separada.
- * @param actor - Actor autenticado por el middleware; determina rol y propiedad.
- * @param id - Identificador del recurso dentro del proyecto actual.
- * @param employeeId - Empleado activo que se asigna o consulta.
- * @returns `Promise<{ assigned: boolean; }>`.
- * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
+/** Guarda un responsable activo sin confirmar ni cambiar el estado del turno.
+ * @param actor Administrador autenticado y autorizado por la ruta; no se acepta un actor elegido por el body.
+ * @param id Turno que todavía admite reasignación; se bloquea después de la configuración común.
+ * @param employeeId Empleado activo; cambiarlo exige capacidad y ausencia de superposiciones.
+ * @returns assigned true; guardar al responsable vigente no incrementa la versión ni agrega ocupación.
+ * @throws AppError INVALID_EMPLOYEE, ASSIGNMENT_CLOSED o EMPLOYEE_BUSY si no se cumple la regla correspondiente.
  */
 export async function assignEmployee(actor: Actor, id: string, employeeId: string) {
   return transaction(async (connection) => {

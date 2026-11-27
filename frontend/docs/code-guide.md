@@ -46,8 +46,8 @@ Cliente: HomeScreen compone saludo, BookingInvitation, ClientQuickActions y Clie
 useHome ordena las próximas tres visitas de la lista autorizada.
 Empleado: EmployeeAgendaScreen muestra los lavados pendientes de hoy; las consultas
 de otras fechas permanecen en el historial. useAgendaResources consulta el resumen solo en la agenda.
-Administrador: DashboardScreen reúne reporte diario, solicitudes globales pendientes y
-actividad semanal. Los recursos y su recarga se coordinan en useDashboard.
+Administrador: DashboardScreen reúne reporte diario, solicitudes pendientes desde hoy y
+actividad por semanas del mes. Los recursos y su recarga se coordinan en useDashboard.
 
 La paleta central define superficies, azul de acción, navegación oscura y acento.
 No copiar colores de marca en pantallas nuevas. Los gráficos incluyen cifras textuales,
@@ -86,7 +86,7 @@ fallida no elimina una colección ya cargada ni oculta el formulario que debe co
 
 ## Reserva y cobro
 
-useBookingSelection invalida slot al cambiar titular, categoría, servicios o fecha.
+useBookingSelection separa draftSlot (rueda) de slot (hora guardada en Tu reserva). useBookingConfirmation permite Guardar con la cotización vigente y Confirmar solo después de ese guardado. Ninguna de esas selecciones locales ocupa capacidad: la reserva existe al confirmar el POST. Cambiar titular, categoría, servicios o fecha invalida ambas horas.
 Cambiar titular también limpia categoría/servicios; cambiar categoría limpia servicios.
 useBookingResources ofrece categorías y servicios con tarifa por tipo. El cliente puede confirmar sin vehículo y agregarlo después mediante useAppointmentVehicle.
 La cotización de availability viene del backend; la UI solo presenta total y duración.
@@ -139,4 +139,4 @@ npm run docs:components regenera props y ejemplos. Corregir primero los comentar
 en su fuente y luego regenerar. La explicación de invariantes y decisiones de esta
 guía se mantiene a mano cuando cambia un caso de uso.
 
-> Actualización: la decisión posterior del usuario establece agenda compartida. Consultar [shared-agenda.md](shared-agenda.md) para la regla vigente; capturas anteriores documentan su versión original.
+La agenda del equipo se comparte, pero trabajar requiere la responsabilidad autorizada por la API. useAppointmentMutation vuelve a consultar el detalle tras un guardado correcto; el responsable actual puede guardarse otra vez y recibe confirmación. La guía de pantallas vigente está en [el manual de main](../../MANUAL-DE-USUARIO.md).

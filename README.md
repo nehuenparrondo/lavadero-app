@@ -6,6 +6,8 @@ El proyecto completo está en esta carpeta `main`, con un repositorio de GitHub 
 main/
 ├── backend/       API Express, autenticación, reglas, MariaDB y migraciones
 ├── frontend/      Expo, interfaz web e iPhone/Android, vistas de los tres roles
+├── MANUAL-DE-USUARIO.md  Guía práctica de Administración y Empleado
+├── docs/          Arquitectura, configuración y mantenimiento del conjunto
 ├── scripts/       Instalación, arranque conjunto y verificación
 ├── package.json   Comandos comunes
 └── render.yaml    Publicación de ambos servicios desde este repositorio
@@ -62,6 +64,8 @@ Los dos servicios toman la rama `main` del repositorio único. La raíz del serv
 `render.yaml` reúne esta configuración. Los secretos se completan en Render y se conservan en los servicios existentes, junto con las direcciones públicas y los datos publicados.
 
 ## Documentación
+
+Para usar la aplicación, abrir el [manual de usuario actualizado](MANUAL-DE-USUARIO.md): incluye los recorridos de Administración y Empleado, ejemplos, permisos, cobros y solución de dudas. No requiere conocer el código.
 
 Empezar por la [guía común del código](docs/README.md), con [arquitectura](docs/architecture.md), [configuración](docs/configuration.md) y [mantenimiento/pruebas](docs/maintenance.md). Para regenerar mapas, índices y contratos de componentes: `npm run docs`. `npm run docs:check` detecta documentación generada desactualizada sin escribir archivos.
 

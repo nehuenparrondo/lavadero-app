@@ -1,32 +1,32 @@
-# Revisión de documentación y modularidad — 20/11/2026
+# Revisión de documentación y modularidad — 27/11/2026
 
-## Alcance y resultado
+## Alcance
 
-Se completaron contratos de reservas, asistencia, mensajes, sesiones, filtros y migraciones. Se corrigieron comentarios genéricos/incorrectos y guías que describían la base anterior, el vehículo obligatorio antes de reservar o la revisión obligatoria del cierre. La referencia agregada SQL incorpora las dos tablas de recuperación de la migración 018; los archivos de migración históricos permanecen intactos.
+La estructura vigente es `main/backend`, `main/frontend` y un único repositorio. La raíz incorpora [MANUAL-DE-USUARIO.md](../MANUAL-DE-USUARIO.md), con recorridos didácticos de Administración y Empleado, ejemplos y ayuda. Los antiguos manuales enlazan a ese documento en lugar de mantener copias contradictorias.
 
-Las auditorías revisan **545 archivos** de aplicación/soporte SQL, **1.345 funciones/callbacks** y **674 contratos de funciones públicas**, incluidos exports de funciones arrow. Cada parámetro público y su resultado tienen documentación. No se detectaron ciclos ni cruces de capa prohibidos. Los mapas abarcan además scripts, pruebas y puntos de entrada/configuración de ambas aplicaciones: 202 archivos backend y 387 frontend. El catálogo describe 163 componentes con props y ejemplos.
+Se revisaron las guías y los módulos de identidad/sesión, reservas y vehículo posterior, agenda por rol, asignación, estados, pagos, cierre, mensajes y asistencia. Se precisaron comentarios sobre entradas, unidades, permisos, bloqueos, idempotencia y resultados. Se eliminaron referencias vigentes al cierre de 16:30, sesión web solo por pestaña, fecha seleccionable en Mi agenda y obligación universal de revisión administrativa. Las guías conservan el circuito real alternativo para empleados sin habilitación de cobro.
 
-Los README de producción, mapas y catálogo se regeneran desde AST y se comparan en CI. Las reglas del negocio y las decisiones se explican en las guías manuales, enlazadas desde [la entrada principal](README.md). No se copian secretos ni dependencias de terceros a los documentos.
+Las reglas actuales incluyen jornada 09:30–21:30, Guardar antes de Confirmar, datos del vehículo cargados por el cliente, ingreso sin garaje, seis tarifas compartidas de la migración 020, guardado idempotente del responsable y pendientes administrativos desde hoy. Los contratos anteriores y sus importes no cambian.
 
-## Separaciones realizadas
+## Documentación y separación de responsabilidades
 
-- La consulta de vehículos pasa por servicio antes del repositorio. Solo Administración puede ampliar el filtro de titular; el cliente sigue viendo únicamente los propios.
-- La vinculación/descripción del vehículo, limpieza visual del Inicio y marca de cierre del empleado delegan SQL en repositorios. Se conservaron sentencias, parámetros, conexión y orden de bloqueos.
-- Auditoría y generador de mapas comparten módulos entre backend y frontend; se retiraron sus copias duplicadas. Las herramientas comunes tienen lint, formato y pruebas propios.
+| Alcance de la auditoría                                                  | Backend | Frontend |
+| ------------------------------------------------------------------------ | ------: | -------: |
+| Archivos TypeScript de aplicación/soporte SQL                            |     174 |      391 |
+| Funciones y callbacks analizados                                         |     500 |      900 |
+| Contratos públicos con parámetros y resultado documentados               |     311 |      390 |
+| Archivos propios incluidos en el mapa, con pruebas/scripts/configuración |     205 |      410 |
 
-## Verificación de esta revisión
+El catálogo describe 166 componentes con props y ejemplos. Los comentarios explican intención e invariantes; los tipos describen la forma de los datos. Los callbacks sencillos no repiten cada instrucción. Los mapas y README de carpetas se generan desde AST y normalizan saltos LF/CRLF para coincidir en Windows y Linux.
 
-| Comprobación                                 | Resultado                                                                      |
-| -------------------------------------------- | ------------------------------------------------------------------------------ |
-| Tipos, lint, compilación backend y auditoría | Aprobados.                                                                     |
-| Tipos, lint y auditoría frontend             | Aprobados.                                                                     |
-| Unitarias backend/frontend                   | 23 + 25 aprobadas.                                                             |
-| Herramientas comunes                         | 9 pruebas aprobadas, lint y formato correctos.                                 |
-| Aceptación MariaDB QA                        | 13 pruebas aprobadas: management, client-employee, vehicle-later y operations. |
-| Documentación generada                       | Mapas/README y catálogo coinciden con la fuente.                               |
-| Formato y enlaces principales                | Aprobados en raíz y aplicaciones.                                              |
-| Migraciones históricas                       | Sin cambios.                                                                   |
+No se detectaron ciclos de dependencias ni cruces de capa prohibidos. Las rutas delegan en pantallas; las pantallas componen componentes/hooks; el transporte encapsula HTTP. En backend, controllers adaptan solicitudes, servicios validan y coordinan transacciones, y repositorios usan SQL parametrizado. No hizo falta fragmentar más estos módulos para esta revisión. Los límites de 149 líneas por archivo de producción y 30 por cuerpo de función son controles auxiliares, no una prueba absoluta de calidad.
 
-Total: **70 pruebas aprobadas, cero fallos**. La aceptación utilizó una base QA separada; no ejecutó escenarios destructivos en producción. No se repitió la aceptación de todas las suites ni se instaló un APK/iPhone en esta revisión. Los cambios del frontend son documentación y herramientas; la compilación web/Android se comprueba también en el flujo de CI.
+## Comprobación de esta revisión
 
-Los conteos son una instantánea de esta revisión. La documentación de parámetros y los límites de tamaño ayudan a mantener el código, pero no sustituyen las pruebas de permisos, concurrencia y recorrido cuando cambien reglas del negocio.
+`npm run check` desde main verifica herramientas comunes, documentación generada y ambas aplicaciones: 28 pruebas backend, 42 frontend y 10 de herramientas, además de tipos, lint, compilación backend y auditoría. El formato comprende también el manual de la raíz. Se comprueban los enlaces locales de las guías modificadas.
+
+Los cambios de fuente son comentarios; se conserva el código ejecutable y el esquema. La revisión no necesita migraciones ni datos de prueba productivos. La aceptación anterior de tarifas, tres responsables, conflictos y fechas aprobó cuatro escenarios MariaDB en la corrección incorporada en `0be8f67`; no se presenta como una nueva ejecución de esta revisión documental.
+
+CI vuelve a comprobar las exportaciones web/Android al publicar. Una exportación no es una instalación en teléfono y este trabajo no reconstruye un APK. Las capturas e informes antiguos se conservan como evidencia de sus versiones; las instrucciones actuales comienzan en el README y manual de main.
+
+Resultado local: **80 pruebas aprobadas, cero fallos**, con tipos, lint, compilación backend, formato y documentación generada correctos. Se validaron 1.161 enlaces locales, incluidos 12 enlaces a secciones, sin destinos rotos. Los 14 archivos TypeScript anotados producen el mismo JavaScript al retirar comentarios que la base `684c9af`; no se modificó el comportamiento para realizar esta revisión.

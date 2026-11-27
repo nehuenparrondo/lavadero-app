@@ -7,12 +7,13 @@ import type { loginSchema, registerSchema } from './auth.schema.js';
 import { createSession } from './session.service.js';
 import { signAccess } from './token.service.js';
 
-/** Registra siempre Cliente y no acepta privilegios del request.
- * @param input - Entrada validada por el esquema del caso de uso.
- * @returns `Promise<{ user: import("../../types/domain.js").User; accessToken: string; refreshToken: string; expiresIn: number; sessionId: string; }>`.
- * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
+/** Crea una cuenta Cliente y su sesión; el rol nunca se toma de la solicitud.
+ * @param input Identidad y contraseña validadas por registerSchema; la contraseña se hashea antes de persistir.
+ * @returns Perfil público, access JWT de 15 minutos y refresh opaco; nunca devuelve el hash de contraseña.
+ * @remarks El alta y la sesión comparten transacción: un fallo no deja una cuenta creada parcialmente.
  */
 export async function register(input: z.infer<typeof registerSchema>) {
+  // Comprobar la firma antes del alta evita crear una cuenta que no pueda iniciar sesión.
   await signAccess({
     id: 'configuration-check',
     role: 'client',
@@ -27,10 +28,10 @@ export async function register(input: z.infer<typeof registerSchema>) {
     return createSession(identity, connection);
   });
 }
-/** Autentica sin revelar si el email o la contraseña fue incorrecto.
- * @param input - Entrada validada por el esquema del caso de uso.
- * @returns `Promise<{ user: import("../../types/domain.js").User; accessToken: string; refreshToken: string; expiresIn: number; sessionId: string; }>`.
- * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
+/** Autentica una cuenta local activa sin revelar cuál de las credenciales falló.
+ * @param input Correo normalizado y contraseña validados por loginSchema; no se guardan en logs.
+ * @returns Perfil público y sesión con access/refresh; conserva el rol vigente de la cuenta.
+ * @throws AppError INVALID_CREDENTIALS para cuenta desconocida, social sin contraseña, inactiva o contraseña incorrecta.
  */
 export async function login(input: z.infer<typeof loginSchema>) {
   const identity = await findByEmail(input.email);

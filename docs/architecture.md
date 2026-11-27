@@ -34,7 +34,7 @@ Un controller convierte una solicitud validada en una llamada al servicio; no im
 
 `backend/src/app.ts` compone Express sin abrir un puerto, lo que permite probar la app con Supertest. `server.ts` escucha el puerto, instala el cierre y el trabajador de correo; `routes.ts` monta la API versionada. `/health` comprueba proceso y `/ready` consulta la base.
 
-`frontend/src/app/_layout.tsx` compone proveedores y navegación. AuthContext restaura la sesión sin desmontar repetidamente las rutas; ThemeContext conserva la preferencia visual. `scripts/dev.mjs` inicia ambos procesos con puertos comprobados y URL local explícita. `development-env.mjs` exige una base terminada en `_dev` y deshabilita Google local para no mezclar retornos de producción.
+`frontend/src/app/_layout.tsx` compone proveedores y navegación. AuthContext restaura la sesión sin desmontar repetidamente las rutas; ThemeContext conserva la preferencia visual. `scripts/dev.mjs` inicia ambos procesos con puertos comprobados y URL local explícita. `development-env.mjs` exige una base terminada en `_dev` y deshabilita los tres proveedores sociales locales para no mezclar retornos de producción.
 
 ## Acceso y sesión
 
@@ -46,7 +46,7 @@ Google, Discord y GitHub se habilitan únicamente si tienen sus credenciales pri
 
 ## Reserva y disponibilidad
 
-1. `useBookingSelection` conserva categoría, servicio base, extras, fecha y horario. La fecha comienza sin seleccionar. Cambiar una selección relevante invalida el horario anterior.
+1. `useBookingSelection` conserva categoría, servicio base, extras, fecha y horario. La fecha comienza sin seleccionar. `bookingDraft` distingue la hora de la rueda de la guardada en el resumen: Guardar prepara la confirmación, no ocupa el horario. Cambiar una selección relevante invalida el horario anterior.
 2. `useBookingResources` consulta catálogo y disponibilidad. El backend cotiza en centavos y minutos; la interfaz no envía un precio como autoridad.
 3. `schedule.ts` interpreta el calendario del negocio y convierte a UTC. `intervals.ts` y `teamCapacity.ts` y los servicios de agenda comprueban intervalos `[inicio, fin)`, capacidad y ocupación.
 4. Al confirmar, `booking.service.ts` toma el bloqueo de `configuracion_negocio`, recotiza y comprueba otra vez el horario. Dos solicitudes no pueden confirmar el mismo inicio. Una consulta previa no reserva lugar.
@@ -54,6 +54,10 @@ Google, Discord y GitHub se habilitan únicamente si tienen sus credenciales pri
 6. El cliente agrega patente/vehículo después de confirmar. `attachVehicle.service.ts` valida titularidad, categoría y compatibilidad con el contrato existente. Un ingreso presencial se guarda en `ingresos_sin_turno` sin exigir garaje.
 
 El catálogo admite un único lavado base. Cera/tapizados son extras; Moto ofrece su lavado específico. Las restricciones las valida la API aunque la UI haya ocultado una opción. Los cambios posteriores de tarifa no reescriben el contrato de visitas anteriores.
+
+`tarifas_servicio` es común a los tres roles; la migración 020 actualiza únicamente las seis tarifas interior/exterior de Auto, Camioneta y Utilitario. El código estable `suv` corresponde al nombre actual Utilitario. La jornada vigente de `horarios_atencion` es 09:30–21:30; se valida la duración completa, incluidos extras. Ver [tarifas y agenda](../backend/docs/catalog-assignment-queue.md) y [límites horarios](../backend/docs/business-hours.md).
+
+Para el panel administrativo, `agendaScope.repository.ts` limita `queue=requested` desde la medianoche local convertida a UTC. Lista y contador comparten predicado; el historial general conserva fechas anteriores. `assignEmployee` acepta guardar al responsable activo vigente sin incrementar versión y conserva validaciones de ocupación cuando cambia la asignación.
 
 ## Actualización automática y errores
 
@@ -93,7 +97,7 @@ La cancelación exige motivo persistente, autor e historial. Los avisos de `canc
 | Tipos/servicios/tarifas | Catálogos activos, precios por categoría y conservación del contrato reservado.                                        |
 | Mensajes                | Reclamos persistentes, devoluciones únicas por parte y respuesta administrativa visible al titular.                    |
 | Asistencia              | Administrador registra llegada observada solo hoy y en horario/día laboral; prevalece el primer fichaje.               |
-| Reportes                | Importes por fecha real del pago y lavados por fecha de trabajo; semanas, servicios y períodos del calendario local.   |
+| Reportes                | Cobros por su fecha real, finalizados por fin agendado y servicios por inicio del turno; calendario local.             |
 | Configuración           | Zona, moneda, capacidad, días, horario, paso de agenda y anticipación; cambios serializados con reservas.              |
 
 ## Reglas que conviene conservar al modificar

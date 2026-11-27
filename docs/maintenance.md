@@ -48,8 +48,11 @@ La aceptación usa la app real con Supertest y repositorios MariaDB reales. `tes
 | `vehicle-later`, `operations`, `cancellation`  | Vehículo después de reservar, datos persistidos, partes, mensajes y cancelación con motivo.        |
 | `management`, `admin-panel`, `client-employee` | Catálogos, alcance de vehículos, administración, asistencia, limpieza del Inicio y cierre cobrado. |
 | `database.integration`                         | Restricciones de persistencia que deben sobrevivir solicitudes directas.                           |
+| `business-hours`, `admin-updates`              | Jornada hasta 21:30, tarifas compartidas, responsable idempotente y pendientes desde hoy.          |
 
 Dentro de `backend`, `npm run test:acceptance` ejecuta las suites secuencialmente. No ejecutarlas mientras otra suite modifica la misma base QA. Al cambiar un flujo concreto, empezar por su suite; ampliar si cambia una regla compartida o queda una duda sin resolver.
+
+El [manual de usuario](../MANUAL-DE-USUARIO.md) se mantiene en la raíz como única referencia operativa. Al cambiar un botón, permiso o recorrido, actualizar esa sección y el comentario del módulo responsable; no agregar otra explicación contradictoria al final de manuales anteriores. Las guías técnicas explican invariantes, los índices generados permiten encontrar el archivo y el manual enseña a usar la pantalla.
 
 ## Publicación y diagnóstico
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## 27/11/2026 — Documentación y manual vigentes
+
+- Manual único en `main/MANUAL-DE-USUARIO.md`, con pasos para Administración y Empleado, ejemplos y ayuda.
+- Guías alineadas con jornada hasta 21:30, Guardar/Confirmar, tarifas compartidas, responsables, pendientes desde hoy y cierre según permiso de cobros.
+- Comentarios precisados sobre identidad, bloqueos, unidades, idempotencia, estados y revalidación; mapas de módulos y contratos regenerados.
+- Revisión de modularidad y pruebas; detalle en [la revisión común](../docs/review.md). Esta actualización documental conserva el código ejecutable.
+
+Las entradas siguientes son históricas y describen su versión original.
+
 ## 1.2.0 — Agenda compartida y controles universales
 
 - Confirmación automática y agenda para todo el equipo; datos de asignación ocultos al cliente.

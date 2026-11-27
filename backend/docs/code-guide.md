@@ -70,10 +70,8 @@ cambiar su orden puede introducir carreras o deadlocks.
 
 ## Estados, notas y cancelación
 
-transitions declara el alcance de cada rol. El cliente cancela pendientes/confirmados;
-cualquier empleado avanza confirmado (o pendiente anterior) → en proceso → finalizado; administración
-puede corregir estados respetando las demás invariantes del servicio.
-Confirmar requiere horario/capacidad. Se intenta asignar un empleado activo libre; el turno puede quedar confirmado sin responsable y se comparte en la agenda. Los cambios conservan historial.
+transitions limita el endpoint genérico: el cliente cancela pendientes/confirmados; el empleado responsable inicia el trabajo; Administración confirma un pendiente o cancela. Finalizar no es un cambio de estado libre: paidFinish.service exige permiso de cobros, responsable, importe cubierto, descripción y jornada abierta. El envío a revisión usa wash.service para empleados sin ese permiso y partes anteriores.
+La reserva valida horario/capacidad e intenta asignar un empleado activo libre; puede quedar confirmada sin responsable y se comparte en la agenda. Los cambios conservan historial. Guardar de nuevo al responsable activo actual no incrementa la versión; cambiarlo sí comprueba superposiciones.
 La anticipación del cliente es estrictamente mayor al límite configurado: exactamente
 120 minutos no supera un límite de 120. Administración conserva cancelación de emergencia.
 Las notas tienen autor y momento; no se sustituyen por un campo de texto mutable.
@@ -121,4 +119,4 @@ Ejecutar npm run check y las suites de aceptación de base cuando corresponda.
 La auditoría comprueba archivos de src de hasta 149 líneas, cuerpos de hasta 30,
 TSDoc público y ausencia de ciclos, incluidos imports de tipos.
 
-> Actualización: la decisión posterior del usuario establece agenda compartida. Consultar [shared-agenda.md](shared-agenda.md) para la regla vigente; capturas anteriores documentan su versión original.
+La jornada vigente es 09:30–21:30. Los pendientes administrativos comienzan en la medianoche local de hoy; el historial general conserva el pasado. Las seis tarifas interior/exterior comparten el catálogo y la migración 020 no reescribe reservas anteriores. Ver [horarios](business-hours.md) y [tarifas/responsables](catalog-assignment-queue.md). Para usar las pantallas, seguir el [manual vigente](../../MANUAL-DE-USUARIO.md).

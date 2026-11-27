@@ -107,7 +107,7 @@ export interface Appointment {
 export interface Availability {
   slots: string[];
   unavailableReason?: 'closed' | 'past' | 'duration' | 'full' | null;
-  /** Total histórico del contrato, expresado en centavos ARS. */
+  /** Cotización vigente en centavos ARS; confirmar vuelve a calcularla en el servidor. */
   totalCents: number;
   /** Tiempo estimado completo del servicio, en minutos. */
   durationMinutes: number;

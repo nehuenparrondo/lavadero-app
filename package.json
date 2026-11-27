@@ -18,6 +18,6 @@
     "docs:check": "node scripts/run.mjs docs-check",
     "test:tooling": "node --test scripts/tests/*.test.mjs",
     "lint": "node frontend/node_modules/eslint/bin/eslint.js scripts eslint.config.mjs --max-warnings=0",
-    "format:check": "node frontend/node_modules/prettier/bin/prettier.cjs --check README.md docs scripts .github package.json render.yaml eslint.config.mjs"
+    "format:check": "node frontend/node_modules/prettier/bin/prettier.cjs --check README.md MANUAL-DE-USUARIO.md docs scripts .github package.json render.yaml eslint.config.mjs"
   }
 }

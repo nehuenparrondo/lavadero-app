@@ -8,11 +8,11 @@ import { publicUser } from '../users/users.types.js';
 import * as repository from './session.repository.js';
 import { opaqueToken, signAccess, tokenHash } from './token.service.js';
 
-/** Crea JWT propio y refresh opaco asociado. El caller garantiza cuenta activa.
- * @param identity - Identidad interna; puede contener hash de contraseña y no se serializa completa.
- * @param executor - Ejecutor SQL; permite participar en la transacción del llamador.
- * @param familyId - Familia de sesión que agrupa sus renovaciones.
- * @returns `Promise<{ user: import("../../types/domain.js").User; accessToken: string; refreshToken: string; expiresIn: number; sessionId: string; }>`.
+/** Crea una sesión propia; el llamador debe haber comprobado que la cuenta siga activa.
+ * @param identity Fila interna: publicUser elimina hash y campos privados antes de devolver el perfil.
+ * @param executor Conexión de la operación, para insertar la sesión dentro de la misma transacción.
+ * @param familyId Familia nueva por defecto; renovar conserva la familia para detectar reuso y cerrar el dispositivo.
+ * @returns Perfil público, tokens, ID de sesión y expiresIn en segundos; SQL guarda solo el hash del refresh.
  */
 export async function createSession(
   identity: Identity,
@@ -57,9 +57,9 @@ export async function refreshSession(token: string) {
     throw new AppError(401, 'INVALID_REFRESH', 'La sesión ya no es válida. Iniciá sesión.');
   return result;
 }
-/** Revoca la familia del dispositivo; logout repetido es idempotente.
- * @param token - Token recibido; se valida o transforma antes de utilizarlo.
- * @returns `Promise<{ loggedOut: boolean; }>`.
+/** Revoca la familia completa, incluidos los access JWT de esa sesión todavía vigentes.
+ * @param token Refresh del dispositivo; se busca por hash, sin almacenar la credencial legible.
+ * @returns loggedOut true incluso si ya no existía la sesión; repetir el cierre es seguro.
  */
 export async function logoutSession(token: string) {
   await transaction(async (connection) => {

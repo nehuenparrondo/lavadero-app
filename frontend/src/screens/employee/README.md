@@ -6,9 +6,9 @@ Experiencia operativa propia del empleado: jornada, resumen por fecha e historia
 
 ## Archivos y responsabilidades
 
-| Archivo                                              | Responsabilidad                                                                 |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------- |
-| [EmployeeAgendaScreen.tsx](EmployeeAgendaScreen.tsx) | Experiencia del equipo separada de la pantalla de clientes y de administración. |
+| Archivo                                              | Responsabilidad                                                     |
+| ---------------------------------------------------- | ------------------------------------------------------------------- |
+| [EmployeeAgendaScreen.tsx](EmployeeAgendaScreen.tsx) | Mantiene la jornada de hoy separada de la búsqueda de otras fechas. |
 
 ## Mantenimiento
 

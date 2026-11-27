@@ -37,7 +37,7 @@ Agenda y contratos históricos. Compartir el lock de settings para reservar/asig
 | [responsibility.repository.ts](responsibility.repository.ts)             | Asigna un empleado activo y libre, dando prioridad a quien lleva más tiempo sin asignación.                                |
 | [schedule.ts](schedule.ts)                                               | Interpreta un DATETIME de MySQL como UTC sin depender de la zona del servidor.                                             |
 | [teamCapacity.ts](teamCapacity.ts)                                       | Revalida capacidad física y vehículo al activar un turno, sin exclusividad por empleado.                                   |
-| [transitions.ts](transitions.ts)                                         | Valida máquina de estados; admin puede corregir estados, preservando demás invariantes en service.                         |
+| [transitions.ts](transitions.ts)                                         | Autoriza el cambio genérico; finalizar y revisar tienen sus propios servicios y controles.                                 |
 | [vehicleDetail.service.ts](vehicleDetail.service.ts)                     | El titular agrega observaciones al turno confirmado, sin cambiar lo contratado.                                            |
 | [walkIn.repository.ts](walkIn.repository.ts)                             | Busca un reintento para no duplicar un ingreso al reenviar la solicitud.                                                   |
 | [walkIn.routes.ts](walkIn.routes.ts)                                     | Monta el alta presencial antes de las rutas con parámetro id.                                                              |

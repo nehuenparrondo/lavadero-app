@@ -2,11 +2,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createQueryRequest } from '../utils/queryRequest';
 import { currentQuery } from '../utils/queryState';
 import type { QueryState } from '../utils/queryState';
-/** Coordina carga, recarga y respuestas fuera de orden sin mostrar datos de otra selección.
- * @param key Identidad estable del recurso y sus filtros.
- * @param enabled Evita peticiones y resultados cuando faltan prerrequisitos.
- * @param load Función estable que consulta el recurso.
- * @returns Resultado vigente y refresh, seguro después del desmontaje.
+/** Mantiene datos de un recurso sin publicar respuestas de filtros anteriores o vistas desmontadas.
+ * @param key Identidad estable del recurso y filtros; cambiarla descarta la proyección anterior.
+ * @param enabled Impide consultas cuando faltan datos mínimos, como fecha o categoría de reserva.
+ * @param load Función estable de lectura; el transporte controla errores y renovación de sesión.
+ * @returns Estado vigente, refresh para carga explícita y revalidate para consulta silenciosa del mismo filtro.
  */
 export function useQuery<T>(key: string, enabled: boolean, load: () => Promise<T>) {
   const [state, setState] = useState<QueryState<T>>({

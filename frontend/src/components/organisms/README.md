@@ -59,7 +59,7 @@ Bloques de una tarea completa. Componen moléculas y conectan acciones recibidas
 | [DashboardPending.tsx](DashboardPending.tsx)                           | Turnos por atender del negocio; un fallo de consulta no se anuncia como lista vacía.              |
 | [EmployeeAppointmentResults.tsx](EmployeeAppointmentResults.tsx)       | Filtros y resultados compartidos por agenda e historial del equipo.                               |
 | [EmployeePaidFinish.tsx](EmployeePaidFinish.tsx)                       | El cobro completo habilita el cierre directo, conservando descripción y responsable.              |
-| [EmployeeWorkAction.tsx](EmployeeWorkAction.tsx)                       | Ofrece iniciar o finalizar el lavado según el estado del turno.                                   |
+| [EmployeeWorkAction.tsx](EmployeeWorkAction.tsx)                       | Inicia el lavado; la finalización se compone por separado con el parte y el saldo.                |
 | [EntityForm.tsx](EntityForm.tsx)                                       | Formulario RHF + Zod con errores por campo y callback sin HTTP propio.                            |
 | [ModalContent.tsx](ModalContent.tsx)                                   | Panel desplazable; los controles flotantes quedan fuera para no tapar el formulario.              |
 | [ModalPanel.tsx](ModalPanel.tsx)                                       | Diálogo nativo con tema y volver arriba disponibles sin salir del formulario.                     |

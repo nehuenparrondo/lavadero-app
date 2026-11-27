@@ -3791,13 +3791,13 @@ export function EmployeePaidFinish({ m }: { m: ReturnType<typeof useAppointmentD
 
 ## src/components/organisms/EmployeeWorkAction.tsx
 
-Ofrece iniciar o finalizar el lavado según el estado del turno.
+Inicia el lavado; la finalización se compone por separado con el parte y el saldo.
 
 [Abrir fuente](../src/components/organisms/EmployeeWorkAction.tsx)
 
-| Exportación        | Responsabilidad                                                 |
-| ------------------ | --------------------------------------------------------------- |
-| EmployeeWorkAction | Ofrece iniciar o finalizar el lavado según el estado del turno. |
+| Exportación        | Responsabilidad                                                                    |
+| ------------------ | ---------------------------------------------------------------------------------- |
+| EmployeeWorkAction | Inicia el lavado; la finalización se compone por separado con el parte y el saldo. |
 
 ### EmployeeWorkAction
 
@@ -3805,8 +3805,8 @@ Ofrece iniciar o finalizar el lavado según el estado del turno.
 export function EmployeeWorkAction({ m }: { m: ReturnType<typeof useAppointmentDetail> });
 ```
 
-- @param props - Propiedades tipadas: m.
-- @returns Vista de EmployeeWorkAction con el contrato de propiedades declarado.
+- @param props m contiene el comando y estado ocupado; AppointmentActions comprueba la visibilidad por rol/asignación.
+- @returns Botón Comenzar lavado; la API vuelve a validar responsable, vehículo y transición.
 
 ## src/components/organisms/EntityForm.tsx
 
@@ -5032,13 +5032,13 @@ export function ThemeProvider({ children }: PropsWithChildren);
 
 ## src/hooks/appointmentCommands.ts
 
-Acciones operativas; el permiso y la transición se vuelven a validar en el backend.
+Traduce acciones del detalle a comandos; la API vuelve a comprobar cada permiso.
 
 [Abrir fuente](../src/hooks/appointmentCommands.ts)
 
-| Exportación         | Responsabilidad                                                                     |
-| ------------------- | ----------------------------------------------------------------------------------- |
-| appointmentCommands | Acciones operativas; el permiso y la transición se vuelven a validar en el backend. |
+| Exportación         | Responsabilidad                                                                  |
+| ------------------- | -------------------------------------------------------------------------------- |
+| appointmentCommands | Traduce acciones del detalle a comandos; la API vuelve a comprobar cada permiso. |
 
 ### appointmentCommands
 
@@ -5049,9 +5049,9 @@ export function appointmentCommands(
 );
 ```
 
-- @param flags - Capacidades derivadas del rol, asignación y estado del turno.
-- @param mutate - Comando que conserva mensajes y recarga datos tras confirmar.
-- @returns `{ assign: () => Promise<void>; cancel: (v: Record<string, string>) => Promise<void>; advance: () => Promise<void>; setAdminStatus: () => Promise<void>; addNote: (v: Record<string, string>) => Promise<void>; }`.
+- @param flags Selección de responsable y controles locales de diálogos/formularios, no permisos de seguridad.
+- @param mutate Envía el comando, conserva mensajes y consulta el estado confirmado.
+- @returns Comandos de asignación, cancelación con motivo, inicio, confirmación y nota; cerrar un diálogo requiere éxito.
 
 ## src/hooks/profileCommands.ts
 
@@ -5198,13 +5198,13 @@ export function useAppointmentFiltersState(
 
 ## src/hooks/useAppointmentFlags.ts
 
-Selecciones de administración y apertura de diálogos; se sincronizan con la versión remota.
+Separa la selección de responsable y los diálogos del estado remoto del turno.
 
 [Abrir fuente](../src/hooks/useAppointmentFlags.ts)
 
-| Exportación         | Responsabilidad                                                                             |
-| ------------------- | ------------------------------------------------------------------------------------------- |
-| useAppointmentFlags | Selecciones de administración y apertura de diálogos; se sincronizan con la versión remota. |
+| Exportación         | Responsabilidad                                                                |
+| ------------------- | ------------------------------------------------------------------------------ |
+| useAppointmentFlags | Separa la selección de responsable y los diálogos del estado remoto del turno. |
 
 ### useAppointmentFlags
 
@@ -5212,18 +5212,18 @@ Selecciones de administración y apertura de diálogos; se sincronizan con la ve
 export function useAppointmentFlags(appointment: Appointment | null);
 ```
 
-- @param appointment - Turno autorizado que conserva datos históricos del contrato.
-- @returns Selección de empleado/estado, apertura de diálogos y sus setters, sincronizados con el turno.
+- @param appointment Detalle autorizado; solo cambiar employeeId remoto resincroniza la selección.
+- @returns Selección, apertura de diálogos y revisión del formulario de notas; una recarga idéntica no borra el borrador.
 
 ## src/hooks/useAppointmentMutation.ts
 
-Mutación de turno y actualización de los recursos afectados después de confirmar.
+Envía un comando del turno y consulta el resultado persistido solo después del éxito.
 
 [Abrir fuente](../src/hooks/useAppointmentMutation.ts)
 
-| Exportación            | Responsabilidad                                                                   |
-| ---------------------- | --------------------------------------------------------------------------------- |
-| useAppointmentMutation | Mutación de turno y actualización de los recursos afectados después de confirmar. |
+| Exportación            | Responsabilidad                                                                       |
+| ---------------------- | ------------------------------------------------------------------------------------- |
+| useAppointmentMutation | Envía un comando del turno y consulta el resultado persistido solo después del éxito. |
 
 ### useAppointmentMutation
 
@@ -5231,9 +5231,9 @@ Mutación de turno y actualización de los recursos afectados después de confir
 export function useAppointmentMutation(id: string, refresh: () => Promise<void>);
 ```
 
-- @param id - Identificador del recurso dentro del proyecto actual.
-- @param refresh - Vuelve a consultar recursos después de una operación confirmada.
-- @returns Estado action y comando mutate que recarga el turno después de confirmar.
+- @param id Turno de la ruta actual; el backend vuelve a comprobar acceso y reglas del recurso.
+- @param refresh Consulta los recursos afectados para que precio, responsable, saldo y estado coincidan con SQL.
+- @returns action y mutate(method, path, body, success?): un fallo devuelve undefined y conserva el detalle.
 
 ## src/hooks/useAppointmentPayment.ts
 
@@ -5804,13 +5804,13 @@ export function useProfile();
 
 ## src/hooks/useQuery.ts
 
-Coordina carga, recarga y respuestas fuera de orden sin mostrar datos de otra selección.
+Mantiene datos de un recurso sin publicar respuestas de filtros anteriores o vistas desmontadas.
 
 [Abrir fuente](../src/hooks/useQuery.ts)
 
-| Exportación | Responsabilidad                                                                          |
-| ----------- | ---------------------------------------------------------------------------------------- |
-| useQuery    | Coordina carga, recarga y respuestas fuera de orden sin mostrar datos de otra selección. |
+| Exportación | Responsabilidad                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------ |
+| useQuery    | Mantiene datos de un recurso sin publicar respuestas de filtros anteriores o vistas desmontadas. |
 
 ### useQuery
 
@@ -5818,10 +5818,10 @@ Coordina carga, recarga y respuestas fuera de orden sin mostrar datos de otra se
 export function useQuery<T>(key: string, enabled: boolean, load: () => Promise<T>);
 ```
 
-- @param key Identidad estable del recurso y sus filtros.
-- @param enabled Evita peticiones y resultados cuando faltan prerrequisitos.
-- @param load Función estable que consulta el recurso.
-- @returns Resultado vigente y refresh, seguro después del desmontaje.
+- @param key Identidad estable del recurso y filtros; cambiarla descarta la proyección anterior.
+- @param enabled Impide consultas cuando faltan datos mínimos, como fecha o categoría de reserva.
+- @param load Función estable de lectura; el transporte controla errores y renovación de sesión.
+- @returns Estado vigente, refresh para carga explícita y revalidate para consulta silenciosa del mismo filtro.
 
 ## src/hooks/useRefreshOnReturn.ts
 
@@ -6555,13 +6555,13 @@ export function AttendanceScreen();
 
 ## src/screens/admin/DashboardScreen.tsx
 
-Compone el tablero sin consultas, navegación ni cálculos contables dentro del JSX.
+Compone métricas y bandejas; consultas y cálculos contables permanecen fuera del JSX.
 
 [Abrir fuente](../src/screens/admin/DashboardScreen.tsx)
 
-| Exportación     | Responsabilidad                                                                    |
-| --------------- | ---------------------------------------------------------------------------------- |
-| DashboardScreen | Compone el tablero sin consultas, navegación ni cálculos contables dentro del JSX. |
+| Exportación     | Responsabilidad                                                                       |
+| --------------- | ------------------------------------------------------------------------------------- |
+| DashboardScreen | Compone métricas y bandejas; consultas y cálculos contables permanecen fuera del JSX. |
 
 ### DashboardScreen
 
@@ -6569,7 +6569,7 @@ Compone el tablero sin consultas, navegación ni cálculos contables dentro del 
 export function DashboardScreen();
 ```
 
-- @returns Resumen diario, solicitudes globales y actividad de la semana actual.
+- @returns Resumen diario, pendientes desde hoy y barras semanales del mes; se revalida mientras está visible.
 
 ## src/screens/admin/ReportsScreen.tsx
 
@@ -6880,13 +6880,13 @@ export function VehiclesScreen();
 
 ## src/screens/employee/EmployeeAgendaScreen.tsx
 
-Experiencia del equipo separada de la pantalla de clientes y de administración.
+Mantiene la jornada de hoy separada de la búsqueda de otras fechas.
 
 [Abrir fuente](../src/screens/employee/EmployeeAgendaScreen.tsx)
 
-| Exportación          | Responsabilidad                                                                 |
-| -------------------- | ------------------------------------------------------------------------------- |
-| EmployeeAgendaScreen | Experiencia del equipo separada de la pantalla de clientes y de administración. |
+| Exportación          | Responsabilidad                                                     |
+| -------------------- | ------------------------------------------------------------------- |
+| EmployeeAgendaScreen | Mantiene la jornada de hoy separada de la búsqueda de otras fechas. |
 
 ### EmployeeAgendaScreen
 
@@ -6894,8 +6894,8 @@ Experiencia del equipo separada de la pantalla de clientes y de administración.
 export function EmployeeAgendaScreen({ history = false }: { history?: boolean });
 ```
 
-- @param props Abre historial o jornada; nunca modifica los permisos del recurso.
-- @returns Agenda con resumen real por fecha y ayuda contextual.
+- @param props history abre la consulta general por fecha/patente; no concede permisos adicionales.
+- @returns Pendientes de hoy sin selector de fecha, o historial consultable con sus filtros.
 
 ## src/theme/overview.styles.ts
 

@@ -11,7 +11,7 @@ Acceso local/social, sesiones y PKCE. Persistir hashes de tokens y confirmar rev
 | [auth.controller.ts](auth.controller.ts)                     | Registra cuenta pública sin permisos elegibles.                                                 |
 | [auth.routes.ts](auth.routes.ts)                             | Rutas públicas de autenticación con límite por origen; sin estado de negocio en routes.         |
 | [auth.schema.ts](auth.schema.ts)                             | Registro público estricto: rol y habilitación de cobros no son aceptados.                       |
-| [auth.service.ts](auth.service.ts)                           | Registra siempre Cliente y no acepta privilegios del request.                                   |
+| [auth.service.ts](auth.service.ts)                           | Crea una cuenta Cliente y su sesión; el rol nunca se toma de la solicitud.                      |
 | [auth.types.ts](auth.types.ts)                               | Devuelve solo el contrato de sesión; el ID interno de rotación no se publica.                   |
 | [oauth.controller.ts](oauth.controller.ts)                   | Disponibilidad de botones sociales.                                                             |
 | [oauth.exchange.service.ts](oauth.exchange.service.ts)       | Canjea un grant de un solo uso con PKCE y confirma la vinculación local cuando corresponde.     |
@@ -40,7 +40,7 @@ Acceso local/social, sesiones y PKCE. Persistir hashes de tokens y confirmar rev
 | [recovery.types.ts](recovery.types.ts)                       | Trabajo privado; nunca se serializa en una respuesta HTTP.                                      |
 | [recovery.worker.ts](recovery.worker.ts)                     | Trabajador duradero: el cierre del proceso deja el trabajo disponible tras vencer el bloqueo.   |
 | [session.repository.ts](session.repository.ts)               | Sesión interna bloqueada durante rotación.                                                      |
-| [session.service.ts](session.service.ts)                     | Crea JWT propio y refresh opaco asociado. El caller garantiza cuenta activa.                    |
+| [session.service.ts](session.service.ts)                     | Crea una sesión propia; el llamador debe haber comprobado que la cuenta siga activa.            |
 | [token.service.ts](token.service.ts)                         | Emite JWT de quince minutos con audiencia e issuer restringidos.                                |
 
 ## Mantenimiento

@@ -1,86 +1,48 @@
-> Estructura actual: `main/frontend` dentro del repositorio único `nehuenparrondo/lavadero-app`. Para iniciar frontend y backend juntos, ver [la guía principal](../README.md).
+# Frontend de Lavadero
 
-# Lavadero App 1.0
+App Expo/React Native con TypeScript y Expo Router, en `main/frontend`. Comparte componentes entre Cliente, Empleado y Administrador; cada rol tiene navegación y permisos propios. Consume el backend por HTTP, sin importar su código ni acceder directamente a SQL.
 
-Aplicación Expo/React Native con TypeScript estricto y Expo Router. Tiene flujos reales
-para Cliente, Empleado y Administrador, temas claro/oscuro/sistema y diseño adaptable.
-Consume la API HTTPS publicada; el modo de desarrollo admite además el backend de esta computadora. Las dependencias permanecen separadas del backend.
-
-Repositorio privado: https://github.com/nehuenparrondo/lavadero-app.
-Proyecto EAS: https://expo.dev/accounts/elpepoestangod/projects/lavadero-app.
+[Web publicada](https://lavadero-app-2558.onrender.com) · [Manual de usuario](../MANUAL-DE-USUARIO.md) · [Repositorio único](https://github.com/nehuenparrondo/lavadero-app)
 
 ## Ejecutar
 
-Node 24 LTS, Expo SDK 58, React 19.3 y React Native 0.88. Las versiones exactas están
-fijadas en `package-lock.json`. Instalar paquetes nativos con `npx expo install`.
+La forma habitual es abrir `main` y seguir su [README](../README.md) para iniciar ambas partes. Para trabajar solo en el frontend, instalar con `npm ci` y usar `npm start` o `npm run web`. Requiere Node 24.15 o superior; las versiones exactas de Expo SDK 58, React y React Native están en `package-lock.json`.
+
+Si falta `.env`, prepararlo desde `.env.example`. `EXPO_PUBLIC_API_URL` es el origen de la API, sin `/api/v1`. En Expo Go apuntar a la API HTTPS publicada: `localhost` en un teléfono identifica al teléfono, no a la computadora. Instalar dependencias nativas con `npx expo install`.
+
+## Estructura y comportamiento
+
+| Capa                          | Responsabilidad                                                    |
+| ----------------------------- | ------------------------------------------------------------------ |
+| `src/app`, `navigation`       | Rutas y guardas; las rutas delegan en pantallas.                   |
+| `src/screens`                 | Composición de una experiencia, sin SQL ni HTTP directo.           |
+| `src/components`              | Átomos, moléculas y organismos con propiedades y acciones tipadas. |
+| `src/hooks`                   | Consultas, borradores, filtros, comandos, mensajes y revalidación. |
+| `src/api`                     | Transporte, servicios REST, renovación y persistencia de sesión.   |
+| `src/theme`, `types`, `utils` | Sistema visual, contratos de datos y transformaciones.             |
+
+La sesión persiste en los tres roles. El refresh se conserva en SecureStore en nativo y en almacenamiento local versionado en web; access JWT, perfil y rol permanecen en memoria y se validan con el backend. Las pestañas del mismo sitio comparten cuenta y cierre. El estado transitorio de OAuth usa sessionStorage; no contiene los secretos de los proveedores.
+
+Las consultas conservan los datos del mismo filtro durante una revalidación silenciosa y descartan respuestas viejas. Se actualizan al regresar y, en agendas/tableros, cada 10–15 segundos mientras están visibles. Una mutación fallida muestra el error sin borrar la lista ni dar por guardada la acción.
+
+El cliente elige fecha y hora, pulsa Guardar para preparar Tu reserva y luego Confirmar reserva. Agrega el vehículo después. Administración tiene Auto sin turno, responsables y pendientes de hoy en adelante. El empleado usa Mi agenda para hoy e Historial para otras fechas; con permiso de cobros puede cerrar directamente un trabajo completamente pagado. Ver los recorridos completos en el manual de la raíz.
+
+## Comprobar y distribuir
 
 ```powershell
-npm ci
-Copy-Item .env.example .env
-# EXPO_PUBLIC_API_URL=https://lavadero-api-48m4.onrender.com
 npm run check
-npm start
-```
-
-La URL es solo el origen, sin `/api/v1`. Nunca poner secretos OAuth o credenciales
-MySQL en variables EXPO_PUBLIC. En móvil, localhost identifica al teléfono.
-
-## Funciones
-
-- Cliente: cuenta, perfil, vehículos, tarifas, cotización, reserva, historial,
-  cancelación según anticipación y comprobante del trabajo finalizado.
-- Empleado: agenda e historial propios, detalle del vehículo/cliente, observaciones,
-  búsqueda por patente, inicio y envío a verificación del responsable, y cobro cuando un administrador lo habilita.
-- Administrador: usuarios/roles, catálogo/tarifas/tipos, agenda/asignación, horarios,
-  capacidad, políticas y reportes por día/semana/mes.
-- Formularios React Hook Form + Zod, listas paginadas, búsqueda, estados de carga,
-  errores, vacíos, actualización y confirmaciones de acciones.
-
-## Compilar y distribuir
-
-```powershell
+npm run export:web
 npm run export:android
-npx eas-cli@latest build --platform android --profile preview
 ```
 
-La exportación verifica el bundle; el segundo comando genera el APK firmado en EAS.
-El perfil preview usa distribución interna y NO necesita el servidor Metro para funcionar.
-Para desarrollar OAuth usar un development build o el APK: Expo Go no representa
-correctamente el scheme propio. El backend conserva los secretos del proveedor.
+`check` revisa tipos, lint, pruebas y modularidad. La exportación web genera `web-dist`; la de Android genera un bundle, **no un APK instalado**. Para crear una compilación Android propia, usar el perfil de `eas.json` y la [guía de instalación](docs/installation.md). Un APK antiguo debe reconstruirse para incorporar cambios de interfaz.
 
-`npm run export:web` genera `web-dist`; en Render Static Site se añade rewrite
-`/*` → `/index.html`. El origen HTTPS web debe incluirse en CORS del backend.
+El retorno OAuth nativo necesita una compilación propia con el esquema configurado; Expo Go sirve para desarrollar pantallas y el acceso local, pero no acredita ese retorno. En web se usa la misma pestaña; el backend conserva las credenciales privadas de Google, Discord y GitHub.
 
-[Instalación](docs/installation.md), [arquitectura](docs/architecture.md),
-[componentes](docs/components.md), [navegación](docs/navigation.md),
-[estado](docs/state.md), [manual por rol](docs/user-manual.md),
-[verificación](docs/verification.md), [entrega](docs/delivery.md).
+Render publica con raíz `frontend`, HTTPS y retorno de rutas profundas a `index.html`. El backend debe autorizar el origen web en CORS. `EXPO_PUBLIC_*` se incorpora a la aplicación: nunca guardar allí claves SQL, JWT privadas, secretos OAuth o Mailtrap.
 
-En Android el refresh se guarda con SecureStore. En la vista web se usa sessionStorage
-de la pestaña; cerrar la pestaña elimina esa persistencia. El access token queda en memoria.
+## Documentación
 
-## Revisión de la consigna
+[Guía del código](docs/code-guide.md) · [mapa de todos los archivos](docs/source-map.md) · [props y ejemplos de componentes](docs/components.md) · [arquitectura común](../docs/architecture.md) · [mantenimiento](../docs/maintenance.md).
 
-[Matriz de requisitos y evidencia](docs/requirements-review.md) · [Prueba desde iPhone/Expo Go](docs/iphone-expo-go.md).
-
-## Lectura y mantenimiento del código
-
-- [Guía de código e invariantes](docs/code-guide.md)
-- [Mapa de todos los módulos](docs/source-map.md)
-- [Sistema visual](docs/design-system.md)
-
-## Correcciones de acceso y reservas
-
-Ver [comportamiento, módulos y pruebas de la versión 1.1.1](docs/reliability.md).
-
-La agenda compartida, la asignación, la verificación del trabajo, los reclamos y el fichaje se explican en el [manual de uso](docs/user-manual.md).
-
-Ver [cancelaciones, observaciones y mejora de interfaz](docs/interface-polish.md).
-
-[Panel administrativo: ingreso presencial, usuarios, servicios, asistencia y semanas](docs/admin-panel.md).
-
-[Cliente y empleado: calendario, agenda, limpieza, cobro y reclamos](docs/client-employee-flow.md).
-
-## Seguridad y acceso actual
-
-Ingreso con Google o correo y contraseña. Discord y GitHub fueron retirados. Perfil sin fotos. Recuperación mediante Mailtrap Sandbox, sin entrega a casillas reales. Ver [seguridad y recuperación](docs/security-recovery.md) para configuración, pruebas y límites.
+Desde `main`, `npm run docs` regenera los índices y contratos; `npm run docs:check` comprueba que coincidan. La guía operativa vigente es [MANUAL-DE-USUARIO.md](../MANUAL-DE-USUARIO.md); las capturas e informes anteriores pertenecen a sus versiones indicadas.

@@ -67,3 +67,5 @@ El migrador obtiene un lock de sesión por base, valida checksums y aplica SQL e
 Las semillas cargan catálogos y configuración ausentes de una instalación nueva; no son una herramienta para restaurar producción. El cierre del comando libera conexión/pool aunque una tarea falle. `schema.sql` es una referencia agregada/instalación alternativa y no registra el historial del migrador; no combinar ambos procedimientos en una misma instalación.
 
 La migración 013 conserva el paso de nombres ingleses a españoles y la 018 incorpora recuperación. No editar migraciones históricas para documentarlas: agregar explicaciones en los README y una migración nueva si cambia el esquema.
+
+La migración 020 iguala interior/exterior de Auto ($15.000), Camioneta ($20.000) y Utilitario ($17.000 ARS) en el catálogo común. No cambia los contratos históricos. El esquema sigue teniendo 27 tablas; la instalación completa aplica 20 migraciones. [Detalle técnico](../backend/docs/catalog-assignment-queue.md).

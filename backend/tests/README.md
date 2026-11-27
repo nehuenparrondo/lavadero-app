@@ -18,5 +18,4 @@ GITHUB_CLIENT_ID=test-github, GITHUB_CLIENT_SECRET=test-github-secret,
 DISCORD_CLIENT_ID=test-discord, DISCORD_CLIENT_SECRET=test-discord-secret.
 Son valores ficticios, no credenciales externas. El PKCE se verifica contra RFC 7636.
 
-Los permisos y la concurrencia se comprueban por HTTP, no llamando directamente a
-funciones internas. En esta entrega pasaron los 17 escenarios con MySQL 8.4 real.
+Los permisos y la concurrencia se comprueban por HTTP, no llamando directamente a funciones internas. Los informes históricos indican qué suites se ejecutaron en cada versión; la [revisión actual](../../docs/review.md) distingue comprobaciones de esta revisión y aceptación previa de MariaDB.

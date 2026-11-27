@@ -2,9 +2,9 @@ import { PageHeading } from '../../components/molecules/PageHeading';
 import { EmployeeAppointmentResults } from '../../components/organisms/EmployeeAppointmentResults';
 import { Screen } from '../../components/organisms/Screen';
 import { useAppointments } from '../../hooks/useAppointments';
-/** Experiencia del equipo separada de la pantalla de clientes y de administración.
- * @param props Abre historial o jornada; nunca modifica los permisos del recurso.
- * @returns Agenda con resumen real por fecha y ayuda contextual.
+/** Mantiene la jornada de hoy separada de la búsqueda de otras fechas.
+ * @param props history abre la consulta general por fecha/patente; no concede permisos adicionales.
+ * @returns Pendientes de hoy sin selector de fecha, o historial consultable con sus filtros.
  */
 export function EmployeeAgendaScreen({ history = false }: { history?: boolean }) {
   const m = useAppointments('employee', history);

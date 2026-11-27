@@ -2861,7 +2861,7 @@ Uso:
 
 ### EmployeeWorkAction
 
-Ofrece iniciar o finalizar el lavado según el estado del turno.
+Inicia el lavado; la finalización se compone por separado con el parte y el saldo.
 
 [Fuente](../src/components/organisms/EmployeeWorkAction.tsx)
 

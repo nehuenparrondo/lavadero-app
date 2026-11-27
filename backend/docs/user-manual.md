@@ -1,10 +1,11 @@
-# Manual por rol
+# Manual de usuario vigente
 
-El manual con capturas está en el repositorio lavadero-app: docs/user-manual.md.
-La API independiente se prueba con [API.md](../API.md) o Postman sin instalar la app.
+La guía operativa se mantiene en un único archivo dentro de `main`:
 
-> Flujo vigente en [Turnos, partes, atención y asistencia](work-operations.md). La agenda sigue siendo compartida y el cliente ve el responsable asignado. Las capturas anteriores documentan su versión original.
+- [Abrir el manual completo](../../MANUAL-DE-USUARIO.md).
+- [Administrador: tareas del día](../../MANUAL-DE-USUARIO.md#administrador).
+- [Empleado: agenda, cobro y finalización](../../MANUAL-DE-USUARIO.md#empleado).
+- [Cliente: reserva y vehículo](../../MANUAL-DE-USUARIO.md#cliente).
+- [Ayuda y mensajes habituales](../../MANUAL-DE-USUARIO.md#ayuda).
 
-### Tarifas y responsables actualizados
-
-Interior y exterior tienen el mismo precio por categoría: Auto $15.000, Camioneta $20.000 y Utilitario $17.000 ARS. Cliente, empleado y administrador consultan el mismo catálogo; las reservas anteriores conservan su precio pactado. En el detalle administrativo, **Empleado responsable** muestra la asignación actual. Elegí un empleado activo y pulsá **Guardar responsable**: aparece la confirmación incluso si ya estaba elegido.
+Incluye los horarios de 09:30–21:30, tarifas actualizadas, Guardar/Confirmar, pendientes desde hoy, responsable actual, autos sin turno, asistencia y los dos circuitos de cierre según el permiso de cobros. Las capturas de entregas anteriores se conservan como evidencia histórica, no como instrucciones de la interfaz actual.

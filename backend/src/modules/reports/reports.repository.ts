@@ -1,9 +1,8 @@
 import { rows } from '../../utils/db.js';
-/** Trabajos finalizados en el intervalo UTC derivado del calendario local.
- * @param from - Límite inicial del período o estado de origen, según su tipo.
- * @param to - Límite final o estado destino, según su tipo.
- * @returns `Promise<import("mysql2").RowDataPacket[]>`.
- * @throws Error - Si falla la persistencia o el servicio remoto; se conserva el manejo central de errores.
+/** Trabajos finalizados según fin agendado, no según la hora real del cierre.
+ * @param from Inicio UTC inclusivo del período convertido por el servicio desde la zona del negocio.
+ * @param to Fin UTC exclusivo; permite consultar días consecutivos sin contar dos veces el límite.
+ * @returns Filas con turno, fin agendado y responsable, para agregar lavados por calendario local.
  */
 export function completedWork(from: string, to: string) {
   return rows(
@@ -13,11 +12,10 @@ export function completedWork(from: string, to: string) {
     [from, to],
   );
 }
-/** Ingresos contabilizados por momento real del pago, sin multiplicarlos por servicios.
- * @param from - Límite inicial del período o estado de origen, según su tipo.
- * @param to - Límite final o estado destino, según su tipo.
- * @returns `Promise<import("mysql2").RowDataPacket[]>`.
- * @throws Error - Si falla la persistencia o el servicio remoto; se conserva el manejo central de errores.
+/** Cobros según el momento en que se registraron, sin multiplicarlos por servicios.
+ * @param from Inicio UTC inclusivo del período convertido por el servicio desde la zona del negocio.
+ * @param to Fin UTC exclusivo; permite consultar días consecutivos sin contar dos veces el límite.
+ * @returns Importes enteros en centavos y su fecha de pago; reservar sin cobrar no genera ingreso.
  */
 export function revenue(from: string, to: string) {
   return rows(
@@ -25,11 +23,10 @@ export function revenue(from: string, to: string) {
     [from, to],
   );
 }
-/** Servicios contratados por fecha de atención, excluyendo cancelados.
- * @param from - Límite inicial del período o estado de origen, según su tipo.
- * @param to - Límite final o estado destino, según su tipo.
- * @returns `Promise<import("mysql2").RowDataPacket[]>`.
- * @throws Error - Si falla la persistencia o el servicio remoto; se conserva el manejo central de errores.
+/** Cuenta servicios contratados por inicio del turno y excluye cancelaciones.
+ * @param from Inicio UTC inclusivo del período convertido por el servicio desde la zona del negocio.
+ * @param to Fin UTC exclusivo; permite consultar días consecutivos sin contar dos veces el límite.
+ * @returns Nombre histórico y cantidad de pedidos; editar el nombre del catálogo no reescribe el contrato.
  */
 export function popularServices(from: string, to: string) {
   return rows(
@@ -39,11 +36,10 @@ export function popularServices(from: string, to: string) {
     [from, to],
   );
 }
-/** Cuenta la jornada compartida por estado y fecha, sin revelar ingresos del negocio.
- * @param from - Límite inicial del período o estado de origen, según su tipo.
- * @param to - Límite final o estado destino, según su tipo.
- * @returns `Promise<import("mysql2").RowDataPacket[]>`.
- * @throws Error - Si falla la persistencia o el servicio remoto; se conserva el manejo central de errores.
+/** Cuenta la jornada compartida por estado e inicio, sin revelar ingresos del negocio.
+ * @param from Inicio UTC inclusivo del período convertido por el servicio desde la zona del negocio.
+ * @param to Fin UTC exclusivo; permite consultar días consecutivos sin contar dos veces el límite.
+ * @returns Cantidad de turnos por estado; el resultado pertenece al equipo y no a un empleado en particular.
  */
 export function employeeSummary(from: string, to: string) {
   return rows(

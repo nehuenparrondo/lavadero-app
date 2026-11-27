@@ -6,13 +6,13 @@ Registro contable de cobros, no ejecución de transferencias. Bloquear turno, re
 
 ## Archivos y responsabilidades
 
-| Archivo                                          | Responsabilidad                                                                                 |
-| ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| [payments.controller.ts](payments.controller.ts) | Cobros del turno autorizado.                                                                    |
-| [payments.repository.ts](payments.repository.ts) | Lista cobros del turno sin datos de autenticación.                                              |
-| [payments.routes.ts](payments.routes.ts)         | Rutas anidadas que conservan appointment id por mergeParams.                                    |
-| [payments.schema.ts](payments.schema.ts)         | Cobro idempotente en centavos ARS. Clave estable al reintentar desde móvil.                     |
-| [payments.service.ts](payments.service.ts)       | Lista cobros propios o administrados; empleados solo pueden registrar cuando están habilitados. |
+| Archivo                                          | Responsabilidad                                                             |
+| ------------------------------------------------ | --------------------------------------------------------------------------- |
+| [payments.controller.ts](payments.controller.ts) | Cobros del turno autorizado.                                                |
+| [payments.repository.ts](payments.repository.ts) | Lista cobros del turno sin datos de autenticación.                          |
+| [payments.routes.ts](payments.routes.ts)         | Rutas anidadas que conservan appointment id por mergeParams.                |
+| [payments.schema.ts](payments.schema.ts)         | Cobro idempotente en centavos ARS. Clave estable al reintentar desde móvil. |
+| [payments.service.ts](payments.service.ts)       | Consulta los cobros después de comprobar acceso al turno.                   |
 
 ## Mantenimiento
 

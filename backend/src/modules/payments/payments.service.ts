@@ -6,10 +6,10 @@ import { assertAppointmentAccess } from '../appointments/appointments.access.js'
 import { findAppointment } from '../appointments/appointments.repository.js';
 import * as repo from './payments.repository.js';
 import type { paymentSchema } from './payments.schema.js';
-/** Lista cobros propios o administrados; empleados solo pueden registrar cuando están habilitados.
- * @param actor - Actor autenticado por el middleware; determina rol y propiedad.
- * @param id - Identificador del recurso dentro del proyecto actual.
- * @returns `Promise<import("mysql2").RowDataPacket[]>`.
+/** Consulta los cobros después de comprobar acceso al turno.
+ * @param actor Cliente titular o administrador; la ruta restringe estos roles antes de llamar al servicio.
+ * @param id Turno autorizado cuyos pagos se consultan, sin cambiar saldo ni registrar dinero nuevo.
+ * @returns Cobros persistidos con importe en centavos, medio, referencia y fecha.
  */
 export async function getPayments(actor: Actor, id: string) {
   const a = await findAppointment(id);

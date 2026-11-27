@@ -9,8 +9,8 @@ import { DashboardPending } from '../../components/organisms/DashboardPending';
 import { Screen } from '../../components/organisms/Screen';
 import { WeeklyActivity } from '../../components/organisms/WeeklyActivity';
 import { useDashboard } from '../../hooks/useDashboard';
-/** Compone el tablero sin consultas, navegación ni cálculos contables dentro del JSX.
- * @returns Resumen diario, solicitudes globales y actividad de la semana actual.
+/** Compone métricas y bandejas; consultas y cálculos contables permanecen fuera del JSX.
+ * @returns Resumen diario, pendientes desde hoy y barras semanales del mes; se revalida mientras está visible.
  */
 export function DashboardScreen() {
   const d = useDashboard();

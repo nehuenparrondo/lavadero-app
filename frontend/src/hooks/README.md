@@ -8,7 +8,7 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 
 | Archivo                                                          | Responsabilidad                                                                                         |
 | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| [appointmentCommands.ts](appointmentCommands.ts)                 | Acciones operativas; el permiso y la transición se vuelven a validar en el backend.                     |
+| [appointmentCommands.ts](appointmentCommands.ts)                 | Traduce acciones del detalle a comandos; la API vuelve a comprobar cada permiso.                        |
 | [profileCommands.ts](profileCommands.ts)                         | Operaciones propias; cambiar contraseña revoca sesiones e inicia nuevamente el acceso.                  |
 | [useAction.ts](useAction.ts)                                     | Ejecuta una acción y publica carga/error/resultado sin propagar errores a la vista.                     |
 | [useAgendaList.ts](useAgendaList.ts)                             | Traduce filtros visuales a la consulta; el servidor decide la visibilidad efectiva.                     |
@@ -16,8 +16,8 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 | [useApiHealth.ts](useApiHealth.ts)                               | Consulta el backend y cancela la solicitud al desmontar.                                                |
 | [useAppointmentDetail.ts](useAppointmentDetail.ts)               | Compone datos, selección y acciones del detalle de turno con ownership en la API.                       |
 | [useAppointmentFiltersState.ts](useAppointmentFiltersState.ts)   | Filtros locales; no sustituyen las restricciones de propiedad aplicadas por la API.                     |
-| [useAppointmentFlags.ts](useAppointmentFlags.ts)                 | Selecciones de administración y apertura de diálogos; se sincronizan con la versión remota.             |
-| [useAppointmentMutation.ts](useAppointmentMutation.ts)           | Mutación de turno y actualización de los recursos afectados después de confirmar.                       |
+| [useAppointmentFlags.ts](useAppointmentFlags.ts)                 | Separa la selección de responsable y los diálogos del estado remoto del turno.                          |
+| [useAppointmentMutation.ts](useAppointmentMutation.ts)           | Envía un comando del turno y consulta el resultado persistido solo después del éxito.                   |
 | [useAppointmentPayment.ts](useAppointmentPayment.ts)             | Mantiene la misma clave al reintentar un pago y la renueva solo tras su confirmación.                   |
 | [useAppointmentResources.ts](useAppointmentResources.ts)         | Consultas del detalle; los recursos administrativos no se solicitan para otros roles.                   |
 | [useAppointmentVehicle.ts](useAppointmentVehicle.ts)             | Carga los vehículos del titular y confirma el vínculo sin volver a reservar el horario.                 |
@@ -46,7 +46,7 @@ Coordinación de consultas, filtros, selección y mutaciones. Separa el error de
 | [usePagedList.ts](usePagedList.ts)                               | Lista paginada con filtro y navegación entre páginas para no truncar datos.                             |
 | [usePasswordRecovery.ts](usePasswordRecovery.ts)                 | Coordina el formulario de solicitud sin revelar si el correo está registrado.                           |
 | [useProfile.ts](useProfile.ts)                                   | Perfil propio con formularios, sesión y comandos separados por responsabilidad.                         |
-| [useQuery.ts](useQuery.ts)                                       | Coordina carga, recarga y respuestas fuera de orden sin mostrar datos de otra selección.                |
+| [useQuery.ts](useQuery.ts)                                       | Mantiene datos de un recurso sin publicar respuestas de filtros anteriores o vistas desmontadas.        |
 | [useRefreshOnReturn.ts](useRefreshOnReturn.ts)                   | Actualiza al regresar a la ruta/app y, opcionalmente, mientras se usa una agenda.                       |
 | [useRemoteData.ts](useRemoteData.ts)                             | Consulta un recurso sin conservar resultados de filtros anteriores.                                     |
 | [useReports.ts](useReports.ts)                                   | Reporte por período calendario local y fecha elegida.                                                   |

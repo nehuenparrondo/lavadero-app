@@ -1197,7 +1197,7 @@ Cambia estado con permisos, horario de finalización, plazo de cancelación y bl
 | Exportación    | Responsabilidad                                                                                |
 | -------------- | ---------------------------------------------------------------------------------------------- |
 | changeStatus   | Cambia estado con permisos, horario de finalización, plazo de cancelación y bloqueo de agenda. |
-| assignEmployee | Asigna/reasigna sin cambiar estado; confirmar es una acción administrativa separada.           |
+| assignEmployee | Guarda un responsable activo sin confirmar ni cambiar el estado del turno.                     |
 
 ### changeStatus
 
@@ -1223,11 +1223,11 @@ export async function changeStatus(
 export async function assignEmployee(actor: Actor, id: string, employeeId: string);
 ```
 
-- @param actor - Actor autenticado por el middleware; determina rol y propiedad.
-- @param id - Identificador del recurso dentro del proyecto actual.
-- @param employeeId - Empleado activo que se asigna o consulta.
-- @returns `Promise<{ assigned: boolean; }>`.
-- @throws Error - Cuando no se cumple una precondición indicada en esta operación.
+- @param actor Administrador autenticado y autorizado por la ruta; no se acepta un actor elegido por el body.
+- @param id Turno que todavía admite reasignación; se bloquea después de la configuración común.
+- @param employeeId Empleado activo; cambiarlo exige capacidad y ausencia de superposiciones.
+- @returns assigned true; guardar al responsable vigente no incrementa la versión ni agrega ocupación.
+- @throws AppError INVALID_EMPLOYEE, ASSIGNMENT_CLOSED o EMPLOYEE_BUSY si no se cumple la regla correspondiente.
 
 ## src/modules/appointments/notes.repository.ts
 
@@ -1444,13 +1444,13 @@ export async function assertTeamCapacity(
 
 ## src/modules/appointments/transitions.ts
 
-Valida máquina de estados; admin puede corregir estados, preservando demás invariantes en service.
+Autoriza el cambio genérico; finalizar y revisar tienen sus propios servicios y controles.
 
 [Abrir fuente](../src/modules/appointments/transitions.ts)
 
-| Exportación      | Responsabilidad                                                                                    |
-| ---------------- | -------------------------------------------------------------------------------------------------- |
-| assertTransition | Valida máquina de estados; admin puede corregir estados, preservando demás invariantes en service. |
+| Exportación      | Responsabilidad                                                                            |
+| ---------------- | ------------------------------------------------------------------------------------------ |
+| assertTransition | Autoriza el cambio genérico; finalizar y revisar tienen sus propios servicios y controles. |
 
 ### assertTransition
 
@@ -1458,11 +1458,11 @@ Valida máquina de estados; admin puede corregir estados, preservando demás inv
 export function assertTransition(from: AppointmentStatus, to: AppointmentStatus, role: Role);
 ```
 
-- @param from - Límite inicial del período o estado de origen, según su tipo.
-- @param to - Límite final o estado destino, según su tipo.
-- @param role - Rol permitido del catálogo de seguridad.
-- @returns `void`.
-- @throws Error - Cuando no se cumple una precondición indicada en esta operación.
+- @param from Estado persistido del turno que ya debe estar bloqueado por el servicio.
+- @param to Estado solicitado; repetir el estado actual también se rechaza.
+- @param role Rol vigente: el empleado solo inicia; el cliente cancela; Administración confirma pendientes o cancela.
+- @returns No devuelve valor; continuar significa que esta transición está permitida para el rol.
+- @throws ConflictError Si la combinación de estado de origen, destino y rol no está habilitada.
 
 ## src/modules/appointments/vehicleDetail.service.ts
 
@@ -1962,14 +1962,14 @@ Registro público estricto: rol y habilitación de cobros no son aceptados.
 
 ## src/modules/auth/auth.service.ts
 
-Registra siempre Cliente y no acepta privilegios del request.
+Crea una cuenta Cliente y su sesión; el rol nunca se toma de la solicitud.
 
 [Abrir fuente](../src/modules/auth/auth.service.ts)
 
-| Exportación | Responsabilidad                                                   |
-| ----------- | ----------------------------------------------------------------- |
-| register    | Registra siempre Cliente y no acepta privilegios del request.     |
-| login       | Autentica sin revelar si el email o la contraseña fue incorrecto. |
+| Exportación | Responsabilidad                                                               |
+| ----------- | ----------------------------------------------------------------------------- |
+| register    | Crea una cuenta Cliente y su sesión; el rol nunca se toma de la solicitud.    |
+| login       | Autentica una cuenta local activa sin revelar cuál de las credenciales falló. |
 
 ### register
 
@@ -1977,9 +1977,9 @@ Registra siempre Cliente y no acepta privilegios del request.
 export async function register(input: z.infer<typeof registerSchema>);
 ```
 
-- @param input - Entrada validada por el esquema del caso de uso.
-- @returns `Promise<{ user: import("../../types/domain.js").User; accessToken: string; refreshToken: string; expiresIn: number; sessionId: string; }>`.
-- @throws Error - Cuando no se cumple una precondición indicada en esta operación.
+- @param input Identidad y contraseña validadas por registerSchema; la contraseña se hashea antes de persistir.
+- @returns Perfil público, access JWT de 15 minutos y refresh opaco; nunca devuelve el hash de contraseña.
+- @remarks El alta y la sesión comparten transacción: un fallo no deja una cuenta creada parcialmente.
 
 ### login
 
@@ -1987,9 +1987,9 @@ export async function register(input: z.infer<typeof registerSchema>);
 export async function login(input: z.infer<typeof loginSchema>);
 ```
 
-- @param input - Entrada validada por el esquema del caso de uso.
-- @returns `Promise<{ user: import("../../types/domain.js").User; accessToken: string; refreshToken: string; expiresIn: number; sessionId: string; }>`.
-- @throws Error - Cuando no se cumple una precondición indicada en esta operación.
+- @param input Correo normalizado y contraseña validados por loginSchema; no se guardan en logs.
+- @returns Perfil público y sesión con access/refresh; conserva el rol vigente de la cuenta.
+- @throws AppError INVALID_CREDENTIALS para cuenta desconocida, social sin contraseña, inactiva o contraseña incorrecta.
 
 ## src/modules/auth/auth.types.ts
 
@@ -2825,15 +2825,15 @@ export async function isFamilyActive(userId: string, familyId: string);
 
 ## src/modules/auth/session.service.ts
 
-Crea JWT propio y refresh opaco asociado. El caller garantiza cuenta activa.
+Crea una sesión propia; el llamador debe haber comprobado que la cuenta siga activa.
 
 [Abrir fuente](../src/modules/auth/session.service.ts)
 
 | Exportación    | Responsabilidad                                                                      |
 | -------------- | ------------------------------------------------------------------------------------ |
-| createSession  | Crea JWT propio y refresh opaco asociado. El caller garantiza cuenta activa.         |
+| createSession  | Crea una sesión propia; el llamador debe haber comprobado que la cuenta siga activa. |
 | refreshSession | Rota un refresh bajo bloqueo y revoca su familia cuando detecta reuso o vencimiento. |
-| logoutSession  | Revoca la familia del dispositivo; logout repetido es idempotente.                   |
+| logoutSession  | Revoca la familia completa, incluidos los access JWT de esa sesión todavía vigentes. |
 
 ### createSession
 
@@ -2845,10 +2845,10 @@ export async function createSession(
 );
 ```
 
-- @param identity - Identidad interna; puede contener hash de contraseña y no se serializa completa.
-- @param executor - Ejecutor SQL; permite participar en la transacción del llamador.
-- @param familyId - Familia de sesión que agrupa sus renovaciones.
-- @returns `Promise<{ user: import("../../types/domain.js").User; accessToken: string; refreshToken: string; expiresIn: number; sessionId: string; }>`.
+- @param identity Fila interna: publicUser elimina hash y campos privados antes de devolver el perfil.
+- @param executor Conexión de la operación, para insertar la sesión dentro de la misma transacción.
+- @param familyId Familia nueva por defecto; renovar conserva la familia para detectar reuso y cerrar el dispositivo.
+- @returns Perfil público, tokens, ID de sesión y expiresIn en segundos; SQL guarda solo el hash del refresh.
 
 ### refreshSession
 
@@ -2867,8 +2867,8 @@ export async function refreshSession(token: string);
 export async function logoutSession(token: string);
 ```
 
-- @param token - Token recibido; se valida o transforma antes de utilizarlo.
-- @returns `Promise<{ loggedOut: boolean; }>`.
+- @param token Refresh del dispositivo; se busca por hash, sin almacenar la credencial legible.
+- @returns loggedOut true incluso si ya no existía la sesión; repetir el cierre es seguro.
 
 ## src/modules/auth/token.service.ts
 
@@ -3244,14 +3244,14 @@ Cobro idempotente en centavos ARS. Clave estable al reintentar desde móvil.
 
 ## src/modules/payments/payments.service.ts
 
-Lista cobros propios o administrados; empleados solo pueden registrar cuando están habilitados.
+Consulta los cobros después de comprobar acceso al turno.
 
 [Abrir fuente](../src/modules/payments/payments.service.ts)
 
-| Exportación   | Responsabilidad                                                                                 |
-| ------------- | ----------------------------------------------------------------------------------------------- |
-| getPayments   | Lista cobros propios o administrados; empleados solo pueden registrar cuando están habilitados. |
-| recordPayment | Registra un cobro de forma atómica; no ejecuta una transferencia bancaria.                      |
+| Exportación   | Responsabilidad                                                            |
+| ------------- | -------------------------------------------------------------------------- |
+| getPayments   | Consulta los cobros después de comprobar acceso al turno.                  |
+| recordPayment | Registra un cobro de forma atómica; no ejecuta una transferencia bancaria. |
 
 ### getPayments
 
@@ -3259,9 +3259,9 @@ Lista cobros propios o administrados; empleados solo pueden registrar cuando est
 export async function getPayments(actor: Actor, id: string);
 ```
 
-- @param actor - Actor autenticado por el middleware; determina rol y propiedad.
-- @param id - Identificador del recurso dentro del proyecto actual.
-- @returns `Promise<import("mysql2").RowDataPacket[]>`.
+- @param actor Cliente titular o administrador; la ruta restringe estos roles antes de llamar al servicio.
+- @param id Turno autorizado cuyos pagos se consultan, sin cambiar saldo ni registrar dinero nuevo.
+- @returns Cobros persistidos con importe en centavos, medio, referencia y fecha.
 
 ### recordPayment
 
@@ -3354,16 +3354,16 @@ export function personal(r: Request);
 
 ## src/modules/reports/reports.repository.ts
 
-Trabajos finalizados en el intervalo UTC derivado del calendario local.
+Trabajos finalizados según fin agendado, no según la hora real del cierre.
 
 [Abrir fuente](../src/modules/reports/reports.repository.ts)
 
-| Exportación     | Responsabilidad                                                                      |
-| --------------- | ------------------------------------------------------------------------------------ |
-| completedWork   | Trabajos finalizados en el intervalo UTC derivado del calendario local.              |
-| revenue         | Ingresos contabilizados por momento real del pago, sin multiplicarlos por servicios. |
-| popularServices | Servicios contratados por fecha de atención, excluyendo cancelados.                  |
-| employeeSummary | Cuenta la jornada compartida por estado y fecha, sin revelar ingresos del negocio.   |
+| Exportación     | Responsabilidad                                                                     |
+| --------------- | ----------------------------------------------------------------------------------- |
+| completedWork   | Trabajos finalizados según fin agendado, no según la hora real del cierre.          |
+| revenue         | Cobros según el momento en que se registraron, sin multiplicarlos por servicios.    |
+| popularServices | Cuenta servicios contratados por inicio del turno y excluye cancelaciones.          |
+| employeeSummary | Cuenta la jornada compartida por estado e inicio, sin revelar ingresos del negocio. |
 
 ### completedWork
 
@@ -3371,10 +3371,9 @@ Trabajos finalizados en el intervalo UTC derivado del calendario local.
 export function completedWork(from: string, to: string);
 ```
 
-- @param from - Límite inicial del período o estado de origen, según su tipo.
-- @param to - Límite final o estado destino, según su tipo.
-- @returns `Promise<import("mysql2").RowDataPacket[]>`.
-- @throws Error - Si falla la persistencia o el servicio remoto; se conserva el manejo central de errores.
+- @param from Inicio UTC inclusivo del período convertido por el servicio desde la zona del negocio.
+- @param to Fin UTC exclusivo; permite consultar días consecutivos sin contar dos veces el límite.
+- @returns Filas con turno, fin agendado y responsable, para agregar lavados por calendario local.
 
 ### revenue
 
@@ -3382,10 +3381,9 @@ export function completedWork(from: string, to: string);
 export function revenue(from: string, to: string);
 ```
 
-- @param from - Límite inicial del período o estado de origen, según su tipo.
-- @param to - Límite final o estado destino, según su tipo.
-- @returns `Promise<import("mysql2").RowDataPacket[]>`.
-- @throws Error - Si falla la persistencia o el servicio remoto; se conserva el manejo central de errores.
+- @param from Inicio UTC inclusivo del período convertido por el servicio desde la zona del negocio.
+- @param to Fin UTC exclusivo; permite consultar días consecutivos sin contar dos veces el límite.
+- @returns Importes enteros en centavos y su fecha de pago; reservar sin cobrar no genera ingreso.
 
 ### popularServices
 
@@ -3393,10 +3391,9 @@ export function revenue(from: string, to: string);
 export function popularServices(from: string, to: string);
 ```
 
-- @param from - Límite inicial del período o estado de origen, según su tipo.
-- @param to - Límite final o estado destino, según su tipo.
-- @returns `Promise<import("mysql2").RowDataPacket[]>`.
-- @throws Error - Si falla la persistencia o el servicio remoto; se conserva el manejo central de errores.
+- @param from Inicio UTC inclusivo del período convertido por el servicio desde la zona del negocio.
+- @param to Fin UTC exclusivo; permite consultar días consecutivos sin contar dos veces el límite.
+- @returns Nombre histórico y cantidad de pedidos; editar el nombre del catálogo no reescribe el contrato.
 
 ### employeeSummary
 
@@ -3404,10 +3401,9 @@ export function popularServices(from: string, to: string);
 export function employeeSummary(from: string, to: string);
 ```
 
-- @param from - Límite inicial del período o estado de origen, según su tipo.
-- @param to - Límite final o estado destino, según su tipo.
-- @returns `Promise<import("mysql2").RowDataPacket[]>`.
-- @throws Error - Si falla la persistencia o el servicio remoto; se conserva el manejo central de errores.
+- @param from Inicio UTC inclusivo del período convertido por el servicio desde la zona del negocio.
+- @param to Fin UTC exclusivo; permite consultar días consecutivos sin contar dos veces el límite.
+- @returns Cantidad de turnos por estado; el resultado pertenece al equipo y no a un empleado en particular.
 
 ## src/modules/reports/reports.routes.ts
 

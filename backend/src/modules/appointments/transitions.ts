@@ -5,12 +5,12 @@ const employeeNext: Partial<Record<AppointmentStatus, AppointmentStatus>> = {
   pending: 'in_progress', // Compatibilidad con reservas anteriores al flujo compartido.
   confirmed: 'in_progress',
 };
-/** Valida máquina de estados; admin puede corregir estados, preservando demás invariantes en service.
- * @param from - Límite inicial del período o estado de origen, según su tipo.
- * @param to - Límite final o estado destino, según su tipo.
- * @param role - Rol permitido del catálogo de seguridad.
- * @returns `void`.
- * @throws Error - Cuando no se cumple una precondición indicada en esta operación.
+/** Autoriza el cambio genérico; finalizar y revisar tienen sus propios servicios y controles.
+ * @param from Estado persistido del turno que ya debe estar bloqueado por el servicio.
+ * @param to Estado solicitado; repetir el estado actual también se rechaza.
+ * @param role Rol vigente: el empleado solo inicia; el cliente cancela; Administración confirma pendientes o cancela.
+ * @returns No devuelve valor; continuar significa que esta transición está permitida para el rol.
+ * @throws ConflictError Si la combinación de estado de origen, destino y rol no está habilitada.
  */
 export function assertTransition(from: AppointmentStatus, to: AppointmentStatus, role: Role) {
   if (

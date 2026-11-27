@@ -1,9 +1,9 @@
 import type { useAppointmentFlags } from './useAppointmentFlags';
 import type { useAppointmentMutation } from './useAppointmentMutation';
-/** Acciones operativas; el permiso y la transición se vuelven a validar en el backend.
- * @param flags - Capacidades derivadas del rol, asignación y estado del turno.
- * @param mutate - Comando que conserva mensajes y recarga datos tras confirmar.
- * @returns `{ assign: () => Promise<void>; cancel: (v: Record<string, string>) => Promise<void>; advance: () => Promise<void>; setAdminStatus: () => Promise<void>; addNote: (v: Record<string, string>) => Promise<void>; }`.
+/** Traduce acciones del detalle a comandos; la API vuelve a comprobar cada permiso.
+ * @param flags Selección de responsable y controles locales de diálogos/formularios, no permisos de seguridad.
+ * @param mutate Envía el comando, conserva mensajes y consulta el estado confirmado.
+ * @returns Comandos de asignación, cancelación con motivo, inicio, confirmación y nota; cerrar un diálogo requiere éxito.
  */
 export function appointmentCommands(
   flags: ReturnType<typeof useAppointmentFlags>,
